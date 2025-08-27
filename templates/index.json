@@ -1,1 +1,243 @@
-{"sections":{"section_banner_v2_rhQT93":{"type":"section-banner-v2","name":"BANNER V2","settings":{"select_pos":"left","img_banner1":"shopify:\/\/shop_images\/Black_and_White_Photo_Biking_Facebook_Post_Website_1.png","img_banner1_mb":"shopify:\/\/shop_images\/Black_and_White_Photo_Biking_Facebook_Post_500_x_600_px_1.png","title_banner":"","color_title":"#222222","sub_title":"","color_sub_title":"#222222","button_1":"","color_btn":"#ffffff","bg_btn":"#000000","color_btn_hover":"#000000","bg_btn_hover":"#ffffff","url_button1":"shopify:\/\/collections\/all","margin_top":"-30","margin_bottom":""}},"163711855463067829":{"type":"section-product-v4","settings":{"title_heading":"FEATURED","color_title":"#222222","select_collection":"accessories-general","products_limit":8,"buttom_name":"Load More","button_name_url":"shopify:\/\/collections\/accessories-general","margin_top":"","margin_bottom":""}},"section_product_v6_hHBLXm":{"type":"section-product-v6","name":"PRODUCT V6","settings":{"section_layout":"banner_left","button_1":"Shop now","url_button1":"shopify:\/\/collections\/all","color_btn":"","bg_btn":"#fff","color_btn_hover":"#fff","bg_btn_hover":"#88c000","select_collection":"","products_limit":4,"margin_top":"","margin_bottom":""}},"section_service_v1_AEYTQP":{"type":"section-service-v1","blocks":{"service_PPeEUC":{"type":"service","settings":{"block_title":"24\/7 FRIENDLY SUPPORT","color_title":"#ffffff","block_content":"Our team rides every day, and we’re here to help you choose and maintain your bike.","color_content":"#ffffff"}},"service_LrAmML":{"type":"service","settings":{"block_title":"Fast Delivery","color_title":"#ffffff","block_content":"Get your gear quickly with reliable Swiss shipping.","color_content":"#ffffff"}},"service_4paQMW":{"type":"service","settings":{"block_title":"Easy & Fair Returns","color_title":"#ffffff","block_content":"Shop with confidence — your purchase is protected by Swiss consumer law.","color_content":"#ffffff"}},"service_dbzDxx":{"type":"service","settings":{"block_title":"Backed by Service","color_title":"#ffffff","block_content":"Every bike is supported by our in-house workshop and trusted mechanics.","color_content":"#ffffff"}}},"block_order":["service_PPeEUC","service_LrAmML","service_4paQMW","service_dbzDxx"],"name":"SERVICE BOX","settings":{"margin_top":"","margin_bottom":"","bg_section":"#ff0000"}},"section_blog_v2_KdMAdt":{"type":"section-blog-v2","name":"BLOG V2","settings":{"bg_section_color":"#ffffff","section_title":"Our Blogs","color_title":"#222222","description_title":"Stories from the road: riders, cities, and innovations shaping the future of cycling in Switzerland.","color_sub_title":"#666666","select_blog":"news","blogs_limit":3,"enable_category":true,"enable_date":true,"enable_title":true,"enable_excerpt":true,"margin_top":"","margin_bottom":""}},"section_service_v2_qfprta":{"type":"section-service-v2","blocks":{"service_VqNyVe":{"type":"service","settings":{"block_number":"","img_icon":"shopify:\/\/shop_images\/mode_heat_80dp_FF4040_FILL0_wght0_GRAD0_opsz48.svg","block_title":"Founded on Passion","block_content":""}},"service_zJ7nNR":{"type":"service","settings":{"block_number":"2","img_icon":"shopify:\/\/shop_images\/diversity_4_80dp_FF4040_FILL0_wght0_GRAD0_opsz48.svg","block_title":"Powered by Community","block_content":""}},"service_mYUNtT":{"type":"service","settings":{"block_number":"3","img_icon":"shopify:\/\/shop_images\/pedal_bike_80dp_FF4040_FILL0_wght0_GRAD0_opsz48.svg","block_title":"Freedom on Two Wheels","block_content":""}}},"block_order":["service_VqNyVe","service_zJ7nNR","service_mYUNtT"],"name":"SERVICE V2","settings":{"margin_top":"","margin_bottom":""}},"section_product_v1_NQJG9z":{"type":"section-product-v1","name":"PRODUCT V1","settings":{"title_heading":"Hot Deal","color_title":"#222","sub-title1":"Don't Miss Today's Featured Deals","select_collection":"","products_limit":4,"margin_top":"","margin_bottom":""}},"section_product_v2_tdBRie":{"type":"section-product-v2","blocks":{"tab_g86zNz":{"type":"tab","settings":{"tab_title":"NEW ARRIVALS","tab_collection":"","tab_limit":8}},"tab_m44Vek":{"type":"tab","settings":{"tab_title":"BEST SELLERS","tab_collection":"","tab_limit":8}},"tab_VU9geH":{"type":"tab","settings":{"tab_title":"TOP RATES","tab_collection":"","tab_limit":8}}},"block_order":["tab_g86zNz","tab_m44Vek","tab_VU9geH"],"name":"PRODUCT V2","settings":{"margin_top":"","margin_bottom":"","title_heading":"Our Best Seller","color_title":"#222"}}},"order":["section_banner_v2_rhQT93","163711855463067829","section_product_v6_hHBLXm","section_service_v1_AEYTQP","section_blog_v2_KdMAdt","section_service_v2_qfprta","section_product_v1_NQJG9z","section_product_v2_tdBRie"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "section_banner_v2_rhQT93": {
+      "type": "section-banner-v2",
+      "name": "BANNER V2",
+      "settings": {
+        "select_pos": "left",
+        "img_banner1": "shopify://shop_images/Black_and_White_Photo_Biking_Facebook_Post_Website_1.png",
+        "img_banner1_mb": "shopify://shop_images/Black_and_White_Photo_Biking_Facebook_Post_500_x_600_px_1.png",
+        "title_banner": "",
+        "color_title": "#222222",
+        "sub_title": "",
+        "color_sub_title": "#222222",
+        "button_1": "",
+        "color_btn": "#ffffff",
+        "bg_btn": "#000000",
+        "color_btn_hover": "#000000",
+        "bg_btn_hover": "#ffffff",
+        "url_button1": "shopify://collections/all",
+        "margin_top": "-30",
+        "margin_bottom": ""
+      }
+    },
+    "163711855463067829": {
+      "type": "section-product-v4",
+      "settings": {
+        "title_heading": "FEATURED",
+        "color_title": "#222222",
+        "select_collection": "mountain-bikes",
+        "products_limit": 8,
+        "buttom_name": "Load More",
+        "button_name_url": "shopify://collections/accessories-general",
+        "margin_top": "",
+        "margin_bottom": ""
+      }
+    },
+    "section_product_v6_hHBLXm": {
+      "type": "section-product-v6",
+      "name": "PRODUCT V6",
+      "settings": {
+        "section_layout": "banner_left",
+        "img_banner1": "shopify://shop_images/5S5A2675.jpg",
+        "button_1": "Shop now",
+        "url_button1": "shopify://collections/all",
+        "color_btn": "",
+        "bg_btn": "#ffffff",
+        "color_btn_hover": "#ffffff",
+        "bg_btn_hover": "#88c000",
+        "select_collection": "lights",
+        "products_limit": 4,
+        "margin_top": "",
+        "margin_bottom": ""
+      }
+    },
+    "section_service_v1_AEYTQP": {
+      "type": "section-service-v1",
+      "blocks": {
+        "service_PPeEUC": {
+          "type": "service",
+          "settings": {
+            "block_title": "24/7 FRIENDLY SUPPORT",
+            "color_title": "#ffffff",
+            "block_content": "Our team rides every day, and we’re here to help you choose and maintain your bike.",
+            "color_content": "#ffffff"
+          }
+        },
+        "service_LrAmML": {
+          "type": "service",
+          "settings": {
+            "block_title": "Fast Delivery",
+            "color_title": "#ffffff",
+            "block_content": "Get your gear quickly with reliable Swiss shipping.",
+            "color_content": "#ffffff"
+          }
+        },
+        "service_4paQMW": {
+          "type": "service",
+          "settings": {
+            "block_title": "Easy & Fair Returns",
+            "color_title": "#ffffff",
+            "block_content": "Shop with confidence — your purchase is protected by Swiss consumer law.",
+            "color_content": "#ffffff"
+          }
+        },
+        "service_dbzDxx": {
+          "type": "service",
+          "settings": {
+            "block_title": "Backed by Service",
+            "color_title": "#ffffff",
+            "block_content": "Every bike is supported by our in-house workshop and trusted mechanics.",
+            "color_content": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "service_PPeEUC",
+        "service_LrAmML",
+        "service_4paQMW",
+        "service_dbzDxx"
+      ],
+      "name": "SERVICE BOX",
+      "settings": {
+        "margin_top": "",
+        "margin_bottom": "",
+        "bg_section": "#ff0000"
+      }
+    },
+    "section_blog_v2_KdMAdt": {
+      "type": "section-blog-v2",
+      "name": "BLOG V2",
+      "settings": {
+        "bg_section_color": "#ffffff",
+        "section_title": "Our Blogs",
+        "color_title": "#222222",
+        "description_title": "Stories from the road: riders, cities, and innovations shaping the future of cycling in Switzerland.",
+        "color_sub_title": "#666666",
+        "select_blog": "news",
+        "blogs_limit": 3,
+        "enable_category": true,
+        "enable_date": true,
+        "enable_title": true,
+        "enable_excerpt": true,
+        "margin_top": "",
+        "margin_bottom": ""
+      }
+    },
+    "section_service_v2_qfprta": {
+      "type": "section-service-v2",
+      "blocks": {
+        "service_VqNyVe": {
+          "type": "service",
+          "settings": {
+            "block_number": "",
+            "img_icon": "shopify://shop_images/mode_heat_80dp_FF4040_FILL0_wght0_GRAD0_opsz48.svg",
+            "block_title": "Founded on Passion",
+            "block_content": ""
+          }
+        },
+        "service_zJ7nNR": {
+          "type": "service",
+          "settings": {
+            "block_number": "2",
+            "img_icon": "shopify://shop_images/diversity_4_80dp_FF4040_FILL0_wght0_GRAD0_opsz48.svg",
+            "block_title": "Powered by Community",
+            "block_content": ""
+          }
+        },
+        "service_mYUNtT": {
+          "type": "service",
+          "settings": {
+            "block_number": "3",
+            "img_icon": "shopify://shop_images/pedal_bike_80dp_FF4040_FILL0_wght0_GRAD0_opsz48.svg",
+            "block_title": "Freedom on Two Wheels",
+            "block_content": ""
+          }
+        }
+      },
+      "block_order": [
+        "service_VqNyVe",
+        "service_zJ7nNR",
+        "service_mYUNtT"
+      ],
+      "name": "SERVICE V2",
+      "settings": {
+        "margin_top": "",
+        "margin_bottom": ""
+      }
+    },
+    "section_product_v1_NQJG9z": {
+      "type": "section-product-v1",
+      "name": "PRODUCT V1",
+      "settings": {
+        "title_heading": "Hot Deal",
+        "color_title": "#222222",
+        "sub-title1": "Don't Miss Today's Featured Deals",
+        "select_collection": "under-3000-chf",
+        "products_limit": 4,
+        "margin_top": "",
+        "margin_bottom": ""
+      }
+    },
+    "section_product_v2_tdBRie": {
+      "type": "section-product-v2",
+      "blocks": {
+        "tab_g86zNz": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "NEW ARRIVALS",
+            "tab_collection": "road-bikes",
+            "tab_limit": 8
+          }
+        },
+        "tab_m44Vek": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "BEST SELLERS",
+            "tab_collection": "e-bikes",
+            "tab_limit": 8
+          }
+        },
+        "tab_VU9geH": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "TOP RATES",
+            "tab_collection": "accessories",
+            "tab_limit": 8
+          }
+        }
+      },
+      "block_order": [
+        "tab_g86zNz",
+        "tab_m44Vek",
+        "tab_VU9geH"
+      ],
+      "name": "PRODUCT V2",
+      "settings": {
+        "margin_top": "",
+        "margin_bottom": "",
+        "title_heading": "Our Best Seller",
+        "color_title": "#222222"
+      }
+    }
+  },
+  "order": [
+    "section_banner_v2_rhQT93",
+    "163711855463067829",
+    "section_product_v6_hHBLXm",
+    "section_service_v1_AEYTQP",
+    "section_blog_v2_KdMAdt",
+    "section_service_v2_qfprta",
+    "section_product_v1_NQJG9z",
+    "section_product_v2_tdBRie"
+  ]
+}
