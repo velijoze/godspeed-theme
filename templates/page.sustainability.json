@@ -1,16 +1,1 @@
-{
-  "sections": {
-    "main": {
-      "type": "main-page",
-      "settings": {}
-    },
-    "sustainability": {
-      "type": "sustainability-content",
-      "settings": {}
-    }
-  },
-  "order": [
-    "main",
-    "sustainability"
-  ]
-}
+{"sections":{"sustainability":{"type":"sustainability-content","settings":{}}},"order":["sustainability"]}
