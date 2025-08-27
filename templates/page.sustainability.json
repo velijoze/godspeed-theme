@@ -1,10 +1,16 @@
 {
   "sections": {
     "main": {
+      "type": "main-page",
+      "settings": {}
+    },
+    "sustainability": {
       "type": "sustainability-content",
-      "settings": {
-      }
+      "settings": {}
     }
   },
-  "order": ["main"]
+  "order": [
+    "main",
+    "sustainability"
+  ]
 }
