@@ -1,0 +1,408 @@
+<div class="shipping-partners-section">
+  <div class="container">
+    {% if section.settings.title != blank %}
+    <div class="section-header text-center mb-5">
+      <h2 class="section-title">{{ section.settings.title }}</h2>
+      {% if section.settings.description != blank %}
+      <p class="section-description">{{ section.settings.description }}</p>
+      {% endif %}
+    </div>
+    {% endif %}
+
+    <div class="shipping-partners-grid">
+      <div class="row align-items-center justify-content-center">
+        
+        <!-- Partner 1 -->
+        {% if section.settings.partner1_logo != blank %}
+        <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-4">
+          <div class="partner-item text-center">
+            {% if section.settings.partner1_url != blank %}
+            <a href="{{ section.settings.partner1_url }}" target="_blank" class="partner-link">
+            {% endif %}
+              <img src="{{ section.settings.partner1_logo | img_url: 'master' }}" 
+                   alt="{{ section.settings.partner1_name | default: 'Shipping Partner' }}" 
+                   class="partner-logo img-fluid">
+            {% if section.settings.partner1_url != blank %}
+            </a>
+            {% endif %}
+            {% if section.settings.partner1_name != blank %}
+            <p class="partner-name mt-2">{{ section.settings.partner1_name }}</p>
+            {% endif %}
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- Partner 2 -->
+        {% if section.settings.partner2_logo != blank %}
+        <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-4">
+          <div class="partner-item text-center">
+            {% if section.settings.partner2_url != blank %}
+            <a href="{{ section.settings.partner2_url }}" target="_blank" class="partner-link">
+            {% endif %}
+              <img src="{{ section.settings.partner2_logo | img_url: 'master' }}" 
+                   alt="{{ section.settings.partner2_name | default: 'Shipping Partner' }}" 
+                   class="partner-logo img-fluid">
+            {% if section.settings.partner2_url != blank %}
+            </a>
+            {% endif %}
+            {% if section.settings.partner2_name != blank %}
+            <p class="partner-name mt-2">{{ section.settings.partner2_name }}</p>
+            {% endif %}
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- Partner 3 -->
+        {% if section.settings.partner3_logo != blank %}
+        <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-4">
+          <div class="partner-item text-center">
+            {% if section.settings.partner3_url != blank %}
+            <a href="{{ section.settings.partner3_url }}" target="_blank" class="partner-link">
+            {% endif %}
+              <img src="{{ section.settings.partner3_logo | img_url: 'master' }}" 
+                   alt="{{ section.settings.partner3_name | default: 'Shipping Partner' }}" 
+                   class="partner-logo img-fluid">
+            {% if section.settings.partner3_url != blank %}
+            </a>
+            {% endif %}
+            {% if section.settings.partner3_name != blank %}
+            <p class="partner-name mt-2">{{ section.settings.partner3_name }}</p>
+            {% endif %}
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- Partner 4 -->
+        {% if section.settings.partner4_logo != blank %}
+        <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-4">
+          <div class="partner-item text-center">
+            {% if section.settings.partner4_url != blank %}
+            <a href="{{ section.settings.partner4_url }}" target="_blank" class="partner-link">
+            {% endif %}
+              <img src="{{ section.settings.partner4_logo | img_url: 'master' }}" 
+                   alt="{{ section.settings.partner4_name | default: 'Shipping Partner' }}" 
+                   class="partner-logo img-fluid">
+            {% if section.settings.partner4_url != blank %}
+            </a>
+            {% endif %}
+            {% if section.settings.partner4_name != blank %}
+            <p class="partner-name mt-2">{{ section.settings.partner4_name }}</p>
+            {% endif %}
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- Partner 5 -->
+        {% if section.settings.partner5_logo != blank %}
+        <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-4">
+          <div class="partner-item text-center">
+            {% if section.settings.partner5_url != blank %}
+            <a href="{{ section.settings.partner5_url }}" target="_blank" class="partner-link">
+            {% endif %}
+              <img src="{{ section.settings.partner5_logo | img_url: 'master' }}" 
+                   alt="{{ section.settings.partner5_name | default: 'Shipping Partner' }}" 
+                   class="partner-logo img-fluid">
+            {% if section.settings.partner5_url != blank %}
+            </a>
+            {% endif %}
+            {% if section.settings.partner5_name != blank %}
+            <p class="partner-name mt-2">{{ section.settings.partner5_name }}</p>
+            {% endif %}
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- Partner 6 -->
+        {% if section.settings.partner6_logo != blank %}
+        <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-4">
+          <div class="partner-item text-center">
+            {% if section.settings.partner6_url != blank %}
+            <a href="{{ section.settings.partner6_url }}" target="_blank" class="partner-link">
+            {% endif %}
+              <img src="{{ section.settings.partner6_logo | img_url: 'master' }}" 
+                   alt="{{ section.settings.partner6_name | default: 'Shipping Partner' }}" 
+                   class="partner-logo img-fluid">
+            {% if section.settings.partner6_url != blank %}
+            </a>
+            {% endif %}
+            {% if section.settings.partner6_name != blank %}
+            <p class="partner-name mt-2">{{ section.settings.partner6_name }}</p>
+            {% endif %}
+          </div>
+        </div>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Shipping Partners",
+  "tag": "section",
+  "class": "shipping-partners",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Our Shipping Partners"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Section Description",
+      "default": "We work with trusted shipping partners to deliver your orders safely and efficiently."
+    },
+    {
+      "type": "header",
+      "content": "Partner 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "partner1_logo",
+      "label": "Partner 1 Logo",
+      "info": "200x100px recommended"
+    },
+    {
+      "type": "text",
+      "id": "partner1_name",
+      "label": "Partner 1 Name",
+      "default": "Post.ch"
+    },
+    {
+      "type": "url",
+      "id": "partner1_url",
+      "label": "Partner 1 Website URL"
+    },
+    {
+      "type": "header",
+      "content": "Partner 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "partner2_logo",
+      "label": "Partner 2 Logo",
+      "info": "200x100px recommended"
+    },
+    {
+      "type": "text",
+      "id": "partner2_name",
+      "label": "Partner 2 Name",
+      "default": "DHL"
+    },
+    {
+      "type": "url",
+      "id": "partner2_url",
+      "label": "Partner 2 Website URL"
+    },
+    {
+      "type": "header",
+      "content": "Partner 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "partner3_logo",
+      "label": "Partner 3 Logo",
+      "info": "200x100px recommended"
+    },
+    {
+      "type": "text",
+      "id": "partner3_name",
+      "label": "Partner 3 Name",
+      "default": "DPD"
+    },
+    {
+      "type": "url",
+      "id": "partner3_url",
+      "label": "Partner 3 Website URL"
+    },
+    {
+      "type": "header",
+      "content": "Partner 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "partner4_logo",
+      "label": "Partner 4 Logo",
+      "info": "200x100px recommended"
+    },
+    {
+      "type": "text",
+      "id": "partner4_name",
+      "label": "Partner 4 Name"
+    },
+    {
+      "type": "url",
+      "id": "partner4_url",
+      "label": "Partner 4 Website URL"
+    },
+    {
+      "type": "header",
+      "content": "Partner 5"
+    },
+    {
+      "type": "image_picker",
+      "id": "partner5_logo",
+      "label": "Partner 5 Logo",
+      "info": "200x100px recommended"
+    },
+    {
+      "type": "text",
+      "id": "partner5_name",
+      "label": "Partner 5 Name"
+    },
+    {
+      "type": "url",
+      "id": "partner5_url",
+      "label": "Partner 5 Website URL"
+    },
+    {
+      "type": "header",
+      "content": "Partner 6"
+    },
+    {
+      "type": "image_picker",
+      "id": "partner6_logo",
+      "label": "Partner 6 Logo",
+      "info": "200x100px recommended"
+    },
+    {
+      "type": "text",
+      "id": "partner6_name",
+      "label": "Partner 6 Name"
+    },
+    {
+      "type": "url",
+      "id": "partner6_url",
+      "label": "Partner 6 Website URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shipping Partners",
+      "settings": {
+        "title": "Our Shipping Partners",
+        "description": "We work with trusted shipping partners to deliver your orders safely and efficiently.",
+        "partner1_name": "Post.ch",
+        "partner2_name": "DHL",
+        "partner3_name": "DPD"
+      }
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+.shipping-partners-section {
+  padding: 60px 0;
+  background-color: #f8f9fa;
+}
+
+.section-header {
+  margin-bottom: 50px;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.section-description {
+  font-size: 1.1rem;
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.shipping-partners-grid {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.partner-item {
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.partner-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+}
+
+.partner-link {
+  display: block;
+  text-decoration: none;
+}
+
+.partner-logo {
+  max-height: 60px;
+  max-width: 150px;
+  object-fit: contain;
+  filter: grayscale(100%);
+  transition: all 0.3s ease;
+}
+
+.partner-item:hover .partner-logo {
+  filter: grayscale(0%);
+}
+
+.partner-name {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #666;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .shipping-partners-section {
+    padding: 40px 0;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .partner-item {
+    padding: 15px;
+  }
+  
+  .partner-logo {
+    max-height: 50px;
+    max-width: 120px;
+  }
+}
+
+@media (max-width: 576px) {
+  .section-title {
+    font-size: 1.8rem;
+  }
+  
+  .partner-item {
+    padding: 10px;
+  }
+  
+  .partner-logo {
+    max-height: 40px;
+    max-width: 100px;
+  }
+}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

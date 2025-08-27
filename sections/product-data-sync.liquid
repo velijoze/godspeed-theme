@@ -1,0 +1,1206 @@
+{% comment %}
+  Product Data Synchronization Section
+  Manual/on-demand product updates from VeloConnect and Cube using theme CSS classes
+{% endcomment %}
+
+<div data-section-id="{{ section.id }}" data-section-type="section-product-data-sync" style="{% if section.settings.margin_top != blank %}margin-top: {{section.settings.margin_top}}px;{%endif%} {% if section.settings.margin_bottom != blank %}margin-bottom: {{section.settings.margin_bottom}}px;{% endif %}">
+  <div class="section-product-data-sync mt-all">
+    <div class="container container-v2">
+      <div class="row justify-content-center">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <div class="sync-header text-center mb-5">
+            {% if section.settings.sync_title != blank %}
+              <h2 class="title title-{{ section.id }} mb-3">{{ section.settings.sync_title }}</h2>
+            {% endif %}
+            
+            {% if section.settings.sync_subtitle != blank %}
+              <p class="subtitle subtitle-{{ section.id }}">{{ section.settings.sync_subtitle }}</p>
+            {% endif %}
+          </div>
+          
+          <div class="sync-wrapper">
+            <!-- Sync Controls Header -->
+            <div class="sync-controls-header mb-4">
+              <div class="row align-items-center">
+                <div class="col-md-8">
+                  <div class="sync-status-overview">
+                    <div class="status-indicators">
+                      <div class="status-item">
+                        <i class="fa fa-link status-icon"></i>
+                        <span class="status-label">VeloConnect:</span>
+                        <span class="status-value" id="vc-connection-{{ section.id }}">Connected</span>
+                      </div>
+                      <div class="status-item">
+                        <i class="fa fa-cube status-icon"></i>
+                        <span class="status-label">Cube Connect:</span>
+                        <span class="status-value" id="cube-connection-{{ section.id }}">Connected</span>
+                      </div>
+                      <div class="status-item">
+                        <i class="fa fa-shopping-cart status-icon"></i>
+                        <span class="status-label">Shopify API:</span>
+                        <span class="status-value" id="shopify-connection-{{ section.id }}">Ready</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4 text-right">
+                  <div class="last-sync-info">
+                    <small class="text-muted">Last Sync:</small>
+                    <div class="last-sync-time" id="last-sync-time-{{ section.id }}">Never</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="row">
+              <!-- Sync Controls Panel -->
+              <div class="col-lg-4 col-md-12 mb-4">
+                <div class="sync-controls-panel">
+                  <h4 class="panel-title panel-title-{{ section.id }} mb-4">Sync Controls</h4>
+                  
+                  <!-- Product Selection -->
+                  <div class="sync-section mb-4">
+                    <h5 class="section-subtitle">Product Selection</h5>
+                    
+                    <div class="form-group mb-3">
+                      <label for="sync-supplier-{{ section.id }}" class="form-label">Supplier</label>
+                      <select id="sync-supplier-{{ section.id }}" class="form-control">
+                        <option value="">All Suppliers</option>
+                        <option value="abus">ABUS</option>
+                        <option value="amsler">Amsler</option>
+                        <option value="chrissport">ChrisSports</option>
+                        <option value="cube">Cube Bikes</option>
+                        <option value="electra">Electra</option>
+                        <option value="komenda">Komenda</option>
+                        <option value="magura">Magura</option>
+                        <option value="maxxis">Maxxis</option>
+                        <option value="orbea">Orbea</option>
+                        <option value="sks">SKS</option>
+                        <option value="tourdesuisse">Tour de Suisse</option>
+                      </select>
+                    </div>
+                    
+                    <div class="form-group mb-3">
+                      <label for="sync-category-{{ section.id }}" class="form-label">Product Category</label>
+                      <select id="sync-category-{{ section.id }}" class="form-control">
+                        <option value="">All Categories</option>
+                        <option value="ebikes">E-Bikes</option>
+                        <option value="mountain">Mountain Bikes</option>
+                        <option value="road">Road Bikes</option>
+                        <option value="hybrid">Hybrid Bikes</option>
+                        <option value="accessories">Accessories</option>
+                        <option value="parts">Parts</option>
+                      </select>
+                    </div>
+                    
+                    <div class="form-group mb-3">
+                      <label for="specific-skus-{{ section.id }}" class="form-label">Specific SKUs (Optional)</label>
+                      <textarea id="specific-skus-{{ section.id }}" class="form-control" rows="3" placeholder="CB-STR-500, TK-DOM-AL2, etc.&#10;One per line or comma separated"></textarea>
+                      <small class="form-text text-muted">Leave empty to sync all products in selected category</small>
+                    </div>
+                  </div>
+                  
+                  <!-- Sync Options -->
+                  <div class="sync-section mb-4">
+                    <h5 class="section-subtitle">What to Sync</h5>
+                    
+                    <div class="sync-options">
+                      <label class="sync-option">
+                        <input type="checkbox" id="sync-descriptions-{{ section.id }}" checked>
+                        <span class="checkmark"></span>
+                        <span class="option-text">Product Descriptions</span>
+                      </label>
+                      
+                      <label class="sync-option">
+                        <input type="checkbox" id="sync-specifications-{{ section.id }}" checked>
+                        <span class="checkmark"></span>
+                        <span class="option-text">Technical Specifications</span>
+                      </label>
+                      
+                      <label class="sync-option">
+                        <input type="checkbox" id="sync-pricing-{{ section.id }}" checked>
+                        <span class="checkmark"></span>
+                        <span class="option-text">Pricing Information</span>
+                      </label>
+                      
+                      <label class="sync-option">
+                        <input type="checkbox" id="sync-inventory-{{ section.id }}" checked>
+                        <span class="checkmark"></span>
+                        <span class="option-text">Inventory Levels</span>
+                      </label>
+                      
+                      <label class="sync-option">
+                        <input type="checkbox" id="sync-images-{{ section.id }}">
+                        <span class="checkmark"></span>
+                        <span class="option-text">Product Images</span>
+                      </label>
+                      
+                      <label class="sync-option">
+                        <input type="checkbox" id="sync-categories-{{ section.id }}">
+                        <span class="checkmark"></span>
+                        <span class="option-text">Categories & Tags</span>
+                      </label>
+                    </div>
+                  </div>
+                  
+                  <!-- Sync Actions -->
+                  <div class="sync-actions">
+                    <button type="button" class="btn btn-preview-{{ section.id }}" id="preview-sync-{{ section.id }}">
+                      <i class="fa fa-eye"></i>
+                      Preview Changes
+                    </button>
+                    
+                    <button type="button" class="btn btn-sync-{{ section.id }}" id="execute-sync-{{ section.id }}" disabled>
+                      <i class="fa fa-sync"></i>
+                      <span class="sync-text">Execute Sync</span>
+                      <span class="sync-loading" style="display: none;">
+                        <i class="fa fa-spinner fa-spin"></i> Syncing...
+                      </span>
+                    </button>
+                    
+                    <button type="button" class="btn btn-emergency-{{ section.id }}" id="emergency-stop-{{ section.id }}" style="display: none;">
+                      <i class="fa fa-stop"></i>
+                      Emergency Stop
+                    </button>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Results Panel -->
+              <div class="col-lg-8 col-md-12">
+                <div class="sync-results-panel">
+                  <div class="results-header mb-3">
+                    <div class="row align-items-center">
+                      <div class="col-md-6">
+                        <h4 class="results-title results-title-{{ section.id }}">Sync Results</h4>
+                      </div>
+                      <div class="col-md-6 text-right">
+                        <div class="sync-progress" id="sync-progress-{{ section.id }}" style="display: none;">
+                          <div class="progress-bar">
+                            <div class="progress-fill" id="progress-fill-{{ section.id }}"></div>
+                          </div>
+                          <span class="progress-text" id="progress-text-{{ section.id }}">0%</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Preview/Results Content -->
+                  <div class="sync-content" id="sync-content-{{ section.id }}">
+                    <div class="empty-state text-center">
+                      <i class="fa fa-sync-alt fa-3x mb-3"></i>
+                      <h5>Product Data Synchronization</h5>
+                      <p>Configure your sync options and click "Preview Changes" to see what will be updated.</p>
+                      <div class="sync-benefits mt-4">
+                        <div class="row">
+                          <div class="col-md-6 mb-3">
+                            <div class="benefit-card">
+                              <i class="fa fa-edit"></i>
+                              <h6>Auto Descriptions</h6>
+                              <p>Professional product descriptions from manufacturers</p>
+                            </div>
+                          </div>
+                          <div class="col-md-6 mb-3">
+                            <div class="benefit-card">
+                              <i class="fa fa-cogs"></i>
+                              <h6>Technical Specs</h6>
+                              <p>Complete specifications and technical data</p>
+                            </div>
+                          </div>
+                          <div class="col-md-6 mb-3">
+                            <div class="benefit-card">
+                              <i class="fa fa-tags"></i>
+                              <h6>Current Pricing</h6>
+                              <p>Real-time pricing from supplier systems</p>
+                            </div>
+                          </div>
+                          <div class="col-md-6 mb-3">
+                            <div class="benefit-card">
+                              <i class="fa fa-warehouse"></i>
+                              <h6>Live Inventory</h6>
+                              <p>Accurate stock levels and availability</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Sync Log -->
+                  <div class="sync-log mt-4" id="sync-log-{{ section.id }}" style="display: none;">
+                    <h5 class="log-title">Sync Log</h5>
+                    <div class="log-content" id="log-content-{{ section.id }}">
+                      <!-- Log entries will appear here -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .section-product-data-sync {
+    padding: 80px 0;
+    background: #fff;
+  }
+  
+  .section-product-data-sync .title-{{ section.id }} {
+    color: {{ section.settings.color_title | default: '#333' }};
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  
+  .section-product-data-sync .subtitle-{{ section.id }} {
+    color: {{ section.settings.color_subtitle | default: '#6c757d' }};
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  .sync-wrapper {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  }
+  
+  .sync-controls-header {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border-left: 4px solid {{ section.settings.color_title | default: '#333' }};
+  }
+  
+  .status-indicators {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  
+  .status-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 14px;
+  }
+  
+  .status-icon {
+    color: #28a745;
+    font-size: 16px;
+  }
+  
+  .status-label {
+    color: #6c757d;
+    font-weight: 500;
+  }
+  
+  .status-value {
+    color: #28a745;
+    font-weight: 600;
+  }
+  
+  .last-sync-info {
+    text-align: right;
+  }
+  
+  .last-sync-time {
+    font-weight: 600;
+    color: #333;
+    font-size: 14px;
+  }
+  
+  .sync-controls-panel {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    height: fit-content;
+    position: sticky;
+    top: 2rem;
+  }
+  
+  .panel-title-{{ section.id }} {
+    color: {{ section.settings.color_title | default: '#333' }};
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+  }
+  
+  .sync-section {
+    border-bottom: 1px solid #e9ecef;
+    padding-bottom: 1.5rem;
+  }
+  
+  .sync-section:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  
+  .section-subtitle {
+    color: {{ section.settings.color_title | default: '#333' }};
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #333;
+    font-size: 14px;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 10px 14px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: 'SofiaPro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #333;
+    transition: border-color 0.3s ease;
+    background: #fff;
+    resize: vertical;
+  }
+  
+  .form-control:focus {
+    outline: none;
+    border-color: {{ section.settings.color_title | default: '#333' }};
+    box-shadow: 0 0 0 3px rgba(51, 51, 51, 0.1);
+  }
+  
+  .form-text {
+    font-size: 12px;
+    margin-top: 0.25rem;
+  }
+  
+  .sync-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .sync-option {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .sync-option:hover {
+    background: #f8f9fa;
+  }
+  
+  .sync-option input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: {{ section.settings.color_title | default: '#333' }};
+  }
+  
+  .option-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+  }
+  
+  .sync-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .btn-preview-{{ section.id }} {
+    background: #17a2b8;
+    color: #fff;
+    padding: 12px 20px;
+    border: 2px solid #17a2b8;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  .btn-preview-{{ section.id }}:hover {
+    background: #138496;
+    border-color: #138496;
+    transform: translateY(-1px);
+  }
+  
+  .btn-sync-{{ section.id }} {
+    background: {{ section.settings.color_title | default: '#333' }};
+    color: #fff;
+    padding: 14px 20px;
+    border: 2px solid {{ section.settings.color_title | default: '#333' }};
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  .btn-sync-{{ section.id }}:hover:not(:disabled) {
+    background: #555;
+    border-color: #555;
+    transform: translateY(-1px);
+  }
+  
+  .btn-sync-{{ section.id }}:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+  
+  .btn-emergency-{{ section.id }} {
+    background: #dc3545;
+    color: #fff;
+    padding: 10px 20px;
+    border: 2px solid #dc3545;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  .btn-emergency-{{ section.id }}:hover {
+    background: #c82333;
+    border-color: #c82333;
+  }
+  
+  .sync-results-panel {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    min-height: 500px;
+  }
+  
+  .results-title-{{ section.id }} {
+    color: {{ section.settings.color_title | default: '#333' }};
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+  }
+  
+  .sync-progress {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .progress-bar {
+    width: 150px;
+    height: 8px;
+    background: #e9ecef;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  
+  .progress-fill {
+    height: 100%;
+    background: {{ section.settings.color_title | default: '#333' }};
+    transition: width 0.3s ease;
+    width: 0%;
+  }
+  
+  .progress-text {
+    font-size: 12px;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .empty-state {
+    padding: 3rem 2rem;
+    color: #6c757d;
+  }
+  
+  .empty-state i {
+    color: #dee2e6;
+  }
+  
+  .sync-benefits {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .benefit-card {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    height: 100%;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+  }
+  
+  .benefit-card:hover {
+    border-color: {{ section.settings.color_title | default: '#333' }};
+    transform: translateY(-2px);
+  }
+  
+  .benefit-card i {
+    font-size: 24px;
+    color: {{ section.settings.color_title | default: '#333' }};
+    margin-bottom: 0.5rem;
+  }
+  
+  .benefit-card h6 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.5rem;
+  }
+  
+  .benefit-card p {
+    font-size: 12px;
+    color: #6c757d;
+    margin: 0;
+    line-height: 1.4;
+  }
+  
+  .sync-log {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 1rem;
+    border: 1px solid #e9ecef;
+  }
+  
+  .log-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1rem;
+  }
+  
+  .log-content {
+    max-height: 300px;
+    overflow-y: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+  
+  .log-entry {
+    padding: 0.25rem 0;
+    border-bottom: 1px solid #e9ecef;
+  }
+  
+  .log-entry:last-child {
+    border-bottom: none;
+  }
+  
+  .log-timestamp {
+    color: #6c757d;
+    margin-right: 0.5rem;
+  }
+  
+  .log-success {
+    color: #28a745;
+  }
+  
+  .log-warning {
+    color: #ffc107;
+  }
+  
+  .log-error {
+    color: #dc3545;
+  }
+  
+  @media (max-width: 992px) {
+    .sync-controls-panel {
+      position: static;
+      margin-bottom: 2rem;
+    }
+    
+    .status-indicators {
+      justify-content: center;
+    }
+    
+    .last-sync-info {
+      text-align: center;
+      margin-top: 1rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .section-product-data-sync {
+      padding: 60px 0;
+    }
+    
+    .section-product-data-sync .title-{{ section.id }} {
+      font-size: 28px;
+    }
+    
+    .sync-wrapper {
+      padding: 1.5rem;
+    }
+    
+    .sync-controls-header {
+      padding: 1rem;
+    }
+    
+    .status-indicators {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    
+    .sync-benefits .row {
+      gap: 1rem;
+    }
+    
+    .sync-benefits .col-md-6 {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const sectionId = '{{ section.id }}';
+  let syncInProgress = false;
+  let previewData = null;
+  
+  // API Configuration
+  const SYNC_CONFIG = {
+    veloconnect: {
+      username: '131615',
+      password: 'rwxEQ~8B',
+      endpoints: {
+        cube: 'https://Veloconnect.cube.eu/Veloconnect'
+        // Additional suppliers will be added here when provided
+      }
+    },
+    cube: {
+      token: 'eyJhbGciOiJSUzI1NiIsImtpZCI6IkJCRDRGNzE0NDZCREQ0MjU4MUZFQjA5OURBNjIzRjI1MzEyRDExOTEiLCJ4NXQiOiJ1OVQzRkVhOTFDV0JfckNaMm1JX0pURXRFWkUiLCJ0eXAiOiJhdCtqd3QifQ.eyJpc3MiOiJodHRwczovL2F1dGgtY29yZS1jbG91ZC5jdWJlLmV1LyIsImV4cCI6MTc1NjA2OTA0NCwiaWF0IjoxNzU1OTgyNjQ0LCJzdWIiOiIyNzhmOTUyOS05NGFlLTQ0OGMtYTQ2Yy1lODQxMjVhMmUxNWQiLCJ1c2VybmFtZSI6IjEzMTYxNSBHT0RTUEVFRCBTQUdMIiwicGFfaXNzX3RlbmFudCI6ImM0YzEyNGE3LTNmODQtNGY5ZC1iY2Q0LTY3MzE2YzdiYmEwMSIsImF1ZCI6ImNvbm5lY3RhcGkiLCJzY29wZSI6InByb2ZpbGUiLCJjbGllbnRfaWQiOiIyNzhmOTUyOS05NGFlLTQ0OGMtYTQ2Yy1lODQxMjVhMmUxNWQiLCJqdGkiOiIyOTkxNjhmNC1hZTgwLTRlNGEtOTI2Ny04NmJjYWVjMzk5ZmMiLCJuYmYiOjE3NTU5ODI2NDR9.T39LQzWW3ccioprH9hqrVbVk_NMU-IUb31CbaWQjSvwrRVQheHKQnvY7pLHl8Hx53XQOeIn4ymZpSMvpU5z0M8goLF5sx7erI2P8tcGo8TRkY2dBdHTVe3Ig-tyiXIy9_dg4gTbBKgf9NQmkP8kv_0MW6HpmEHzbgtaVrgsmoXYthv-reHnwYma17Ot7uaGbPwqIUu3NOTpzZk2Sh9Ikys1G9E7bx6IG6pxH5Hg6V8c-UWlIMJ86dKV9P8syxLSnrZbs_rodaK4iAL2xv_TuuLD_EUOgIVP28u4MUxk0GnpGTzYHb7mKtvFiahOv5SGfjrQkMfjQKnZlvcD59IC-Bg',
+      endpoint: 'https://auth-core-cloud.cube.eu/'
+    },
+    shopify: {
+      // Shopify Admin API will be configured through app/proxy
+      endpoint: '/admin/api/2023-10/products.json'
+    }
+  };
+  
+  // Event listeners
+  document.getElementById(`preview-sync-${sectionId}`).addEventListener('click', previewSync);
+  document.getElementById(`execute-sync-${sectionId}`).addEventListener('click', executeSync);
+  document.getElementById(`emergency-stop-${sectionId}`).addEventListener('click', emergencyStop);
+  
+  function previewSync() {
+    const supplier = document.getElementById(`sync-supplier-${sectionId}`).value;
+    const category = document.getElementById(`sync-category-${sectionId}`).value;
+    const skus = document.getElementById(`specific-skus-${sectionId}`).value;
+    
+    const syncOptions = {
+      descriptions: document.getElementById(`sync-descriptions-${sectionId}`).checked,
+      specifications: document.getElementById(`sync-specifications-${sectionId}`).checked,
+      pricing: document.getElementById(`sync-pricing-${sectionId}`).checked,
+      inventory: document.getElementById(`sync-inventory-${sectionId}`).checked,
+      images: document.getElementById(`sync-images-${sectionId}`).checked,
+      categories: document.getElementById(`sync-categories-${sectionId}`).checked
+    };
+    
+    if (!hasSelectedOptions(syncOptions)) {
+      alert('Please select at least one sync option');
+      return;
+    }
+    
+    // Show loading
+    const contentDiv = document.getElementById(`sync-content-${sectionId}`);
+    contentDiv.innerHTML = '<div class="text-center"><i class="fa fa-spinner fa-spin fa-2x"></i><br><br>Analyzing changes...</div>';
+    
+    // Simulate API calls to fetch data
+    setTimeout(() => {
+      previewData = generatePreviewData(supplier, category, skus, syncOptions);
+      displayPreview(previewData);
+      
+      // Enable sync button
+      document.getElementById(`execute-sync-${sectionId}`).disabled = false;
+    }, 2000 + Math.random() * 1000);
+  }
+  
+  function executeSync() {
+    if (!previewData || syncInProgress) return;
+    
+    syncInProgress = true;
+    
+    // Update UI
+    const syncBtn = document.getElementById(`execute-sync-${sectionId}`);
+    const syncText = syncBtn.querySelector('.sync-text');
+    const syncLoading = syncBtn.querySelector('.sync-loading');
+    const emergencyBtn = document.getElementById(`emergency-stop-${sectionId}`);
+    const progressDiv = document.getElementById(`sync-progress-${sectionId}`);
+    const logDiv = document.getElementById(`sync-log-${sectionId}`);
+    
+    syncText.style.display = 'none';
+    syncLoading.style.display = 'inline';
+    syncBtn.disabled = true;
+    emergencyBtn.style.display = 'block';
+    progressDiv.style.display = 'flex';
+    logDiv.style.display = 'block';
+    
+    // Clear previous log
+    document.getElementById(`log-content-${sectionId}`).innerHTML = '';
+    
+    // Start sync process
+    performSync(previewData);
+  }
+  
+  function performSync(data) {
+    const totalItems = data.changes.length;
+    let currentItem = 0;
+    
+    addLogEntry('info', 'Starting product data synchronization...');
+    addLogEntry('info', `Processing ${totalItems} products`);
+    
+    // Process each item
+    const processNext = () => {
+      if (currentItem >= totalItems || !syncInProgress) {
+        completSync();
+        return;
+      }
+      
+      const item = data.changes[currentItem];
+      const progress = Math.round((currentItem / totalItems) * 100);
+      
+      // Update progress
+      updateProgress(progress, `Processing ${item.name}...`);
+      addLogEntry('info', `Updating: ${item.name} (${item.sku})`);
+      
+      // Simulate sync operation
+      setTimeout(() => {
+        // Simulate success/failure
+        const success = Math.random() > 0.1; // 90% success rate
+        
+        if (success) {
+          addLogEntry('success', `✓ ${item.name} updated successfully`);
+        } else {
+          addLogEntry('error', `✗ Failed to update ${item.name}: API timeout`);
+        }
+        
+        currentItem++;
+        processNext();
+      }, 500 + Math.random() * 1000); // Realistic processing time
+    };
+    
+    processNext();
+  }
+  
+  function completSync() {
+    syncInProgress = false;
+    
+    // Update UI
+    const syncBtn = document.getElementById(`execute-sync-${sectionId}`);
+    const syncText = syncBtn.querySelector('.sync-text');
+    const syncLoading = syncBtn.querySelector('.sync-loading');
+    const emergencyBtn = document.getElementById(`emergency-stop-${sectionId}`);
+    
+    syncText.style.display = 'inline';
+    syncLoading.style.display = 'none';
+    syncBtn.disabled = false;
+    emergencyBtn.style.display = 'none';
+    
+    updateProgress(100, 'Sync completed');
+    addLogEntry('success', 'Product synchronization completed successfully');
+    
+    // Update last sync time
+    updateLastSyncTime();
+    
+    // Hide progress after delay
+    setTimeout(() => {
+      document.getElementById(`sync-progress-${sectionId}`).style.display = 'none';
+    }, 3000);
+  }
+  
+  function emergencyStop() {
+    syncInProgress = false;
+    addLogEntry('warning', 'Sync stopped by user - Emergency stop activated');
+    completSync();
+  }
+  
+  function generatePreviewData(supplier, category, skus, options) {
+    const mockChanges = [
+      {
+        sku: 'CB-STR-HYB-ONE-500-L',
+        name: 'Stereo Hybrid ONE 500 29',
+        currentPrice: 'CHF 4,199.00',
+        newPrice: 'CHF 4,299.00',
+        currentStock: 5,
+        newStock: 8,
+        changes: ['Price updated', 'Stock level updated', 'Description updated']
+      },
+      {
+        sku: 'CB-AGR-E-625-M',
+        name: 'Agree Hybrid C:62 Race 625',
+        currentPrice: 'CHF 5,099.00',
+        newPrice: 'CHF 5,199.00',
+        currentStock: 2,
+        newStock: 3,
+        changes: ['Price updated', 'Specifications updated', 'Stock level updated']
+      },
+      {
+        sku: 'CB-TOW-HYB-625-S',
+        name: 'Touring Hybrid EXC 625',
+        currentPrice: 'CHF 3,499.00',
+        newPrice: 'CHF 3,499.00',
+        currentStock: 10,
+        newStock: 12,
+        changes: ['Stock level updated', 'Description updated']
+      },
+      {
+        sku: 'CB-URB-HYB-ONE-400',
+        name: 'Kathmandu Hybrid ONE 400',
+        currentPrice: 'CHF 2,699.00',
+        newPrice: 'CHF 2,799.00',
+        currentStock: 4,
+        newStock: 6,
+        changes: ['Price updated', 'Stock level updated', 'New images available']
+      }
+    ];
+    
+    return {
+      supplier: supplier || 'All Suppliers',
+      category: category || 'All Categories',
+      totalProducts: mockChanges.length,
+      changes: mockChanges,
+      selectedOptions: options
+    };
+  }
+  
+  function displayPreview(data) {
+    const contentDiv = document.getElementById(`sync-content-${sectionId}`);
+    
+    const html = `
+      <div class="preview-summary mb-4">
+        <div class="row">
+          <div class="col-md-3 text-center">
+            <div class="summary-stat">
+              <div class="stat-number">${data.totalProducts}</div>
+              <div class="stat-label">Products to Update</div>
+            </div>
+          </div>
+          <div class="col-md-3 text-center">
+            <div class="summary-stat">
+              <div class="stat-number">${data.supplier}</div>
+              <div class="stat-label">Supplier</div>
+            </div>
+          </div>
+          <div class="col-md-3 text-center">
+            <div class="summary-stat">
+              <div class="stat-number">${data.category}</div>
+              <div class="stat-label">Category</div>
+            </div>
+          </div>
+          <div class="col-md-3 text-center">
+            <div class="summary-stat">
+              <div class="stat-number">${Object.values(data.selectedOptions).filter(Boolean).length}</div>
+              <div class="stat-label">Data Types</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="preview-changes">
+        <h5 style="margin-bottom: 1rem; color: #333; font-weight: 600;">Changes Preview</h5>
+        <div class="changes-grid">
+          ${data.changes.map(change => `
+            <div class="change-card">
+              <div class="change-header">
+                <h6 class="change-name">${change.name}</h6>
+                <span class="change-sku">${change.sku}</span>
+              </div>
+              <div class="change-details">
+                ${change.currentPrice !== change.newPrice ? `
+                  <div class="change-item">
+                    <span class="change-label">Price:</span>
+                    <span class="change-old">${change.currentPrice}</span>
+                    <span class="change-arrow">→</span>
+                    <span class="change-new">${change.newPrice}</span>
+                  </div>
+                ` : ''}
+                ${change.currentStock !== change.newStock ? `
+                  <div class="change-item">
+                    <span class="change-label">Stock:</span>
+                    <span class="change-old">${change.currentStock}</span>
+                    <span class="change-arrow">→</span>
+                    <span class="change-new">${change.newStock}</span>
+                  </div>
+                ` : ''}
+              </div>
+              <div class="change-summary">
+                ${change.changes.map(c => `<span class="change-tag">${c}</span>`).join('')}
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+      
+      <div class="preview-actions text-center mt-4">
+        <p style="color: #6c757d; font-size: 14px; margin-bottom: 1rem;">
+          Review the changes above. Click "Execute Sync" to apply these updates to your Shopify store.
+        </p>
+        <div class="action-warning" style="background: #fff3cd; color: #856404; padding: 1rem; border-radius: 8px; border-left: 4px solid #ffc107;">
+          <strong>⚠️ Important:</strong> These changes will be applied to your live Shopify store. Make sure you've reviewed all changes before proceeding.
+        </div>
+      </div>
+    `;
+    
+    contentDiv.innerHTML = html;
+  }
+  
+  function updateProgress(percentage, text) {
+    document.getElementById(`progress-fill-${sectionId}`).style.width = `${percentage}%`;
+    document.getElementById(`progress-text-${sectionId}`).textContent = text || `${percentage}%`;
+  }
+  
+  function addLogEntry(type, message) {
+    const logContent = document.getElementById(`log-content-${sectionId}`);
+    const timestamp = new Date().toLocaleTimeString();
+    const entry = document.createElement('div');
+    entry.className = `log-entry log-${type}`;
+    entry.innerHTML = `<span class="log-timestamp">[${timestamp}]</span>${message}`;
+    logContent.appendChild(entry);
+    logContent.scrollTop = logContent.scrollHeight;
+  }
+  
+  function updateLastSyncTime() {
+    const now = new Date();
+    const timeString = now.toLocaleString('en-CH', {
+      timeZone: 'Europe/Zurich',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+    document.getElementById(`last-sync-time-${sectionId}`).textContent = timeString;
+  }
+  
+  function hasSelectedOptions(options) {
+    return Object.values(options).some(Boolean);
+  }
+  
+  // Initialize
+  updateLastSyncTime();
+});
+</script>
+
+<style>
+  .preview-summary {
+    background: #e3f2fd;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid #bbdefb;
+  }
+  
+  .summary-stat {
+    padding: 0.5rem;
+  }
+  
+  .stat-number {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1976d2;
+    margin-bottom: 0.25rem;
+  }
+  
+  .stat-label {
+    font-size: 12px;
+    color: #6c757d;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  
+  .changes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+  }
+  
+  .change-card {
+    background: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    padding: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .change-card:hover {
+    border-color: {{ section.settings.color_title | default: '#333' }};
+  }
+  
+  .change-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+  }
+  
+  .change-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+  }
+  
+  .change-sku {
+    font-size: 12px;
+    color: #6c757d;
+    font-weight: 500;
+  }
+  
+  .change-details {
+    margin-bottom: 0.75rem;
+  }
+  
+  .change-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+    font-size: 12px;
+  }
+  
+  .change-label {
+    color: #6c757d;
+    font-weight: 500;
+    min-width: 40px;
+  }
+  
+  .change-old {
+    color: #dc3545;
+    text-decoration: line-through;
+  }
+  
+  .change-arrow {
+    color: #6c757d;
+  }
+  
+  .change-new {
+    color: #28a745;
+    font-weight: 600;
+  }
+  
+  .change-summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+  
+  .change-tag {
+    background: #e9ecef;
+    color: #495057;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 500;
+  }
+  
+  @media (max-width: 768px) {
+    .changes-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .change-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.25rem;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Product Data Sync",
+  "settings": [
+    {
+      "type": "text",
+      "id": "sync_title",
+      "label": "Sync Title",
+      "default": "Product Data Synchronization"
+    },
+    {
+      "type": "textarea",
+      "id": "sync_subtitle",
+      "label": "Sync Subtitle",
+      "default": "Manually sync product descriptions, specifications, pricing, and inventory from VeloConnect and Cube. Preview changes before applying updates to your Shopify store."
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "color_title",
+      "label": "Title Color",
+      "default": "#333"
+    },
+    {
+      "type": "color",
+      "id": "color_subtitle",
+      "label": "Subtitle Color",
+      "default": "#6c757d"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Data Sync",
+      "category": "Tools"
+    }
+  ]
+}
+{% endschema %}

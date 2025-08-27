@@ -1,0 +1,330 @@
+<div data-section-id="{{ section.id }}" data-section-type="section-banner-v11" style="{% if section.settings.margin_top != blank %}margin-top: {{section.settings.margin_top}}px;{%endif%} {% if section.settings.margin_bottom != blank %}margin-bottom: {{section.settings.margin_bottom}}px;{% endif %}">
+  <div class="section-banner-v11 mt-all" style="background-color: {{section.settings.bg_section_color}};">
+    <div class="container container-v2">
+      <div class="text-center">
+        {% if section.settings.title_heading != blank %}
+        <h3 class="block-title title_heading mb-0" style="color : {{section.settings.color_heading}}">{{section.settings.title_heading}}</h3>      	
+        {% endif %}
+        {% if section.settings.sub_title != blank %}
+        <span class="sub_heading" style="color: {{section.settings.color_sub_title}}">
+          {{section.settings.sub_title}}
+        </span>
+        {% endif %}
+      </div>
+      <div class="row">        
+        <div class="col-md-6">
+          <div class="row banner-wrap">
+            <div class="col-6">
+              <div class="item-banner">
+                <div class="img-banner">
+                  <a href="{{section.settings.url_banner1}}" class="d-block box-img">
+                    <img data-src="{% if section.settings.img_banner1 != blank %} {{section.settings.img_banner1 | img_url: 'master'}} {% else %} //via.placeholder.com/450x450 {% endif %}" class="lazyload img-fluid w-100" alt="_img_banner">
+                  </a>
+                </div>
+                <div class="content-banner">
+                  <h3>
+                    <a href="{{section.settings.url_banner1}}" class="title-banner title-banner-{{ section.id }}">{{section.settings.title_banner1}}</a>
+                  </h3>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="item-banner">
+                <div class="img-banner">
+                  <a href="{{section.settings.url_banner2}}" class="d-block box-img">
+                    <img data-src="{% if section.settings.img_banner2 != blank %} {{section.settings.img_banner2 | img_url: 'master'}} {% else %} //via.placeholder.com/450x450 {% endif %}" class="lazyload img-fluid w-100" alt="_img_banner">
+                  </a>
+                </div>
+                <div class="content-banner">
+                  <h3>
+                    <a href="{{section.settings.url_banner2}}" class="title-banner title-banner-{{ section.id }}">{{section.settings.title_banner2}}</a>
+                  </h3>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="item-banner">
+            <div class="img-banner">
+              <a href="{{section.settings.url_banner3}}" class="d-block box-img">
+                <img data-src="{% if section.settings.img_banner3 != blank %} {{section.settings.img_banner3 | img_url: 'master'}} {% else %} //via.placeholder.com/900x410 {% endif %}" class="lazyload img-fluid w-100" alt="_img_banner">
+              </a>
+            </div>
+            <div class="content-banner">
+              <h3>
+                <a href="{{section.settings.url_banner3}}" class="title-banner title-banner-{{ section.id }}">{{section.settings.title_banner3}}</a>
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="item-banner">
+            <div class="img-banner">
+              <a href="{{section.settings.url_banner4}}" class="d-block box-img">
+                <img data-src="{% if section.settings.img_banner4 != blank %} {{section.settings.img_banner4 | img_url: 'master'}} {% else %} //via.placeholder.com/900x410 {% endif %}" class="lazyload img-fluid w-100" alt="_img_banner">
+              </a>
+            </div>
+            <div class="content-banner">
+              <h3>
+                <a href="{{section.settings.url_banner4}}" class="title-banner title-banner-{{ section.id }}">{{section.settings.title_banner4}}</a>
+              </h3>
+            </div>
+          </div>
+          <div class="row banner-wrap2">
+            <div class="col-6">
+              <div class="item-banner">
+                <div class="img-banner">
+                  <a href="{{section.settings.url_banner5}}" class="d-block box-img">
+                    <img data-src="{% if section.settings.img_banner5 != blank %} {{section.settings.img_banner5 | img_url: 'master'}} {% else %} //via.placeholder.com/450x450 {% endif %}" class="lazyload img-fluid w-100" alt="_img_banner">
+                  </a>
+                </div>
+                <div class="content-banner">
+                  <h3>
+                    <a href="{{section.settings.url_banner5}}" class="title-banner title-banner-{{ section.id }}">{{section.settings.title_banner5}}</a>
+                  </h3>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="item-banner">
+                <div class="img-banner">
+                  <a href="{{section.settings.url_banner6}}" class="d-block box-img">
+                    <img data-src="{% if section.settings.img_banner6 != blank %} {{section.settings.img_banner6 | img_url: 'master'}} {% else %} //via.placeholder.com/450x450 {% endif %}" class="lazyload img-fluid w-100" alt="_img_banner">
+                  </a>
+                </div>
+                <div class="content-banner">
+                  <h3>
+                    <a href="{{section.settings.url_banner6}}" class="title-banner title-banner-{{ section.id }}">{{section.settings.title_banner6}}</a>
+                  </h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  .section-banner-v11 .item-banner .content-banner h3 .title-banner-{{ section.id }} {
+    color: {{section.settings.color_title}};
+  }
+  .section-banner-v11 .item-banner .content-banner h3 .title-banner-{{ section.id }}:hover {
+    color: {{section.settings.color_title_hover}};
+    transition: all .3s;
+  }
+
+</style>
+
+{% schema %}
+{
+  "name": "BANNER V11",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_section_color",
+      "label": "Background color",
+      "default": "#e9e9e9"
+    },
+    {
+      "type": "text",
+      "id": "title_heading",
+      "label": "Title section",
+      "default": "Best Seller"
+    },
+    {
+      "type": "color",
+      "id": "color_heading",
+      "label": "Color",
+      "default": "#222"
+    },
+    {
+      "type": "text",
+      "id": "sub_title",
+      "label": "Sub Title",
+      "default": "Best Seller Product This Week!"
+    },
+    {
+      "type": "color",
+      "id": "color_sub_title",
+      "label": "Color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Setting banner 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "img_banner1",
+      "label": "Image",
+      "info": "450 x 450px recommended"
+    },
+    {
+      "type": "text",
+      "id": "title_banner1",
+      "label": "Title banner 1",
+      "default": "NEW ITEMS"
+    },
+    {
+      "type": "url",
+      "id": "url_banner1",
+      "label": "URL banner 1",
+      "default": "/collections/all"
+    },
+    {
+      "type": "header",
+      "content": "Setting banner 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "img_banner2",
+      "label": "Image",
+      "info": "450 x 450px recommended"
+    },
+    {
+      "type": "text",
+      "id": "title_banner2",
+      "label": "Title banner 2",
+      "default": "NEW ITEMS"
+    },
+    {
+      "type": "url",
+      "id": "url_banner2",
+      "label": "URL banner 2",
+      "default": "/collections/all"
+    },
+    {
+      "type": "header",
+      "content": "Setting banner 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "img_banner3",
+      "label": "Image",
+      "info": "900 x 410px recommended"
+    },
+    {
+      "type": "text",
+      "id": "title_banner3",
+      "label": "Title banner 3",
+      "default": "NEW ITEMS"
+    },
+    {
+      "type": "url",
+      "id": "url_banner3",
+      "label": "URL banner 3",
+      "default": "/collections/all"
+    },
+    {
+      "type": "header",
+      "content": "Setting banner 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "img_banner4",
+      "label": "Image",
+      "info": "450 x 450px recommended"
+    },
+    {
+      "type": "text",
+      "id": "title_banner4",
+      "label": "Title banner 4",
+      "default": "NEW ITEMS"
+    },
+    {
+      "type": "url",
+      "id": "url_banner4",
+      "label": "URL banner 4",
+      "default": "/collections/all"
+    },
+    {
+      "type": "header",
+      "content": "Setting banner 5"
+    },
+    {
+      "type": "image_picker",
+      "id": "img_banner5",
+      "label": "Image",
+      "info": "450 x 450px recommended"
+    },
+    {
+      "type": "text",
+      "id": "title_banner5",
+      "label": "Title banner 5",
+      "default": "NEW ITEMS"
+    },
+    {
+      "type": "url",
+      "id": "url_banner5",
+      "label": "URL banner 5",
+      "default": "/collections/all"
+    },
+    {
+      "type": "header",
+      "content": "Setting banner 6"
+    },
+    {
+      "type": "image_picker",
+      "id": "img_banner6",
+      "label": "Image",
+      "info": "900 x 410px recommended"
+    },
+    {
+      "type": "text",
+      "id": "title_banner6",
+      "label": "Title banner 6",
+      "default": "NEW ITEMS"
+    },
+    {
+      "type": "url",
+      "id": "url_banner6",
+      "label": "URL banner 6",
+      "default": "/collections/all"
+    },
+    {
+      "type": "header",
+      "content": "Settings Color Banner"
+    },
+    {
+      "type": "color",
+      "id": "color_title",
+      "label": "Color Title",
+      "default": "#222"
+    },
+    {
+      "type": "color",
+      "id": "color_title_hover",
+      "label": "Color Title Hover",
+      "default": "#000"
+    },
+    {
+      "type": "header",
+      "content": "Section Space"
+    },
+    {
+      "type": "text",
+      "id": "margin_top",
+      "label": "Margin Top",
+      "info": "Defined in pixels. Do not add the 'px' unit."
+    },
+    {
+      "type": "text",
+      "id": "margin_bottom",
+      "label": "Margin Bottom",
+      "info": "Defined in pixels. Do not add the 'px' unit."
+    }
+  ],
+  "presets": [
+    {
+      "name": "BANNER V11",
+      "category": "HOME"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

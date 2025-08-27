@@ -1,0 +1,24 @@
+{
+  "minify": true,
+  "options": [
+    "setClasses"
+  ],
+  "feature-detects": [
+    "css/animations",
+    "css/columns",
+    "css/gradients",
+    "css/reflections",
+    "css/transforms",
+    "css/transforms3d",
+    "css/transitions",
+    "css/fontface",
+    "css/generatedcontent",
+    "storage/localstorage",
+    "storage/sessionstorage",
+    "svg",
+    "svg/clippaths",
+    "webgl",
+    "websockets",
+    "workers/webworkers"
+  ]
+}

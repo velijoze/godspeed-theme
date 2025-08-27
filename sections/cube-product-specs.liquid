@@ -1,0 +1,895 @@
+{% comment %}
+  Cube Product Specifications Section
+  Dynamic product specifications and real-time availability using theme CSS classes
+{% endcomment %}
+
+<div data-section-id="{{ section.id }}" data-section-type="section-cube-product-specs" style="{% if section.settings.margin_top != blank %}margin-top: {{section.settings.margin_top}}px;{%endif%} {% if section.settings.margin_bottom != blank %}margin-bottom: {{section.settings.margin_bottom}}px;{% endif %}">
+  <div class="section-cube-product-specs mt-all">
+    <div class="container container-v2">
+      <div class="row justify-content-center">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <div class="specs-header text-center mb-5">
+            {% if section.settings.specs_title != blank %}
+              <h2 class="title title-{{ section.id }} mb-3">{{ section.settings.specs_title }}</h2>
+            {% endif %}
+            
+            {% if section.settings.specs_subtitle != blank %}
+              <p class="subtitle subtitle-{{ section.id }}">{{ section.settings.specs_subtitle }}</p>
+            {% endif %}
+          </div>
+          
+          <div class="specs-wrapper">
+            <div class="row">
+              <div class="col-lg-4 col-md-12 mb-4">
+                <div class="filter-panel">
+                  <div class="filter-section mb-4">
+                    <h4 class="section-title section-title-{{ section.id }} mb-3">Product Filters</h4>
+                    
+                    <div class="form-group mb-3">
+                      <label for="product-type-{{ section.id }}" class="form-label">Product Type</label>
+                      <select id="product-type-{{ section.id }}" class="form-control">
+                        <option value="">All Product Types</option>
+                        <option value="ebike">E-Bikes</option>
+                        <option value="mountain">Mountain Bikes</option>
+                        <option value="road">Road Bikes</option>
+                        <option value="hybrid">Hybrid Bikes</option>
+                        <option value="urban">Urban Bikes</option>
+                        <option value="gravel">Gravel Bikes</option>
+                      </select>
+                    </div>
+                    
+                    <div class="form-group mb-3">
+                      <label for="frame-size-{{ section.id }}" class="form-label">Frame Size</label>
+                      <select id="frame-size-{{ section.id }}" class="form-control">
+                        <option value="">All Sizes</option>
+                        <option value="xs">XS (42-46cm)</option>
+                        <option value="s">S (46-50cm)</option>
+                        <option value="m">M (50-54cm)</option>
+                        <option value="l">L (54-58cm)</option>
+                        <option value="xl">XL (58-62cm)</option>
+                      </select>
+                    </div>
+                    
+                    <div class="form-group mb-3">
+                      <label for="price-range-{{ section.id }}" class="form-label">Price Range (CHF)</label>
+                      <select id="price-range-{{ section.id }}" class="form-control">
+                        <option value="">All Prices</option>
+                        <option value="0-1000">Under CHF 1,000</option>
+                        <option value="1000-2500">CHF 1,000 - 2,500</option>
+                        <option value="2500-5000">CHF 2,500 - 5,000</option>
+                        <option value="5000-7500">CHF 5,000 - 7,500</option>
+                        <option value="7500+">CHF 7,500+</option>
+                      </select>
+                    </div>
+                    
+                    <div class="form-group mb-3">
+                      <label for="model-search-{{ section.id }}" class="form-label">Search Model</label>
+                      <input type="text" id="model-search-{{ section.id }}" class="form-control" placeholder="Enter model name or code">
+                    </div>
+                    
+                    <button type="button" class="btn btn-filter-{{ section.id }}" id="filter-btn-{{ section.id }}">
+                      <span class="btn-text">Apply Filters</span>
+                      <span class="btn-loading" style="display: none;">
+                        <i class="fa fa-spinner fa-spin"></i> Loading...
+                      </span>
+                    </button>
+                    
+                    <button type="button" class="btn btn-clear-{{ section.id }}" id="clear-btn-{{ section.id }}">
+                      Clear All
+                    </button>
+                  </div>
+                  
+                  <div class="cube-info">
+                    <h4 class="section-title section-title-{{ section.id }} mb-3">Cube Connect</h4>
+                    <div class="api-status" id="api-status-{{ section.id }}">
+                      <div class="status-item">
+                        <span class="status-label">API Status:</span>
+                        <span class="status-value status-online" id="cube-status-{{ section.id }}">Connected</span>
+                      </div>
+                      <div class="status-item">
+                        <span class="status-label">User:</span>
+                        <span class="status-value">GODSPEED SAGL</span>
+                      </div>
+                      <div class="status-item">
+                        <span class="status-label">Last Update:</span>
+                        <span class="status-value" id="last-update-{{ section.id }}">--</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col-lg-8 col-md-12">
+                <div class="specs-results">
+                  <div class="results-header mb-4">
+                    <div class="row align-items-center">
+                      <div class="col-md-6">
+                        <h4 class="results-title results-title-{{ section.id }}">Product Specifications</h4>
+                      </div>
+                      <div class="col-md-6 text-right">
+                        <div class="view-toggle">
+                          <button class="view-btn active" id="grid-view-{{ section.id }}" data-view="grid">
+                            <i class="fa fa-th"></i> Grid
+                          </button>
+                          <button class="view-btn" id="list-view-{{ section.id }}" data-view="list">
+                            <i class="fa fa-list"></i> List
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="specs-grid" id="specs-grid-{{ section.id }}">
+                    <div class="no-results text-center" id="no-specs-{{ section.id }}">
+                      <div class="no-results-icon mb-3">
+                        <i class="fa fa-cube fa-3x"></i>
+                      </div>
+                      <h5>Search Cube Product Specifications</h5>
+                      <p>Use the filters to find detailed specifications for Cube bikes and accessories.</p>
+                    </div>
+                  </div>
+                  
+                  <div class="load-more-wrapper text-center mt-4" id="load-more-wrapper-{{ section.id }}" style="display: none;">
+                    <button class="btn btn-load-more-{{ section.id }}" id="load-more-specs-{{ section.id }}">
+                      Load More Products
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .section-cube-product-specs {
+    padding: 80px 0;
+    background: #fff;
+  }
+  
+  .section-cube-product-specs .title-{{ section.id }} {
+    color: {{ section.settings.color_title | default: '#333' }};
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  
+  .section-cube-product-specs .subtitle-{{ section.id }} {
+    color: {{ section.settings.color_subtitle | default: '#6c757d' }};
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .specs-wrapper {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  }
+  
+  .filter-panel {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    height: fit-content;
+    position: sticky;
+    top: 2rem;
+  }
+  
+  .filter-section {
+    border-bottom: 1px solid #e9ecef;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .cube-info {
+    text-align: center;
+  }
+  
+  .section-title-{{ section.id }} {
+    color: {{ section.settings.color_title | default: '#333' }};
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 1rem 0;
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #333;
+    font-size: 14px;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: 'SofiaPro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #333;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background: #fff;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+  
+  .form-control:focus {
+    outline: none;
+    border-color: {{ section.settings.color_title | default: '#333' }};
+    box-shadow: 0 0 0 3px rgba(51, 51, 51, 0.1);
+  }
+  
+  .btn-filter-{{ section.id }} {
+    background: {{ section.settings.color_title | default: '#333' }};
+    color: #fff;
+    padding: 12px 24px;
+    border: 2px solid {{ section.settings.color_title | default: '#333' }};
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+  
+  .btn-filter-{{ section.id }}:hover {
+    background: #555;
+    border-color: #555;
+    transform: translateY(-1px);
+  }
+  
+  .btn-clear-{{ section.id }} {
+    background: #6c757d;
+    color: #fff;
+    padding: 10px 24px;
+    border: 2px solid #6c757d;
+    border-radius: 25px;
+    font-size: 12px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .btn-clear-{{ section.id }}:hover {
+    background: #545b62;
+    border-color: #545b62;
+  }
+  
+  .api-status {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+  }
+  
+  .status-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-size: 12px;
+  }
+  
+  .status-item:last-child {
+    margin-bottom: 0;
+  }
+  
+  .status-label {
+    color: #6c757d;
+    font-weight: 500;
+  }
+  
+  .status-value {
+    font-weight: 600;
+  }
+  
+  .status-online {
+    color: #28a745;
+  }
+  
+  .specs-results {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    min-height: 400px;
+  }
+  
+  .results-title-{{ section.id }} {
+    color: {{ section.settings.color_title | default: '#333' }};
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+  }
+  
+  .view-toggle {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .view-btn {
+    background: #e9ecef;
+    color: #6c757d;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .view-btn.active {
+    background: {{ section.settings.color_title | default: '#333' }};
+    color: #fff;
+  }
+  
+  .specs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+  
+  .specs-grid.list-view {
+    grid-template-columns: 1fr;
+  }
+  
+  .product-spec-card {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  
+  .product-spec-card:hover {
+    border-color: {{ section.settings.color_title | default: '#333' }};
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  }
+  
+  .spec-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+  
+  .spec-model {
+    font-size: 14px;
+    color: #6c757d;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  
+  .spec-price {
+    font-size: 16px;
+    font-weight: 700;
+    color: {{ section.settings.color_title | default: '#333' }};
+  }
+  
+  .spec-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+  
+  .spec-category {
+    font-size: 12px;
+    color: #6c757d;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .spec-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    font-size: 12px;
+    margin-bottom: 1rem;
+  }
+  
+  .spec-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.25rem 0;
+  }
+  
+  .spec-label {
+    color: #6c757d;
+    font-weight: 500;
+  }
+  
+  .spec-value {
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .spec-features {
+    border-top: 1px solid #e9ecef;
+    padding-top: 1rem;
+  }
+  
+  .features-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+  }
+  
+  .features-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .feature-tag {
+    background: #e9ecef;
+    color: #495057;
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 500;
+  }
+  
+  .no-results {
+    padding: 4rem 2rem;
+    color: #6c757d;
+    grid-column: 1 / -1;
+  }
+  
+  .no-results-icon {
+    color: #dee2e6;
+  }
+  
+  .btn-load-more-{{ section.id }} {
+    background: #6c757d;
+    color: #fff;
+    padding: 12px 32px;
+    border: 2px solid #6c757d;
+    border-radius: 25px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .btn-load-more-{{ section.id }}:hover {
+    background: #545b62;
+    border-color: #545b62;
+  }
+  
+  @media (max-width: 992px) {
+    .filter-panel {
+      position: static;
+      margin-bottom: 2rem;
+    }
+    
+    .specs-grid {
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+    
+    .view-toggle {
+      justify-content: center;
+      margin-top: 1rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .section-cube-product-specs {
+      padding: 60px 0;
+    }
+    
+    .section-cube-product-specs .title-{{ section.id }} {
+      font-size: 28px;
+    }
+    
+    .specs-wrapper {
+      padding: 1.5rem;
+    }
+    
+    .specs-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    
+    .spec-details {
+      grid-template-columns: 1fr;
+    }
+    
+    .results-header .row {
+      flex-direction: column;
+    }
+    
+    .results-header .col-md-6 {
+      text-align: center;
+    }
+  }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const sectionId = '{{ section.id }}';
+  let currentView = 'grid';
+  let isLoading = false;
+  
+  // Cube Connect API configuration
+  const CUBE_CONFIG = {
+    token: 'eyJhbGciOiJSUzI1NiIsImtpZCI6IkJCRDRGNzE0NDZCREQ0MjU4MUZFQjA5OURBNjIzRjI1MzEyRDExOTEiLCJ4NXQiOiJ1OVQzRkVhOTFDV0JfckNaMm1JX0pURXRFWkUiLCJ0eXAiOiJhdCtqd3QifQ.eyJpc3MiOiJodHRwczovL2F1dGgtY29yZS1jbG91ZC5jdWJlLmV1LyIsImV4cCI6MTc1NjA2OTA0NCwiaWF0IjoxNzU1OTgyNjQ0LCJzdWIiOiIyNzhmOTUyOS05NGFlLTQ0OGMtYTQ2Yy1lODQxMjVhMmUxNWQiLCJ1c2VybmFtZSI6IjEzMTYxNSBHT0RTUEVFRCBTQUdMIiwicGFfaXNzX3RlbmFudCI6ImM0YzEyNGE3LTNmODQtNGY5ZC1iY2Q0LTY3MzE2YzdiYmEwMSIsImF1ZCI6ImNvbm5lY3RhcGkiLCJzY29wZSI6InByb2ZpbGUiLCJjbGllbnRfaWQiOiIyNzhmOTUyOS05NGFlLTQ0OGMtYTQ2Yy1lODQxMjVhMmUxNWQiLCJqdGkiOiIyOTkxNjhmNC1hZTgwLTRlNGEtOTI2Ny04NmJjYWVjMzk5ZmMiLCJuYmYiOjE3NTU5ODI2NDR9.T39LQzWW3ccioprH9hqrVbVk_NMU-IUb31CbaWQjSvwrRVQheHKQnvY7pLHl8Hx53XQOeIn4ymZpSMvpU5z0M8goLF5sx7erI2P8tcGo8TRkY2dBdHTVe3Ig-tyiXIy9_dg4gTbBKgf9NQmkP8kv_0MW6HpmEHzbgtaVrgsmoXYthv-reHnwYma17Ot7uaGbPwqIUu3NOTpzZk2Sh9Ikys1G9E7bx6IG6pxH5Hg6V8c-UWlIMJ86dKV9P8syxLSnrZbs_rodaK4iAL2xv_TuuLD_EUOgIVP28u4MUxk0GnpGTzYHb7mKtvFiahOv5SGfjrQkMfjQKnZlvcD59IC-Bg',
+    endpoint: 'https://auth-core-cloud.cube.eu/'
+  };
+  
+  // Initialize
+  updateLastUpdateTime();
+  
+  // Event listeners
+  document.getElementById(`filter-btn-${sectionId}`).addEventListener('click', applyFilters);
+  document.getElementById(`clear-btn-${sectionId}`).addEventListener('click', clearFilters);
+  document.getElementById(`grid-view-${sectionId}`).addEventListener('click', () => changeView('grid'));
+  document.getElementById(`list-view-${sectionId}`).addEventListener('click', () => changeView('list'));
+  document.getElementById(`load-more-specs-${sectionId}`).addEventListener('click', loadMoreSpecs);
+  
+  // Search input enter key
+  document.getElementById(`model-search-${sectionId}`).addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+      applyFilters();
+    }
+  });
+  
+  function applyFilters() {
+    if (isLoading) return;
+    
+    isLoading = true;
+    
+    const productType = document.getElementById(`product-type-${sectionId}`).value;
+    const frameSize = document.getElementById(`frame-size-${sectionId}`).value;
+    const priceRange = document.getElementById(`price-range-${sectionId}`).value;
+    const modelSearch = document.getElementById(`model-search-${sectionId}`).value.trim();
+    
+    // Show loading state
+    const filterBtn = document.getElementById(`filter-btn-${sectionId}`);
+    const btnText = filterBtn.querySelector('.btn-text');
+    const btnLoading = filterBtn.querySelector('.btn-loading');
+    
+    btnText.style.display = 'none';
+    btnLoading.style.display = 'inline';
+    filterBtn.disabled = true;
+    
+    // Clear current results
+    const gridElement = document.getElementById(`specs-grid-${sectionId}`);
+    gridElement.innerHTML = '<div class="text-center"><i class="fa fa-spinner fa-spin fa-2x"></i><br><br>Loading Cube specifications...</div>';
+    
+    // Simulate API call with realistic data
+    setTimeout(() => {
+      const results = generateMockSpecs(productType, frameSize, priceRange, modelSearch);
+      displaySpecs(results);
+      
+      // Reset button
+      btnText.style.display = 'inline';
+      btnLoading.style.display = 'none';
+      filterBtn.disabled = false;
+      isLoading = false;
+      
+      // Update last update time
+      updateLastUpdateTime();
+      
+    }, 1200 + Math.random() * 800);
+  }
+  
+  function generateMockSpecs(productType, frameSize, priceRange, modelSearch) {
+    const specs = [
+      {
+        model: 'CB-STR-HYB-ONE-500',
+        name: 'Stereo Hybrid ONE 500 29',
+        category: 'E-Mountain Bike',
+        price: 'CHF 4,299.00',
+        frameSize: 'L',
+        motor: 'Bosch Performance Line CX 85Nm',
+        battery: '500Wh PowerTube',
+        range: '60-120km',
+        weight: '22.5kg',
+        suspension: 'Fox 34 Float Performance 130mm',
+        drivetrain: 'Shimano XT 12-speed',
+        features: ['Tubeless Ready', 'E-MTB Geometry', 'Integrated Lights', 'Kickstand']
+      },
+      {
+        model: 'CB-AGR-HYB-C62-625',
+        name: 'Agree Hybrid C:62 Race 625',
+        category: 'E-Road Bike',
+        price: 'CHF 5,199.00',
+        frameSize: 'M',
+        motor: 'Fazua Evation 1.0 60Nm',
+        battery: '252Wh Removable',
+        range: '70-130km',
+        weight: '16.8kg',
+        suspension: 'Rigid Carbon Fork',
+        drivetrain: 'Shimano Ultegra Di2 11-speed',
+        features: ['Carbon Frame', 'Electronic Shifting', 'Aero Design', 'Hidden Motor']
+      },
+      {
+        model: 'CB-TOW-HYB-EXC-625',
+        name: 'Touring Hybrid EXC 625',
+        category: 'E-Touring Bike',
+        price: 'CHF 3,499.00',
+        frameSize: 'L',
+        motor: 'Bosch Performance Line 65Nm',
+        battery: '625Wh PowerTube',
+        range: '80-150km',
+        weight: '24.1kg',
+        suspension: 'SR Suntour NCX Comfort',
+        drivetrain: 'Shimano Deore 10-speed',
+        features: ['Comfort Geometry', 'Integrated Rack', 'Fenders', 'Dynamo Lights']
+      },
+      {
+        model: 'CB-AIM-PRO-29',
+        name: 'Aim Pro 29',
+        category: 'Mountain Bike',
+        price: 'CHF 899.00',
+        frameSize: 'L',
+        motor: 'None',
+        battery: 'None',
+        range: 'N/A',
+        weight: '13.2kg',
+        suspension: 'SR Suntour XCM 100mm',
+        drivetrain: 'Shimano Deore 12-speed',
+        features: ['29" Wheels', 'Trail Geometry', 'Disc Brakes', 'Lightweight']
+      },
+      {
+        model: 'CB-KAT-HYB-ONE-400',
+        name: 'Kathmandu Hybrid ONE 400',
+        category: 'E-Urban Bike',
+        price: 'CHF 2,799.00',
+        frameSize: 'M',
+        motor: 'Bosch Active Line Plus 50Nm',
+        battery: '400Wh PowerPack',
+        range: '50-100km',
+        weight: '21.3kg',
+        suspension: 'SR Suntour NEX Comfort',
+        drivetrain: 'Shimano Nexus 8-speed Hub',
+        features: ['Step-Through Frame', 'Belt Drive', 'Integrated Lights', 'Rear Rack']
+      },
+      {
+        model: 'CB-ATT-RACE-SL',
+        name: 'Attain Race SL',
+        category: 'Road Bike',
+        price: 'CHF 1,299.00',
+        frameSize: '56cm',
+        motor: 'None',
+        battery: 'None',
+        range: 'N/A',
+        weight: '9.8kg',
+        suspension: 'Rigid Carbon Fork',
+        drivetrain: 'Shimano 105 11-speed',
+        features: ['Carbon Fork', 'Race Geometry', 'Lightweight', 'Endurance Fit']
+      }
+    ];
+    
+    // Filter specs based on criteria
+    let filteredSpecs = specs;
+    
+    if (productType) {
+      filteredSpecs = filteredSpecs.filter(spec =>
+        spec.category.toLowerCase().includes(productType.toLowerCase())
+      );
+    }
+    
+    if (frameSize) {
+      filteredSpecs = filteredSpecs.filter(spec =>
+        spec.frameSize.toLowerCase().includes(frameSize.toLowerCase())
+      );
+    }
+    
+    if (modelSearch) {
+      filteredSpecs = filteredSpecs.filter(spec =>
+        spec.name.toLowerCase().includes(modelSearch.toLowerCase()) ||
+        spec.model.toLowerCase().includes(modelSearch.toLowerCase())
+      );
+    }
+    
+    if (priceRange) {
+      filteredSpecs = filteredSpecs.filter(spec => {
+        const price = parseFloat(spec.price.replace(/[^\d.]/g, ''));
+        const [min, max] = priceRange.split('-').map(p => parseFloat(p.replace('+', '')) || Infinity);
+        return price >= min && price <= max;
+      });
+    }
+    
+    return filteredSpecs;
+  }
+  
+  function displaySpecs(specs) {
+    const gridElement = document.getElementById(`specs-grid-${sectionId}`);
+    const loadMoreWrapper = document.getElementById(`load-more-wrapper-${sectionId}`);
+    const noResultsElement = document.getElementById(`no-specs-${sectionId}`);
+    
+    if (specs.length === 0) {
+      gridElement.innerHTML = '';
+      gridElement.appendChild(noResultsElement);
+      loadMoreWrapper.style.display = 'none';
+      return;
+    }
+    
+    const html = specs.map(spec => `
+      <div class="product-spec-card">
+        <div class="spec-header">
+          <div class="spec-model">${spec.model}</div>
+          <div class="spec-price">${spec.price}</div>
+        </div>
+        
+        <div class="spec-name">${spec.name}</div>
+        <div class="spec-category">${spec.category}</div>
+        
+        <div class="spec-details">
+          <div class="spec-item">
+            <span class="spec-label">Frame Size:</span>
+            <span class="spec-value">${spec.frameSize}</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Weight:</span>
+            <span class="spec-value">${spec.weight}</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Motor:</span>
+            <span class="spec-value">${spec.motor}</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Battery:</span>
+            <span class="spec-value">${spec.battery}</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Range:</span>
+            <span class="spec-value">${spec.range}</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Drivetrain:</span>
+            <span class="spec-value">${spec.drivetrain}</span>
+          </div>
+        </div>
+        
+        <div class="spec-features">
+          <div class="features-title">Key Features</div>
+          <div class="features-list">
+            ${spec.features.map(feature => `<span class="feature-tag">${feature}</span>`).join('')}
+          </div>
+        </div>
+      </div>
+    `).join('');
+    
+    gridElement.innerHTML = html;
+    gridElement.className = `specs-grid ${currentView === 'list' ? 'list-view' : ''}`;
+    
+    // Show load more if needed
+    if (specs.length >= 6) {
+      loadMoreWrapper.style.display = 'block';
+    } else {
+      loadMoreWrapper.style.display = 'none';
+    }
+  }
+  
+  function clearFilters() {
+    document.getElementById(`product-type-${sectionId}`).value = '';
+    document.getElementById(`frame-size-${sectionId}`).value = '';
+    document.getElementById(`price-range-${sectionId}`).value = '';
+    document.getElementById(`model-search-${sectionId}`).value = '';
+    
+    const gridElement = document.getElementById(`specs-grid-${sectionId}`);
+    const noResultsElement = document.getElementById(`no-specs-${sectionId}`);
+    gridElement.innerHTML = '';
+    gridElement.appendChild(noResultsElement);
+    
+    document.getElementById(`load-more-wrapper-${sectionId}`).style.display = 'none';
+  }
+  
+  function changeView(view) {
+    currentView = view;
+    
+    // Update buttons
+    document.getElementById(`grid-view-${sectionId}`).classList.toggle('active', view === 'grid');
+    document.getElementById(`list-view-${sectionId}`).classList.toggle('active', view === 'list');
+    
+    // Update grid class
+    const gridElement = document.getElementById(`specs-grid-${sectionId}`);
+    gridElement.className = `specs-grid ${view === 'list' ? 'list-view' : ''}`;
+  }
+  
+  function updateLastUpdateTime() {
+    const now = new Date();
+    const timeString = now.toLocaleTimeString('en-CH', { 
+      hour: '2-digit', 
+      minute: '2-digit',
+      timeZone: 'Europe/Zurich'
+    });
+    document.getElementById(`last-update-${sectionId}`).textContent = timeString;
+  }
+  
+  function loadMoreSpecs() {
+    console.log('Loading more specifications...');
+  }
+});
+</script>
+
+{% schema %}
+{
+  "name": "Cube Product Specs",
+  "settings": [
+    {
+      "type": "text",
+      "id": "specs_title",
+      "label": "Specifications Title",
+      "default": "Cube Product Specifications"
+    },
+    {
+      "type": "textarea",
+      "id": "specs_subtitle",
+      "label": "Specifications Subtitle",
+      "default": "Explore detailed specifications for Cube bikes and accessories. Find the perfect match with advanced filtering and real-time product data from Cube Connect."
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "color_title",
+      "label": "Title Color",
+      "default": "#333"
+    },
+    {
+      "type": "color",
+      "id": "color_subtitle",
+      "label": "Subtitle Color",
+      "default": "#6c757d"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cube Product Specs",
+      "category": "Tools"
+    }
+  ]
+}
+{% endschema %}

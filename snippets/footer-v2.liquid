@@ -1,0 +1,325 @@
+{% if section.settings.select_fts == "footer_v2" %}
+{% if template contains 'index' %}
+<footer class=" footer_v2">
+  <div class="top-footer">
+    <div class="container container-v5">    
+      <div class="row">
+        <div class="col-lg-4 col-12 vc_column-inner">
+          <div class="info_footer nexio-newsletter style-10">
+            <div class="title_footer">          
+              <h4 class="title_border">{{settings.titlecolum_fv2_contact}}</h4>         
+            </div>
+            <div class="subheading">{{settings.content_colum_fv2_4}}</div>
+            <div class="content">{{settings.description_colum_fv2_4}}</div>
+          </div>
+          {% if settings.newsletter_form_action != blank %}
+          {% assign form_action = settings.newsletter_form_action %}
+          {% else %}
+          {% assign form_action = '#' %}
+          {% endif %}
+          <form class="newsletter-form-wrap" action="{{form_action}}" method="post">
+            <input type="email" name="EMAIL" class="email" placeholder="{{ 'general.newsletter_form.newsletter_email' | t }}" required >                 
+            <button class="btn-submit submit-newsletter" type="submit">
+              <i class="fa fa-envelope-o" aria-hidden="true"></i>
+			</button>
+          </form>
+          {% if settings.fv2_bottom_copyright != blank %}
+          <p class="text-copyright">{{settings.fv2_bottom_copyright}}</p>
+          {% else %}
+          <div class="text-copyright mb-0 d-lg-block d-none">
+            {% if settings.enable_rtl_mode %}
+            <p> <a href="https://www.shopify.com/?ref=shopifycenter" rel="nofollow" target="_blank" class=""> Powered by Shopify.</a> <a href="http://themeocean.net/" rel="nofollow" target="_blank" class="underline_hover link"> ThemeOcean.</a> By <a href="http://shopilaunch.com/" rel="nofollow" target="_blank" class="underline_hover bold">  Nexio </a>Copyright 2022 |</p> 
+            {% else %}
+            <p>© Copyright 2022 | <a href="http://shopilaunch.com/" rel="nofollow" target="_blank" class="underline_hover bold">  Nexio </a> By <a href="http://themeocean.net/" rel="nofollow" target="_blank" class="underline_hover link"> ThemeOcean.</a><a href="https://www.shopify.com/?ref=shopifycenter" rel="nofollow" target="_blank" class=""> Powered by Shopify.</a></p> 
+            {% endif %}
+          </div> 
+          {% endif %}
+        </div>
+        <div class="col-lg-8 col-12">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="info_footer">
+                <div class="title_footer">          
+                  <h4 class="title_border">{{settings.titlecolum_fv2_1}}</h4>         
+                </div>
+                <ul class="list-unstyled mb-0">
+                  {% for link in linklists[settings.menu_fv2_1].links %}
+                  <li><a href="{{link.url}}" title="{{link.title}}">{{link.title}}</a></li>
+                  {% endfor %}
+                </ul>        
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="info_footer">
+                <div class="title_footer">          
+                  <h4 class="title_border">{{settings.titlecolum_fv2_2}}</h4>         
+                </div>
+                <ul class="list-unstyled mb-0">
+                  {% for link in linklists[settings.menu_fv2_2].links %}
+                  <li><a href="{{link.url}}" title="{{link.title}}">{{link.title}}</a></li>
+                  {% endfor %}
+                </ul>        
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="info_footer">
+                <div class="title_footer">          
+                  <h4 class="title_border">{{settings.titlecolum_fv2_3}}</h4>         
+                </div>
+                {% if settings.content_colum_fv2_2 != blank %}
+                {{settings.content_colum_fv2_2}}
+                {% else %}            
+                <ul class="list-unstyled mb-0">
+                  <li><a title="themeocean.team@gmail.com" href="mailto:themeocean.team@gmail.com">themeocean.team@gmail.com</a></li>
+                  <li><a title="Phone: (646) 663-4575" href="#">Phone: (646) 663-4575</a></li>
+                  <li><a title="Fax: (646) 968-0608" href="#">Fax: (646) 968-0608</a></li>
+                </ul>
+                {% endif %}      
+              </div>
+              <div class="nexio-socials style-05">
+                <div class="socials-inner">
+                  {% if settings.icon_sc_fv2_1 !=blank %}
+                  <a href="{{settings.url_sc_fv2_1}}" title="" target="_blank" class="social-item"><i class="{{settings.icon_sc_fv2_1}}"></i></a>
+                  {% endif %}
+                  {% if settings.icon_sc_fv2_2 !=blank %}
+                  <a href="{{settings.url_sc_fv2_2}}" title="" target="_blank" class="social-item"><i class="{{settings.icon_sc_fv2_2}}"></i></a>
+                  {% endif %}
+                  {% if settings.icon_sc_fv2_3 !=blank %}
+                  <a href="{{settings.url_sc_fv2_3}}" title="" target="_blank" class="social-item"><i class="{{settings.icon_sc_fv2_3}}"></i></a>
+                  {% endif %}
+                  {% if settings.icon_sc_fv2_4 !=blank %}
+                  <a href="{{settings.url_sc_fv2_4}}" title="" target="_blank" class="social-item"><i class="{{settings.icon_sc_fv2_4}}"></i></a>
+                  {% endif %}  
+                </div>
+              </div>
+              <div class="payment-footer d-lg-block d-none">
+                {% if settings.fv2_bottom_payment_img != blank %}
+                <img src="{{settings.fv2_bottom_payment_img | img_url:'master'}}"  alt="">
+                {% else %}
+                <img src="//via.placeholder.com/247x23"  alt="">
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="bottom-footer d-lg-none d-flex">
+    <div class="container container-v5">
+      <div class="row align-items-center">
+        <div class="col-md-6 {% if settings.enable_rtl_mode %}text-md-right{% else %}text-md-left{% endif %} text-center">
+          {% if settings.fv2_bottom_copyright != blank %}
+          <p class="text-copyright">{{settings.fv2_bottom_copyright}}</p>
+          {% else %}
+          <div class="text-copyright mb-0">
+            {% if settings.enable_rtl_mode %}
+            <p> <a href="https://www.shopify.com/?ref=shopifycenter" rel="nofollow" target="_blank" class=""> Powered by Shopify.</a> <a href="http://themeocean.net/" rel="nofollow" target="_blank" class="underline_hover link"> ThemeOcean.</a> By <a href="http://shopilaunch.com/" rel="nofollow" target="_blank" class="underline_hover bold">  Nexio </a>Copyright 2022 |</p> 
+            {% else %}
+            <p>© Copyright 2022 | <a href="http://shopilaunch.com/" rel="nofollow" target="_blank" class="underline_hover bold">  Nexio </a> By <a href="http://themeocean.net/" rel="nofollow" target="_blank" class="underline_hover link"> ThemeOcean.</a><a href="https://www.shopify.com/?ref=shopifycenter" rel="nofollow" target="_blank" class=""> Powered by Shopify.</a></p> 
+            {% endif %}
+          </div> 
+          {% endif %}
+        </div>
+        <div class="col-md-6 {% if settings.enable_rtl_mode %}text-md-left{% else %}text-md-right{% endif %} text-center">
+          <div class="payment-footer">
+            {% if settings.fv2_bottom_payment_img != blank %}
+            <img src="{{settings.fv2_bottom_payment_img | img_url:'master'}}"  alt="">
+            {% else %}
+            <img src="//via.placeholder.com/247x23"  alt="">
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<style>
+  .footer_v2 .top-footer{
+    background-color : {{section.settings.ft_home_bg_footer}}
+  }
+  .footer_v2 .bottom-footer{
+    background-color : {{section.settings.ft_home_bg_footer}}
+  }
+  .footer_v2 .top-footer .title_footer h4{
+    color : {{section.settings.ft_home_color_heading}};
+  }  
+  .footer_v2 .top-footer .subheading{
+    color : {{section.settings.ft_home_color_heading}};
+  }  
+  .footer_v2 .top-footer .info_footer ul li a{
+    color : {{section.settings.ft_home_color_text}};
+  }
+  .footer_v2 .top-footer .content{
+    color : {{section.settings.ft_home_color_text}};
+  }
+  .footer_v2 .text-copyright p{
+    color : {{section.settings.ft_home_color_text}};
+  }
+</style>
+{% endif %}
+{% endif %}
+
+{% if section.settings.select_fts_all == "footer_ver2" %}
+{% unless template contains 'index' %}
+<footer class=" footer_v2">
+  <div class="top-footer">
+    <div class="container container-v5">    
+      <div class="row">
+        <div class="col-lg-4 col-12 vc_column-inner">
+          <div class="info_footer nexio-newsletter style-10">
+            <div class="title_footer">          
+              <h4 class="title_border">{{settings.titlecolum_fv2_contact}}</h4>         
+            </div>
+            <div class="subheading">{{settings.content_colum_fv2_4}}</div>
+            <div class="content">{{settings.description_colum_fv2_4}}</div>
+          </div>
+          {% if settings.newsletter_form_action != blank %}
+          {% assign form_action = settings.newsletter_form_action %}
+          {% else %}
+          {% assign form_action = '#' %}
+          {% endif %}
+          <form class="newsletter-form-wrap" action="{{form_action}}" method="post">
+            <input type="email" name="EMAIL" class="email" placeholder="{{ 'general.newsletter_form.newsletter_email' | t }}" required >                 
+            <button class="btn-submit submit-newsletter" type="submit">
+              <i class="fa fa-envelope-o" aria-hidden="true"></i>
+			</button>
+          </form>
+          {% if settings.fv2_bottom_copyright != blank %}
+          <p class="text-copyright">{{settings.fv2_bottom_copyright}}</p>
+          {% else %}
+          <div class="text-copyright mb-0 d-lg-block d-none">
+            {% if settings.enable_rtl_mode %}
+            <p> <a href="https://www.shopify.com/?ref=shopifycenter" rel="nofollow" target="_blank" class=""> Powered by Shopify.</a> <a href="http://themeocean.net/" rel="nofollow" target="_blank" class="underline_hover link"> ThemeOcean.</a> By <a href="http://shopilaunch.com/" rel="nofollow" target="_blank" class="underline_hover bold">  Nexio </a>Copyright 2022 |</p> 
+            {% else %}
+            <p>© Copyright 2022 | <a href="http://shopilaunch.com/" rel="nofollow" target="_blank" class="underline_hover bold">  Nexio </a> By <a href="http://themeocean.net/" rel="nofollow" target="_blank" class="underline_hover link"> ThemeOcean.</a><a href="https://www.shopify.com/?ref=shopifycenter" rel="nofollow" target="_blank" class=""> Powered by Shopify.</a></p> 
+            {% endif %}
+          </div> 
+          {% endif %}
+        </div>
+        <div class="col-lg-8 col-12">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="info_footer">
+                <div class="title_footer">          
+                  <h4 class="title_border">{{settings.titlecolum_fv2_1}}</h4>         
+                </div>
+                <ul class="list-unstyled mb-0">
+                  {% for link in linklists[settings.menu_fv2_1].links %}
+                  <li><a href="{{link.url}}" title="{{link.title}}">{{link.title}}</a></li>
+                  {% endfor %}
+                </ul>        
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="info_footer">
+                <div class="title_footer">          
+                  <h4 class="title_border">{{settings.titlecolum_fv2_2}}</h4>         
+                </div>
+                <ul class="list-unstyled mb-0">
+                  {% for link in linklists[settings.menu_fv2_2].links %}
+                  <li><a href="{{link.url}}" title="{{link.title}}">{{link.title}}</a></li>
+                  {% endfor %}
+                </ul>        
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="info_footer">
+                <div class="title_footer">          
+                  <h4 class="title_border">{{settings.titlecolum_fv2_3}}</h4>         
+                </div>
+                {% if settings.content_colum_fv2_2 != blank %}
+                {{settings.content_colum_fv2_2}}
+                {% else %}            
+                <ul class="list-unstyled mb-0">
+                  <li><a title="themeocean.team@gmail.com" href="mailto:themeocean.team@gmail.com">themeocean.team@gmail.com</a></li>
+                  <li><a title="Phone: (646) 663-4575" href="#">Phone: (646) 663-4575</a></li>
+                  <li><a title="Fax: (646) 968-0608" href="#">Fax: (646) 968-0608</a></li>
+                </ul>
+                {% endif %}      
+              </div>
+              <div class="nexio-socials style-05">
+                <div class="socials-inner">
+                  {% if settings.icon_sc_fv2_1 !=blank %}
+                  <a href="{{settings.url_sc_fv2_1}}" title="" target="_blank" class="social-item"><i class="{{settings.icon_sc_fv2_1}}"></i></a>
+                  {% endif %}
+                  {% if settings.icon_sc_fv2_2 !=blank %}
+                  <a href="{{settings.url_sc_fv2_2}}" title="" target="_blank" class="social-item"><i class="{{settings.icon_sc_fv2_2}}"></i></a>
+                  {% endif %}
+                  {% if settings.icon_sc_fv2_3 !=blank %}
+                  <a href="{{settings.url_sc_fv2_3}}" title="" target="_blank" class="social-item"><i class="{{settings.icon_sc_fv2_3}}"></i></a>
+                  {% endif %}
+                  {% if settings.icon_sc_fv2_4 !=blank %}
+                  <a href="{{settings.url_sc_fv2_4}}" title="" target="_blank" class="social-item"><i class="{{settings.icon_sc_fv2_4}}"></i></a>
+                  {% endif %}  
+                </div>
+              </div>
+              <div class="payment-footer d-lg-block d-none">
+                {% if settings.fv2_bottom_payment_img != blank %}
+                <img src="{{settings.fv2_bottom_payment_img | img_url:'master'}}"  alt="">
+                {% else %}
+                <img src="//via.placeholder.com/247x23"  alt="">
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="bottom-footer d-lg-none d-flex">
+    <div class="container container-v5">
+      <div class="row align-items-center">
+        <div class="col-md-6 {% if settings.enable_rtl_mode %}text-md-right{% else %}text-md-left{% endif %} text-center">
+          {% if settings.fv2_bottom_copyright != blank %}
+          <p class="text-copyright">{{settings.fv2_bottom_copyright}}</p>
+          {% else %}
+          <div class="text-copyright mb-0">
+            {% if settings.enable_rtl_mode %}
+            <p> <a href="https://www.shopify.com/?ref=shopifycenter" rel="nofollow" target="_blank" class=""> Powered by Shopify.</a> <a href="http://themeocean.net/" rel="nofollow" target="_blank" class="underline_hover link"> ThemeOcean.</a> By <a href="http://shopilaunch.com/" rel="nofollow" target="_blank" class="underline_hover bold">  Nexio </a>Copyright 2022 |</p> 
+            {% else %}
+            <p>© Copyright 2022 | <a href="http://shopilaunch.com/" rel="nofollow" target="_blank" class="underline_hover bold">  Nexio </a> By <a href="http://themeocean.net/" rel="nofollow" target="_blank" class="underline_hover link"> ThemeOcean.</a><a href="https://www.shopify.com/?ref=shopifycenter" rel="nofollow" target="_blank" class=""> Powered by Shopify.</a></p> 
+            {% endif %}
+          </div> 
+          {% endif %}
+        </div>
+        <div class="col-md-6 {% if settings.enable_rtl_mode %}text-md-left{% else %}text-md-right{% endif %} text-center">
+          <div class="payment-footer">
+            {% if settings.fv2_bottom_payment_img != blank %}
+            <img src="{{settings.fv2_bottom_payment_img | img_url:'master'}}"  alt="">
+            {% else %}
+            <img src="//via.placeholder.com/247x23"  alt="">
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<style>
+  .footer_v2 .top-footer{
+    background-color : {{section.settings.ft_other_bg_footer}}
+  } 
+  .footer_v2 .bottom-footer{
+    background-color : {{section.settings.ft_other_bg_footer}}
+  } 
+  .footer_v2 .top-footer .title_footer h4{
+    color : {{section.settings.ft_other_color_heading}};
+  }  
+  .footer_v2 .top-footer .subheading{
+    color : {{section.settings.ft_other_color_heading}};
+  }  
+  .footer_v2 .top-footer .info_footer ul li a{
+    color : {{section.settings.ft_other_color_text}};
+  }
+  .footer_v2 .top-footer .content{
+    color : {{section.settings.ft_other_color_text}};
+  }
+  .footer_v2 .text-copyright p{
+    color : {{section.settings.ft_other_color_text}};
+  }
+</style>
+{% endunless %}
+{% endif %}

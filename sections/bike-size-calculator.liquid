@@ -1,0 +1,743 @@
+{% comment %}
+  Bike Size Calculator Section
+  A generic bike size calculator using theme CSS classes
+{% endcomment %}
+
+<div data-section-id="{{ section.id }}" data-section-type="section-bike-size-calculator" style="{% if section.settings.margin_top != blank %}margin-top: {{section.settings.margin_top}}px;{%endif%} {% if section.settings.margin_bottom != blank %}margin-bottom: {{section.settings.margin_bottom}}px;{% endif %}">
+  <div class="section-bike-size-calculator mt-all">
+    <div class="container container-v2">
+      <div class="row justify-content-center">
+        <div class="col-lg-10 col-md-12 col-sm-12">
+          <div class="calculator-header text-center mb-5">
+            {% if section.settings.calculator_title != blank %}
+              <h2 class="title title-{{ section.id }} mb-3">{{ section.settings.calculator_title }}</h2>
+            {% endif %}
+            
+            {% if section.settings.calculator_subtitle != blank %}
+              <p class="subtitle subtitle-{{ section.id }}">{{ section.settings.calculator_subtitle }}</p>
+            {% endif %}
+          </div>
+          
+          <div class="calculator-wrapper">
+            <div class="row">
+              <div class="col-lg-8 col-md-12 mb-4">
+                <div class="calculator-form-wrapper">
+                  <form class="bike-size-form" id="bike-size-form-{{ section.id }}">
+                    <div class="form-section mb-4">
+                      <h4 class="section-title section-title-{{ section.id }} mb-3">Your Measurements</h4>
+                      
+                      <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
+                          <div class="form-group">
+                            <label for="height-{{ section.id }}" class="form-label">Height (cm) *</label>
+                            <input type="number" id="height-{{ section.id }}" name="height" class="form-control" min="100" max="250" placeholder="170" required>
+                          </div>
+                        </div>
+                        
+                        <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
+                          <div class="form-group">
+                            <label for="inseam-{{ section.id }}" class="form-label">Inseam (cm) *</label>
+                            <input type="number" id="inseam-{{ section.id }}" name="inseam" class="form-control" min="50" max="120" placeholder="80" required>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
+                          <div class="form-group">
+                            <label for="arm-length-{{ section.id }}" class="form-label">Arm Length (cm)</label>
+                            <input type="number" id="arm-length-{{ section.id }}" name="arm_length" class="form-control" min="40" max="100" placeholder="65">
+                          </div>
+                        </div>
+                        
+                        <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
+                          <div class="form-group">
+                            <label for="torso-length-{{ section.id }}" class="form-label">Torso Length (cm)</label>
+                            <input type="number" id="torso-length-{{ section.id }}" name="torso_length" class="form-control" min="40" max="100" placeholder="60">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="form-section mb-4">
+                      <h4 class="section-title section-title-{{ section.id }} mb-3">Bike Type & Riding Style</h4>
+                      
+                      <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
+                          <div class="form-group">
+                            <label for="bike-type-{{ section.id }}" class="form-label">Bike Type *</label>
+                            <select id="bike-type-{{ section.id }}" name="bike_type" class="form-control" required>
+                              <option value="">Select bike type</option>
+                              <option value="road">Road Bike</option>
+                              <option value="mountain">Mountain Bike</option>
+                              <option value="hybrid">Hybrid/Commuter</option>
+                              <option value="gravel">Gravel Bike</option>
+                              <option value="cyclocross">Cyclocross</option>
+                              <option value="bmx">BMX</option>
+                              <option value="cruiser">Cruiser</option>
+                            </select>
+                          </div>
+                        </div>
+                        
+                        <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
+                          <div class="form-group">
+                            <label for="riding-style-{{ section.id }}" class="form-label">Riding Style</label>
+                            <select id="riding-style-{{ section.id }}" name="riding_style" class="form-control">
+                              <option value="">Select riding style</option>
+                              <option value="casual">Casual/Recreational</option>
+                              <option value="fitness">Fitness/Exercise</option>
+                              <option value="racing">Racing/Competitive</option>
+                              <option value="touring">Touring/Long Distance</option>
+                              <option value="commuting">Daily Commuting</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
+                          <div class="form-group">
+                            <label for="experience-level-{{ section.id }}" class="form-label">Experience Level</label>
+                            <select id="experience-level-{{ section.id }}" name="experience_level" class="form-control">
+                              <option value="">Select experience level</option>
+                              <option value="beginner">Beginner</option>
+                              <option value="intermediate">Intermediate</option>
+                              <option value="advanced">Advanced</option>
+                              <option value="expert">Expert</option>
+                            </select>
+                          </div>
+                        </div>
+                        
+                        <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
+                          <div class="form-group">
+                            <label for="flexibility-{{ section.id }}" class="form-label">Flexibility Level</label>
+                            <select id="flexibility-{{ section.id }}" name="flexibility" class="form-control">
+                              <option value="">Select flexibility level</option>
+                              <option value="low">Low (Stiff)</option>
+                              <option value="medium">Medium</option>
+                              <option value="high">High (Flexible)</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="form-actions text-center">
+                      <button type="submit" class="btn btn-calculate-{{ section.id }}" id="calculate-btn-{{ section.id }}">
+                        <span class="btn-text">Calculate Bike Size</span>
+                        <span class="btn-loading" style="display: none;">
+                          <i class="fa fa-spinner fa-spin"></i> Calculating...
+                        </span>
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              
+              <div class="col-lg-4 col-md-12">
+                <div class="calculator-sidebar">
+                  <div class="sidebar-section mb-4">
+                    <h4 class="sidebar-title sidebar-title-{{ section.id }} mb-3">How to Measure</h4>
+                    <div class="measurement-guide">
+                      <div class="measurement-item mb-3">
+                        <h5 class="measurement-title">Height</h5>
+                        <p class="measurement-desc">Stand barefoot against a wall, measure from floor to top of head</p>
+                      </div>
+                      
+                      <div class="measurement-item mb-3">
+                        <h5 class="measurement-title">Inseam</h5>
+                        <p class="measurement-desc">Stand barefoot, measure from floor to crotch</p>
+                      </div>
+                      
+                      <div class="measurement-item mb-3">
+                        <h5 class="measurement-title">Arm Length</h5>
+                        <p class="measurement-desc">Measure from shoulder to wrist with arm extended</p>
+                      </div>
+                      
+                      <div class="measurement-item">
+                        <h5 class="measurement-title">Torso Length</h5>
+                        <p class="measurement-desc">Measure from crotch to base of neck</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="sidebar-section">
+                    <h4 class="sidebar-title sidebar-title-{{ section.id }} mb-3">Tips</h4>
+                    <ul class="tips-list">
+                      <li>Measure without shoes for accuracy</li>
+                      <li>Use a flexible tape measure</li>
+                      <li>Have someone help you measure</li>
+                      <li>Take multiple measurements</li>
+                      <li>Consider your riding goals</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="results-section mt-5" id="results-section-{{ section.id }}" style="display: none;">
+              <div class="results-header text-center mb-4">
+                <h3 class="results-title results-title-{{ section.id }}">Your Recommended Bike Size</h3>
+              </div>
+              
+              <div class="row">
+                <div class="col-lg-8 col-md-12">
+                  <div class="size-recommendations">
+                    <div class="recommendation-card mb-4">
+                      <h4 class="recommendation-title">Frame Size</h4>
+                      <div class="recommendation-content">
+                        <div class="size-value" id="frame-size-{{ section.id }}"></div>
+                        <div class="size-description" id="frame-description-{{ section.id }}"></div>
+                      </div>
+                    </div>
+                    
+                    <div class="recommendation-card mb-4">
+                      <h4 class="recommendation-title">Top Tube Length</h4>
+                      <div class="recommendation-content">
+                        <div class="size-value" id="top-tube-{{ section.id }}"></div>
+                        <div class="size-description" id="top-tube-description-{{ section.id }}"></div>
+                      </div>
+                    </div>
+                    
+                    <div class="recommendation-card mb-4">
+                      <h4 class="recommendation-title">Seat Tube Length</h4>
+                      <div class="recommendation-content">
+                        <div class="size-value" id="seat-tube-{{ section.id }}"></div>
+                        <div class="size-description" id="seat-tube-description-{{ section.id }}"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-12">
+                  <div class="fit-adjustments">
+                    <h4 class="adjustments-title">Fit Adjustments</h4>
+                    <div class="adjustments-list" id="adjustments-list-{{ section.id }}"></div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="results-footer text-center mt-4">
+                <p class="disclaimer">* These are general recommendations. Professional bike fitting is recommended for optimal performance and comfort.</p>
+                <button class="btn btn-reset-{{ section.id }}" onclick="resetCalculator('{{ section.id }}')">Calculate Another Size</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .section-bike-size-calculator {
+    padding: 80px 0;
+    background: #fff;
+  }
+  
+  .section-bike-size-calculator .title-{{ section.id }} {
+    color: {{ section.settings.color_title | default: '#333' }};
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  
+  .section-bike-size-calculator .subtitle-{{ section.id }} {
+    color: {{ section.settings.color_subtitle | default: '#6c757d' }};
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .calculator-wrapper {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  }
+  
+  .form-section {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border-left: 4px solid {{ section.settings.color_title | default: '#333' }};
+  }
+  
+  .section-title-{{ section.id }} {
+    color: {{ section.settings.color_title | default: '#333' }};
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 1rem 0;
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: 'SofiaPro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #333;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background: #fff;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+  
+  .form-control select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 12px center;
+    background-repeat: no-repeat;
+    background-size: 16px 12px;
+    padding-right: 40px;
+  }
+  
+  .form-control:focus {
+    outline: none;
+    border-color: {{ section.settings.color_title | default: '#333' }};
+    box-shadow: 0 0 0 3px rgba(51, 51, 51, 0.1);
+  }
+  
+  .form-control:required:invalid {
+    border-color: #dc3545;
+  }
+  
+  .form-control:required:valid {
+    border-color: #28a745;
+  }
+  
+  .btn-calculate-{{ section.id }} {
+    background: {{ section.settings.color_title | default: '#333' }};
+    color: #fff;
+    padding: 15px 40px;
+    border: 2px solid {{ section.settings.color_title | default: '#333' }};
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    min-width: 200px;
+  }
+  
+  .btn-calculate-{{ section.id }}:hover {
+    background: #555;
+    border-color: #555;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  }
+  
+  .btn-calculate-{{ section.id }}:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+  
+  .btn-loading {
+    display: none;
+  }
+  
+  .calculator-sidebar {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    height: fit-content;
+    position: sticky;
+    top: 2rem;
+  }
+  
+  .sidebar-title-{{ section.id }} {
+    color: {{ section.settings.color_title | default: '#333' }};
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 1rem 0;
+  }
+  
+  .measurement-item {
+    border-bottom: 1px solid #e9ecef;
+    padding-bottom: 1rem;
+  }
+  
+  .measurement-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  
+  .measurement-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 0.5rem 0;
+  }
+  
+  .measurement-desc {
+    font-size: 14px;
+    color: #6c757d;
+    margin: 0;
+    line-height: 1.4;
+  }
+  
+  .tips-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .tips-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #e9ecef;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .tips-list li:last-child {
+    border-bottom: none;
+  }
+  
+  .tips-list li:before {
+    content: "✓";
+    color: #28a745;
+    font-weight: bold;
+    margin-right: 0.5rem;
+  }
+  
+  .results-section {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  }
+  
+  .results-title-{{ section.id }} {
+    color: {{ section.settings.color_title | default: '#333' }};
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0;
+  }
+  
+  .recommendation-card {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border-left: 4px solid {{ section.settings.color_title | default: '#333' }};
+  }
+  
+  .recommendation-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 1rem 0;
+  }
+  
+  .size-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: {{ section.settings.color_title | default: '#333' }};
+    margin-bottom: 0.5rem;
+  }
+  
+  .size-description {
+    font-size: 14px;
+    color: #6c757d;
+    line-height: 1.4;
+  }
+  
+  .fit-adjustments {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 12px;
+  }
+  
+  .adjustments-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 1rem 0;
+  }
+  
+  .adjustments-list {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+  }
+  
+  .disclaimer {
+    font-size: 14px;
+    color: #6c757d;
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+  
+  .btn-reset-{{ section.id }} {
+    background: #6c757d;
+    color: #fff;
+    padding: 12px 24px;
+    border: 2px solid #6c757d;
+    border-radius: 25px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .btn-reset-{{ section.id }}:hover {
+    background: #545b62;
+    border-color: #545b62;
+    transform: translateY(-1px);
+  }
+  
+  @media (max-width: 992px) {
+    .calculator-sidebar {
+      position: static;
+      margin-top: 2rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .section-bike-size-calculator {
+      padding: 60px 0;
+    }
+    
+    .section-bike-size-calculator .title-{{ section.id }} {
+      font-size: 28px;
+    }
+    
+    .section-bike-size-calculator .subtitle-{{ section.id }} {
+      font-size: 16px;
+    }
+    
+    .calculator-wrapper {
+      padding: 1.5rem;
+    }
+    
+    .form-section {
+      padding: 1rem;
+    }
+    
+    .btn-calculate-{{ section.id }} {
+      min-width: 100%;
+    }
+  }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('bike-size-form-{{ section.id }}');
+  const calculateBtn = document.getElementById('calculate-btn-{{ section.id }}');
+  const btnText = calculateBtn.querySelector('.btn-text');
+  const btnLoading = calculateBtn.querySelector('.btn-loading');
+  const resultsSection = document.getElementById('results-section-{{ section.id }}');
+  
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Show loading state
+    btnText.style.display = 'none';
+    btnLoading.style.display = 'inline';
+    calculateBtn.disabled = true;
+    
+    // Get form data
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+    
+    // Calculate bike size
+    const results = calculateBikeSize(data);
+    
+    // Display results
+    displayResults(results, '{{ section.id }}');
+    
+    // Reset button
+    btnText.style.display = 'inline';
+    btnLoading.style.display = 'none';
+    calculateBtn.disabled = false;
+    
+    // Show results
+    resultsSection.style.display = 'block';
+    resultsSection.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+function calculateBikeSize(data) {
+  const height = parseFloat(data.height);
+  const inseam = parseFloat(data.inseam);
+  const bikeType = data.bike_type;
+  
+  // Basic calculations based on inseam
+  let frameSize = '';
+  let topTube = '';
+  let seatTube = '';
+  let adjustments = [];
+  
+  // Frame size calculation (cm)
+  if (bikeType === 'road' || bikeType === 'gravel' || bikeType === 'cyclocross') {
+    seatTube = Math.round(inseam * 0.67);
+    topTube = Math.round(inseam * 0.72);
+    
+    if (seatTube < 50) frameSize = 'XXS (44-46cm)';
+    else if (seatTube < 52) frameSize = 'XS (48-50cm)';
+    else if (seatTube < 54) frameSize = 'S (52-54cm)';
+    else if (seatTube < 56) frameSize = 'M (54-56cm)';
+    else if (seatTube < 58) frameSize = 'L (56-58cm)';
+    else if (seatTube < 60) frameSize = 'XL (58-60cm)';
+    else frameSize = 'XXL (60-62cm)';
+    
+  } else if (bikeType === 'mountain') {
+    seatTube = Math.round(inseam * 0.65);
+    topTube = Math.round(inseam * 0.68);
+    
+    if (seatTube < 40) frameSize = 'XXS (13-14")';
+    else if (seatTube < 42) frameSize = 'XS (14-15")';
+    else if (seatTube < 44) frameSize = 'S (15-16")';
+    else if (seatTube < 46) frameSize = 'M (16-17")';
+    else if (seatTube < 48) frameSize = 'L (17-18")';
+    else if (seatTube < 50) frameSize = 'XL (18-19")';
+    else frameSize = 'XXL (19-20")';
+    
+  } else if (bikeType === 'hybrid' || bikeType === 'commuter') {
+    seatTube = Math.round(inseam * 0.66);
+    topTube = Math.round(inseam * 0.70);
+    
+    if (seatTube < 48) frameSize = 'XS (15-16")';
+    else if (seatTube < 50) frameSize = 'S (16-17")';
+    else if (seatTube < 52) frameSize = 'M (17-18")';
+    else if (seatTube < 54) frameSize = 'L (18-19")';
+    else if (seatTube < 56) frameSize = 'XL (19-20")';
+    else frameSize = 'XXL (20-21")';
+    
+  } else {
+    // Generic calculation
+    seatTube = Math.round(inseam * 0.66);
+    topTube = Math.round(inseam * 0.70);
+    frameSize = `${seatTube}cm`;
+  }
+  
+  // Adjustments based on riding style and experience
+  if (data.riding_style === 'racing') {
+    adjustments.push('Consider a slightly smaller frame for aggressive positioning');
+    topTube = Math.round(topTube * 0.98);
+  }
+  
+  if (data.experience_level === 'beginner') {
+    adjustments.push('Start with a slightly larger frame for stability');
+    seatTube = Math.round(seatTube * 1.02);
+  }
+  
+  if (data.flexibility === 'low') {
+    adjustments.push('Consider a more upright position with higher handlebars');
+    adjustments.push('Shorter top tube may be more comfortable');
+  }
+  
+  if (data.flexibility === 'high') {
+    adjustments.push('You can handle a more aggressive, stretched-out position');
+  }
+  
+  // Add general fit tips
+  adjustments.push('Have a professional bike fit for optimal performance');
+  adjustments.push('Test ride multiple sizes if possible');
+  adjustments.push('Consider stem length and handlebar width adjustments');
+  
+  return {
+    frameSize,
+    topTube: `${topTube}cm`,
+    seatTube: `${seatTube}cm`,
+    adjustments
+  };
+}
+
+function displayResults(results, sectionId) {
+  document.getElementById(`frame-size-${sectionId}`).textContent = results.frameSize;
+  document.getElementById(`top-tube-${sectionId}`).textContent = results.topTube;
+  document.getElementById(`seat-tube-${sectionId}`).textContent = results.seatTube;
+  
+  const adjustmentsList = document.getElementById(`adjustments-list-${sectionId}`);
+  adjustmentsList.innerHTML = results.adjustments.map(adj => `<div class="adjustment-item">• ${adj}</div>`).join('');
+}
+
+function resetCalculator(sectionId) {
+  document.getElementById(`bike-size-form-${sectionId}`).reset();
+  document.getElementById(`results-section-${sectionId}`).style.display = 'none';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
+{% schema %}
+{
+  "name": "Bike Size Calculator",
+  "settings": [
+    {
+      "type": "text",
+      "id": "calculator_title",
+      "label": "Calculator Title",
+      "default": "Bike Size Calculator"
+    },
+    {
+      "type": "textarea",
+      "id": "calculator_subtitle",
+      "label": "Calculator Subtitle",
+      "default": "Find your perfect bike size based on your measurements and riding style. Get personalized recommendations for frame size, top tube length, and seat tube length."
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "color_title",
+      "label": "Title Color",
+      "default": "#333"
+    },
+    {
+      "type": "color",
+      "id": "color_subtitle",
+      "label": "Subtitle Color",
+      "default": "#6c757d"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bike Size Calculator",
+      "category": "Tools"
+    }
+  ]
+}
+{% endschema %}

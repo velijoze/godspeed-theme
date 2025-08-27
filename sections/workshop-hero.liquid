@@ -1,0 +1,275 @@
+{% comment %}
+  Workshop Hero Section
+  A hero section for workshop pages using theme CSS classes
+{% endcomment %}
+
+<div data-section-id="{{ section.id }}" data-section-type="section-workshop-hero" style="{% if section.settings.margin_top != blank %}margin-top: {{section.settings.margin_top}}px;{%endif%} {% if section.settings.margin_bottom != blank %}margin-bottom: {{section.settings.margin_bottom}}px;{% endif %}">
+  <div class="section-workshop-hero mt-all"{% if section.settings.hero_image != blank %} style="background-image: url('{{ section.settings.hero_image | img_url: '1920x1080' }}');"{% endif %}>
+    <div class="workshop-hero-overlay"></div>
+    <div class="workshop-hero-content text-center">
+            {% if section.settings.hero_title != blank %}
+              <h1 class="title title-{{ section.id }} mb-3">{{ section.settings.hero_title }}</h1>
+            {% endif %}
+            
+            {% if section.settings.hero_subtitle != blank %}
+              <p class="subtitle subtitle-{{ section.id }} mb-4">{{ section.settings.hero_subtitle }}</p>
+            {% endif %}
+            
+            {% if section.settings.hero_button_text != blank and section.settings.hero_button_link != blank %}
+              <div class="workshop-hero-cta">
+                <a href="{{ section.settings.hero_button_link }}" class="btn btn-{{ section.id }}">
+                  {{ section.settings.hero_button_text }}
+                </a>
+              </div>
+            {% endif %}
+            
+            {% if section.settings.show_scroll_indicator %}
+              <div class="scroll-indicator mt-5">
+                <span class="scroll-text d-block mb-2">Scroll to explore</span>
+                <div class="scroll-arrow"></div>
+              </div>
+            {% endif %}
+    </div>
+  </div>
+</div>
+
+<style>
+  .section-workshop-hero {
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    width: 100%;
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .workshop-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, {{ section.settings.overlay_opacity | default: 0.4 }});
+    z-index: 1;
+  }
+  
+  .workshop-hero-content {
+    position: relative;
+    z-index: 3;
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  .section-workshop-hero .title-{{ section.id }} {
+    color: {{ section.settings.color_title | default: '#ffffff' }};
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.2;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  }
+  
+  .section-workshop-hero .subtitle-{{ section.id }} {
+    color: {{ section.settings.color_subtitle | default: '#ffffff' }};
+    font-size: 20px;
+    line-height: 1.6;
+    margin: 0 auto;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  }
+  
+  .section-workshop-hero .btn-{{ section.id }} {
+    background: {{ section.settings.bg_btn | default: '#007bff' }};
+    color: {{ section.settings.color_btn | default: '#fff' }};
+    border: 2px solid {{ section.settings.bg_btn | default: '#007bff' }};
+    padding: 15px 40px;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-decoration: none;
+  }
+  
+  .section-workshop-hero .btn-{{ section.id }}:hover {
+    background: {{ section.settings.hover_bg_btn | default: '#0056b3' }};
+    border-color: {{ section.settings.hover_bg_btn | default: '#0056b3' }};
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    color: {{ section.settings.hover_color_btn | default: '#fff' }};
+    text-decoration: none;
+  }
+  
+  .scroll-indicator {
+    opacity: 0.7;
+  }
+  
+  .scroll-text {
+    font-size: 14px;
+    color: #6c757d;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .scroll-arrow {
+    width: 20px;
+    height: 20px;
+    border-right: 2px solid #6c757d;
+    border-bottom: 2px solid #6c757d;
+    transform: rotate(45deg);
+    margin: 0 auto;
+    animation: bounce 2s infinite;
+  }
+  
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0) rotate(45deg); }
+    40% { transform: translateY(-10px) rotate(45deg); }
+    60% { transform: translateY(-5px) rotate(45deg); }
+  }
+  
+  @media (max-width: 768px) {
+    .section-workshop-hero {
+      padding: 60px 0;
+    }
+    
+    .section-workshop-hero .title-{{ section.id }} {
+      font-size: 36px;
+    }
+    
+    .section-workshop-hero .subtitle-{{ section.id }} {
+      font-size: 18px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Workshop - Hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero Image"
+    },
+    {
+      "type": "text",
+      "id": "hero_title",
+      "label": "Hero Title",
+      "default": "Workshop & Service Center"
+    },
+    {
+      "type": "textarea",
+      "id": "hero_subtitle",
+      "label": "Hero Subtitle",
+      "default": "Expert Bicycle Care at Switzerland's Premier E-Bike Service Center. Keep your e-bike and bicycle running smoothly with professional maintenance and repairs from our certified technicians."
+    },
+    {
+      "type": "text",
+      "id": "hero_button_text",
+      "label": "Button Text",
+      "default": "Schedule Your Service"
+    },
+    {
+      "type": "url",
+      "id": "hero_button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_scroll_indicator",
+      "label": "Show Scroll Indicator",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "color_title",
+      "label": "Title Color",
+      "default": "#333"
+    },
+    {
+      "type": "color",
+      "id": "color_subtitle",
+      "label": "Subtitle Color",
+      "default": "#6c757d"
+    },
+    {
+      "type": "color",
+      "id": "bg_btn",
+      "label": "Button Background",
+      "default": "#007bff"
+    },
+    {
+      "type": "color",
+      "id": "color_btn",
+      "label": "Button Text Color",
+      "default": "#fff"
+    },
+    {
+      "type": "color",
+      "id": "hover_bg_btn",
+      "label": "Button Hover Background",
+      "default": "#0056b3"
+    },
+    {
+      "type": "color",
+      "id": "hover_color_btn",
+      "label": "Button Hover Text Color",
+      "default": "#fff"
+    },
+    {
+      "type": "header",
+      "content": "Image Overlay"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 0.8,
+      "step": 0.1,
+      "label": "Overlay Opacity",
+      "default": 0.4
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Workshop - Hero",
+      "category": "Workshop"
+    }
+  ]
+}
+{% endschema %}
+

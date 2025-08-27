@@ -1,0 +1,38 @@
+<div class="gs-cta-banner" style="{% if section.settings.margin_top != blank %}margin-top: {{ section.settings.margin_top }}px;{% endif %}{% if section.settings.margin_bottom != blank %} margin-bottom: {{ section.settings.margin_bottom }}px;{% endif %}">
+  <div class="text-center bg-breadcrumb" style="background-image : url({% if section.settings.bg != blank  %}{{section.settings.bg | img_url : 'master'}} {% else %}//via.placeholder.com/1920x510 {% endif %})">
+    <div class="container container-v1 py-5">
+      {% if section.settings.title != blank %}
+      <h2 class="title_heading mb-3" style="color: {{ section.settings.title_color }}">{{ section.settings.title }}</h2>
+      {% endif %}
+      {% if section.settings.text != blank %}
+      <p class="mb-4" style="color: {{ section.settings.text_color }}">{{ section.settings.text }}</p>
+      {% endif %}
+      {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+      <a class="btn btn-primary" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "GS: CTA Banner",
+  "settings": [
+    { "type": "image_picker", "id": "bg", "label": "Background image" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Call to action" },
+    { "type": "text", "id": "text", "label": "Text" },
+    { "type": "text", "id": "title_color", "label": "Title color", "default": "#ffffff" },
+    { "type": "text", "id": "text_color", "label": "Text color", "default": "#ffffff" },
+    { "type": "text", "id": "button_label", "label": "Button label" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "text", "id": "margin_top", "label": "Margin top (px)" },
+    { "type": "text", "id": "margin_bottom", "label": "Margin bottom (px)" }
+  ],
+  "presets": [ { "name": "GS: CTA Banner" } ]
+}
+{% endschema %}
+
+{% stylesheet %}{% endstylesheet %}
+{% javascript %}{% endjavascript %}
+
+

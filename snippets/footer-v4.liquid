@@ -1,0 +1,261 @@
+{% if section.settings.select_fts == "footer_v4" %}
+{% if template contains 'index' %}
+<footer class="footer_v4" style="background-color : {{section.settings.ft_home_bg_footer}}">
+  <div class="top-footer">
+    <div class="container container-v1">    
+      <div class="row">
+        <div class="col-lg-3 col-md-6">
+          <div class="info_footer">
+            <div class="title_footer">          
+              <h4 class="title_border">{{settings.titlecolum_fv4_1}}</h4>         
+            </div>
+            <ul class="list-unstyled mb-0">
+              {% for link in linklists[settings.menu_fv4_1].links %}
+              <li><a href="{{link.url}}" title="{{link.title}}">{{link.title}}</a></li>
+              {% endfor %}
+            </ul>        
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="info_footer">
+            <div class="title_footer">          
+              <h4 class="title_border">{{settings.titlecolum_fv4_2}}</h4>         
+            </div>
+            <ul class="list-unstyled mb-0">
+              {% for link in linklists[settings.menu_fv4_2].links %}
+              <li><a href="{{link.url}}" title="{{link.title}}">{{link.title}}</a></li>
+              {% endfor %}
+            </ul>        
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="info_footer info_contact">
+            <div class="title_footer ">          
+              <h4 class="title_border">{{settings.titlecolum_fv4_3}}</h4>         
+            </div>
+            {% if settings.content_colum_fv4_5_1 != blank %}
+            {{settings.content_colum_fv4_5_1}}
+            {% else %}            
+              <ul class="list-unstyled mb-0">
+                <li><a title="themeocean.team@gmail.com" href="mailto:themeocean.team@gmail.com">themeocean.team@gmail.com</a></li>
+                <li><a title="Phone: (646) 663-4575" href="#">Phone: (646) 663-4575</a></li>
+                <li><a title="Fax: (646) 968-0608" href="#">Fax: (646) 968-0608</a></li>
+              </ul>
+            {% endif %}
+
+            <div class="nexio-socials">
+              {{settings.content_colum_fv4_5}}
+            </div>
+
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="info_footer end">
+            <div class="title_footer ">          
+              <h4 class="title_border">{{settings.titlecolum_fv4_5}}</h4>         
+            </div>
+            {% if settings.content_colum_fv4_4 != blank  %}
+            <p class="content_footer">{{settings.content_colum_fv4_4}}</p>
+            {% endif %}
+
+            {% if settings.newsletter_form_action != blank %}
+            {% assign form_action = settings.newsletter_form_action %}
+            {% else %}
+            {% assign form_action = '#' %}
+            {% endif %}     
+            
+            <form class="newsletter-form-wrap" action="{{form_action}}" method="post">
+              <input type="email" name="EMAIL" class=" text-input" placeholder="{{ 'general.newsletter_form.newsletter_email' | t }}">                 
+              <button class="btn-submit submit-newsletter" type="submit">
+                {% if settings.enable_rtl_mode %}
+                {% include 'icon_back_svg' %}
+                {% else %}
+                {% include 'icon_next_svg' %}
+                {% endif %}
+              </button>
+            </form>                        
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% if settings.enable_fv4_bottom %}
+  <div class="copyright">
+    <div class="container container-v1">
+      <div class="row align-items-center">
+        <div class="col-md-6  {% if settings.enable_rtl_mode %} text-md-right {% else %} text-md-left {% endif %} text-center">
+          {% if settings.fv4_bottom_copyright != blank %}
+          <p class="text-copyright mb-0">{{settings.fv4_bottom_copyright}}</p>
+          {% else %}
+          {% if settings.enable_rtl_mode %}
+          <div class="text-copyright mb-0"><p>© <a href="https://www.shopify.com/?ref=shopifycenter" rel="nofollow" target="_blank" class=""> Powered by Shopify.</a>  <a href="http://themeocean.net/" rel="nofollow" target="_blank" class="underline_hover link"> ThemeOcean</a> By  <a href="http://shopilaunch.com/" rel="nofollow" target="_blank" class="underline_hover bold">  Nexio </a> | 2022 Copyright   </p> 
+          </div>          
+          {% else %}
+          <div class="text-copyright mb-0"><p>© Copyright 2022 | <a href="http://themeocean.net/" rel="nofollow" target="_blank" class="underline_hover bold">  Nexio </a> By <a href="http://shopilaunch.com/" rel="nofollow" target="_blank" class="underline_hover link"> ThemeOcean.</a><a href="https://www.shopify.com/?ref=shopifycenter" rel="nofollow" target="_blank" class=""> Powered by Shopify.</a></p> 
+          </div>
+          {% endif %}
+          {% endif %}
+        </div>
+        
+        <div class="col-md-6  {% if settings.enable_rtl_mode %} text-md-left {% else %}text-md-right {% endif %} text-center">
+          {% if settings.fv4_bottom_payment_img != blank %}
+          <img src="{{settings.fv4_bottom_payment_img | img_url:'master'}}"  alt="">
+          {% else %}
+          <img src="//via.placeholder.com/247x23"  alt="">
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</footer>
+<style>
+  .footer_v4 .top-footer .title_footer h4{
+    color : {{section.settings.ft_home_color_heading}};
+  }
+  .footer_v4 .nexio-socials .social-item{
+    color : {{section.settings.ft_home_color_heading}};
+  }
+  .footer_v4 .top-footer .info_footer ul li a{
+    color : {{section.settings.ft_home_color_text}};
+  }
+  .footer_v4 .top-footer .content_footer{
+    color : {{section.settings.ft_home_color_text}};
+  }
+  .footer_v4 .copyright p{
+    color : {{section.settings.ft_home_color_text}};
+  }
+</style>
+{% endif %}
+{% endif %}
+
+{% if section.settings.select_fts_all == "footer_ver4" %}
+{% unless template contains 'index' %}
+<footer class="footer_v4 " style="background-color : {{section.settings.ft_other_bg_footer}}">
+  <div class="top-footer">
+    <div class="container container-v1">    
+      <div class="row">
+        <div class="col-lg-3 col-md-6">
+          <div class="info_footer">
+            <div class="title_footer">          
+              <h4 class="title_border">{{settings.titlecolum_fv4_1}}</h4>         
+            </div>
+            <ul class="list-unstyled mb-0">
+              {% for link in linklists[settings.menu_fv4_1].links %}
+              <li><a href="{{link.url}}" title="{{link.title}}">{{link.title}}</a></li>
+              {% endfor %}
+            </ul>        
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="info_footer">
+            <div class="title_footer">          
+              <h4 class="title_border">{{settings.titlecolum_fv4_2}}</h4>         
+            </div>
+            <ul class="list-unstyled mb-0">
+              {% for link in linklists[settings.menu_fv4_2].links %}
+              <li><a href="{{link.url}}" title="{{link.title}}">{{link.title}}</a></li>
+              {% endfor %}
+            </ul>        
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="info_footer info_contact">
+            <div class="title_footer ">          
+              <h4 class="title_border">{{settings.titlecolum_fv4_3}}</h4>         
+            </div>
+            {% if settings.content_colum_fv4_5_1 != blank %}
+            {{settings.content_colum_fv4_5_1}}
+            {% else %}            
+            <ul class="list-unstyled mb-0">
+              <li><a title="themeocean.team@gmail.com" href="mailto:themeocean.team@gmail.com">themeocean.team@gmail.com</a></li>
+              <li><a title="Phone: (646) 663-4575" href="#">Phone: (646) 663-4575</a></li>
+              <li><a title="Fax: (646) 968-0608" href="#">Fax: (646) 968-0608</a></li>
+            </ul>
+            {% endif %}
+
+            <div class="nexio-socials">
+              {{settings.content_colum_fv4_5}}
+            </div>
+
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="info_footer end">
+            <div class="title_footer ">          
+              <h4 class="title_border">{{settings.titlecolum_fv4_5}}</h4>         
+            </div>
+            {% if settings.content_colum_fv4_4 != blank  %}
+            <p class="content_footer">{{settings.content_colum_fv4_4}}</p>
+            {% endif %}
+
+            {% if settings.newsletter_form_action != blank %}
+            {% assign form_action = settings.newsletter_form_action %}
+            {% else %}
+            {% assign form_action = '#' %}
+            {% endif %}     
+
+            <form class="newsletter-form-wrap" action="{{form_action}}" method="post">
+              <input type="email" name="EMAIL" class=" text-input" placeholder="{{ 'general.newsletter_form.newsletter_email' | t }}">                 
+              <button class="btn-submit submit-newsletter" type="submit">
+                {% if settings.enable_rtl_mode %}
+                {% include 'icon_back_svg' %}
+                {% else %}
+                {% include 'icon_next_svg' %}
+                {% endif %}
+              </button>
+            </form>                        
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% if settings.enable_fv4_bottom %}
+  <div class="copyright">
+    <div class="container container-v1">
+      <div class="row align-items-center">
+        <div class="col-md-6  {% if settings.enable_rtl_mode %} text-md-right {% else %} text-md-left {% endif %} text-center">
+          {% if settings.fv4_bottom_copyright != blank %}
+          <p class="text-copyright mb-0">{{settings.fv4_bottom_copyright}}</p>
+          {% else %}
+          {% if settings.enable_rtl_mode %}
+          <div class="text-copyright mb-0"><p>© <a href="https://www.shopify.com/?ref=shopifycenter" rel="nofollow" target="_blank" class=""> Powered by Shopify.</a>  <a href="http://themeocean.net/" rel="nofollow" target="_blank" class="underline_hover link"> ThemeOcean</a> By  <a href="http://shopilaunch.com/" rel="nofollow" target="_blank" class="underline_hover bold">  Nexio </a> | 2022 Copyright   </p> 
+          </div>          
+          {% else %}
+          <div class="text-copyright mb-0"><p>© Copyright 2022 | <a href="http://themeocean.net/" rel="nofollow" target="_blank" class="underline_hover bold">  Nexio </a> By <a href="http://shopilaunch.com/" rel="nofollow" target="_blank" class="underline_hover link"> ThemeOcean.</a><a href="https://www.shopify.com/?ref=shopifycenter" rel="nofollow" target="_blank" class=""> Powered by Shopify.</a></p> 
+          </div>
+          {% endif %}
+          {% endif %}
+        </div>
+
+        <div class="col-md-6  {% if settings.enable_rtl_mode %} text-md-left {% else %}text-md-right {% endif %} text-center">
+          {% if settings.fv4_bottom_payment_img != blank %}
+          <img src="{{settings.fv4_bottom_payment_img | img_url:'master'}}"  alt="">
+          {% else %}
+          <img src="//via.placeholder.com/247x23"  alt="">
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</footer>
+<style>
+  .footer_v4 .top-footer .title_footer h4{
+    color : {{section.settings.ft_other_color_heading}};
+  }
+  .footer_v4 .nexio-socials .social-item{
+    color : {{section.settings.ft_other_color_heading}};
+  }
+  .footer_v4 .top-footer .info_footer ul li a{
+    color : {{section.settings.ft_other_color_text}};
+  }
+  .footer_v4 .top-footer .content_footer{
+    color : {{section.settings.ft_other_color_text}};
+  }
+  .footer_v4 .copyright p{
+    color : {{section.settings.ft_other_color_text}};
+  }
+</style>
+{% endunless %}
+{% endif %}

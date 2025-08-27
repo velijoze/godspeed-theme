@@ -1,0 +1,410 @@
+{% comment %}
+  Service Testimonials Section
+  Display customer testimonials for service center using theme CSS classes
+{% endcomment %}
+
+{% if section.blocks.size > 0 %}
+<div data-section-id="{{ section.id }}" data-section-type="section-workshop-testimonials" style="{% if section.settings.margin_top != blank %}margin-top: {{section.settings.margin_top}}px;{%endif%} {% if section.settings.margin_bottom != blank %}margin-bottom: {{section.settings.margin_bottom}}px;{% endif %}">
+  <div class="section-workshop-testimonials mt-all">
+    <div class="container container-v2">
+      {% if section.settings.show_title %}
+        <div class="row">
+          <div class="col-12 text-center">
+            <div class="testimonials-header mb-5">
+              {% if section.settings.title != blank %}
+                <h2 class="title title-{{ section.id }} mb-3">{{ section.settings.title }}</h2>
+              {% endif %}
+              
+              {% if section.settings.subtitle != blank %}
+                <p class="subtitle subtitle-{{ section.id }}">{{ section.settings.subtitle }}</p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+      
+      <div class="row">
+        {% for block in section.blocks %}
+          {% if block.type == "testimonial" %}
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-4" {{ block.shopify_attributes }}>
+              <div class="testimonial-card testimonial-card-{{ block.id }}">
+                <div class="testimonial-content">
+                  {% if block.settings.quote != blank %}
+                    <blockquote class="testimonial-quote mb-4">
+                      "{{ block.settings.quote }}"
+                    </blockquote>
+                  {% endif %}
+                  
+                  {% if block.settings.author != blank %}
+                    <div class="testimonial-author">
+                      {% if block.settings.author_image != blank %}
+                        <div class="author-image">
+                          <img data-src="{{ block.settings.author_image | img_url: '100x100', crop: 'center' }}" 
+                               class="lazyload rounded-circle" 
+                               alt="{{ block.settings.author | escape }}">
+                        </div>
+                      {% endif %}
+                      
+                      <div class="author-info">
+                        <h4 class="author-name author-name-{{ block.id }} mb-1">{{ block.settings.author }}</h4>
+                        {% if block.settings.author_title != blank %}
+                          <p class="author-title mb-1">{{ block.settings.author_title }}</p>
+                        {% endif %}
+                        {% if block.settings.workshop_name != blank %}
+                          <p class="service-received service-received-{{ block.id }} mb-0">{{ block.settings.workshop_name }}</p>
+                        {% endif %}
+                      </div>
+                    </div>
+                  {% endif %}
+                  
+                  {% if block.settings.rating > 0 %}
+                    <div class="testimonial-rating text-right">
+                      {% for i in (1..5) %}
+                        {% if i <= block.settings.rating %}
+                          <span class="star filled">★</span>
+                        {% else %}
+                          <span class="star">☆</span>
+                        {% endif %}
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      
+      {% if section.settings.show_cta %}
+        <div class="row">
+          <div class="col-12 text-center">
+            <div class="testimonials-cta mt-5">
+              <a href="{{ section.settings.cta_link }}" class="btn btn-cta-{{ section.id }}">
+                {{ section.settings.cta_text }}
+              </a>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<style>
+  .section-workshop-testimonials {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  }
+  
+  .section-workshop-testimonials .title-{{ section.id }} {
+    color: {{ section.settings.color_title | default: '#333' }};
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  
+  .section-workshop-testimonials .subtitle-{{ section.id }} {
+    color: {{ section.settings.color_subtitle | default: '#6c757d' }};
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .testimonial-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+  }
+  
+  .testimonial-card::before {
+    content: '"';
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    font-size: 4rem;
+    color: {{ section.settings.color_title | default: '#333' }};
+    opacity: 0.1;
+    font-family: serif;
+  }
+  
+  .testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+  }
+  
+  .testimonial-content {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .testimonial-quote {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #555;
+    margin: 0 0 1.5rem 0;
+    font-style: italic;
+  }
+  
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .author-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  
+  .author-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .author-info {
+    flex: 1;
+  }
+  
+  .author-name-{{ block.id }} {
+    color: {{ section.settings.color_title | default: '#333' }};
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 0.25rem 0;
+  }
+  
+  .author-title {
+    font-size: 14px;
+    color: #6c757d;
+    margin: 0 0 0.25rem 0;
+  }
+  
+  .service-received-{{ block.id }} {
+    font-size: 14px;
+    color: #28a745;
+    font-weight: 500;
+    margin: 0;
+  }
+  
+  .testimonial-rating {
+    text-align: right;
+  }
+  
+  .star {
+    font-size: 18px;
+    color: #ddd;
+    margin-left: 0.1rem;
+  }
+  
+  .star.filled {
+    color: #ffc107;
+  }
+  
+  .testimonials-cta {
+    text-align: center;
+  }
+  
+  .btn-cta-{{ section.id }} {
+    background: {{ section.settings.color_title | default: '#333' }};
+    color: #fff;
+    padding: 15px 40px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-decoration: none;
+    border: 2px solid {{ section.settings.color_title | default: '#333' }};
+  }
+  
+  .btn-cta-{{ section.id }}:hover {
+    background: #555;
+    border-color: #555;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  @media (max-width: 768px) {
+    .section-workshop-testimonials {
+      padding: 60px 0;
+    }
+    
+    .section-workshop-testimonials .title-{{ section.id }} {
+      font-size: 28px;
+    }
+    
+    .section-workshop-testimonials .subtitle-{{ section.id }} {
+      font-size: 16px;
+    }
+    
+    .testimonial-card {
+      padding: 1.5rem;
+    }
+    
+    .testimonial-quote {
+      font-size: 15px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Workshop - Testimonials",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show Section Title",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "What Our Customers Say"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Section Subtitle",
+      "default": "Hear from cyclists who trust us with their bike service and maintenance needs."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cta",
+      "label": "Show CTA Button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Button Text",
+      "default": "Schedule Your Service"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "color_title",
+      "label": "Title Color",
+      "default": "#333"
+    },
+    {
+      "type": "color",
+      "id": "color_subtitle",
+      "label": "Subtitle Color",
+      "default": "#6c757d"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Testimonial Quote",
+          "default": "Outstanding service! They diagnosed my e-bike issues quickly and had it running like new. The team really knows their stuff and explained everything clearly."
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author Name",
+          "default": "Marco Rossi"
+        },
+        {
+          "type": "text",
+          "id": "author_title",
+          "label": "Author Title/Company",
+          "default": "Daily Commuter"
+        },
+        {
+          "type": "text",
+          "id": "workshop_name",
+          "label": "Service Received",
+          "default": "Complete System Analysis & Repair"
+        },
+        {
+          "type": "image_picker",
+          "id": "author_image",
+          "label": "Author Image"
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "min": 0,
+          "max": 5,
+          "step": 1,
+          "label": "Rating",
+          "default": 5
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Workshop - Testimonials",
+      "category": "Workshop",
+      "blocks": [
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+

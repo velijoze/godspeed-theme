@@ -1,0 +1,971 @@
+{% comment %}
+  Unified Bike Manager Section
+  Combined VeloConnect inventory and Cube specifications interface using theme CSS classes
+{% endcomment %}
+
+<div data-section-id="{{ section.id }}" data-section-type="section-unified-bike-manager" style="{% if section.settings.margin_top != blank %}margin-top: {{section.settings.margin_top}}px;{%endif%} {% if section.settings.margin_bottom != blank %}margin-bottom: {{section.settings.margin_bottom}}px;{% endif %}">
+  <div class="section-unified-bike-manager mt-all">
+    <div class="container container-v2">
+      <div class="row justify-content-center">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <div class="manager-header text-center mb-5">
+            {% if section.settings.manager_title != blank %}
+              <h2 class="title title-{{ section.id }} mb-3">{{ section.settings.manager_title }}</h2>
+            {% endif %}
+            
+            {% if section.settings.manager_subtitle != blank %}
+              <p class="subtitle subtitle-{{ section.id }}">{{ section.settings.manager_subtitle }}</p>
+            {% endif %}
+          </div>
+          
+          <div class="manager-wrapper">
+            <!-- Navigation Tabs -->
+            <div class="manager-nav mb-4">
+              <div class="nav-tabs-wrapper">
+                <button class="nav-tab active" id="inventory-tab-{{ section.id }}" data-tab="inventory">
+                  <i class="fa fa-warehouse"></i>
+                  <span>VeloConnect Inventory</span>
+                </button>
+                <button class="nav-tab" id="specs-tab-{{ section.id }}" data-tab="specs">
+                  <i class="fa fa-cube"></i>
+                  <span>Cube Specifications</span>
+                </button>
+                <button class="nav-tab" id="compare-tab-{{ section.id }}" data-tab="compare">
+                  <i class="fa fa-balance-scale"></i>
+                  <span>Compare Products</span>
+                </button>
+              </div>
+            </div>
+            
+            <!-- Tab Content -->
+            <div class="tab-content">
+              <!-- VeloConnect Inventory Tab -->
+              <div class="tab-pane active" id="inventory-pane-{{ section.id }}">
+                <div class="row">
+                  <div class="col-lg-3 col-md-12 mb-4">
+                    <div class="control-panel">
+                      <h4 class="panel-title panel-title-{{ section.id }} mb-3">Search Inventory</h4>
+                      
+                      <div class="form-group mb-3">
+                        <label for="supplier-{{ section.id }}" class="form-label">Supplier</label>
+                                              <select id="supplier-{{ section.id }}" class="form-control">
+                        <option value="">All Suppliers</option>
+                        <option value="abus">ABUS</option>
+                        <option value="amsler">Amsler</option>
+                        <option value="chrissport">ChrisSports</option>
+                        <option value="cube">Cube Bikes</option>
+                        <option value="electra">Electra</option>
+                        <option value="komenda">Komenda</option>
+                        <option value="magura">Magura</option>
+                        <option value="maxxis">Maxxis</option>
+                        <option value="orbea">Orbea</option>
+                        <option value="sks">SKS</option>
+                        <option value="tourdesuisse">Tour de Suisse</option>
+                      </select>
+                      </div>
+                      
+                      <div class="form-group mb-3">
+                        <label for="product-category-{{ section.id }}" class="form-label">Category</label>
+                        <select id="product-category-{{ section.id }}" class="form-control">
+                          <option value="">All Categories</option>
+                          <option value="ebikes">E-Bikes</option>
+                          <option value="mountain">Mountain Bikes</option>
+                          <option value="road">Road Bikes</option>
+                          <option value="hybrid">Hybrid Bikes</option>
+                        </select>
+                      </div>
+                      
+                      <div class="form-group mb-3">
+                        <label for="inventory-search-{{ section.id }}" class="form-label">Search</label>
+                        <input type="text" id="inventory-search-{{ section.id }}" class="form-control" placeholder="SKU or product name">
+                      </div>
+                      
+                      <button type="button" class="btn btn-primary-{{ section.id }}" id="search-inventory-{{ section.id }}">
+                        Search Inventory
+                      </button>
+                      
+                      <div class="status-panel mt-4">
+                        <h5 class="status-title">Connection Status</h5>
+                        <div class="status-grid">
+                          <div class="status-item">
+                            <span class="status-label">VeloConnect:</span>
+                            <span class="status-indicator status-online" id="vc-status-{{ section.id }}">Online</span>
+                          </div>
+                          <div class="status-item">
+                            <span class="status-label">Cube Connect:</span>
+                            <span class="status-indicator status-online" id="cube-status-{{ section.id }}">Online</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="col-lg-9 col-md-12">
+                    <div class="results-panel">
+                      <div class="results-header mb-3">
+                        <div class="row align-items-center">
+                          <div class="col-md-6">
+                            <h4 class="results-title results-title-{{ section.id }}">Inventory Results</h4>
+                          </div>
+                          <div class="col-md-6 text-right">
+                            <div class="results-actions">
+                              <span class="results-count" id="inventory-count-{{ section.id }}">0 products</span>
+                              <button class="btn btn-export btn-sm ml-2" id="export-inventory-{{ section.id }}">
+                                <i class="fa fa-download"></i> Export
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="inventory-results" id="inventory-results-{{ section.id }}">
+                        <div class="empty-state text-center">
+                          <i class="fa fa-search fa-3x mb-3"></i>
+                          <h5>Search VeloConnect Inventory</h5>
+                          <p>Select filters and search to view real-time inventory data.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Cube Specifications Tab -->
+              <div class="tab-pane" id="specs-pane-{{ section.id }}">
+                <div class="row">
+                  <div class="col-lg-3 col-md-12 mb-4">
+                    <div class="control-panel">
+                      <h4 class="panel-title panel-title-{{ section.id }} mb-3">Filter Specifications</h4>
+                      
+                      <div class="form-group mb-3">
+                        <label for="bike-type-{{ section.id }}" class="form-label">Bike Type</label>
+                        <select id="bike-type-{{ section.id }}" class="form-control">
+                          <option value="">All Types</option>
+                          <option value="ebike">E-Bikes</option>
+                          <option value="mountain">Mountain Bikes</option>
+                          <option value="road">Road Bikes</option>
+                          <option value="hybrid">Hybrid/Urban</option>
+                        </select>
+                      </div>
+                      
+                      <div class="form-group mb-3">
+                        <label for="price-filter-{{ section.id }}" class="form-label">Price Range</label>
+                        <select id="price-filter-{{ section.id }}" class="form-control">
+                          <option value="">All Prices</option>
+                          <option value="0-1500">Under CHF 1,500</option>
+                          <option value="1500-3000">CHF 1,500 - 3,000</option>
+                          <option value="3000-5000">CHF 3,000 - 5,000</option>
+                          <option value="5000+">CHF 5,000+</option>
+                        </select>
+                      </div>
+                      
+                      <div class="form-group mb-3">
+                        <label for="specs-search-{{ section.id }}" class="form-label">Search</label>
+                        <input type="text" id="specs-search-{{ section.id }}" class="form-control" placeholder="Model name or features">
+                      </div>
+                      
+                      <button type="button" class="btn btn-primary-{{ section.id }}" id="search-specs-{{ section.id }}">
+                        Search Specifications
+                      </button>
+                      
+                      <div class="quick-filters mt-4">
+                        <h5 class="filter-title">Quick Filters</h5>
+                        <div class="filter-tags">
+                          <button class="filter-tag" data-filter="motor=bosch">Bosch Motor</button>
+                          <button class="filter-tag" data-filter="category=ebike">E-Bikes Only</button>
+                          <button class="filter-tag" data-filter="weight=light">Lightweight</button>
+                          <button class="filter-tag" data-filter="price=budget">Budget Friendly</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="col-lg-9 col-md-12">
+                    <div class="results-panel">
+                      <div class="results-header mb-3">
+                        <div class="row align-items-center">
+                          <div class="col-md-6">
+                            <h4 class="results-title results-title-{{ section.id }}">Product Specifications</h4>
+                          </div>
+                          <div class="col-md-6 text-right">
+                            <div class="view-controls">
+                              <div class="view-toggle">
+                                <button class="view-btn active" data-view="grid">
+                                  <i class="fa fa-th"></i>
+                                </button>
+                                <button class="view-btn" data-view="list">
+                                  <i class="fa fa-list"></i>
+                                </button>
+                              </div>
+                              <span class="results-count" id="specs-count-{{ section.id }}">0 products</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="specs-results" id="specs-results-{{ section.id }}">
+                        <div class="empty-state text-center">
+                          <i class="fa fa-cube fa-3x mb-3"></i>
+                          <h5>Search Cube Specifications</h5>
+                          <p>Use filters to find detailed product specifications and features.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Compare Products Tab -->
+              <div class="tab-pane" id="compare-pane-{{ section.id }}">
+                <div class="compare-interface">
+                  <div class="compare-header text-center mb-4">
+                    <h4 class="compare-title">Product Comparison Tool</h4>
+                    <p class="compare-subtitle">Select up to 3 products to compare specifications side-by-side</p>
+                  </div>
+                  
+                  <div class="comparison-slots" id="comparison-slots-{{ section.id }}">
+                    <div class="compare-slot empty">
+                      <div class="slot-content">
+                        <i class="fa fa-plus-circle fa-2x mb-2"></i>
+                        <p>Select Product 1</p>
+                        <button class="btn btn-select btn-sm">Choose Product</button>
+                      </div>
+                    </div>
+                    
+                    <div class="compare-slot empty">
+                      <div class="slot-content">
+                        <i class="fa fa-plus-circle fa-2x mb-2"></i>
+                        <p>Select Product 2</p>
+                        <button class="btn btn-select btn-sm">Choose Product</button>
+                      </div>
+                    </div>
+                    
+                    <div class="compare-slot empty">
+                      <div class="slot-content">
+                        <i class="fa fa-plus-circle fa-2x mb-2"></i>
+                        <p>Select Product 3</p>
+                        <button class="btn btn-select btn-sm">Choose Product</button>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="comparison-table" id="comparison-table-{{ section.id }}" style="display: none;">
+                    <!-- Comparison table will be generated here -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .section-unified-bike-manager {
+    padding: 80px 0;
+    background: #fff;
+  }
+  
+  .section-unified-bike-manager .title-{{ section.id }} {
+    color: {{ section.settings.color_title | default: '#333' }};
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  
+  .section-unified-bike-manager .subtitle-{{ section.id }} {
+    color: {{ section.settings.color_subtitle | default: '#6c757d' }};
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  .manager-wrapper {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  }
+  
+  .manager-nav {
+    border-bottom: 2px solid #e9ecef;
+    padding-bottom: 1rem;
+  }
+  
+  .nav-tabs-wrapper {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .nav-tab {
+    background: #fff;
+    border: 2px solid #e9ecef;
+    border-radius: 25px;
+    padding: 12px 24px;
+    color: #6c757d;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .nav-tab:hover {
+    border-color: {{ section.settings.color_title | default: '#333' }};
+    color: {{ section.settings.color_title | default: '#333' }};
+  }
+  
+  .nav-tab.active {
+    background: {{ section.settings.color_title | default: '#333' }};
+    border-color: {{ section.settings.color_title | default: '#333' }};
+    color: #fff;
+  }
+  
+  .nav-tab i {
+    font-size: 16px;
+  }
+  
+  .tab-content {
+    padding-top: 2rem;
+  }
+  
+  .tab-pane {
+    display: none;
+  }
+  
+  .tab-pane.active {
+    display: block;
+  }
+  
+  .control-panel {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    height: fit-content;
+    position: sticky;
+    top: 2rem;
+  }
+  
+  .panel-title-{{ section.id }} {
+    color: {{ section.settings.color_title | default: '#333' }};
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #333;
+    font-size: 14px;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 10px 14px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: 'SofiaPro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #333;
+    transition: border-color 0.3s ease;
+    background: #fff;
+  }
+  
+  .form-control:focus {
+    outline: none;
+    border-color: {{ section.settings.color_title | default: '#333' }};
+  }
+  
+  .btn-primary-{{ section.id }} {
+    background: {{ section.settings.color_title | default: '#333' }};
+    color: #fff;
+    padding: 12px 24px;
+    border: 2px solid {{ section.settings.color_title | default: '#333' }};
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .btn-primary-{{ section.id }}:hover {
+    background: #555;
+    border-color: #555;
+    transform: translateY(-1px);
+  }
+  
+  .status-panel {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+  }
+  
+  .status-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.75rem;
+  }
+  
+  .status-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .status-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+  }
+  
+  .status-label {
+    color: #6c757d;
+    font-weight: 500;
+  }
+  
+  .status-indicator {
+    font-weight: 600;
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    font-size: 10px;
+    text-transform: uppercase;
+  }
+  
+  .status-online {
+    background: #d4edda;
+    color: #155724;
+  }
+  
+  .results-panel {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    min-height: 500px;
+  }
+  
+  .results-title-{{ section.id }} {
+    color: {{ section.settings.color_title | default: '#333' }};
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+  }
+  
+  .results-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .results-count {
+    font-size: 14px;
+    color: #6c757d;
+    font-weight: 500;
+  }
+  
+  .btn-export {
+    background: #17a2b8;
+    color: #fff;
+    border: 1px solid #17a2b8;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-export:hover {
+    background: #138496;
+    border-color: #138496;
+  }
+  
+  .view-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .view-toggle {
+    display: flex;
+    gap: 0.25rem;
+    background: #e9ecef;
+    border-radius: 6px;
+    padding: 0.25rem;
+  }
+  
+  .view-btn {
+    background: transparent;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    color: #6c757d;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .view-btn.active {
+    background: #fff;
+    color: {{ section.settings.color_title | default: '#333' }};
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  
+  .empty-state {
+    padding: 4rem 2rem;
+    color: #6c757d;
+  }
+  
+  .empty-state i {
+    color: #dee2e6;
+  }
+  
+  .quick-filters {
+    border-top: 1px solid #e9ecef;
+    padding-top: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .filter-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.75rem;
+  }
+  
+  .filter-tags {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .filter-tag {
+    background: #e9ecef;
+    color: #495057;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+  }
+  
+  .filter-tag:hover {
+    background: {{ section.settings.color_title | default: '#333' }};
+    color: #fff;
+  }
+  
+  .compare-interface {
+    padding: 1rem;
+  }
+  
+  .compare-title {
+    color: {{ section.settings.color_title | default: '#333' }};
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  
+  .compare-subtitle {
+    color: #6c757d;
+    font-size: 16px;
+    margin-bottom: 0;
+  }
+  
+  .comparison-slots {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .compare-slot {
+    background: #fff;
+    border: 2px dashed #dee2e6;
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .compare-slot.empty:hover {
+    border-color: {{ section.settings.color_title | default: '#333' }};
+    background: #f8f9fa;
+  }
+  
+  .slot-content {
+    width: 100%;
+  }
+  
+  .slot-content i {
+    color: #dee2e6;
+  }
+  
+  .btn-select {
+    background: {{ section.settings.color_title | default: '#333' }};
+    color: #fff;
+    border: 1px solid {{ section.settings.color_title | default: '#333' }};
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-select:hover {
+    background: #555;
+    border-color: #555;
+  }
+  
+  @media (max-width: 992px) {
+    .control-panel {
+      position: static;
+      margin-bottom: 2rem;
+    }
+    
+    .nav-tabs-wrapper {
+      justify-content: flex-start;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+    }
+    
+    .nav-tab {
+      flex-shrink: 0;
+    }
+    
+    .comparison-slots {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .section-unified-bike-manager {
+      padding: 60px 0;
+    }
+    
+    .section-unified-bike-manager .title-{{ section.id }} {
+      font-size: 28px;
+    }
+    
+    .manager-wrapper {
+      padding: 1.5rem;
+    }
+    
+    .nav-tab {
+      padding: 10px 16px;
+      font-size: 14px;
+    }
+    
+    .nav-tab span {
+      display: none;
+    }
+    
+    .results-header .row {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .results-actions {
+      justify-content: center;
+    }
+  }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const sectionId = '{{ section.id }}';
+  let activeTab = 'inventory';
+  
+  // Tab navigation
+  const tabs = document.querySelectorAll(`[id$="tab-${sectionId}"]`);
+  const panes = document.querySelectorAll(`[id$="pane-${sectionId}"]`);
+  
+  tabs.forEach(tab => {
+    tab.addEventListener('click', function() {
+      const targetTab = this.dataset.tab;
+      switchTab(targetTab);
+    });
+  });
+  
+  function switchTab(tabName) {
+    activeTab = tabName;
+    
+    // Update tab buttons
+    tabs.forEach(tab => {
+      tab.classList.toggle('active', tab.dataset.tab === tabName);
+    });
+    
+    // Update tab panes
+    panes.forEach(pane => {
+      const paneId = pane.id;
+      const isActive = paneId.includes(tabName);
+      pane.classList.toggle('active', isActive);
+    });
+  }
+  
+  // Search functionality
+  document.getElementById(`search-inventory-${sectionId}`).addEventListener('click', searchInventory);
+  document.getElementById(`search-specs-${sectionId}`).addEventListener('click', searchSpecs);
+  
+  // View toggle
+  const viewBtns = document.querySelectorAll('.view-btn');
+  viewBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      viewBtns.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+  
+  // Quick filters
+  const filterTags = document.querySelectorAll('.filter-tag');
+  filterTags.forEach(tag => {
+    tag.addEventListener('click', function() {
+      const filter = this.dataset.filter;
+      applyQuickFilter(filter);
+    });
+  });
+  
+  function searchInventory() {
+    const supplier = document.getElementById(`supplier-${sectionId}`).value;
+    const category = document.getElementById(`product-category-${sectionId}`).value;
+    const search = document.getElementById(`inventory-search-${sectionId}`).value;
+    
+    const resultsDiv = document.getElementById(`inventory-results-${sectionId}`);
+    const countElement = document.getElementById(`inventory-count-${sectionId}`);
+    
+    // Show loading state
+    resultsDiv.innerHTML = '<div class="text-center"><i class="fa fa-spinner fa-spin fa-2x"></i><br><br>Searching VeloConnect inventory...</div>';
+    
+    // Simulate API call
+    setTimeout(() => {
+      const mockResults = generateMockInventory(supplier, category, search);
+      displayInventoryResults(mockResults);
+      countElement.textContent = `${mockResults.length} products`;
+    }, 1500);
+  }
+  
+  function searchSpecs() {
+    const bikeType = document.getElementById(`bike-type-${sectionId}`).value;
+    const priceFilter = document.getElementById(`price-filter-${sectionId}`).value;
+    const search = document.getElementById(`specs-search-${sectionId}`).value;
+    
+    const resultsDiv = document.getElementById(`specs-results-${sectionId}`);
+    const countElement = document.getElementById(`specs-count-${sectionId}`);
+    
+    // Show loading state
+    resultsDiv.innerHTML = '<div class="text-center"><i class="fa fa-spinner fa-spin fa-2x"></i><br><br>Loading Cube specifications...</div>';
+    
+    // Simulate API call
+    setTimeout(() => {
+      const mockResults = generateMockSpecs(bikeType, priceFilter, search);
+      displaySpecsResults(mockResults);
+      countElement.textContent = `${mockResults.length} products`;
+    }, 1200);
+  }
+  
+  function generateMockInventory(supplier, category, search) {
+    const products = [
+      { name: 'Stereo Hybrid ONE 500 29', sku: 'CB-STR-500', supplier: 'Cube', stock: 8, price: 'CHF 4,299' },
+      { name: 'Touring Hybrid EXC 625', sku: 'CB-TOU-625', supplier: 'Cube', stock: 12, price: 'CHF 3,499' },
+      { name: 'Aim Pro 29', sku: 'CB-AIM-PRO', supplier: 'Cube', stock: 0, price: 'CHF 899' },
+      { name: 'Domane AL 2', sku: 'TK-DOM-AL2', supplier: 'Trek', stock: 5, price: 'CHF 899' },
+      { name: 'Fuel EX 8', sku: 'TK-FEX-8', supplier: 'Trek', stock: 3, price: 'CHF 3,199' }
+    ];
+    
+    return products.filter(p => {
+      if (supplier && !p.supplier.toLowerCase().includes(supplier)) return false;
+      if (search && !p.name.toLowerCase().includes(search.toLowerCase()) && !p.sku.toLowerCase().includes(search.toLowerCase())) return false;
+      return true;
+    });
+  }
+  
+  function generateMockSpecs(bikeType, priceFilter, search) {
+    const specs = [
+      { name: 'Stereo Hybrid ONE 500', type: 'E-Mountain', price: 4299, motor: 'Bosch CX', battery: '500Wh' },
+      { name: 'Agree Hybrid C:62', type: 'E-Road', price: 5199, motor: 'Fazua Evation', battery: '252Wh' },
+      { name: 'Kathmandu Hybrid ONE', type: 'E-Urban', price: 2799, motor: 'Bosch Active', battery: '400Wh' },
+      { name: 'Attain Race SL', type: 'Road', price: 1299, motor: 'None', battery: 'None' },
+      { name: 'Aim Pro 29', type: 'Mountain', price: 899, motor: 'None', battery: 'None' }
+    ];
+    
+    return specs.filter(s => {
+      if (bikeType && !s.type.toLowerCase().includes(bikeType)) return false;
+      if (search && !s.name.toLowerCase().includes(search.toLowerCase())) return false;
+      if (priceFilter) {
+        const [min, max] = priceFilter.split('-').map(p => parseFloat(p.replace('+', '')) || Infinity);
+        if (s.price < min || s.price > max) return false;
+      }
+      return true;
+    });
+  }
+  
+  function displayInventoryResults(results) {
+    const resultsDiv = document.getElementById(`inventory-results-${sectionId}`);
+    
+    if (results.length === 0) {
+      resultsDiv.innerHTML = '<div class="empty-state text-center"><i class="fa fa-search fa-3x mb-3"></i><h5>No products found</h5><p>Try adjusting your search criteria.</p></div>';
+      return;
+    }
+    
+    const html = `
+      <div class="inventory-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem;">
+        ${results.map(product => `
+          <div class="inventory-card" style="background: #f8f9fa; padding: 1.5rem; border-radius: 12px; border: 2px solid transparent; transition: all 0.3s ease;">
+            <div class="card-header" style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+              <span class="sku" style="font-size: 12px; color: #6c757d; font-weight: 600;">${product.sku}</span>
+              <span class="stock ${product.stock === 0 ? 'text-danger' : product.stock < 5 ? 'text-warning' : 'text-success'}" style="font-weight: 600; font-size: 12px;">
+                ${product.stock === 0 ? 'Out of Stock' : product.stock < 5 ? 'Low Stock' : 'In Stock'}
+              </span>
+            </div>
+            <h5 style="font-size: 16px; font-weight: 600; margin-bottom: 0.5rem;">${product.name}</h5>
+            <p style="font-size: 12px; color: #6c757d; margin-bottom: 1rem;">${product.supplier}</p>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-weight: 700; color: #333;">${product.price}</span>
+              <span style="font-size: 14px; font-weight: 600;">${product.stock} units</span>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+    
+    resultsDiv.innerHTML = html;
+  }
+  
+  function displaySpecsResults(results) {
+    const resultsDiv = document.getElementById(`specs-results-${sectionId}`);
+    
+    if (results.length === 0) {
+      resultsDiv.innerHTML = '<div class="empty-state text-center"><i class="fa fa-cube fa-3x mb-3"></i><h5>No specifications found</h5><p>Try different search criteria.</p></div>';
+      return;
+    }
+    
+    const html = `
+      <div class="specs-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem;">
+        ${results.map(spec => `
+          <div class="spec-card" style="background: #f8f9fa; padding: 1.5rem; border-radius: 12px; border: 2px solid transparent; transition: all 0.3s ease;">
+            <div class="card-header" style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+              <span class="type" style="font-size: 12px; color: #6c757d; font-weight: 600; text-transform: uppercase;">${spec.type}</span>
+              <span class="price" style="font-weight: 700; color: #333;">CHF ${spec.price.toLocaleString()}</span>
+            </div>
+            <h5 style="font-size: 18px; font-weight: 600; margin-bottom: 1rem;">${spec.name}</h5>
+            <div class="spec-details" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; font-size: 12px;">
+              <div style="display: flex; justify-content: space-between;">
+                <span style="color: #6c757d;">Motor:</span>
+                <span style="font-weight: 600;">${spec.motor}</span>
+              </div>
+              <div style="display: flex; justify-content: space-between;">
+                <span style="color: #6c757d;">Battery:</span>
+                <span style="font-weight: 600;">${spec.battery}</span>
+              </div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+    
+    resultsDiv.innerHTML = html;
+  }
+  
+  function applyQuickFilter(filter) {
+    const [key, value] = filter.split('=');
+    
+    // Apply the filter logic based on the current tab
+    if (activeTab === 'specs') {
+      document.getElementById(`specs-search-${sectionId}`).value = value === 'bosch' ? 'bosch' : '';
+      if (key === 'category' && value === 'ebike') {
+        document.getElementById(`bike-type-${sectionId}`).value = 'ebike';
+      }
+      searchSpecs();
+    }
+  }
+});
+</script>
+
+{% schema %}
+{
+  "name": "Unified Bike Manager",
+  "settings": [
+    {
+      "type": "text",
+      "id": "manager_title",
+      "label": "Manager Title",
+      "default": "Unified Bike Management System"
+    },
+    {
+      "type": "textarea",
+      "id": "manager_subtitle",
+      "label": "Manager Subtitle",
+      "default": "Complete VeloConnect inventory management and Cube product specifications in one unified interface. Search, compare, and manage your bike inventory with real-time data from multiple suppliers."
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "color_title",
+      "label": "Title Color",
+      "default": "#333"
+    },
+    {
+      "type": "color",
+      "id": "color_subtitle",
+      "label": "Subtitle Color",
+      "default": "#6c757d"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Unified Bike Manager",
+      "category": "Tools"
+    }
+  ]
+}
+{% endschema %}

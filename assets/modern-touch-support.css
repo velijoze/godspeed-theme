@@ -1,0 +1,208 @@
+/* Modern Touch Support CSS for Godspeed Theme */
+/* Provides touch feedback, swipe animations, and modern mobile styling */
+
+/* Touch device detection */
+.touch-device .touch-hover:hover {
+  /* Disable hover effects on touch devices */
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.no-touch-device .touch-hover:hover {
+  /* Enable hover effects on non-touch devices */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Touch feedback for buttons */
+.touch-active {
+  transform: scale(0.95) !important;
+  transition: transform 0.1s ease !important;
+}
+
+/* Swiper styling for migrated Owl Carousels */
+.owl-migrated-swiper {
+  position: relative;
+  overflow: hidden;
+}
+
+.owl-migrated-swiper .swiper-slide {
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Swiper navigation buttons */
+.owl-migrated-swiper .swiper-button-next,
+.owl-migrated-swiper .swiper-button-prev {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background: rgba(255,255,255,0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.owl-migrated-swiper .swiper-button-next:hover,
+.owl-migrated-swiper .swiper-button-prev:hover {
+  background: rgba(255,255,255,1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.owl-migrated-swiper .swiper-button-prev {
+  left: 10px;
+}
+
+.owl-migrated-swiper .swiper-button-next {
+  right: 10px;
+}
+
+.owl-migrated-swiper .swiper-button-next i,
+.owl-migrated-swiper .swiper-button-prev i {
+  color: #333;
+  font-size: 16px;
+}
+
+/* Swiper pagination */
+.owl-migrated-swiper .swiper-pagination {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+
+.owl-migrated-swiper .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.owl-migrated-swiper .swiper-pagination-bullet-active {
+  background: rgba(255,255,255,1);
+  transform: scale(1.2);
+}
+
+/* Touch feedback animations */
+@keyframes touchRipple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.touch-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.touch-ripple::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.touch-ripple:active::after {
+  animation: touchRipple 0.6s ease-out;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .owl-migrated-swiper .swiper-button-next,
+  .owl-migrated-swiper .swiper-button-prev {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .owl-migrated-swiper .swiper-button-prev {
+    left: 5px;
+  }
+  
+  .owl-migrated-swiper .swiper-button-next {
+    right: 5px;
+  }
+  
+  .owl-migrated-swiper .swiper-pagination {
+    bottom: 5px;
+  }
+}
+
+/* Swipe gesture indicators */
+.swipe-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,0.8);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.swipe-indicator.show {
+  opacity: 1;
+}
+
+/* Pull to refresh indicator */
+#pull-refresh-indicator {
+  font-weight: 500;
+}
+
+#pull-refresh-indicator i {
+  margin-right: 8px;
+}
+
+/* Loading states for touch interactions */
+.touch-loading {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.touch-loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}

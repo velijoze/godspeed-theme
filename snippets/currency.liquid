@@ -1,0 +1,29 @@
+{%- comment -%} Native Shopify localization currency picker {%- endcomment -%}
+{%- if settings.show_multiple_currencies -%}
+  <div class="currency-selector">
+    {%- form 'localization', id: 'currency-localization-form', class: 'currency-localization-form' -%}
+      <div class="no-js-hidden">
+        <div class="disclosure">
+          <button type="button" class="disclosure__button currency-selector__button" aria-expanded="false" aria-controls="CurrencyList">
+            <span class="currency-selector__label">{{ shop.currency }}</span>
+            <svg class="icon icon-caret" aria-hidden="true" focusable="false" role="presentation" viewBox="0 0 10 6">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor"/>
+            </svg>
+          </button>
+          <div class="disclosure__list-wrapper" hidden>
+            <ul id="CurrencyList" role="list" class="disclosure__list list-unstyled">
+              {%- for currency in shop.enabled_currencies -%}
+                <li class="disclosure__item" tabindex="-1">
+                  <a class="link link--text disclosure__link{% if currency.iso_code == shop.currency %} disclosure__link--active{% endif %}" href="#"{% if currency.iso_code == shop.currency %} aria-current="true"{% endif %} data-value="{{ currency.iso_code }}">
+                    {{ currency.iso_code }} {%- if currency.symbol -%}{{ currency.symbol }}{%- endif -%}
+                  </a>
+                </li>
+              {%- endfor -%}
+</ul>
+          </div>
+        </div>
+      </div>
+      <input type="hidden" name="currency_code" value="{{ shop.currency.iso_code }}">
+    {%- endform -%}
+  </div>
+{%- endif -%}

@@ -1,0 +1,193 @@
+<div data-section-id="{{ section.id }}" data-section-type="section-banner-v1" style="{% if section.settings.margin_top != blank %}margin-top: {{section.settings.margin_top}}px;{%endif%} {% if section.settings.margin_bottom != blank %}margin-bottom: {{section.settings.margin_bottom}}px;{% endif %}">
+  <div class="section-banner-v1 mt-all">
+    <div class="container container-v2">
+      <div class="row">        
+        <div class="col-lg-6 col-sm-6">
+          <div class="box-banner">
+            <div class="box-img">
+              <a href="{{section.settings.url_banner1}}" class="img-banner">
+                <img data-src=" {% if section.settings.img_banner1 != blank %}{{section.settings.img_banner1 | img_url:'master'}} {% else %}//via.placeholder.com/800x540 {% endif %}" class="lazyload w-100 img-fluid" alt="_img">
+              </a>
+            </div>
+            <div class="info-banner">
+              {% if section.settings.title_banner1 != blank %}
+              <h3 class="title title-{{ section.id }}">{{section.settings.title_banner1}}</h3>
+              {% endif %}  
+              {% if section.settings.btn_banner1 != blank %}
+              <a href="{{section.settings.url_banner1}}" class="btn-{{ section.id }}">{{section.settings.btn_banner1}}</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-sm-6 ">
+          <div class="box-banner">
+            <div class="box-img">
+              <a href="{{section.settings.url_banner2}}" class="img-banner">
+                <img data-src="{% if section.settings.img_banner2 != blank %} {{section.settings.img_banner2 | img_url:'master'}} {% else %} //via.placeholder.com/800x540 {% endif %}" class="lazyload img-fluid w-100" alt="_img">
+              </a>
+            </div>
+            <div class="info-banner">
+              {% if section.settings.title_banner2 != blank %}
+              <h3 class="title title-{{ section.id }}">{{section.settings.title_banner2}}</h3>
+              {% endif %}             
+              {% if section.settings.btn_banner2 != blank %}
+              <a href="{{section.settings.url_banner2}}" class="btn-{{ section.id }}">{{section.settings.btn_banner2}}</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  .section-banner-v1 .box-banner .info-banner .title-{{ section.id }} {
+    color: {{section.settings.color_title}};
+  }
+  .section-banner-v1 .box-banner .info-banner .title-{{ section.id }} {
+    background: {{section.settings.bg_info}};
+  }
+  .section-banner-v1 .box-banner .info-banner {
+    background: {{section.settings.bg_info}};
+  }
+  .section-banner-v1 .box-banner .info-banner .btn-{{ section.id }} {
+    color: {{section.settings.color_btn_banner}};
+    background: {{section.settings.bg_btn_banner}};
+  }
+  .section-banner-v1 .box-banner .info-banner .btn-{{ section.id }}:hover {
+    color: {{section.settings.hover_color_btn_banner}};
+    background: {{section.settings.hover_bg_btn_banner}};
+  }
+</style>
+
+{% schema %}
+{
+  "name": "BANNER V1",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Setting banner 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "img_banner1",
+      "label": "Image",
+      "info": "800 x 540px recommended"
+    },
+    {
+      "type": "url",
+      "id": "url_banner1",
+      "label": "URL images banner 1",
+      "default": "/collections/all"
+    },
+    {
+      "type": "text",
+      "id": "title_banner1",
+      "label": "Title banner 1",
+      "default": "FIND THE BEST COLLECTION AROUND THE WORLD"
+    },
+    {
+      "type": "text",
+      "id": "btn_banner1",
+      "label": "Button banner 1",
+      "default": "SHOP NOW"
+    },
+    {
+      "type": "header",
+      "content": "Setting banner 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "img_banner2",
+      "label": "Image",
+      "info": "800 x 540px recommended"
+    },
+    {
+      "type": "url",
+      "id": "url_banner2",
+      "label": "URL images banner 2",
+      "default": "/collections/all"
+    },
+    {
+      "type": "text",
+      "id": "title_banner2",
+      "label": "Title banner 2",
+      "default": "NEW TREND FOR  TRADE AND MINING COMPANY"
+    },
+    {
+      "type": "text",
+      "id": "btn_banner2",
+      "label": "Button banner 2",
+      "default": "VIEW COLLECTION"
+    },
+    {
+      "type": "header",
+      "content": "Settings Color Banner"
+    },
+    {
+      "type": "color",
+      "id": "color_title",
+      "label": "Color Title",
+      "default": "#fff"
+    },
+    {
+      "type": "color",
+      "id": "bg_info",
+      "label": "Background Info",
+      "default": "#000"
+    },
+    {
+      "type": "color",
+      "id": "color_btn_banner",
+      "label": "Color Button Banner",
+      "default": "#fff"
+    },
+    {
+      "type": "color",
+      "id": "bg_btn_banner",
+      "label": "Background Button Banner",
+      "default": "#222"
+    },
+    {
+      "type": "color",
+      "id": "hover_color_btn_banner",
+      "label": "Color Button Banner Hover",
+      "default": "#fff"
+    },
+    {
+      "type": "color",
+      "id": "hover_bg_btn_banner",
+      "label": "Background Button Banner Hover",
+      "default": "#888"
+    },
+    {
+      "type": "header",
+      "content": "Section Space"
+    },
+    {
+      "type": "text",
+      "id": "margin_top",
+      "label": "Margin Top",
+      "info": "Defined in pixels. Do not add the 'px' unit."
+    },
+    {
+      "type": "text",
+      "id": "margin_bottom",
+      "label": "Margin Bottom",
+      "info": "Defined in pixels. Do not add the 'px' unit."
+    }
+  ],
+  "presets": [
+    {
+      "name": "BANNER V1",
+      "category": "HOME"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

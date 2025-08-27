@@ -1,0 +1,52 @@
+<div class="gs-faq" style="{% if section.settings.margin_top != blank %}margin-top: {{ section.settings.margin_top }}px;{% endif %}{% if section.settings.margin_bottom != blank %} margin-bottom: {{ section.settings.margin_bottom }}px;{% endif %}">
+  <div class="container container-v2">
+    {% if section.settings.title != blank %}
+    <h3 class="title_heading mb-4 text-center">{{ section.settings.title }}</h3>
+    {% endif %}
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        {% for block in section.blocks %}
+        {% if block.type == 'faq' %}
+        <div class="box_content_question">
+          <a class="title_question jstitleqs engoc-faq-heading" data-toggle="collapse" href="#faq_{{ section.id }}_{{ forloop.index }}" role="button" aria-expanded="false" aria-controls="faq_{{ section.id }}_{{ forloop.index }}">
+            {{ block.settings.q }}
+          </a>
+          <div class="collapse" id="faq_{{ section.id }}_{{ forloop.index }}">
+            <div class="card-body">{{ block.settings.a }}</div>
+          </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  jQuery(document).ready(function($){
+    $('.jstitleqs').on('click', function(){ $(this).toggleClass('engoc-toggle-icon'); });
+  });
+  </script>
+
+{% schema %}
+{
+  "name": "GS: FAQ",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Title", "default": "FAQs" },
+    { "type": "text", "id": "margin_top", "label": "Margin top (px)" },
+    { "type": "text", "id": "margin_bottom", "label": "Margin bottom (px)" }
+  ],
+  "blocks": [
+    { "type": "faq", "name": "FAQ", "settings": [
+      { "type": "text", "id": "q", "label": "Question", "default": "Your question here" },
+      { "type": "richtext", "id": "a", "label": "Answer", "default": "<p>Your answer here.</p>" }
+    ]}
+  ],
+  "presets": [ { "name": "GS: FAQ", "blocks": [ {"type": "faq"}, {"type": "faq"} ] } ]
+}
+{% endschema %}
+
+{% stylesheet %}{% endstylesheet %}
+{% javascript %}{% endjavascript %}
+
+

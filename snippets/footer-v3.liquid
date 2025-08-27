@@ -1,0 +1,153 @@
+{% if section.settings.select_fts == "footer_v3" %}
+{% if template contains 'index' %}
+<footer class="footer_v3" style="background-color : {{section.settings.ft_home_bg_footer}}">  
+  <div class="container container-v5">
+    <div class="nexio-socials style-03">
+      <div class="socials-inner">
+        {% if settings.icon_sc_fv3_1 !=blank %}
+        <a href="{{settings.url_sc_fv3_1}}" title="" target="_blank" class="social-item"><i class="{{settings.icon_sc_fv3_1}}"></i></a>
+        {% endif %}
+        {% if settings.icon_sc_fv3_2 !=blank %}
+        <a href="{{settings.url_sc_fv3_2}}" title="" target="_blank" class="social-item"><i class="{{settings.icon_sc_fv3_2}}"></i></a>
+        {% endif %}
+        {% if settings.icon_sc_fv3_3 !=blank %}
+        <a href="{{settings.url_sc_fv3_3}}" title="" target="_blank" class="social-item"><i class="{{settings.icon_sc_fv3_3}}"></i></a>
+        {% endif %}
+        {% if settings.icon_sc_fv3_4 !=blank %}
+        <a href="{{settings.url_sc_fv3_4}}" title="" target="_blank" class="social-item"><i class="{{settings.icon_sc_fv3_4}}"></i></a>
+        {% endif %}        
+      </div>
+    </div>
+    
+    <div class="content_menu">
+      <div class="row align-items-center">
+        <div class="col-lg-3 {% if settings.enable_rtl_mode %}text-lg-right {% else %}text-lg-left {% endif %} text-center">
+          <div class="logo-footer">
+            {% if settings.logo_svg3 !=blank %}
+            <div class="logosvg" style="max-width:{{settings.fv3_main_logo_maxwidth}}px;">
+              <a class="d-block" href="{{shop.url}}">{{settings.logo_svg3}}</a>
+            </div>          
+            {% else %}            
+            <a href="{{shop.url}}" class="logo block">
+              {% if settings.fv3_main_logo != blank %}
+              <img src="{{settings.fv3_main_logo | img_url:'master'}}"  style="max-width:{{settings.fv3_main_logo_maxwidth}}px;" alt="{{shop.name}}" class="img-fluid">
+              {% else %}
+              <img src="//via.placeholder.com/72x25" style="max-width:{{settings.fv3_main_logo_maxwidth}}px;" alt="{{shop.name}}" class="img-fluid">
+              {% endif %}
+            </a>
+            {% endif %}
+          </div>
+          
+        </div>
+
+        <div class="col-lg-6 text-center">
+          <div class="menu">
+            <ul class="list-inline list-unstyled mb-0">
+              {% for link in linklists[settings.menu_fv3].links %}
+              <li class="list-inline-item"><a href="{{link.url}}" title="{{link.title}}">{{link.title}}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-lg-3 {% if settings.enable_rtl_mode %}text-lg-left {% else %}text-lg-right{% endif %} text-center">
+          <div class="payment">
+            {% if settings.fv3_bottom_payment_img != blank %}
+            <img src="{{settings.fv3_bottom_payment_img | img_url:'master'}}"  alt="">
+            {% else %}
+            <img src="//via.placeholder.com/247x23"  alt="">
+            {% endif %}
+          </div>
+        </div> 
+      </div>
+    </div> 
+  </div>  
+</footer>
+
+<style>
+  .footer_v3 .content_menu .copyright{
+    color : {{section.settings.ft_home_color_text}};
+  }
+  .footer_v3 .content_menu .menu ul li a{
+    color : {{section.settings.ft_home_color_heading}};
+  }
+</style>
+{% endif %}
+{% endif %}
+
+{% if section.settings.select_fts_all == "footer_ver3" %}
+{% unless template contains 'index' %}
+<footer class="footer_v3" style="background-color : {{section.settings.ft_other_bg_footer}}">
+  <div class="container container-v5">
+    <div class="nexio-socials style-03">
+      <div class="socials-inner">
+        {% if settings.icon_sc_fv3_1 !=blank %}
+        <a href="{{settings.url_sc_fv3_1}}" title="" target="_blank" class="social-item"><i class="{{settings.icon_sc_fv3_1}}"></i></a>
+        {% endif %}
+        {% if settings.icon_sc_fv3_2 !=blank %}
+        <a href="{{settings.url_sc_fv3_2}}" title="" target="_blank" class="social-item"><i class="{{settings.icon_sc_fv3_2}}"></i></a>
+        {% endif %}
+        {% if settings.icon_sc_fv3_3 !=blank %}
+        <a href="{{settings.url_sc_fv3_3}}" title="" target="_blank" class="social-item"><i class="{{settings.icon_sc_fv3_3}}"></i></a>
+        {% endif %}
+        {% if settings.icon_sc_fv3_4 !=blank %}
+        <a href="{{settings.url_sc_fv3_4}}" title="" target="_blank" class="social-item"><i class="{{settings.icon_sc_fv3_4}}"></i></a>
+        {% endif %}        
+      </div>
+    </div>
+    
+    <div class="content_menu">
+      <div class="row align-items-center">
+        <div class="col-lg-3 {% if settings.enable_rtl_mode %}text-lg-right {% else %}text-lg-left {% endif %} text-center">
+          <div class="logo-footer">
+            {% if settings.logo_svg3 !=blank %}
+            <div class="logosvg" style="max-width:{{settings.fv3_main_logo_maxwidth}}px;">
+              <a class="d-block" href="{{shop.url}}">{{settings.logo_svg3}}</a>
+            </div>          
+            {% else %}            
+            <a href="{{shop.url}}" class="logo block">
+              {% if settings.fv3_main_logo != blank %}
+              <img src="{{settings.fv3_main_logo | img_url:'master'}}"  style="max-width:{{settings.fv3_main_logo_maxwidth}}px;" alt="{{shop.name}}" class="img-fluid">
+              {% else %}
+              <img src="//via.placeholder.com/72x25" style="max-width:{{settings.fv3_main_logo_maxwidth}}px;" alt="{{shop.name}}" class="img-fluid">
+              {% endif %}
+            </a>
+            {% endif %}
+          </div>
+          
+        </div>
+
+        <div class="col-lg-6 text-center">
+          <div class="menu">
+            <ul class="list-inline list-unstyled mb-0">
+              {% for link in linklists[settings.menu_fv3].links %}
+              <li class="list-inline-item"><a href="{{link.url}}" title="{{link.title}}">{{link.title}}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-lg-3 {% if settings.enable_rtl_mode %}text-lg-left {% else %}text-lg-right{% endif %} text-center">
+          <div class="payment">
+            {% if settings.fv3_bottom_payment_img != blank %}
+            <img src="{{settings.fv3_bottom_payment_img | img_url:'master'}}"  alt="">
+            {% else %}
+            <img src="//via.placeholder.com/247x23"  alt="">
+            {% endif %}
+          </div>
+        </div> 
+      </div>
+    </div> 
+  </div>   
+</footer>
+
+<style>
+  .footer_v3 .content_menu .copyright{
+    color : {{section.settings.ft_other_color_text}};
+  }
+  .footer_v3 .content_menu .menu ul li a{
+    color : {{section.settings.ft_other_color_heading}};
+  }
+</style>
+{% endunless %}
+{% endif %}

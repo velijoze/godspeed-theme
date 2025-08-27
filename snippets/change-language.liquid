@@ -1,0 +1,187 @@
+<div class="language-selector-wrapper">
+  <a href="#" class="language-toggle d-inline-block" onclick="toggleLanguageDropdown(event)">
+    {% if section.settings.hd_multi_lang_img != blank %}
+    <img src="{{section.settings.hd_multi_lang_img | img_url: 'master'}}" alt="Language">
+    {% else %}
+    <svg width="18" height="12" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/>
+    </svg>
+    {% endif %}
+    <span class="dropdown-arrow">▼</span>
+  </a>
+  <ul class="language-dropdown list-unstyled" id="language-dropdown" style="display: none;">
+    <!-- Weglot will automatically populate this or fallback to manual links -->
+    {% if linklists[section.settings.hd_multi_lang_menu].links.size > 0 %}
+      {% for link in linklists[section.settings.hd_multi_lang_menu].links %}
+      <li class="menu-item"> 
+        <a href="{{link.url}}" class="language-option"> 
+          {{link.title}}
+        </a>
+      </li>
+      {% endfor %}
+    {% else %}
+      <!-- Default language options when no menu is set -->
+      <li class="menu-item">
+        <a href="#" class="language-option" onclick="switchLanguage('en')">English</a>
+      </li>
+      <li class="menu-item">
+        <a href="#" class="language-option" onclick="switchLanguage('de')">Deutsch</a>
+      </li>
+      <li class="menu-item">
+        <a href="#" class="language-option" onclick="switchLanguage('fr')">Français</a>
+      </li>
+      <li class="menu-item">
+        <a href="#" class="language-option" onclick="switchLanguage('it')">Italiano</a>
+      </li>
+    {% endif %}
+  </ul>
+</div>
+
+<script>
+function toggleLanguageDropdown(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  
+  const dropdown = document.getElementById('language-dropdown');
+  const isVisible = dropdown.style.display !== 'none';
+  
+  // Close all other dropdowns
+  document.querySelectorAll('.language-dropdown').forEach(dd => {
+    dd.style.display = 'none';
+  });
+  
+  // Toggle this dropdown
+  dropdown.style.display = isVisible ? 'none' : 'block';
+}
+
+function switchLanguage(langCode) {
+  // If Weglot is available, use it
+  if (window.Weglot && window.Weglot.switchTo) {
+    window.Weglot.switchTo(langCode);
+  } else {
+    // Fallback: try to find the language link and navigate
+    const langLink = document.querySelector(`a[href*="/${langCode}"]`);
+    if (langLink) {
+      window.location.href = langLink.href;
+    }
+  }
+  
+  // Hide dropdown
+  document.getElementById('language-dropdown').style.display = 'none';
+}
+
+// Close dropdown when clicking outside
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.language-selector-wrapper')) {
+    document.querySelectorAll('.language-dropdown').forEach(dd => {
+      dd.style.display = 'none';
+    });
+  }
+});
+
+// Initialize Weglot switcher if available
+document.addEventListener('DOMContentLoaded', function() {
+  // Wait for Weglot to load and replace the dropdown content
+  setTimeout(function() {
+    if (window.Weglot && window.Weglot.getCurrentLang) {
+      // Weglot is loaded, let it handle the language switching
+      const weglotSwitcher = document.querySelector('#weglot_here');
+      if (weglotSwitcher) {
+        // Hide our custom dropdown and use Weglot's
+        const customDropdown = document.querySelector('.language-selector-wrapper');
+        if (customDropdown) {
+          customDropdown.style.display = 'none';
+        }
+      }
+    }
+  }, 1000);
+});
+</script>
+
+<style>
+.language-selector-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.language-toggle {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  padding: 5px 8px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.language-toggle:hover {
+  background-color: rgba(255,255,255,0.1);
+  text-decoration: none;
+  color: inherit;
+}
+
+.language-toggle img {
+  width: 18px;
+  height: 12px;
+  margin-right: 5px;
+}
+
+.language-toggle svg {
+  width: 18px;
+  height: 12px;
+  margin-right: 5px;
+}
+
+.dropdown-arrow {
+  font-size: 10px;
+  margin-left: 3px;
+  transition: transform 0.3s ease;
+}
+
+.language-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  min-width: 120px;
+  z-index: 1000;
+  margin: 0;
+  padding: 5px 0;
+}
+
+.language-dropdown .menu-item {
+  margin: 0;
+}
+
+.language-dropdown .language-option {
+  display: block;
+  padding: 8px 15px;
+  color: #333;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.language-dropdown .language-option:hover {
+  background-color: #f5f5f5;
+  text-decoration: none;
+  color: #333;
+}
+
+/* Dark header compatibility */
+.header-dark .language-dropdown {
+  background: #333;
+  border-color: #555;
+}
+
+.header-dark .language-dropdown .language-option {
+  color: #fff;
+}
+
+.header-dark .language-dropdown .language-option:hover {
+  background-color: #555;
+  color: #fff;
+}
+</style>

@@ -1,0 +1,544 @@
+{% comment %}
+  Workshop Content Section
+  A content section for workshop pages using theme CSS classes
+{% endcomment %}
+
+<div data-section-id="{{ section.id }}" data-section-type="section-workshop-content" style="{% if section.settings.margin_top != blank %}margin-top: {{section.settings.margin_top}}px;{%endif%} {% if section.settings.margin_bottom != blank %}margin-bottom: {{section.settings.margin_bottom}}px;{% endif %}">
+  <div class="section-workshop-content mt-all">
+    <div class="container container-v2">
+      {% if section.settings.show_title %}
+        <div class="row">
+          <div class="col-12 text-center">
+            <div class="content-header mb-5">
+              {% if section.settings.content_title != blank %}
+                <h2 class="title title-{{ section.id }} mb-3">{{ section.settings.content_title }}</h2>
+              {% endif %}
+              
+              {% if section.settings.content_subtitle != blank %}
+                <p class="subtitle subtitle-{{ section.id }}">{{ section.settings.content_subtitle }}</p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+      
+      <div class="row">
+        <div class="{% if section.settings.show_sidebar %}col-lg-8{% else %}col-12{% endif %}">
+          <div class="content-main">
+            {% if section.settings.content_text != blank %}
+              <div class="text-content mb-4">
+                {{ section.settings.content_text }}
+              </div>
+            {% endif %}
+            
+            {% if section.settings.show_content_blocks %}
+              <div class="content-blocks">
+                {% for block in section.blocks %}
+                  {% if block.type == "content_block" %}
+                    <div class="content-block content-block-{{ block.id }}" {{ block.shopify_attributes }}>
+                      <div class="block-inner">
+                        {% if block.settings.block_title != blank %}
+                          <h3 class="block-title block-title-{{ block.id }} mb-3">{{ block.settings.block_title }}</h3>
+                        {% endif %}
+                        
+                        {% if block.settings.block_text != blank %}
+                          <div class="block-text mb-3">{{ block.settings.block_text }}</div>
+                        {% endif %}
+                        
+                        {% if block.settings.block_image != blank %}
+                          <div class="block-image mb-3">
+                            <img data-src="{{ block.settings.block_image | img_url: 'medium' }}" 
+                                 class="lazyload w-100 img-fluid" 
+                                 alt="{{ block.settings.block_title | escape }}">
+                          </div>
+                        {% endif %}
+                        
+                        {% if block.settings.block_link != blank and block.settings.block_button_text != blank %}
+                          <a href="{{ block.settings.block_link }}" class="btn btn-block-{{ block.id }}">
+                            {{ block.settings.block_button_text }}
+                          </a>
+                        {% endif %}
+                      </div>
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+        
+        {% if section.settings.show_sidebar %}
+          <div class="col-lg-4">
+            <div class="content-sidebar">
+              {% if section.settings.sidebar_title != blank %}
+                <h3 class="sidebar-title sidebar-title-{{ section.id }} mb-3">{{ section.settings.sidebar_title }}</h3>
+              {% endif %}
+              
+              {% if section.settings.sidebar_content != blank %}
+                <div class="sidebar-content mb-4">{{ section.settings.sidebar_content }}</div>
+              {% endif %}
+              
+              {% if section.settings.show_sidebar_cta %}
+                <div class="sidebar-cta">
+                  <a href="{{ section.settings.sidebar_cta_link }}" class="btn btn-sidebar-{{ section.id }}">
+                    {{ section.settings.sidebar_cta_text }}
+                  </a>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .section-workshop-content {
+    padding: 80px 0;
+    background: #fff;
+  }
+  
+  .content-header {
+    margin-bottom: 60px;
+  }
+  
+  .section-workshop-content .title-{{ section.id }} {
+    color: {{ section.settings.color_title | default: '#333' }};
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  
+  .section-workshop-content .subtitle-{{ section.id }} {
+    color: {{ section.settings.color_subtitle | default: '#6c757d' }};
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .text-content {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #555;
+  }
+  
+  .text-content h1, .text-content h2, .text-content h3,
+  .text-content h4, .text-content h5, .text-content h6 {
+    color: {{ section.settings.color_title | default: '#333' }};
+    margin-top: 1.8rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .text-content h3 {
+    color: {{ section.settings.color_title | default: '#333' }};
+    font-weight: 700;
+    border-left: 3px solid #ff4040 !important;
+    padding-left: 1rem;
+    margin-left: -1rem;
+  }
+  
+  .text-content h4 {
+    color: {{ section.settings.color_title | default: '#333' }};
+    font-weight: 600;
+    position: relative;
+  }
+  
+  .text-content h4::before {
+    content: '●';
+    color: #ff4040 !important;
+    margin-right: 0.5rem;
+    font-size: 0.8em;
+  }
+  
+  .text-content p {
+    margin-bottom: 1rem;
+  }
+  
+  .text-content ul, .text-content ol {
+    margin-bottom: 1.2rem;
+    padding-left: 1.8rem;
+  }
+  
+  .text-content li {
+    margin-bottom: 0.4rem;
+    line-height: 1.4;
+  }
+  
+  .text-content ul li::marker {
+    color: #ff4040 !important;
+  }
+  
+  .text-content blockquote {
+    border-left: 4px solid {{ section.settings.color_title | default: '#333' }};
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+    font-style: italic;
+    color: #6c757d;
+  }
+  
+  .content-blocks {
+    margin-top: 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+  
+  .content-block {
+    background: #fff;
+    padding: 2.5rem;
+    border-radius: 16px;
+    border: 1px solid #e9ecef;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    height: fit-content;
+  }
+  
+  .content-block:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  }
+  
+  .content-block::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, rgba(255, 64, 64, 0.8), rgba(255, 64, 64, 0.4));
+    border-radius: 16px 16px 0 0;
+  }
+  
+  .content-block .block-title {
+    color: {{ section.settings.color_title | default: '#333' }};
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0 0 1.5rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e9ecef;
+  }
+  
+  .block-text {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  
+  .block-image {
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .content-block .btn {
+    background: {{ section.settings.color_title | default: '#333' }};
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-decoration: none;
+  }
+  
+  .content-block .btn:hover {
+    background: #555;
+    transform: translateY(-1px);
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .content-sidebar {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 12px;
+    height: fit-content;
+    position: sticky;
+    top: 2rem;
+    border: 1px solid rgba(255, 64, 64, 0.2);
+    position: relative;
+  }
+  
+  .content-sidebar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: rgba(255, 64, 64, 0.5);
+    border-radius: 12px 12px 0 0;
+  }
+  
+  .sidebar-title-{{ section.id }} {
+    color: {{ section.settings.color_title | default: '#333' }};
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0 0 1rem 0;
+  }
+  
+  .sidebar-content {
+    color: #555;
+    line-height: 1.4;
+    margin-bottom: 1.2rem;
+  }
+  
+  .sidebar-content h4 {
+    color: {{ section.settings.color_title | default: '#333' }};
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 0.8rem;
+    font-size: 1.1rem;
+  }
+  
+  .sidebar-content ul {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+  }
+  
+  .sidebar-content li {
+    margin-bottom: 0.3rem;
+    line-height: 1.3;
+  }
+  
+  .sidebar-content ul li::marker {
+    color: #ff4040 !important;
+  }
+  
+  .sidebar-content p {
+    margin-bottom: 0.8rem;
+  }
+  
+  .sidebar-content p strong {
+    color: {{ section.settings.color_title | default: '#333' }};
+  }
+  
+  .sidebar-cta {
+    text-align: center;
+  }
+  
+  .btn-sidebar-{{ section.id }} {
+    background: {{ section.settings.color_title | default: '#333' }};
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-decoration: none;
+  }
+  
+  .btn-sidebar-{{ section.id }}:hover {
+    background: #555;
+    transform: translateY(-1px);
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  @media (max-width: 992px) {
+    .content-sidebar {
+      position: static;
+      margin-top: 2rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .section-workshop-content {
+      padding: 60px 0;
+    }
+    
+    .section-workshop-content .title-{{ section.id }} {
+      font-size: 28px;
+    }
+    
+    .section-workshop-content .subtitle-{{ section.id }} {
+      font-size: 16px;
+    }
+    
+    .content-blocks {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    
+    .content-block {
+      padding: 2rem;
+    }
+    
+    .content-sidebar {
+      padding: 1.5rem;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Workshop - Content",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show Content Title",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "content_title",
+      "label": "Content Title",
+      "default": "Largest Service Center in Ticino"
+    },
+    {
+      "type": "textarea",
+      "id": "content_subtitle",
+      "label": "Content Subtitle",
+      "default": "Located at our Lugano flagship store, our workshop is equipped with the latest diagnostic equipment and certified mechanics."
+    },
+    {
+      "type": "richtext",
+      "id": "content_text",
+      "label": "Main Content Text",
+      "default": "<p>Located at our Lugano flagship store, our workshop is equipped with:</p><ul><li>Latest diagnostic equipment for all e-bike systems</li><li>Certified mechanics with specialized e-bike training</li><li>Comprehensive parts inventory</li><li>Environmental-friendly cleaning solutions</li><li>State-of-the-art tools and facilities</li></ul>"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_content_blocks",
+      "label": "Show Content Blocks",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sidebar",
+      "label": "Show Sidebar",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "sidebar_title",
+      "label": "Sidebar Title",
+      "default": "What Makes Us Different"
+    },
+    {
+      "type": "richtext",
+      "id": "sidebar_content",
+      "label": "Sidebar Content",
+      "default": "<ul><li>All brands accepted - We service any bicycle or e-bike</li><li>No job too small or complex - From basic tune-ups to complete overhauls</li><li>Clear explanations - We help you understand your bike's needs</li><li>Long-term focus - Solutions that extend your bike's life</li><li>Eco-conscious approach - Environmentally responsible service methods</li><li>Quality guarantee on all work performed</li></ul><h4>Maintenance Tips</h4><p><strong>Keep Your E-Bike Running Smoothly</strong></p><ul><li>Regular cleaning - Wipe down after rides, especially in wet conditions</li><li>Battery care - Charge regularly, store in moderate temperatures</li><li>Tire pressure - Check monthly for optimal performance</li><li>Chain lubrication - Clean and lubricate every 200-300km</li><li>Professional service - Annual tune-up recommended</li></ul><h4>All Brands Welcome</h4><p>We service all bicycle and e-bike brands, including:</p><ul><li>Cube, Trek, Specialized, Giant</li><li>Bosch, Shimano, Yamaha systems</li><li>Traditional bicycles of any make</li><li>Custom and specialty builds</li></ul><p>Don't see your brand listed? Contact us - we likely service it!</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sidebar_cta",
+      "label": "Show Sidebar CTA Button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "sidebar_cta_text",
+      "label": "Sidebar CTA Button Text",
+      "default": "Book Service Now"
+    },
+    {
+      "type": "url",
+      "id": "sidebar_cta_link",
+      "label": "Sidebar CTA Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "color_title",
+      "label": "Title Color",
+      "default": "#333"
+    },
+    {
+      "type": "color",
+      "id": "color_subtitle",
+      "label": "Subtitle Color",
+      "default": "#6c757d"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "content_block",
+      "name": "Content Block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "block_title",
+          "label": "Block Title",
+          "default": "Booking Your Service"
+        },
+        {
+          "type": "richtext",
+          "id": "block_text",
+          "label": "Block Text",
+          "default": "<h4>Easy Appointment Scheduling</h4><ul><li>Online booking system available</li><li>Flexible timeframes to fit your schedule</li><li>Progress updates throughout the service</li><li>While-you-wait repairs for quick fixes</li></ul><h4>What to Bring</h4><ul><li>Your bicycle or e-bike</li><li>Any accessories that need attention</li><li>Proof of purchase (for warranty work)</li><li>Description of any issues you've noticed</li></ul><h4>Warranty & Guarantees</h4><ul><li>Quality guarantee on all work performed</li><li>Genuine parts used whenever possible</li><li>Warranty preservation - All work maintains manufacturer warranties</li><li>Follow-up support - Questions welcomed after service</li></ul><h4>Schedule Your Service</h4><p><strong>Ready to give your bike the care it deserves?</strong></p><p><strong>Contact Options:</strong></p><ul><li>Call direct: +41 91 224 53 44</li><li>Email: info@godspeed.ch</li><li>Visit in person: Workshop at Lugano location</li><li>Online booking: Schedule through our website</li></ul><p><strong>Emergency Repairs:</strong> Call us for urgent repair needs - we'll do our best to accommodate.</p>"
+        },
+        {
+          "type": "image_picker",
+          "id": "block_image",
+          "label": "Block Image"
+        },
+        {
+          "type": "text",
+          "id": "block_button_text",
+          "label": "Button Text"
+        },
+        {
+          "type": "url",
+          "id": "block_link",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Workshop - Content",
+      "category": "Workshop",
+      "blocks": [
+        {
+          "type": "content_block",
+          "settings": {
+            "block_title": "Our Services",
+            "block_text": "<h4>Complete System Analysis & Diagnostics</h4><ul><li>Battery diagnosis and capacity testing</li><li>E-bike system visual inspection and maintenance</li><li>Error code analysis and resolution</li><li>Component cleaning and lubrication</li><li>Support level testing and calibration</li><li>Performance certification and consultation</li></ul><h4>General Maintenance & Repairs</h4><ul><li>Functional checks of drive and electrical systems</li><li>Frame, fork, and wheel inspections</li><li>Brake system maintenance and adjustments</li><li>Gear tuning and drivetrain optimization</li><li>Chain maintenance and replacement</li><li>Tire and tube services</li><li>Light system checks and repairs</li></ul>"
+          }
+        },
+        {
+          "type": "content_block",
+          "settings": {
+            "block_title": "Booking Your Service",
+            "block_text": "<h4>Easy Appointment Scheduling</h4><ul><li>Online booking system available</li><li>Flexible timeframes to fit your schedule</li><li>Progress updates throughout the service</li><li>While-you-wait repairs for quick fixes</li></ul><h4>What to Bring</h4><ul><li>Your bicycle or e-bike</li><li>Any accessories that need attention</li><li>Proof of purchase (for warranty work)</li><li>Description of any issues you've noticed</li></ul><h4>Contact</h4><p><strong>Workshop Direct Line:</strong> +41 91 224 53 44<br><strong>Workshop Email:</strong> info@godspeed.ch</p><h4>Workshop Hours:</h4><ul><li>Tuesday - Friday: 9:00 - 18:00</li><li>Saturday: 9:00 - 17:00</li><li>Sunday & Monday: Closed</li></ul>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+

@@ -1,0 +1,784 @@
+{% comment %}
+  Heylight Payment Calculator Section
+  Calculate BNPL and financing options using theme CSS classes
+{% endcomment %}
+
+<div data-section-id="{{ section.id }}" data-section-type="section-heylight-calculator" style="{% if section.settings.margin_top != blank %}margin-top: {{section.settings.margin_top}}px;{%endif%} {% if section.settings.margin_bottom != blank %}margin-bottom: {{section.settings.margin_bottom}}px;{% endif %}">
+  <div class="section-heylight-calculator mt-all">
+    <div class="container container-v2">
+      <div class="row justify-content-center">
+        <div class="col-lg-10 col-md-12 col-sm-12">
+          <div class="calculator-header text-center mb-5">
+            {% if section.settings.calculator_title != blank %}
+              <h2 class="title title-{{ section.id }} mb-3">{{ section.settings.calculator_title }}</h2>
+            {% endif %}
+            
+            {% if section.settings.calculator_subtitle != blank %}
+              <p class="subtitle subtitle-{{ section.id }}">{{ section.settings.calculator_subtitle }}</p>
+            {% endif %}
+          </div>
+          
+          <div class="calculator-wrapper">
+            <div class="row">
+              <div class="col-lg-8 col-md-12 mb-4">
+                <div class="calculator-form-wrapper">
+                  <form class="heylight-calculator-form" id="heylight-calculator-form-{{ section.id }}">
+                    <div class="form-section mb-4">
+                      <h4 class="section-title section-title-{{ section.id }} mb-3">Purchase Information</h4>
+                      
+                      <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
+                          <div class="form-group">
+                            <label for="purchase-amount-{{ section.id }}" class="form-label">Purchase Amount (CHF) *</label>
+                            <input type="number" id="purchase-amount-{{ section.id }}" name="purchase_amount" class="form-control" min="300" max="10000" step="0.01" placeholder="3000.00" required>
+                          </div>
+                        </div>
+                        
+                        <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
+                          <div class="form-group">
+                            <label for="payment-option-{{ section.id }}" class="form-label">Payment Option *</label>
+                            <select id="payment-option-{{ section.id }}" name="payment_option" class="form-control" required>
+                              <option value="">Select payment option</option>
+                              <option value="bnpl_3">0% Interest - 3 payments</option>
+                              <option value="bnpl_12">0% Interest - 12 months</option>
+                              <option value="bnpl_24">0% Interest - 24 months</option>
+                              <option value="financing_12">Financing - 12 months</option>
+                              <option value="financing_24">Financing - 24 months</option>
+                              <option value="financing_36">Extended Financing - 36 months</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
+                          <div class="form-group">
+                            <label for="residency-status-{{ section.id }}" class="form-label">Residency Status</label>
+                            <select id="residency-status-{{ section.id }}" name="residency_status" class="form-control">
+                              <option value="">Select residency status</option>
+                              <option value="swiss_citizen">Swiss Citizen</option>
+                              <option value="swiss_resident">Swiss Resident</option>
+                              <option value="eu_resident">EU Resident</option>
+                              <option value="other">Other</option>
+                            </select>
+                          </div>
+                        </div>
+                        
+                        <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
+                          <div class="form-group">
+                            <label for="employment-status-{{ section.id }}" class="form-label">Employment Status</label>
+                            <select id="employment-status-{{ section.id }}" name="employment_status" class="form-control">
+                              <option value="">Select employment status</option>
+                              <option value="employed">Full-time Employed</option>
+                              <option value="part_time">Part-time Employed</option>
+                              <option value="self_employed">Self-employed</option>
+                              <option value="student">Student</option>
+                              <option value="retired">Retired</option>
+                              <option value="unemployed">Unemployed</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="form-actions text-center">
+                      <button type="submit" class="btn btn-calculate-{{ section.id }}" id="calculate-btn-{{ section.id }}">
+                        <span class="btn-text">Calculate Payment</span>
+                        <span class="btn-loading" style="display: none;">
+                          <i class="fa fa-spinner fa-spin"></i> Calculating...
+                        </span>
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              
+              <div class="col-lg-4 col-md-12">
+                <div class="calculator-sidebar">
+                  <div class="sidebar-section mb-4">
+                    <h4 class="sidebar-title sidebar-title-{{ section.id }} mb-3">Heylight Benefits</h4>
+                    <div class="benefits-list">
+                      <div class="benefit-item mb-3">
+                        <div class="benefit-icon">✓</div>
+                        <div class="benefit-text">
+                          <h5 class="benefit-title">0% Interest Available</h5>
+                          <p class="benefit-desc">Qualified purchases up to 24 months</p>
+                        </div>
+                      </div>
+                      
+                      <div class="benefit-item mb-3">
+                        <div class="benefit-icon">✓</div>
+                        <div class="benefit-text">
+                          <h5 class="benefit-title">Instant Approval</h5>
+                          <p class="benefit-desc">Under 5 minutes with smartphone verification</p>
+                        </div>
+                      </div>
+                      
+                      <div class="benefit-item mb-3">
+                        <div class="benefit-icon">✓</div>
+                        <div class="benefit-text">
+                          <h5 class="benefit-title">Take Home Today</h5>
+                          <p class="benefit-desc">No paperwork, ride immediately</p>
+                        </div>
+                      </div>
+                      
+                      <div class="benefit-item">
+                        <div class="benefit-icon">✓</div>
+                        <div class="benefit-text">
+                          <h5 class="benefit-title">Swiss Trusted</h5>
+                          <p class="benefit-desc">Regulated Swiss financial services provider</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="sidebar-section">
+                    <h4 class="sidebar-title sidebar-title-{{ section.id }} mb-3">Requirements</h4>
+                    <ul class="requirements-list">
+                      <li>Swiss residency required</li>
+                      <li>Must be 18+ years old</li>
+                      <li>Valid Swiss credit/debit card</li>
+                      <li>Smartphone for verification</li>
+                      <li>Regular income source</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="results-section mt-5" id="results-section-{{ section.id }}" style="display: none;">
+              <div class="results-header text-center mb-4">
+                <h3 class="results-title results-title-{{ section.id }}">Your Payment Options</h3>
+              </div>
+              
+              <div class="payment-options" id="payment-options-{{ section.id }}">
+                <!-- Payment options will be generated here -->
+              </div>
+              
+              <div class="results-footer text-center mt-4">
+                <p class="disclaimer">* These are estimated payments. Final terms and rates may vary based on credit approval. Subject to Heylight's terms and conditions.</p>
+                <div class="action-buttons">
+                  <button class="btn btn-reset-{{ section.id }}" onclick="resetCalculator('{{ section.id }}')">Calculate Again</button>
+                  {% if section.settings.apply_url != blank %}
+                    <a href="{{ section.settings.apply_url }}" class="btn btn-apply-{{ section.id }}" target="_blank">Apply Now</a>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .section-heylight-calculator {
+    padding: 80px 0;
+    background: #fff;
+  }
+  
+  .section-heylight-calculator .title-{{ section.id }} {
+    color: {{ section.settings.color_title | default: '#333' }};
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  
+  .section-heylight-calculator .subtitle-{{ section.id }} {
+    color: {{ section.settings.color_subtitle | default: '#6c757d' }};
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .calculator-wrapper {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  }
+  
+  .form-section {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border-left: 4px solid {{ section.settings.color_title | default: '#333' }};
+  }
+  
+  .section-title-{{ section.id }} {
+    color: {{ section.settings.color_title | default: '#333' }};
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 1rem 0;
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: 'SofiaPro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #333;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background: #fff;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+  
+  .form-control select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 12px center;
+    background-repeat: no-repeat;
+    background-size: 16px 12px;
+    padding-right: 40px;
+  }
+  
+  .form-control:focus {
+    outline: none;
+    border-color: {{ section.settings.color_title | default: '#333' }};
+    box-shadow: 0 0 0 3px rgba(51, 51, 51, 0.1);
+  }
+  
+  .form-control:required:invalid {
+    border-color: #dc3545;
+  }
+  
+  .form-control:required:valid {
+    border-color: #28a745;
+  }
+  
+  .btn-calculate-{{ section.id }} {
+    background: {{ section.settings.color_title | default: '#333' }};
+    color: #fff;
+    padding: 15px 40px;
+    border: 2px solid {{ section.settings.color_title | default: '#333' }};
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    min-width: 200px;
+  }
+  
+  .btn-calculate-{{ section.id }}:hover {
+    background: #555;
+    border-color: #555;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  }
+  
+  .btn-calculate-{{ section.id }}:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+  
+  .btn-loading {
+    display: none;
+  }
+  
+  .calculator-sidebar {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    height: fit-content;
+    position: sticky;
+    top: 2rem;
+  }
+  
+  .sidebar-title-{{ section.id }} {
+    color: {{ section.settings.color_title | default: '#333' }};
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 1rem 0;
+  }
+  
+  .benefit-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    border-bottom: 1px solid #e9ecef;
+    padding-bottom: 1rem;
+  }
+  
+  .benefit-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  
+  .benefit-icon {
+    width: 24px;
+    height: 24px;
+    background: #28a745;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+  
+  .benefit-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 0.25rem 0;
+  }
+  
+  .benefit-desc {
+    font-size: 14px;
+    color: #6c757d;
+    margin: 0;
+    line-height: 1.4;
+  }
+  
+  .requirements-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .requirements-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #e9ecef;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .requirements-list li:last-child {
+    border-bottom: none;
+  }
+  
+  .requirements-list li:before {
+    content: "•";
+    color: {{ section.settings.color_title | default: '#333' }};
+    font-weight: bold;
+    margin-right: 0.5rem;
+  }
+  
+  .results-section {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  }
+  
+  .results-title-{{ section.id }} {
+    color: {{ section.settings.color_title | default: '#333' }};
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0;
+  }
+  
+  .payment-option-card {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border-left: 4px solid {{ section.settings.color_title | default: '#333' }};
+    margin-bottom: 1.5rem;
+  }
+  
+  .option-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .option-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+  }
+  
+  .option-badge {
+    background: #28a745;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  
+  .payment-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+  
+  .payment-detail {
+    text-align: center;
+  }
+  
+  .detail-label {
+    font-size: 12px;
+    color: #6c757d;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.25rem;
+  }
+  
+  .detail-value {
+    font-size: 20px;
+    font-weight: 700;
+    color: {{ section.settings.color_title | default: '#333' }};
+  }
+  
+  .action-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+  
+  .btn-reset-{{ section.id }} {
+    background: #6c757d;
+    color: #fff;
+    padding: 12px 24px;
+    border: 2px solid #6c757d;
+    border-radius: 25px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .btn-reset-{{ section.id }}:hover {
+    background: #545b62;
+    border-color: #545b62;
+    transform: translateY(-1px);
+  }
+  
+  .btn-apply-{{ section.id }} {
+    background: #28a745;
+    color: #fff;
+    padding: 12px 24px;
+    border: 2px solid #28a745;
+    border-radius: 25px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+  
+  .btn-apply-{{ section.id }}:hover {
+    background: #218838;
+    border-color: #218838;
+    transform: translateY(-1px);
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .disclaimer {
+    font-size: 12px;
+    color: #6c757d;
+    font-style: italic;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+  }
+  
+  @media (max-width: 992px) {
+    .calculator-sidebar {
+      position: static;
+      margin-top: 2rem;
+    }
+    
+    .payment-details {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .section-heylight-calculator {
+      padding: 60px 0;
+    }
+    
+    .section-heylight-calculator .title-{{ section.id }} {
+      font-size: 28px;
+    }
+    
+    .section-heylight-calculator .subtitle-{{ section.id }} {
+      font-size: 16px;
+    }
+    
+    .calculator-wrapper {
+      padding: 1.5rem;
+    }
+    
+    .form-section {
+      padding: 1rem;
+    }
+    
+    .btn-calculate-{{ section.id }} {
+      min-width: 100%;
+    }
+    
+    .payment-details {
+      grid-template-columns: 1fr;
+    }
+    
+    .action-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .action-buttons .btn-reset-{{ section.id }},
+    .action-buttons .btn-apply-{{ section.id }} {
+      min-width: 200px;
+    }
+  }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('heylight-calculator-form-{{ section.id }}');
+  const calculateBtn = document.getElementById('calculate-btn-{{ section.id }}');
+  const btnText = calculateBtn.querySelector('.btn-text');
+  const btnLoading = calculateBtn.querySelector('.btn-loading');
+  const resultsSection = document.getElementById('results-section-{{ section.id }}');
+  
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Show loading state
+    btnText.style.display = 'none';
+    btnLoading.style.display = 'inline';
+    calculateBtn.disabled = true;
+    
+    // Get form data
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+    
+    // Calculate payment options
+    const results = calculateHeylightPayments(data);
+    
+    // Display results
+    displayPaymentResults(results, '{{ section.id }}');
+    
+    // Reset button
+    btnText.style.display = 'inline';
+    btnLoading.style.display = 'none';
+    calculateBtn.disabled = false;
+    
+    // Show results
+    resultsSection.style.display = 'block';
+    resultsSection.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+function calculateHeylightPayments(data) {
+  const amount = parseFloat(data.purchase_amount);
+  const paymentOption = data.payment_option;
+  const residencyStatus = data.residency_status;
+  const employmentStatus = data.employment_status;
+  
+  // Extract payment terms
+  const terms = parseInt(paymentOption.split('_')[1]);
+  
+  // Heylight actual rates and terms based on your financing page
+  let monthlyPayment, totalInterest, totalAmount, interestRate;
+  
+  if (paymentOption.includes('bnpl')) {
+    // 0% Interest BNPL options (3, 12, 24 months)
+    monthlyPayment = amount / terms;
+    totalInterest = 0;
+    totalAmount = amount;
+    interestRate = 0;
+  } else if (paymentOption.includes('financing')) {
+    // Financing options using 10.95% reference rate for all terms
+    interestRate = 10.95; // Reference rate from your 36-month example
+    
+    const monthlyRate = interestRate / 100 / 12;
+    monthlyPayment = amount * (monthlyRate * Math.pow(1 + monthlyRate, terms)) / (Math.pow(1 + monthlyRate, terms) - 1);
+    totalAmount = monthlyPayment * terms;
+    totalInterest = totalAmount - amount;
+  }
+  
+  // Determine approval likelihood based on Swiss requirements
+  let approvalLikelihood = 'High';
+  
+  if (residencyStatus === 'other') {
+    approvalLikelihood = 'Low';
+  } else if (residencyStatus === 'eu_resident') {
+    approvalLikelihood = 'Medium';
+  }
+  
+  if (employmentStatus === 'unemployed') {
+    approvalLikelihood = 'Low';
+  } else if (employmentStatus === 'student' || employmentStatus === 'part_time') {
+    if (approvalLikelihood === 'High') approvalLikelihood = 'Medium';
+  }
+  
+  // For amounts over CHF 5000, slightly lower approval chance
+  if (amount > 5000 && approvalLikelihood === 'High') {
+    approvalLikelihood = 'Medium';
+  }
+  
+  return {
+    paymentOption,
+    terms,
+    monthlyPayment: monthlyPayment.toFixed(2),
+    totalAmount: totalAmount.toFixed(2),
+    totalInterest: totalInterest.toFixed(2),
+    interestRate: interestRate.toFixed(2),
+    approvalLikelihood,
+    amount: amount.toFixed(2)
+  };
+}
+
+function displayPaymentResults(result, sectionId) {
+  const paymentOptionsDiv = document.getElementById(`payment-options-${sectionId}`);
+  
+  const optionNames = {
+    bnpl_3: '0% Interest - 3 Payments',
+    bnpl_12: '0% Interest - 12 Months',
+    bnpl_24: '0% Interest - 24 Months',
+    financing_12: 'Financing - 12 Months',
+    financing_24: 'Financing - 24 Months',
+    financing_36: 'Extended Financing - 36 Months'
+  };
+  
+  const badgeColors = {
+    'High': '#28a745',
+    'Medium': '#ffc107',
+    'Low': '#dc3545'
+  };
+  
+  paymentOptionsDiv.innerHTML = `
+    <div class="payment-option-card">
+      <div class="option-header">
+        <h4 class="option-title">${optionNames[result.paymentOption]}</h4>
+        <div class="option-badge" style="background: ${badgeColors[result.approvalLikelihood]}">
+          ${result.approvalLikelihood} Approval Chance
+        </div>
+      </div>
+      
+      <div class="payment-details">
+        <div class="payment-detail">
+          <div class="detail-label">Monthly Payment</div>
+          <div class="detail-value">CHF ${result.monthlyPayment}</div>
+        </div>
+        <div class="payment-detail">
+          <div class="detail-label">Interest Rate</div>
+          <div class="detail-value">${result.interestRate}%</div>
+        </div>
+        <div class="payment-detail">
+          <div class="detail-label">Total Interest</div>
+          <div class="detail-value">CHF ${result.totalInterest}</div>
+        </div>
+        <div class="payment-detail">
+          <div class="detail-label">Total Amount</div>
+          <div class="detail-value">CHF ${result.totalAmount}</div>
+        </div>
+        <div class="payment-detail">
+          <div class="detail-label">Term Length</div>
+          <div class="detail-value">${result.terms} ${result.terms > 6 ? 'months' : 'payments'}</div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function resetCalculator(sectionId) {
+  document.getElementById(`heylight-calculator-form-${sectionId}`).reset();
+  document.getElementById(`results-section-${sectionId}`).style.display = 'none';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
+{% schema %}
+{
+  "name": "Heylight Calculator",
+  "settings": [
+    {
+      "type": "text",
+      "id": "calculator_title",
+      "label": "Calculator Title",
+      "default": "Heylight Payment Calculator"
+    },
+    {
+      "type": "textarea",
+      "id": "calculator_subtitle",
+      "label": "Calculator Subtitle",
+      "default": "Calculate your Heylight payment options. Get instant estimates for 0% interest BNPL and extended financing terms. Take your e-bike home today, pay over time."
+    },
+    {
+      "type": "url",
+      "id": "apply_url",
+      "label": "Apply Now Button URL",
+      "info": "URL for the Heylight application page"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "color_title",
+      "label": "Title Color",
+      "default": "#333"
+    },
+    {
+      "type": "color",
+      "id": "color_subtitle",
+      "label": "Subtitle Color",
+      "default": "#6c757d"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Heylight Payment Calculator",
+      "category": "Tools"
+    }
+  ]
+}
+{% endschema %}

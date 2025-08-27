@@ -1,0 +1,163 @@
+{% if section.settings.select_fts == "footer_v6" %}
+{% if template contains 'index' %}
+<footer class="footer_v6" style="background-color : {{section.settings.ft_home_bg_footer}}">
+ {% if settings.enable_fv6_logo %}
+  <div class="footer-logo">
+    <div class="container container-v5">   
+      {% if settings.logo_svg6 !=blank %}
+      <div class="logosvg" style="max-width:{{settings.fv6_main_logo_maxwidth}}px;">
+        <a class="d-block" href="{{shop.url}}">{{settings.logo_svg6}}</a>
+      </div>          
+      {% else %}            
+      <a href="{{shop.url}}" class="logo block">
+        {% if settings.fv6_main_logo != blank %}
+        <img src="{{settings.fv6_main_logo | img_url:'master'}}"  style="max-width:{{settings.fv6_main_logo_maxwidth}}px;" alt="{{shop.name}}" class="img-fluid">
+        {% else %}
+        <img src="//via.placeholder.com/72x25" style="max-width:{{settings.fv6_main_logo_maxwidth}}px;" alt="{{shop.name}}" class="img-fluid">
+        {% endif %}
+      </a>
+      {% endif %}
+    </div>
+  </div>
+  {% endif %}
+  <div class="content_menu">
+    <div class="container container-v5">    
+      <div class="row align-items-center">
+        <div class="col-lg-3 {% if settings.enable_rtl_mode %} text-lg-right {% else %} text-lg-left {% endif %} text-center">
+          <div class="casano-socials">
+            {% if settings.icon_sc_fv6_1 !=blank %}
+            <a href="{{settings.url_sc_fv6_1}}" title="" target="_blank" class="social-item">{{settings.icon_sc_fv6_1}}</a>
+            {% endif %}
+            {% if settings.icon_sc_fv6_2 !=blank %}
+            <a href="{{settings.url_sc_fv6_2}}" title="" target="_blank" class="social-item">{{settings.icon_sc_fv6_2}}</a>
+            {% endif %}
+            {% if settings.icon_sc_fv6_3 !=blank %}
+            <a href="{{settings.url_sc_fv6_3}}" title="" target="_blank" class="social-item">{{settings.icon_sc_fv6_3}}</a>
+            {% endif %}
+            {% if settings.icon_sc_fv6_4 !=blank %}
+            <a href="{{settings.url_sc_fv6_4}}" title="" target="_blank" class="social-item">{{settings.icon_sc_fv6_4}}</a>
+            {% endif %}  
+          </div>
+        </div> 
+
+        <div class="col-lg-6 text-center">
+          <div class="menu">
+            <ul class="list-inline list-unstyled mb-0">
+              {% for link in linklists[settings.menu_fv6].links %}
+              <li class="list-inline-item"><a href="{{link.url}}" title="{{link.title}}">{{link.title}}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        
+        <div class="col-lg-3 {% if settings.enable_rtl_mode %} text-lg-left {% else %} text-lg-right {% endif %} text-center">
+          <div class="payment-footer">
+            {% if settings.fv6_bottom_payment_img != blank %}
+            <img src="{{settings.fv6_bottom_payment_img | img_url:'master'}}"  alt="">
+            {% else %}
+            <img src="//via.placeholder.com/215x23"  alt="">
+            {% endif %}
+          </div>
+        </div>
+        
+      </div>
+    </div> 
+  </div>
+  <div class="copyright text-center">
+    {% if settings.copyright_fv6 != blank %}
+    {{settings.copyright_fv6}}
+    {% else %}
+    <div class="text-copyright mb-0"><p>© Copyright 2022 | <a href="http://themeocean.net/" rel="nofollow" target="_blank" class="underline_hover bold">  Nexio </a> By <a href="http://themeocean.net/" rel="nofollow" target="_blank" class="underline_hover link"> ThemeOcean.</a><a href="https://www.shopify.com/?ref=shopifycenter" rel="nofollow" target="_blank" class=""> Powered by Shopify.</a></p> 
+    </div> 
+    {% endif %}
+  </div>
+</footer>
+
+<style>
+  .footer_v6 .copyright{
+    color : {{section.settings.ft_home_color_text}};
+  }
+  .footer_v6 .content_menu .menu ul li a{
+    color : {{section.settings.ft_home_color_text}};
+  }
+  .footer_v6 .content_menu .casano-socials a{
+    color : {{section.settings.ft_home_color_text}};
+  }
+  .footer_v6 .content_menu .casano-socials ul li a{
+    border-color : {{section.settings.ft_home_color_text}};
+    color : {{section.settings.ft_home_color_text}};
+  }
+</style>
+{% endif %}
+{% endif %}
+
+{% if section.settings.select_fts_all == "footer_ver6" %}
+{% unless template contains 'index' %}
+<footer class="footer_v6" style="background-color : {{section.settings.ft_other_bg_footer}}">
+  <div class="content_menu">
+    <div class="container container-v5">    
+      <div class="row align-items-center">
+        <div class="col-lg-3 {% if settings.enable_rtl_mode %} text-lg-right {% else %} text-lg-left {% endif %} text-center">
+          <div class="casano-socials">
+            {% if settings.icon_sc_fv6_1 !=blank %}
+            <a href="{{settings.url_sc_fv6_1}}" title="" target="_blank" class="social-item">{{settings.icon_sc_fv6_1}}</a>
+            {% endif %}
+            {% if settings.icon_sc_fv6_2 !=blank %}
+            <a href="{{settings.url_sc_fv6_2}}" title="" target="_blank" class="social-item">{{settings.icon_sc_fv6_2}}</a>
+            {% endif %}
+            {% if settings.icon_sc_fv6_3 !=blank %}
+            <a href="{{settings.url_sc_fv6_3}}" title="" target="_blank" class="social-item">{{settings.icon_sc_fv6_3}}</a>
+            {% endif %}
+            {% if settings.icon_sc_fv6_4 !=blank %}
+            <a href="{{settings.url_sc_fv6_4}}" title="" target="_blank" class="social-item">{{settings.icon_sc_fv6_4}}</a>
+            {% endif %}  
+          </div>
+        </div> 
+
+        <div class="col-lg-6 text-center">
+          <div class="menu">
+            <ul class="list-inline list-unstyled mb-0">
+              {% for link in linklists[settings.menu_fv6].links %}
+              <li class="list-inline-item"><a href="{{link.url}}" title="{{link.title}}">{{link.title}}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        
+        <div class="col-lg-3 {% if settings.enable_rtl_mode %} text-lg-left {% else %} text-lg-right {% endif %} text-center">
+          <div class="payment-footer">
+            {% if settings.fv6_bottom_payment_img != blank %}
+            <img src="{{settings.fv6_bottom_payment_img | img_url:'master'}}"  alt="">
+            {% else %}
+            <img src="//via.placeholder.com/215x23"  alt="">
+            {% endif %}
+          </div>
+        </div>
+        
+      </div>
+    </div> 
+  </div>
+  <div class="copyright text-center">
+    {% if settings.copyright_fv6 != blank %}
+    {{settings.copyright_fv6}}
+    {% else %}
+    <div class="text-copyright mb-0"><p>© Copyright 2022 | <a href="http://themeocean.net/" rel="nofollow" target="_blank" class="underline_hover bold">  Nexio </a> By <a href="http://themeocean.net/" rel="nofollow" target="_blank" class="underline_hover link"> ThemeOcean.</a><a href="https://www.shopify.com/?ref=shopifycenter" rel="nofollow" target="_blank" class=""> Powered by Shopify.</a></p> 
+    </div> 
+    {% endif %}
+  </div>
+
+</footer>
+
+<style>
+  .footer_v6 .copyright{
+    color : {{section.settings.ft_other_color_text}};
+  }
+  .footer_v6 .content_menu .menu ul li a{
+    color : {{section.settings.ft_other_color_text}};
+  }
+  .footer_v6 .content_menu .casano-socials a{
+    color : {{section.settings.ft_other_color_text}};
+  }
+</style>
+{% endunless %}
+{% endif %}

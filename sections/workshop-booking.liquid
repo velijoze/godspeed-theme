@@ -1,0 +1,542 @@
+{% comment %}
+  Workshop Booking Section
+  A booking form for workshops using theme CSS classes
+{% endcomment %}
+
+<div data-section-id="{{ section.id }}" data-section-type="section-workshop-booking" style="{% if section.settings.margin_top != blank %}margin-top: {{section.settings.margin_top}}px;{%endif%} {% if section.settings.margin_bottom != blank %}margin-bottom: {{section.settings.margin_bottom}}px;{% endif %}">
+  <div class="section-workshop-booking mt-all">
+    <div class="container container-v2">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10 col-sm-12">
+          <div class="booking-header text-center mb-5">
+            {% if section.settings.booking_title != blank %}
+              <h2 class="title title-{{ section.id }} mb-3">{{ section.settings.booking_title }}</h2>
+            {% endif %}
+            
+            {% if section.settings.booking_subtitle != blank %}
+              <p class="subtitle subtitle-{{ section.id }}">{{ section.settings.booking_subtitle }}</p>
+            {% endif %}
+          </div>
+          
+          <div class="booking-form-wrapper">
+            <form class="workshop-booking-form" id="workshop-booking-form-{{ section.id }}">
+              <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                  <div class="form-group">
+                    <label for="service-location-{{ section.id }}" class="form-label">Service Location *</label>
+                    <select id="service-location-{{ section.id }}" name="service_location" class="form-control" required>
+                      <option value="">Select a location</option>
+                      <option value="Lugano Workshop - Via Pian Scairolo 8, 6915 Pambio-Noranco">Lugano Workshop - Via Pian Scairolo 8</option>
+                      <option value="Bellinzona Store - Via Orico 13, 6500 Bellinzona">Bellinzona Store - Via Orico 13</option>
+                      <option value="Locarno Store - Via della Stazione 1, 6600 Locarno">Locarno Store - Via della Stazione 1</option>
+                      <option value="Zurich Store - Address TBD">Zurich Store</option>
+                    </select>
+                  </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                  <div class="form-group">
+                    <label for="workshop-type-{{ section.id }}" class="form-label">Service Type *</label>
+                    <select id="workshop-type-{{ section.id }}" name="workshop_type" class="form-control" required>
+                      <option value="">Select a service</option>
+                      {% for block in section.blocks %}
+                        {% if block.type == "service_option" %}
+                          <option value="{{ block.settings.service_name }}" 
+                                  data-duration="{{ block.settings.duration }}"
+                                  data-price="{{ block.settings.price }}">
+                            {{ block.settings.service_name }}
+                          </option>
+                        {% endif %}
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                  <div class="form-group">
+                    <label for="workshop-date-{{ section.id }}" class="form-label">Preferred Date *</label>
+                    <input type="date" id="workshop-date-{{ section.id }}" name="workshop_date" class="form-control" required>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 mb-4">
+                  <div class="form-group">
+                    <label for="workshop-time-{{ section.id }}" class="form-label">Preferred Time *</label>
+                    <select id="workshop-time-{{ section.id }}" name="workshop_time" class="form-control" required>
+                      <option value="">Select time</option>
+                      <option value="09:00">9:00 AM</option>
+                      <option value="10:00">10:00 AM</option>
+                      <option value="11:00">11:00 AM</option>
+                      <option value="13:00">1:00 PM</option>
+                      <option value="14:00">2:00 PM</option>
+                      <option value="15:00">3:00 PM</option>
+                      <option value="16:00">4:00 PM</option>
+                    </select>
+                  </div>
+                </div>
+                
+                <div class="col-lg-6 col-md-6 col-sm-12 mb-4">
+                  <div class="form-group">
+                    <label for="participants-{{ section.id }}" class="form-label">Number of Bikes *</label>
+                    <input type="number" id="participants-{{ section.id }}" name="participants" class="form-control" min="1" max="10" value="1" required>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-12 mb-4">
+                  <div class="form-group">
+                    <label for="special-requirements-{{ section.id }}" class="form-label">Special Requirements</label>
+                    <textarea id="special-requirements-{{ section.id }}" name="special_requirements" class="form-control" rows="3" placeholder="Describe any issues or specific service needs..."></textarea>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 mb-4">
+                  <div class="form-group">
+                    <label for="customer-name-{{ section.id }}" class="form-label">Full Name *</label>
+                    <input type="text" id="customer-name-{{ section.id }}" name="customer_name" class="form-control" required>
+                  </div>
+                </div>
+                
+                <div class="col-lg-6 col-md-6 col-sm-12 mb-4">
+                  <div class="form-group">
+                    <label for="customer-email-{{ section.id }}" class="form-label">Email Address *</label>
+                    <input type="email" id="customer-email-{{ section.id }}" name="customer_email" class="form-control" required>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 mb-4">
+                  <div class="form-group">
+                    <label for="customer-phone-{{ section.id }}" class="form-label">Phone Number</label>
+                    <input type="tel" id="customer-phone-{{ section.id }}" name="customer_phone" class="form-control">
+                  </div>
+                </div>
+                
+                <div class="col-lg-6 col-md-6 col-sm-12 mb-4">
+                  <div class="form-group">
+                    <label for="customer-company-{{ section.id }}" class="form-label">Company/Organization</label>
+                    <input type="text" id="customer-company-{{ section.id }}" name="customer_company" class="form-control">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="booking-summary mb-4" id="booking-summary-{{ section.id }}" style="display: none;">
+                <div class="summary-header">
+                  <h4 class="summary-title">Booking Summary</h4>
+                </div>
+                <div class="summary-content">
+                  <div class="summary-row">
+                    <span class="summary-label">Location:</span>
+                    <span class="summary-value" id="summary-location-{{ section.id }}"></span>
+                  </div>
+                  <div class="summary-row">
+                    <span class="summary-label">Service:</span>
+                    <span class="summary-value" id="summary-service-{{ section.id }}"></span>
+                  </div>
+                  <div class="summary-row">
+                    <span class="summary-label">Date & Time:</span>
+                    <span class="summary-value" id="summary-datetime-{{ section.id }}"></span>
+                  </div>
+                  <div class="summary-row">
+                    <span class="summary-label">Bikes:</span>
+                    <span class="summary-value" id="summary-participants-{{ section.id }}"></span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="form-submit text-center">
+                <button type="submit" class="btn btn-submit-{{ section.id }}" id="submit-btn-{{ section.id }}">
+                  <span class="btn-text">Schedule Service</span>
+                  <span class="btn-loading" style="display: none;">
+                    <i class="fa fa-spinner fa-spin"></i> Processing...
+                  </span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .section-workshop-booking {
+    padding: 80px 0;
+    background: #fff;
+  }
+  
+  .section-workshop-booking .title-{{ section.id }} {
+    color: {{ section.settings.color_title | default: '#333' }};
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  
+  .section-workshop-booking .subtitle-{{ section.id }} {
+    color: {{ section.settings.color_subtitle | default: '#6c757d' }};
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .booking-form-wrapper {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background: #fff;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    line-height: 1;
+  }
+  
+  .form-control:focus {
+    outline: none;
+    border-color: {{ section.settings.color_title | default: '#333' }};
+    box-shadow: 0 0 0 3px rgba(51, 51, 51, 0.1);
+  }
+  
+  .form-control:required:invalid {
+    border-color: #dc3545;
+  }
+  
+  .form-control:required:valid {
+    border-color: #28a745;
+  }
+  
+  .booking-summary {
+    background: #e9ecef;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border-left: 4px solid {{ section.settings.color_title | default: '#333' }};
+  }
+  
+  .summary-header {
+    margin-bottom: 1rem;
+  }
+  
+  .summary-title {
+    color: {{ section.settings.color_title | default: '#333' }};
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+  }
+  
+  .summary-content {
+    display: grid;
+    gap: 0.75rem;
+  }
+  
+  .summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #dee2e6;
+  }
+  
+  .summary-row:last-child {
+    border-bottom: none;
+    font-weight: 600;
+    font-size: 18px;
+    color: {{ section.settings.color_title | default: '#333' }};
+  }
+  
+  .summary-label {
+    font-weight: 500;
+    color: #6c757d;
+  }
+  
+  .summary-value {
+    color: #333;
+    text-align: right;
+  }
+  
+  .btn-submit-{{ section.id }} {
+    background: {{ section.settings.color_title | default: '#333' }};
+    color: #fff;
+    padding: 15px 40px;
+    border: 2px solid {{ section.settings.color_title | default: '#333' }};
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    min-width: 200px;
+  }
+  
+  .btn-submit-{{ section.id }}:hover {
+    background: #555;
+    border-color: #555;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  }
+  
+  .btn-submit-{{ section.id }}:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+  
+  .btn-loading {
+    display: none;
+  }
+  
+  @media (max-width: 768px) {
+    .section-workshop-booking {
+      padding: 60px 0;
+    }
+    
+    .section-workshop-booking .title-{{ section.id }} {
+      font-size: 28px;
+    }
+    
+    .section-workshop-booking .subtitle-{{ section.id }} {
+      font-size: 16px;
+    }
+    
+    .booking-form-wrapper {
+      padding: 1.5rem;
+    }
+    
+    .btn-submit-{{ section.id }} {
+      min-width: 100%;
+    }
+  }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('workshop-booking-form-{{ section.id }}');
+  const locationSelect = document.getElementById('service-location-{{ section.id }}');
+  const workshopSelect = document.getElementById('workshop-type-{{ section.id }}');
+  const dateInput = document.getElementById('workshop-date-{{ section.id }}');
+  const timeInput = document.getElementById('workshop-time-{{ section.id }}');
+  const participantsInput = document.getElementById('participants-{{ section.id }}');
+  const summaryDiv = document.getElementById('booking-summary-{{ section.id }}');
+  const submitBtn = document.getElementById('submit-btn-{{ section.id }}');
+  const btnText = submitBtn.querySelector('.btn-text');
+  const btnLoading = submitBtn.querySelector('.btn-loading');
+  
+  // Set minimum date to today
+  const today = new Date().toISOString().split('T')[0];
+  dateInput.min = today;
+  
+  // Update summary when form changes
+  function updateSummary() {
+    const selectedLocation = locationSelect.options[locationSelect.selectedIndex];
+    const selectedOption = workshopSelect.options[workshopSelect.selectedIndex];
+    const selectedDate = dateInput.value;
+    const selectedTime = timeInput.value;
+    const participants = participantsInput.value;
+    
+    if (selectedLocation.value && selectedOption.value && selectedDate && selectedTime && participants) {
+      document.getElementById('summary-location-{{ section.id }}').textContent = selectedLocation.value.split(' - ')[0];
+      document.getElementById('summary-service-{{ section.id }}').textContent = selectedOption.value;
+      document.getElementById('summary-datetime-{{ section.id }}').textContent = `${selectedDate} at ${selectedTime}`;
+      document.getElementById('summary-participants-{{ section.id }}').textContent = participants;
+      
+      summaryDiv.style.display = 'block';
+    } else {
+      summaryDiv.style.display = 'none';
+    }
+  }
+  
+  // Add event listeners
+  locationSelect.addEventListener('change', updateSummary);
+  workshopSelect.addEventListener('change', updateSummary);
+  dateInput.addEventListener('change', updateSummary);
+  timeInput.addEventListener('change', updateSummary);
+  participantsInput.addEventListener('change', updateSummary);
+  
+  // Form submission
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    // Show loading state
+    btnText.style.display = 'none';
+    btnLoading.style.display = 'inline';
+    submitBtn.disabled = true;
+    
+    // Submit to Google Cloud Function
+    try {
+      const formData = new FormData(form);
+      const bookingData = Object.fromEntries(formData.entries());
+      
+      // Add workshop details from selected option
+      const selectedOption = workshopSelect.options[workshopSelect.selectedIndex];
+      if (selectedOption.dataset.duration) {
+        bookingData.workshop_duration = selectedOption.dataset.duration;
+      }
+      
+      const response = await fetch('https://bookings-api-802427545823.europe-west6.run.app/bookings/service', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(bookingData)
+      });
+      
+      const result = await response.json();
+      
+      if (result.success) {
+        alert(`🎉 Service appointment confirmed! Your booking ID is: ${result.booking_id}\n\nCheck your email for confirmation details.`);
+        
+        // Reset form
+        form.reset();
+        summaryDiv.style.display = 'none';
+      } else {
+        alert(`❌ Service booking failed: ${result.error || 'Unknown error'}`);
+      }
+    } catch (error) {
+      console.error('Booking error:', error);
+      alert('❌ Booking failed. Please try again or contact us directly.');
+    } finally {
+      // Reset button
+      btnText.style.display = 'inline';
+      btnLoading.style.display = 'none';
+      submitBtn.disabled = false;
+    }
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Workshop Booking",
+  "settings": [
+    {
+      "type": "text",
+      "id": "booking_title",
+      "label": "Booking Title",
+      "default": "Schedule Your Service"
+    },
+    {
+      "type": "textarea",
+      "id": "booking_subtitle",
+      "label": "Booking Subtitle",
+      "default": "Ready to give your bike the care it deserves? Schedule your service appointment today. Contact us at +41 91 224 53 44 or info@godspeed.ch"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "color_title",
+      "label": "Title Color",
+      "default": "#333"
+    },
+    {
+      "type": "color",
+      "id": "color_subtitle",
+      "label": "Subtitle Color",
+      "default": "#6c757d"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "service_option",
+      "name": "Service Option",
+      "settings": [
+        {
+          "type": "text",
+          "id": "service_name",
+          "label": "Service Name",
+          "default": "Complete System Analysis"
+        },
+        {
+          "type": "text",
+          "id": "duration",
+          "label": "Duration",
+          "default": "2 hours"
+        },
+        {
+          "type": "number",
+          "id": "price",
+          "label": "Price per Person",
+          "default": 95
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Comprehensive diagnostic testing and analysis of your e-bike system including battery, motor, and electrical components."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Service Booking",
+      "category": "Workshop",
+      "blocks": [
+        {
+          "type": "service_option"
+        },
+        {
+          "type": "service_option"
+        },
+        {
+          "type": "service_option"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

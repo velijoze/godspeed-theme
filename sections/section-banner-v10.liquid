@@ -1,0 +1,298 @@
+<div data-section-id="{{ section.id }}" data-section-type="section-banner-v10" style="{% if section.settings.margin_top != blank %}margin-top: {{section.settings.margin_top}}px;{%endif%} {% if section.settings.margin_bottom != blank %}margin-bottom: {{section.settings.margin_bottom}}px;{% endif %}">
+  <div class="section-banner-v10">
+    <div class="container container-full p-0">
+      {% if section.settings.title_section != blank %}
+      <div class="title-info">
+        <h3 class="title_heading text-center mb-0" style="color: {{section.settings.color_heading}}">{{section.settings.title_section}}</h3>
+      </div>
+      {% endif %}
+
+      <div class="row  no-gutters">   
+        <div class="col-md-9 banner-left">
+          <div class="row no-gutters">
+            <div class="col-md-8">
+              <div class="item-banner">
+                <div class="img-banner">
+                  <img data-src="{% if section.settings.img_banner1 != blank %} {{section.settings.img_banner1 | img_url : 'master'}} {% else %} //via.placeholder.com/950x475 {% endif %}" class="lazyload img-fluid w-100" alt="_img_banner">
+                </div>
+                <div class="content-banner style-1">
+                  <div class="banner-info">
+                    {% if section.settings.subtitle_banner1 != blank %}
+                    <h6 class="title"> {{section.settings.subtitle_banner1}}</h6>
+                    {% endif %}
+                    <h3 class="bigtitle"> <span>{{section.settings.title_banner1}}</span></h3>
+
+                    <a class="button" target="_self" href="{{section.settings.link_banner1}}"> <span>{{section.settings.button_banner1}}</span> </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="item-banner">
+                <div class="img-banner">
+                  <img data-src="{% if section.settings.img_banner3 != blank %} {{section.settings.img_banner2 | img_url : 'master'}} {% else %} //via.placeholder.com/475x475 {% endif %}" class="lazyload img-fluid w-100" alt="_img_banner">
+                </div>
+                <div class="content-banner style-2">
+                  <div class="banner-info">                    
+                    <h3 class="bigtitle"> <span>{{section.settings.title_banner2}}</span></h3>
+                    <a class="button" target="_self" href="{{section.settings.link_banner2}}"> <span>{{section.settings.button_banner2}}</span> </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <div class="item-banner">
+                <div class="img-banner">
+                  <img data-src="{% if section.settings.img_banner3 != blank %} {{section.settings.img_banner3 | img_url : 'master'}} {% else %} //via.placeholder.com/475x475 {% endif %}" class="lazyload img-fluid w-100" alt="_img_banner">
+                </div>
+                <div class="content-banner style-3">
+                  <div class="banner-info">
+                    <h3 class="bigtitle"> <span>{{section.settings.title_banner3}}</span></h3>
+                    <a class="button" target="_self" href="{{section.settings.link_banner3}}"> <span>{{section.settings.button_banner3}}</span> </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="item-banner">
+                <div class="img-banner">
+                  <img data-src="{% if section.settings.img_banner4 != blank %} {{section.settings.img_banner4 | img_url : 'master'}} {% else %} //via.placeholder.com/950x475 {% endif %}" class="lazyload img-fluid w-100" alt="_img_banner">
+                </div>
+                <div class="content-banner style-4">
+                  <div class="banner-info">
+                    {% if section.settings.subtitle_banner4 != blank %}
+                    <h6 class="title"> {{section.settings.subtitle_banner4}}</h6>
+                    {% endif %}
+                    <h3 class="bigtitle"> <span>{{section.settings.title_banner4}}</span></h3>
+                    <a class="button" target="_self" href="{{section.settings.link_banner4}}"> <span>{{section.settings.button_banner4}}</span> </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 banner-right">
+          <div class="item-banner">
+            <div class="img-banner">
+              <img data-src="{% if section.settings.img_banner5 != blank %} {{section.settings.img_banner5 | img_url : 'master'}} {% else %} //via.placeholder.com/478x955 {% endif %}" class="lazyload img-fluid w-100" alt="_img_banner">
+            </div>
+            <div class="content-banner style-5">
+              <div class="banner-info">
+                <h3 class="bigtitle"> <span>{{section.settings.title_banner5}}</span></h3>
+                <a class="button" target="_self" href="{{section.settings.link_banner5}}"> <span>{{section.settings.button_banner5}}</span> </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+</style>
+
+{% schema %}
+{
+  "name": "BANNER V10",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Setting Banner"
+    },
+    {
+      "type": "text",
+      "id": "title_section",
+      "label": "Title banner"
+    },
+    {
+      "type": "color",
+      "id": "color_heading",
+      "label": "Color",
+      "default": "#000"
+    },
+    {
+      "type": "header",
+      "content": "Setting banner 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "img_banner1",
+      "label": "Image",
+      "info": "950 x 475px recommended"
+    },
+	{
+      "type": "text",
+      "id": "subtitle_banner1",
+      "label": "Sub Title",
+      "default": "HANDPICKED BY NEXIO"
+    },
+    {
+      "type": "text",
+      "id": "title_banner1",
+      "label": "Title",
+      "default": "SPRING COLLECTION"
+    },
+	{
+      "type": "text",
+      "id": "button_banner1",
+      "label": "Button label",
+      "default": "Shop now"
+    },
+    {
+      "type": "url",
+      "id": "link_banner1",
+      "label": "URL Banner",
+      "default": "/collections/all"
+    },
+    {
+      "type": "header",
+      "content": "Setting banner 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "img_banner2",
+      "label": "Image",
+      "info": "475 x 475px recommended"
+    },
+    {
+      "type": "text",
+      "id": "title_banner2",
+      "label": "Title",
+      "default": "TOP PRODUCTS"
+    },
+	{
+      "type": "text",
+      "id": "button_banner2",
+      "label": "Button label",
+      "default": "Shop now"
+    },
+    {
+      "type": "url",
+      "id": "link_banner2",
+      "label": "URL Banner",
+      "default": "/collections/all"
+    },
+    {
+      "type": "header",
+      "content": "Setting banner 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "img_banner3",
+      "label": "Image",
+      "info": "475 x 475px recommended"
+    },
+    {
+      "type": "text",
+      "id": "title_banner3",
+      "label": "Title",
+      "default": "NEW ARIVALS"
+    },
+	{
+      "type": "text",
+      "id": "button_banner3",
+      "label": "Button label",
+      "default": "Shop now"
+    },
+    {
+      "type": "url",
+      "id": "link_banner3",
+      "label": "URL Banner",
+      "default": "/collections/all"
+    },
+    {
+      "type": "header",
+      "content": "Setting banner 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "img_banner4",
+      "label": "Image",
+      "info": "950 x 475px recommended"
+    },
+	{
+      "type": "text",
+      "id": "subtitle_banner4",
+      "label": "Sub Title",
+      "default": "HANDPICKED BY NEXIO"
+    },
+    {
+      "type": "text",
+      "id": "title_banner4",
+      "label": "Title",
+      "default": "SUMMER COLLECTION"
+    },
+	{
+      "type": "text",
+      "id": "button_banner4",
+      "label": "Button label",
+      "default": "Shop now"
+    },
+    {
+      "type": "url",
+      "id": "link_banner4",
+      "label": "URL Banner",
+      "default": "/collections/all"
+    },
+    {
+      "type": "header",
+      "content": "Setting banner 5"
+    },
+    {
+      "type": "image_picker",
+      "id": "img_banner5",
+      "label": "Image",
+      "info": "478 x 955px recommended"
+    },
+    {
+      "type": "text",
+      "id": "title_banner5",
+      "label": "Title",
+      "default": "ACCESSORIES TRENDING"
+    },
+	{
+      "type": "text",
+      "id": "button_banner5",
+      "label": "Button label",
+      "default": "Shop now"
+    },
+    {
+      "type": "url",
+      "id": "link_banner5",
+      "label": "URL Banner",
+      "default": "/collections/all"
+    },
+    {
+      "type": "header",
+      "content": "Section Space"
+    },
+    {
+      "type": "text",
+      "id": "margin_top",
+      "label": "Margin Top",
+      "info": "Defined in pixels. Do not add the 'px' unit."
+    },
+    {
+      "type": "text",
+      "id": "margin_bottom",
+      "label": "Margin Bottom",
+      "info": "Defined in pixels. Do not add the 'px' unit."
+    }
+  ],
+  "presets": [
+    {
+      "name": "BANNER V10",
+      "category": "HOME"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,87 @@
+{% comment %}
+  Test Ride Button
+  Add this to product pages to show a "Book Test Ride" button
+  Usage: {% render 'test-ride-button', product: product %}
+{% endcomment %}
+
+<div class="test-ride-button-wrapper">
+  <button class="btn-test-ride" onclick="openTestRideModal({
+    id: {{ product.id }},
+    handle: '{{ product.handle }}',
+    title: '{{ product.title | escape }}',
+    price: '{{ product.price | money }}',
+    image: '{{ product.featured_image | img_url: 'medium' }}'
+  })">
+    <svg class="test-ride-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+      <path d="M12 12L13.5 15.5L17 14L13.5 15.5L12 19L10.5 15.5L7 14L10.5 15.5L12 12Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+    </svg>
+    Book Test Ride
+  </button>
+</div>
+
+<style>
+.test-ride-button-wrapper {
+  margin: 1rem 0;
+}
+
+.btn-test-ride {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  color: white;
+  border: 2px solid #28a745;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-test-ride::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-test-ride:hover::before {
+  left: 100%;
+}
+
+.btn-test-ride:hover {
+  background: linear-gradient(135deg, #218838 0%, #1ea389 100%);
+  border-color: #218838;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3);
+}
+
+.btn-test-ride:active {
+  transform: translateY(0);
+}
+
+.test-ride-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .btn-test-ride {
+    width: 100%;
+    justify-content: center;
+    padding: 1rem 1.5rem;
+  }
+}
+</style>

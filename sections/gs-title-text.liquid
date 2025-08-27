@@ -1,0 +1,41 @@
+<div class="gs-title-text" style="{% if section.settings.margin_top != blank %}margin-top: {{ section.settings.margin_top }}px;{% endif %}{% if section.settings.margin_bottom != blank %} margin-bottom: {{ section.settings.margin_bottom }}px;{% endif %}">
+  <div class="container container-v1">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        {% if section.settings.kicker != blank %}
+        <p class="mb-2 text-uppercase" style="letter-spacing: .08em; opacity: .7;">{{ section.settings.kicker }}</p>
+        {% endif %}
+
+        {% if section.settings.title != blank %}
+        <h2 class="title_heading mb-3 text-{{ section.settings.text_align }}">{{ section.settings.title }}</h2>
+        {% endif %}
+
+        {% if section.settings.body != blank %}
+        <div class="content_info text-{{ section.settings.text_align }}">{{ section.settings.body }}</div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "GS: Title + Text",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker (small label)" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Section Title" },
+    { "type": "richtext", "id": "body", "label": "Body", "default": "<p>Add your content here.</p>" },
+    { "type": "select", "id": "text_align", "label": "Text alignment", "default": "left", "options": [
+      {"value":"left","label":"Left"}, {"value":"center","label":"Center"}, {"value":"right","label":"Right"}
+    ]},
+    { "type": "text", "id": "margin_top", "label": "Margin top (px)" },
+    { "type": "text", "id": "margin_bottom", "label": "Margin bottom (px)" }
+  ],
+  "presets": [ { "name": "GS: Title + Text" } ]
+}
+{% endschema %}
+
+{% stylesheet %}{% endstylesheet %}
+{% javascript %}{% endjavascript %}
+
+

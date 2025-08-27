@@ -1,0 +1,90 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "contact_template": {
+      "type": "contact-template",
+      "settings": {
+        "bg_breadcrumb": "shopify://shop_images/breadcup-1.jpg",
+        "enable_s_contactform": true,
+        "contactform_title": "Send Us An Message",
+        "contactform_name": "Name",
+        "contactform_email": "Email Address",
+        "contactform_content": "Your Message",
+        "contactform_btn": "Submit",
+        "address1_title": "Zurich Store",
+        "address1_location": "Bahnhofstrasse 123\n8001 Zurich, Switzerland",
+        "address1_phone": "+41 44 123 45 67",
+        "address1_hours": "Monday - Friday: 09:00 - 18:30\nSaturday: 09:00 - 17:00",
+        "address1_email": "zurich@godspeed.ch",
+        "address1_map_style": "image_map",
+        "address1_map_image": "shopify://shop_images/map_zurich.jpg",
+        "address1_map_link": "https://maps.google.com/maps?q=Bahnhofstrasse+Zurich",
+        "address2_title": "Basel Store",
+        "address2_location": "Freie Strasse 45\n4001 Basel, Switzerland",
+        "address2_phone": "+41 61 234 56 78",
+        "address2_hours": "Monday - Friday: 10:00 - 19:00\nSaturday: 10:00 - 18:00",
+        "address2_email": "basel@godspeed.ch",
+        "address2_map_style": "image_map",
+        "address2_map_image": "shopify://shop_images/map_basel.jpg",
+        "address2_map_link": "https://maps.google.com/maps?q=Freie+Strasse+Basel",
+        "address3_title": "Bellinzona Store",
+        "address3_location": "Via Teatro 12\n6500 Bellinzona, Switzerland",
+        "address3_phone": "+41 91 345 67 89",
+        "address3_hours": "Monday - Friday: 09:30 - 18:00\nSaturday: 09:30 - 17:00",
+        "address3_email": "bellinzona@godspeed.ch",
+        "address3_map_style": "image_map",
+        "address3_map_image": "shopify://shop_images/map_bellinzona.jpg",
+        "address3_map_link": "https://maps.google.com/maps?q=Via+Teatro+Bellinzona",
+        "address4_title": "Lucerne Store",
+        "address4_location": "Hertensteinstrasse 8\n6004 Lucerne, Switzerland",
+        "address4_phone": "+41 41 456 78 90",
+        "address4_hours": "Monday - Friday: 09:00 - 18:30\nSaturday: 09:00 - 17:00",
+        "address4_email": "lucerne@godspeed.ch",
+        "address4_map_style": "image_map",
+        "address4_map_image": "shopify://shop_images/map_lucerne.jpg",
+        "address4_map_link": "https://maps.google.com/maps?q=Hertensteinstrasse+Lucerne"
+      }
+    },
+    "newsletter_contact": {
+      "type": "newsletter_contact",
+      "settings": {
+        "select_style": "style_1",
+        "select_width": "full",
+        "style_bg": "image",
+        "bg_color": "#f2f2f2",
+        "bg_newsletters": "shopify://shop_images/about-4.jpg",
+        "title_newletter": "Our <br><strong>NEWSLETTER!</strong>",
+        "color_title": "#ffffff",
+        "content_newletter": "It only takes a second to be the first to find<br>out about our latest news",
+        "color_content": "#ffffff",
+        "margin_top": "",
+        "margin_bottom": ""
+      }
+    },
+    "instagram_contact": {
+      "type": "instagram_contact",
+      "settings": {
+        "enable_insta": true,
+        "title_icon": "icon-icon-intagram",
+        "title_content": "Follow Us On Instagram",
+        "ins_userid": "",
+        "ins_access_token": "",
+        "ins_limit_number": "7",
+        "item_icon": "fa fa-instagram"
+      }
+    }
+  },
+  "order": [
+    "contact_template",
+    "newsletter_contact",
+    "instagram_contact"
+  ]
+}

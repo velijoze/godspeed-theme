@@ -1,0 +1,37 @@
+{%- comment -%}
+  Organization Structured Data (Schema.org)
+  https://schema.org/Organization
+{%- endcomment -%}
+
+{%- if template == 'index' -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": {{ shop.name | json }},
+  "url": {{ shop.url | json }},
+  {%- if settings.logo -%}
+  "logo": "https:{{ settings.logo | img_url: 'master' }}",
+  {%- endif -%}
+  "description": {{ shop.description | default: shop.name | json }},
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": {{ shop.address.country | json }}
+  },
+  "sameAs": [
+    {%- if settings.social_facebook_link != blank -%}"{{ settings.social_facebook_link }}",{%- endif -%}
+    {%- if settings.social_twitter_link != blank -%}"{{ settings.social_twitter_link }}",{%- endif -%}
+    {%- if settings.social_instagram_link != blank -%}"{{ settings.social_instagram_link }}",{%- endif -%}
+    {%- if settings.social_youtube_link != blank -%}"{{ settings.social_youtube_link }}",{%- endif -%}
+    {%- if settings.social_pinterest_link != blank -%}"{{ settings.social_pinterest_link }}"{%- endif -%}
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": {{ settings.contact_phone | default: "+1-555-555-5555" | json }},
+    "contactType": "customer service",
+    "availableLanguage": {{ shop.locale | json }}
+  }
+}
+</script>
+{%- endif -%}
+

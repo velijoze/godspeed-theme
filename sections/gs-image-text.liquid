@@ -1,0 +1,52 @@
+<div class="gs-image-text" style="{% if section.settings.margin_top != blank %}margin-top: {{ section.settings.margin_top }}px;{% endif %}{% if section.settings.margin_bottom != blank %} margin-bottom: {{ section.settings.margin_bottom }}px;{% endif %}">
+  <div class="container container-v1">
+    <div class="row align-items-center {% if section.settings.image_position == 'right' %}flex-row-reverse{% endif %}">
+      <div class="col-lg-6 mb-4 mb-lg-0">
+        {% if section.settings.image != blank %}
+        <img class="img-fluid w-100" src="{{ section.settings.image | img_url: 'master' }}" alt="">
+        {% else %}
+        <img class="img-fluid w-100" src="//via.placeholder.com/800x600" alt="">
+        {% endif %}
+      </div>
+      <div class="col-lg-6">
+        {% if section.settings.kicker != blank %}
+        <p class="mb-2 text-uppercase" style="letter-spacing: .08em; opacity: .7;">{{ section.settings.kicker }}</p>
+        {% endif %}
+        {% if section.settings.title != blank %}
+        <h3 class="title_heading mb-3">{{ section.settings.title }}</h3>
+        {% endif %}
+        {% if section.settings.body != blank %}
+        <div class="content_info">{{ section.settings.body }}</div>
+        {% endif %}
+        {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+        <a class="btn btn-primary mt-3" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "GS: Image + Text",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "select", "id": "image_position", "label": "Image position", "default": "left", "options": [
+      {"value":"left","label":"Left"}, {"value":"right","label":"Right"}
+    ]},
+    { "type": "text", "id": "kicker", "label": "Kicker" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Section Title" },
+    { "type": "richtext", "id": "body", "label": "Body", "default": "<p>Describe the content here.</p>" },
+    { "type": "text", "id": "button_label", "label": "Button label" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "text", "id": "margin_top", "label": "Margin top (px)" },
+    { "type": "text", "id": "margin_bottom", "label": "Margin bottom (px)" }
+  ],
+  "presets": [ { "name": "GS: Image + Text" } ]
+}
+{% endschema %}
+
+{% stylesheet %}{% endstylesheet %}
+{% javascript %}{% endjavascript %}
+
+

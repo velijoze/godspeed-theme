@@ -1,0 +1,627 @@
+<div class="wrap-bread-crumb breadcrumb_collection2">
+  <div class="text-center bg-breadcrumb" style="background-image : url({% if section.settings.bg_breadcrumb != blank  %}{{section.settings.bg_breadcrumb | img_url : 'master'}} {% else %}//via.placeholder.com/1920x510 {% endif %})">
+    <div class="title-page">
+
+      <h2 class="">{{page.title}}</h2>
+
+    </div>
+    {% include 'breadcrumb' %}
+  </div>
+</div>
+<section id="content">
+  <div class="content-page contact-page">
+
+    <div class="container container-v4">
+      <!-- Contact Form Section - Moved to Top -->
+      {% if section.settings.enable_s_contactform %}
+      <div class="contact_form_top mb-5">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <h2 class="contact_title text-center">{{section.settings.contactform_title}}</h2>
+            <div class="contact-form-page">
+
+              {% form 'contact' %}
+
+              {% if form.posted_successfully? %}
+              <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <p style="margin-bottom: 5px;">
+                  {{ 'contact.form.post_success' | t }}
+                </p>
+              </div>
+              {% endif %}
+
+              {% if form.errors %}
+              <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <p style="margin-bottom: 5px;">Your contact form has {{ form.errors | size | pluralize: "an error", "a few errors" }}. To submit your form, make the following changes and try again:</p>
+                {% for field in form.errors %}
+                <p style="margin-bottom: 5px;">The {{ field | capitalize | replace: 'Body', 'Message' }} field {{ form.errors.messages[field] }}.</p>
+                {% endfor %}
+              </div>
+              {% endif %}
+              <div class="contact-form">
+                <div class="row">
+                  <div class="col-sm-12 col-md-6">
+                    <label>{{section.settings.contactform_name}}</label>
+                  	<p class="contact-name">
+                      <input class="" placeholder="" type="text" id="contactFormName" name="contact[name]" required>
+                    </p>
+                  </div>
+                  <div class="col-sm-12 col-md-6">
+                    <label>{{section.settings.contactform_email}}</label>
+                  	<p class="contact-email">
+                      <input class="" placeholder="" type="email" id="contactFormEmail" name="contact[email]" required>
+                    </p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <label>{{section.settings.contactform_content}}</label>
+                  	<p class="contact-message">
+                      <textarea class="" placeholder="" cols="30" rows="10" id="contactFormMessage" name="contact[body]" required></textarea>
+                    </p>
+                  </div>
+                </div>
+                
+                <p class="contact-submit text-center">
+                  <input  class="shop-button" type="submit" value="{{section.settings.contactform_btn}}">
+                </p>
+              </div>
+              {% endform %}
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+      <!-- Four Addresses Section -->
+      <div class="addresses-section">
+        <div class="row">
+          <!-- Address 1 -->
+          <div class="col-lg-6 col-md-6 mb-4">
+            <div class="address-item">
+              <div class="address-info mb-3">
+                <h3>{% if section.settings.address1_title != blank %}{{section.settings.address1_title}}{% else %}Zurich Store{% endif %}</h3>
+                <div class="address-details">
+                  <p><i class="fa fa-map-marker"></i> {% if section.settings.address1_location != blank %}{{section.settings.address1_location}}{% else %}Bahnhofstrasse 123<br>8001 Zurich, Switzerland{% endif %}</p>
+                  <p><i class="fa fa-phone"></i> {% if section.settings.address1_phone != blank %}{{section.settings.address1_phone}}{% else %}+41 44 123 45 67{% endif %}</p>
+                  <p><i class="fa fa-clock-o"></i> {% if section.settings.address1_hours != blank %}{{section.settings.address1_hours}}{% else %}Monday - Friday: 09:00 - 18:30<br>Saturday: 09:00 - 17:00{% endif %}</p>
+                  <p><i class="fa fa-envelope"></i> <a href="mailto:{% if section.settings.address1_email != blank %}{{section.settings.address1_email}}{% else %}zurich@godspeed.ch{% endif %}">{% if section.settings.address1_email != blank %}{{section.settings.address1_email}}{% else %}zurich@godspeed.ch{% endif %}</a></p>
+                </div>
+              </div>
+              <div class="address-map">
+                {% if section.settings.address1_map_style == 'google_map' %}
+                <div class="contact-google-map">
+                  <div id="map1" class="map-custom" style="height: 300px;"></div>
+                </div>
+                {% elsif section.settings.address1_map_style == 'image_map' %}
+                <a class="image_map d-block" target="_blank" href="{% if section.settings.address1_map_link != blank %}{{section.settings.address1_map_link}}{% else %}https://maps.google.com/maps?q=Bahnhofstrasse+Zurich{% endif %}">
+                  <img src="{% if section.settings.address1_map_image != blank %}{{section.settings.address1_map_image | img_url: 'master'}}{% else %}//via.placeholder.com/555x300/4CAF50/FFFFFF?text=Zurich+Store+Map{% endif %}" class="img-fluid">
+                </a>
+                {% else %}
+                <a class="image_map d-block" target="_blank" href="https://maps.google.com/maps?q=Bahnhofstrasse+Zurich">
+                  <img src="//via.placeholder.com/555x300/4CAF50/FFFFFF?text=Zurich+Store+Map" class="img-fluid">
+                </a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+
+          <!-- Address 2 -->
+          <div class="col-lg-6 col-md-6 mb-4">
+            <div class="address-item">
+              <div class="address-info mb-3">
+                <h3>{% if section.settings.address2_title != blank %}{{section.settings.address2_title}}{% else %}Basel Store{% endif %}</h3>
+                <div class="address-details">
+                  <p><i class="fa fa-map-marker"></i> {% if section.settings.address2_location != blank %}{{section.settings.address2_location}}{% else %}Freie Strasse 45<br>4001 Basel, Switzerland{% endif %}</p>
+                  <p><i class="fa fa-phone"></i> {% if section.settings.address2_phone != blank %}{{section.settings.address2_phone}}{% else %}+41 61 234 56 78{% endif %}</p>
+                  <p><i class="fa fa-clock-o"></i> {% if section.settings.address2_hours != blank %}{{section.settings.address2_hours}}{% else %}Monday - Friday: 10:00 - 19:00<br>Saturday: 10:00 - 18:00{% endif %}</p>
+                  <p><i class="fa fa-envelope"></i> <a href="mailto:{% if section.settings.address2_email != blank %}{{section.settings.address2_email}}{% else %}basel@godspeed.ch{% endif %}">{% if section.settings.address2_email != blank %}{{section.settings.address2_email}}{% else %}basel@godspeed.ch{% endif %}</a></p>
+                </div>
+              </div>
+              <div class="address-map">
+                {% if section.settings.address2_map_style == 'google_map' %}
+                <div class="contact-google-map">
+                  <div id="map2" class="map-custom" style="height: 300px;"></div>
+                </div>
+                {% elsif section.settings.address2_map_style == 'image_map' %}
+                <a class="image_map d-block" target="_blank" href="{% if section.settings.address2_map_link != blank %}{{section.settings.address2_map_link}}{% else %}https://maps.google.com/maps?q=Freie+Strasse+Basel{% endif %}">
+                  <img src="{% if section.settings.address2_map_image != blank %}{{section.settings.address2_map_image | img_url: 'master'}}{% else %}//via.placeholder.com/555x300/2196F3/FFFFFF?text=Basel+Store+Map{% endif %}" class="img-fluid">
+                </a>
+                {% else %}
+                <a class="image_map d-block" target="_blank" href="https://maps.google.com/maps?q=Freie+Strasse+Basel">
+                  <img src="//via.placeholder.com/555x300/2196F3/FFFFFF?text=Basel+Store+Map" class="img-fluid">
+                </a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+
+          <!-- Address 3 -->
+          <div class="col-lg-6 col-md-6 mb-4">
+            <div class="address-item">
+              <div class="address-info mb-3">
+                <h3>{% if section.settings.address3_title != blank %}{{section.settings.address3_title}}{% else %}Bellinzona Store{% endif %}</h3>
+                <div class="address-details">
+                  <p><i class="fa fa-map-marker"></i> {% if section.settings.address3_location != blank %}{{section.settings.address3_location}}{% else %}Via Teatro 12<br>6500 Bellinzona, Switzerland{% endif %}</p>
+                  <p><i class="fa fa-phone"></i> {% if section.settings.address3_phone != blank %}{{section.settings.address3_phone}}{% else %}+41 91 345 67 89{% endif %}</p>
+                  <p><i class="fa fa-clock-o"></i> {% if section.settings.address3_hours != blank %}{{section.settings.address3_hours}}{% else %}Monday - Friday: 09:30 - 18:00<br>Saturday: 09:30 - 17:00{% endif %}</p>
+                  <p><i class="fa fa-envelope"></i> <a href="mailto:{% if section.settings.address3_email != blank %}{{section.settings.address3_email}}{% else %}bellinzona@godspeed.ch{% endif %}">{% if section.settings.address3_email != blank %}{{section.settings.address3_email}}{% else %}bellinzona@godspeed.ch{% endif %}</a></p>
+                </div>
+              </div>
+              <div class="address-map">
+                {% if section.settings.address3_map_style == 'google_map' %}
+                <div class="contact-google-map">
+                  <div id="map3" class="map-custom" style="height: 300px;"></div>
+                </div>
+                {% elsif section.settings.address3_map_style == 'image_map' %}
+                <a class="image_map d-block" target="_blank" href="{% if section.settings.address3_map_link != blank %}{{section.settings.address3_map_link}}{% else %}https://maps.google.com/maps?q=Via+Teatro+Bellinzona{% endif %}">
+                  <img src="{% if section.settings.address3_map_image != blank %}{{section.settings.address3_map_image | img_url: 'master'}}{% else %}//via.placeholder.com/555x300/FF9800/FFFFFF?text=Bellinzona+Store+Map{% endif %}" class="img-fluid">
+                </a>
+                {% else %}
+                <a class="image_map d-block" target="_blank" href="https://maps.google.com/maps?q=Via+Teatro+Bellinzona">
+                  <img src="//via.placeholder.com/555x300/FF9800/FFFFFF?text=Bellinzona+Store+Map" class="img-fluid">
+                </a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+
+          <!-- Address 4 -->
+          <div class="col-lg-6 col-md-6 mb-4">
+            <div class="address-item">
+              <div class="address-info mb-3">
+                <h3>{% if section.settings.address4_title != blank %}{{section.settings.address4_title}}{% else %}Lucerne Store{% endif %}</h3>
+                <div class="address-details">
+                  <p><i class="fa fa-map-marker"></i> {% if section.settings.address4_location != blank %}{{section.settings.address4_location}}{% else %}Hertensteinstrasse 8<br>6004 Lucerne, Switzerland{% endif %}</p>
+                  <p><i class="fa fa-phone"></i> {% if section.settings.address4_phone != blank %}{{section.settings.address4_phone}}{% else %}+41 41 456 78 90{% endif %}</p>
+                  <p><i class="fa fa-clock-o"></i> {% if section.settings.address4_hours != blank %}{{section.settings.address4_hours}}{% else %}Monday - Friday: 09:00 - 18:30<br>Saturday: 09:00 - 17:00{% endif %}</p>
+                  <p><i class="fa fa-envelope"></i> <a href="mailto:{% if section.settings.address4_email != blank %}{{section.settings.address4_email}}{% else %}lucerne@godspeed.ch{% endif %}">{% if section.settings.address4_email != blank %}{{section.settings.address4_email}}{% else %}lucerne@godspeed.ch{% endif %}</a></p>
+                </div>
+              </div>
+              <div class="address-map">
+                {% if section.settings.address4_map_style == 'google_map' %}
+                <div class="contact-google-map">
+                  <div id="map4" class="map-custom" style="height: 300px;"></div>
+                </div>
+                {% elsif section.settings.address4_map_style == 'image_map' %}
+                <a class="image_map d-block" target="_blank" href="{% if section.settings.address4_map_link != blank %}{{section.settings.address4_map_link}}{% else %}https://maps.google.com/maps?q=Hertensteinstrasse+Lucerne{% endif %}">
+                  <img src="{% if section.settings.address4_map_image != blank %}{{section.settings.address4_map_image | img_url: 'master'}}{% else %}//via.placeholder.com/555x300/9C27B0/FFFFFF?text=Lucerne+Store+Map{% endif %}" class="img-fluid">
+                </a>
+                {% else %}
+                <a class="image_map d-block" target="_blank" href="https://maps.google.com/maps?q=Hertensteinstrasse+Lucerne">
+                  <img src="//via.placeholder.com/555x300/9C27B0/FFFFFF?text=Lucerne+Store+Map" class="img-fluid">
+                </a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Google Maps Script for all locations -->
+<script>
+  function initMaps() {
+    // Address 1 Map
+    {% if section.settings.address1_map_style == 'google_map' and section.settings.address1_latitude != blank and section.settings.address1_longitude != blank %}
+    var location1 = {lat: {{ section.settings.address1_latitude }}, lng: {{ section.settings.address1_longitude }}};
+    var map1 = new google.maps.Map(document.getElementById('map1'), {
+      zoom: 15,
+      center: location1
+    });
+    var marker1 = new google.maps.Marker({
+      position: location1,
+      map: map1,
+      title: '{{ section.settings.address1_title }}'
+    });
+    {% endif %}
+
+    // Address 2 Map
+    {% if section.settings.address2_map_style == 'google_map' and section.settings.address2_latitude != blank and section.settings.address2_longitude != blank %}
+    var location2 = {lat: {{ section.settings.address2_latitude }}, lng: {{ section.settings.address2_longitude }}};
+    var map2 = new google.maps.Map(document.getElementById('map2'), {
+      zoom: 15,
+      center: location2
+    });
+    var marker2 = new google.maps.Marker({
+      position: location2,
+      map: map2,
+      title: '{{ section.settings.address2_title }}'
+    });
+    {% endif %}
+
+    // Address 3 Map
+    {% if section.settings.address3_map_style == 'google_map' and section.settings.address3_latitude != blank and section.settings.address3_longitude != blank %}
+    var location3 = {lat: {{ section.settings.address3_latitude }}, lng: {{ section.settings.address3_longitude }}};
+    var map3 = new google.maps.Map(document.getElementById('map3'), {
+      zoom: 15,
+      center: location3
+    });
+    var marker3 = new google.maps.Marker({
+      position: location3,
+      map: map3,
+      title: '{{ section.settings.address3_title }}'
+    });
+    {% endif %}
+
+    // Address 4 Map
+    {% if section.settings.address4_map_style == 'google_map' and section.settings.address4_latitude != blank and section.settings.address4_longitude != blank %}
+    var location4 = {lat: {{ section.settings.address4_latitude }}, lng: {{ section.settings.address4_longitude }}};
+    var map4 = new google.maps.Map(document.getElementById('map4'), {
+      zoom: 15,
+      center: location4
+    });
+    var marker4 = new google.maps.Marker({
+      position: location4,
+      map: map4,
+      title: '{{ section.settings.address4_title }}'
+    });
+    {% endif %}
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key={{settings.gmap_key}}&callback=initMaps" async defer></script>
+
+{% schema %}
+{
+  "name": "Contact Us",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "bg_breadcrumb",
+      "label": "Background Image Breadcrumb",
+      "info": "1920x510px recommended"
+    },
+    {
+      "type": "header",
+      "content": "Section Contact Form"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_s_contactform",
+      "label": "Enable Contact Form",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "contactform_title",
+      "label": "Contact Form Title",
+      "default": "Send Us An Message"
+    },
+    {
+      "type": "text",
+      "id": "contactform_name",
+      "label": "Name Field Label",
+      "default": "Name"
+    },
+    {
+      "type": "text",
+      "id": "contactform_email",
+      "label": "Email Field Label",
+      "default": "Email address"
+    },
+    {
+      "type": "text",
+      "id": "contactform_content",
+      "label": "Message Field Label",
+      "default": "Your Message"
+    },
+    {
+      "type": "text",
+      "id": "contactform_btn",
+      "label": "Submit Button Text",
+      "default": "Submit"
+    },
+    {
+      "type": "header",
+      "content": "Address 1"
+    },
+    {
+      "type": "text",
+      "id": "address1_title",
+      "label": "Address 1 Title",
+      "default": "Store Location 1"
+    },
+    {
+      "type": "textarea",
+      "id": "address1_location",
+      "label": "Address 1 Location",
+      "default": "123 Main Street, City, Country"
+    },
+    {
+      "type": "text",
+      "id": "address1_phone",
+      "label": "Address 1 Phone",
+      "default": "+1 234 567 8900"
+    },
+    {
+      "type": "text",
+      "id": "address1_hours",
+      "label": "Address 1 Hours",
+      "default": "Monday - Friday: 9:00 AM - 6:00 PM"
+    },
+    {
+      "type": "text",
+      "id": "address1_email",
+      "label": "Address 1 Email",
+      "default": "store1@example.com"
+    },
+    {
+      "type": "select",
+      "id": "address1_map_style",
+      "label": "Address 1 Map Style",
+      "options": [
+        {
+          "value": "google_map",
+          "label": "Google Map"
+        },
+        {
+          "value": "image_map",
+          "label": "Image Map"
+        }
+      ],
+      "default": "google_map"
+    },
+    {
+      "type": "text",
+      "id": "address1_latitude",
+      "label": "Address 1 Latitude",
+      "info": "Required for Google Maps"
+    },
+    {
+      "type": "text",
+      "id": "address1_longitude",
+      "label": "Address 1 Longitude",
+      "info": "Required for Google Maps"
+    },
+    {
+      "type": "image_picker",
+      "id": "address1_map_image",
+      "label": "Address 1 Map Image",
+      "info": "555x300px recommended. Used if Image Map is selected"
+    },
+    {
+      "type": "url",
+      "id": "address1_map_link",
+      "label": "Address 1 Map Link",
+      "info": "Link when map image is clicked"
+    },
+    {
+      "type": "header",
+      "content": "Address 2"
+    },
+    {
+      "type": "text",
+      "id": "address2_title",
+      "label": "Address 2 Title",
+      "default": "Store Location 2"
+    },
+    {
+      "type": "textarea",
+      "id": "address2_location",
+      "label": "Address 2 Location",
+      "default": "456 Second Street, City, Country"
+    },
+    {
+      "type": "text",
+      "id": "address2_phone",
+      "label": "Address 2 Phone",
+      "default": "+1 234 567 8901"
+    },
+    {
+      "type": "text",
+      "id": "address2_hours",
+      "label": "Address 2 Hours",
+      "default": "Monday - Friday: 9:00 AM - 6:00 PM"
+    },
+    {
+      "type": "text",
+      "id": "address2_email",
+      "label": "Address 2 Email",
+      "default": "store2@example.com"
+    },
+    {
+      "type": "select",
+      "id": "address2_map_style",
+      "label": "Address 2 Map Style",
+      "options": [
+        {
+          "value": "google_map",
+          "label": "Google Map"
+        },
+        {
+          "value": "image_map",
+          "label": "Image Map"
+        }
+      ],
+      "default": "google_map"
+    },
+    {
+      "type": "text",
+      "id": "address2_latitude",
+      "label": "Address 2 Latitude",
+      "info": "Required for Google Maps"
+    },
+    {
+      "type": "text",
+      "id": "address2_longitude",
+      "label": "Address 2 Longitude",
+      "info": "Required for Google Maps"
+    },
+    {
+      "type": "image_picker",
+      "id": "address2_map_image",
+      "label": "Address 2 Map Image",
+      "info": "555x300px recommended. Used if Image Map is selected"
+    },
+    {
+      "type": "url",
+      "id": "address2_map_link",
+      "label": "Address 2 Map Link",
+      "info": "Link when map image is clicked"
+    },
+    {
+      "type": "header",
+      "content": "Address 3"
+    },
+    {
+      "type": "text",
+      "id": "address3_title",
+      "label": "Address 3 Title",
+      "default": "Store Location 3"
+    },
+    {
+      "type": "textarea",
+      "id": "address3_location",
+      "label": "Address 3 Location",
+      "default": "789 Third Avenue, City, Country"
+    },
+    {
+      "type": "text",
+      "id": "address3_phone",
+      "label": "Address 3 Phone",
+      "default": "+1 234 567 8902"
+    },
+    {
+      "type": "text",
+      "id": "address3_hours",
+      "label": "Address 3 Hours",
+      "default": "Monday - Friday: 9:00 AM - 6:00 PM"
+    },
+    {
+      "type": "text",
+      "id": "address3_email",
+      "label": "Address 3 Email",
+      "default": "store3@example.com"
+    },
+    {
+      "type": "select",
+      "id": "address3_map_style",
+      "label": "Address 3 Map Style",
+      "options": [
+        {
+          "value": "google_map",
+          "label": "Google Map"
+        },
+        {
+          "value": "image_map",
+          "label": "Image Map"
+        }
+      ],
+      "default": "google_map"
+    },
+    {
+      "type": "text",
+      "id": "address3_latitude",
+      "label": "Address 3 Latitude",
+      "info": "Required for Google Maps"
+    },
+    {
+      "type": "text",
+      "id": "address3_longitude",
+      "label": "Address 3 Longitude",
+      "info": "Required for Google Maps"
+    },
+    {
+      "type": "image_picker",
+      "id": "address3_map_image",
+      "label": "Address 3 Map Image",
+      "info": "555x300px recommended. Used if Image Map is selected"
+    },
+    {
+      "type": "url",
+      "id": "address3_map_link",
+      "label": "Address 3 Map Link",
+      "info": "Link when map image is clicked"
+    },
+    {
+      "type": "header",
+      "content": "Address 4"
+    },
+    {
+      "type": "text",
+      "id": "address4_title",
+      "label": "Address 4 Title",
+      "default": "Store Location 4"
+    },
+    {
+      "type": "textarea",
+      "id": "address4_location",
+      "label": "Address 4 Location",
+      "default": "321 Fourth Boulevard, City, Country"
+    },
+    {
+      "type": "text",
+      "id": "address4_phone",
+      "label": "Address 4 Phone",
+      "default": "+1 234 567 8903"
+    },
+    {
+      "type": "text",
+      "id": "address4_hours",
+      "label": "Address 4 Hours",
+      "default": "Monday - Friday: 9:00 AM - 6:00 PM"
+    },
+    {
+      "type": "text",
+      "id": "address4_email",
+      "label": "Address 4 Email",
+      "default": "store4@example.com"
+    },
+    {
+      "type": "select",
+      "id": "address4_map_style",
+      "label": "Address 4 Map Style",
+      "options": [
+        {
+          "value": "google_map",
+          "label": "Google Map"
+        },
+        {
+          "value": "image_map",
+          "label": "Image Map"
+        }
+      ],
+      "default": "google_map"
+    },
+    {
+      "type": "text",
+      "id": "address4_latitude",
+      "label": "Address 4 Latitude",
+      "info": "Required for Google Maps"
+    },
+    {
+      "type": "text",
+      "id": "address4_longitude",
+      "label": "Address 4 Longitude",
+      "info": "Required for Google Maps"
+    },
+    {
+      "type": "image_picker",
+      "id": "address4_map_image",
+      "label": "Address 4 Map Image",
+      "info": "555x300px recommended. Used if Image Map is selected"
+    },
+    {
+      "type": "url",
+      "id": "address4_map_link",
+      "label": "Address 4 Map Link",
+      "info": "Link when map image is clicked"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact Us"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

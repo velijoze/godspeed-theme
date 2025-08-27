@@ -1,0 +1,277 @@
+<div data-section-id="{{ section.id }}" data-section-type="section-banner-v4" style="{% if section.settings.margin_top != blank %}margin-top: {{section.settings.margin_top}}px;{%endif%} {% if section.settings.margin_bottom != blank %}margin-bottom: {{section.settings.margin_bottom}}px;{% endif %}">
+  <div class="section-banner-v4 mt-all">
+    <div class="container container-v2">
+      <div class="banner-v4">
+        <div class="banner-item">
+          <div class="banner-info">
+            <a href="{{section.settings.link_button}}" class="d-block box-img">
+              {% if section.settings.banner_img != blank %}
+              <img data-src="{{section.settings.banner_img | img_url: 'master'}}" class="lazyload img-fluid w-100" alt="_img">
+              {% else %}
+              <img data-src="//via.placeholder.com/720x720" class="lazyload img-fluid w-100" alt="_img">
+              {% endif %}
+            </a>
+            <div class="banner-content">
+              {% if section.settings.title_detail != blank %}
+              <p class="title-detail" style="color: {{section.settings.color_title_detail}}">{{section.settings.title_detail}}</p>
+              {% endif %}
+              {% if section.settings.button_banner1 != blank %}
+              <a href="{{section.settings.link_button}}" class="btn-banner-{{ section.id }}">{{section.settings.button_banner1}}</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <div class="banner-item banner-item-v2">
+          <div class="sub-banner-item">
+            <div class="banner-up">
+              <a href="{{section.settings.link_button2}}" class="d-block box-img">
+                {% if section.settings.banner_img2 != blank %}
+                <img data-src="{{section.settings.banner_img2 | img_url: 'master'}}" class="lazyload img-fluid w-100" alt="_img">
+                {% else %}
+                <img data-src="//via.placeholder.com/360x420" class="lazyload img-fluid w-100" alt="_img">
+                {% endif %}
+              </a>
+            </div>
+            <div class="banner-down">
+              <div class="content">
+                {% if section.settings.banner_title2 != blank %}
+                <h3 class="title-banner" style="color: {{section.settings.color_banner_title2}}">{{section.settings.banner_title2}}</h3>
+                {% endif %}
+                {% if section.settings.title_detail2 != blank %}
+                <p class="title-detail2" style="color: {{section.settings.color_title_detail2}}">{{section.settings.title_detail2}}</p>
+                {% endif %}
+                {% if section.settings.button_banner2 != blank %}
+                <a href="{{section.settings.link_button2}}" class="btn-banner-{{ section.id }}">{{section.settings.button_banner2}}</a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+          <div class="sub-banner-item">
+            <div class="banner-up">
+              <a href="{{section.settings.link_button3}}" class="d-block box-img">
+                {% if section.settings.banner_img3 != blank %}
+                <img data-src="{{section.settings.banner_img3 | img_url: 'master'}}" class="lazyload img-fluid w-100" alt="_img">
+                {% else %}
+                <img data-src="//via.placeholder.com/360x420" class="lazyload img-fluid w-100" alt="_img">
+                {% endif %}
+              </a>
+            </div>
+            <div class="banner-down">
+              <div class="content">
+                {% if section.settings.banner_title3 != blank %}
+                <h3 class="title-banner" style="color: {{section.settings.color_banner_title3}}">{{section.settings.banner_title3}}</h3>
+                {% endif %}
+                {% if section.settings.title_detail3 != blank %}
+                <p class="title-detail2" style="color: {{section.settings.color_title_detail3}}">{{section.settings.title_detail3}}</p>
+                {% endif %}
+                {% if section.settings.button_banner3 != blank %}
+                <a href="{{section.settings.link_button3}}" class="btn-banner-{{ section.id }}">{{section.settings.button_banner3}}</a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .section-banner-v4 .banner-item .btn-banner-{{ section.id }} {
+    color: {{section.settings.color_btn}};
+    background: {{section.settings.bg_btn}};
+  }
+  .section-banner-v4 .banner-item .btn-banner-{{ section.id }}:hover {
+    color: {{section.settings.color_btn_hover}};
+    background: {{section.settings.bg_btn_hover}};
+  }
+</style>
+{% schema %}
+{
+  "name": "BANNER V4",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Space"
+    },
+    {
+      "type": "text",
+      "id": "margin_top",
+      "label": "Margin Top",
+      "info": "Defined in pixels. Do not add the 'px' unit."
+    },
+    {
+      "type": "text",
+      "id": "margin_bottom",
+      "label": "Margin Bottom",
+      "info": "Defined in pixels. Do not add the 'px' unit."
+    },
+    {
+      "type": "header",
+      "content": "Settings Banner 1"
+    },
+    {
+      "type": "text",
+      "id": "title_detail",
+      "label": "Title Details 1",
+      "default": " Underfoot cushioning and forward-thinking technologies ensure all-day comfort while modern designs capture the key trends of the season."
+    },
+    {
+      "type": "color",
+      "id": "color_title_detail",
+      "label": "Color Title Detail",
+      "default": "#a2a2a2"
+    },
+    {
+      "type": "text",
+      "id": "button_banner1",
+      "label": "Button Banner 1",
+      "default": "Discovery"
+    },
+    {
+      "type": "url",
+      "id": "link_button",
+      "label": "URL Button ",
+      "default": "/collections/all"
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_img",
+      "label": "Image",
+      "info": "720 x 720px recommended"
+    },
+    {
+      "type": "header",
+      "content": "Setting Banner 2"
+    },
+    {
+      "type": "text",
+      "id": "banner_title2",
+      "label": "Title Banner 2",
+      "default": "RUNNING"
+    },
+    {
+      "type": "color",
+      "id": "color_banner_title2",
+      "label": "Color Banner Title 2",
+      "default": "#fff"
+    },
+    {
+      "type": "text",
+      "id": "title_detail2",
+      "label": "Title Detail 2",
+      "default": "Made around hand-carved lasts using quality materials."
+    },
+    {
+      "type": "color",
+      "id": "color_title_detail2",
+      "label": "Color Title Details 2",
+      "default": "#fff"
+    },
+    {
+      "type": "text",
+      "id": "button_banner2",
+      "label": "Button Banner 2",
+      "default": "Discovery"
+    },
+    {
+      "type": "url",
+      "id": "link_button2",
+      "label": "URL Button 2",
+      "default": "/collections/all"
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_img2",
+      "label": "Image",
+      "info": "360 x 420px recommended"
+    },
+    {
+      "type": "header",
+      "content": "Setting Banner 3"
+    },
+    {
+      "type": "text",
+      "id": "banner_title3",
+      "label": "Title Banner 3",
+      "default": "TRAINING"
+    },
+    {
+      "type": "color",
+      "id": "color_banner_title3",
+      "label": "Color Banner Title 3",
+      "default": "#fff"
+    },
+    {
+      "type": "text",
+      "id": "title_detail3",
+      "label": "Title Detail 3",
+      "default": "Discover our latest collection of women’s shoes."
+    },
+    {
+      "type": "color",
+      "id": "color_title_detail3",
+      "label": "Color Title Details 3",
+      "default": "#fff"
+    },
+    {
+      "type": "text",
+      "id": "button_banner3",
+      "label": "Button Banner 3",
+      "default": "Discovery"
+    },
+    {
+      "type": "url",
+      "id": "link_button3",
+      "label": "URL Button 3",
+      "default": "/collections/all"
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_img3",
+      "label": "Image",
+      "info": "360 x 420px recommended"
+    },
+    {
+      "type": "header",
+      "content": "Setting Color Banner"
+    },
+    {
+      "type": "color",
+      "id": "color_btn",
+      "label": "Color Button Banner",
+      "default": "#fff"
+    },
+    {
+      "type": "color",
+      "id": "bg_btn",
+      "label": "Background Button Banner",
+      "default": "#fe7250"
+    },
+    {
+      "type": "color",
+      "id": "color_btn_hover",
+      "label": "Color Button Banner Hover",
+      "default": "#fff"
+    },
+    {
+      "type": "color",
+      "id": "bg_btn_hover",
+      "label": "Background Button Banner Hover",
+      "default": "#000"
+    }
+  ],
+  "presets": [
+    {
+      "name": "BANNER V4",
+      "category": "HOME"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

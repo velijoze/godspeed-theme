@@ -1,0 +1,508 @@
+{% comment %}
+  Test Ride Booking Modal
+  A modal popup for booking test rides from product pages
+{% endcomment %}
+
+<!-- Test Ride Modal -->
+<div class="test-ride-modal" id="testRideModal" style="display: none;">
+  <div class="test-ride-overlay" id="testRideOverlay"></div>
+  <div class="test-ride-content">
+    <div class="test-ride-header">
+      <h3 class="test-ride-title">Book Your Test Ride</h3>
+      <button class="test-ride-close" id="testRideClose" aria-label="Close">&times;</button>
+    </div>
+    
+    <div class="test-ride-body">
+      <div class="product-info mb-4">
+        <div class="product-summary">
+          <img id="testRideProductImage" src="" alt="" class="product-image">
+          <div class="product-details">
+            <h4 id="testRideProductTitle" class="product-title"></h4>
+            <p id="testRideProductPrice" class="product-price"></p>
+          </div>
+        </div>
+      </div>
+      
+      <form class="test-ride-form" id="testRideForm">
+        <input type="hidden" id="productId" name="product_id">
+        <input type="hidden" id="productHandle" name="product_handle">
+        <input type="hidden" id="productUrl" name="product_url">
+        
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="testRideLocation" class="form-label">Test Ride Location *</label>
+            <select id="testRideLocation" name="test_ride_location" class="form-control" required>
+              <option value="">Select a location</option>
+              <option value="Lugano Store - Via Pian Scairolo 8, 6915 Pambio-Noranco">Lugano Store - Via Pian Scairolo 8</option>
+              <option value="Bellinzona Store - Via Orico 13, 6500 Bellinzona">Bellinzona Store - Via Orico 13</option>
+              <option value="Locarno Store - Via della Stazione 1, 6600 Locarno">Locarno Store - Via della Stazione 1</option>
+              <option value="Zurich Store - Address TBD">Zurich Store</option>
+            </select>
+          </div>
+          
+          <div class="form-group col-md-6">
+            <label for="testRideDate" class="form-label">Preferred Date *</label>
+            <input type="date" id="testRideDate" name="test_ride_date" class="form-control" required>
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="testRideTime" class="form-label">Preferred Time *</label>
+            <select id="testRideTime" name="test_ride_time" class="form-control" required>
+              <option value="">Select time</option>
+              <option value="09:00">9:00 AM</option>
+              <option value="10:00">10:00 AM</option>
+              <option value="11:00">11:00 AM</option>
+              <option value="14:00">2:00 PM</option>
+              <option value="15:00">3:00 PM</option>
+              <option value="16:00">4:00 PM</option>
+              <option value="17:00">5:00 PM</option>
+            </select>
+          </div>
+          
+          <div class="form-group col-md-6">
+            <label for="experienceLevel" class="form-label">E-bike Experience *</label>
+            <select id="experienceLevel" name="experience_level" class="form-control" required>
+              <option value="">Select experience level</option>
+              <option value="Beginner - First time on an e-bike">Beginner - First time on an e-bike</option>
+              <option value="Some experience - Ridden e-bikes occasionally">Some experience - Ridden e-bikes occasionally</option>
+              <option value="Experienced - Regular e-bike rider">Experienced - Regular e-bike rider</option>
+              <option value="Expert - Very familiar with e-bikes">Expert - Very familiar with e-bikes</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="customerName" class="form-label">Full Name *</label>
+            <input type="text" id="customerName" name="customer_name" class="form-control" required>
+          </div>
+          
+          <div class="form-group col-md-6">
+            <label for="customerEmail" class="form-label">Email Address *</label>
+            <input type="email" id="customerEmail" name="customer_email" class="form-control" required>
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="customerPhone" class="form-label">Phone Number *</label>
+            <input type="tel" id="customerPhone" name="customer_phone" class="form-control" required>
+          </div>
+          
+          <div class="form-group col-md-6">
+            <label for="rideLength" class="form-label">Preferred Ride Duration</label>
+            <select id="rideLength" name="ride_length" class="form-control">
+              <option value="30 minutes">30 minutes</option>
+              <option value="1 hour" selected>1 hour</option>
+              <option value="2 hours">2 hours</option>
+              <option value="Half day (4 hours)">Half day (4 hours)</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="specialRequests" class="form-label">Special Requests or Questions</label>
+          <textarea id="specialRequests" name="special_requests" class="form-control" rows="3" placeholder="Any specific requirements, questions about the bike, or additional information..."></textarea>
+        </div>
+        
+        <div class="form-group">
+          <div class="form-check">
+            <input type="checkbox" id="newsletter" name="newsletter" class="form-check-input">
+            <label for="newsletter" class="form-check-label">
+              I'd like to receive updates about new models and special offers
+            </label>
+          </div>
+        </div>
+        
+        <div class="test-ride-footer">
+          <button type="button" class="btn btn-secondary" id="testRideCancel">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="testRideSubmit">
+            <span class="btn-text">Book Test Ride</span>
+            <span class="btn-loading" style="display: none;">
+              <i class="fas fa-spinner fa-spin"></i> Booking...
+            </span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<style>
+.test-ride-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.test-ride-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+}
+
+.test-ride-content {
+  position: relative;
+  background: white;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.test-ride-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid #e9ecef;
+  background: #f8f9fa;
+  border-radius: 16px 16px 0 0;
+}
+
+.test-ride-title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.test-ride-close {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  line-height: 1;
+  color: #6c757d;
+  cursor: pointer;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.test-ride-close:hover {
+  background: #e9ecef;
+  color: #333;
+}
+
+.test-ride-body {
+  padding: 2rem;
+}
+
+.product-summary {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border: 2px solid #e9ecef;
+}
+
+.product-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.product-details {
+  flex: 1;
+}
+
+.product-title {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.product-price {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #007bff;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  flex: 1;
+  margin-bottom: 1rem;
+}
+
+.form-group.col-md-6 {
+  flex: 0 0 calc(50% - 0.5rem);
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.form-check {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.form-check-input {
+  width: auto;
+  margin: 0;
+}
+
+.form-check-label {
+  font-weight: normal;
+  margin: 0;
+  cursor: pointer;
+}
+
+.test-ride-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e9ecef;
+}
+
+.btn {
+  padding: 0.75rem 2rem;
+  border: 2px solid transparent;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-secondary {
+  background: #6c757d;
+  color: white;
+  border-color: #6c757d;
+}
+
+.btn-secondary:hover {
+  background: #5a6268;
+  border-color: #5a6268;
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  background: #007bff;
+  color: white;
+  border-color: #007bff;
+  flex: 1;
+  justify-content: center;
+}
+
+.btn-primary:hover {
+  background: #0056b3;
+  border-color: #0056b3;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-loading {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .test-ride-content {
+    margin: 1rem;
+    max-width: none;
+  }
+  
+  .test-ride-header,
+  .test-ride-body {
+    padding: 1rem;
+  }
+  
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  .form-group.col-md-6 {
+    flex: 1;
+  }
+  
+  .product-summary {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .test-ride-footer {
+    flex-direction: column;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const modal = document.getElementById('testRideModal');
+  const overlay = document.getElementById('testRideOverlay');
+  const closeBtn = document.getElementById('testRideClose');
+  const cancelBtn = document.getElementById('testRideCancel');
+  const form = document.getElementById('testRideForm');
+  const submitBtn = document.getElementById('testRideSubmit');
+  const btnText = submitBtn.querySelector('.btn-text');
+  const btnLoading = submitBtn.querySelector('.btn-loading');
+  
+  // Set minimum date to today
+  const dateInput = document.getElementById('testRideDate');
+  const today = new Date().toISOString().split('T')[0];
+  dateInput.min = today;
+  
+  // Close modal functions
+  function closeModal() {
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+    form.reset();
+  }
+  
+  overlay.addEventListener('click', closeModal);
+  closeBtn.addEventListener('click', closeModal);
+  cancelBtn.addEventListener('click', closeModal);
+  
+  // Escape key to close
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && modal.style.display !== 'none') {
+      closeModal();
+    }
+  });
+  
+  // Form submission
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    // Show loading state
+    btnText.style.display = 'none';
+    btnLoading.style.display = 'inline-flex';
+    submitBtn.disabled = true;
+    
+    try {
+      const formData = new FormData(form);
+      const bookingData = Object.fromEntries(formData.entries());
+      
+      // Add current timestamp
+      bookingData.booking_timestamp = new Date().toISOString();
+      
+      // Submit to Cloud Run Bookings API
+      const response = await fetch('https://bookings-api-802427545823.europe-west6.run.app/bookings/test-ride', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(bookingData)
+      });
+      
+      const result = await response.json();
+      
+      if (result.success) {
+        alert(`🎉 Test ride booked successfully! Your booking ID is: ${result.booking_id}\n\nWe'll contact you at ${bookingData.customer_email} to confirm your test ride appointment.`);
+        closeModal();
+      } else {
+        alert(`❌ Booking failed: ${result.error || 'Unknown error'}\n\nPlease try again or contact us directly at info@godspeed.ch`);
+      }
+    } catch (error) {
+      console.error('Test ride booking error:', error);
+      alert('❌ Booking failed. Please try again or contact us directly at info@godspeed.ch');
+    } finally {
+      // Reset button
+      btnText.style.display = 'inline';
+      btnLoading.style.display = 'none';
+      submitBtn.disabled = false;
+    }
+  });
+});
+
+// Global function to open test ride modal
+window.openTestRideModal = function(productData) {
+  const modal = document.getElementById('testRideModal');
+  
+  // Populate product information
+  document.getElementById('testRideProductImage').src = productData.image;
+  document.getElementById('testRideProductImage').alt = productData.title;
+  document.getElementById('testRideProductTitle').textContent = productData.title;
+  document.getElementById('testRideProductPrice').textContent = productData.price;
+  
+  // Set hidden form fields
+  document.getElementById('productId').value = productData.id;
+  document.getElementById('productHandle').value = productData.handle;
+  document.getElementById('productUrl').value = window.location.href;
+  
+  // Show modal
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  
+  // Focus first input
+  setTimeout(() => {
+    document.getElementById('testRideLocation').focus();
+  }, 300);
+};
+</script>

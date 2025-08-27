@@ -1,0 +1,227 @@
+/* Modern CSS Grid System - Safe Enhancement */
+/* Works alongside existing float/flexbox layouts */
+
+/* CSS Custom Properties (Variables) */
+:root {
+  --grid-gap-sm: 10px;
+  --grid-gap-md: 20px;
+  --grid-gap-lg: 30px;
+  --grid-column-min: 280px;
+  --grid-border-radius: 8px;
+  --grid-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --grid-transition: all 0.3s ease;
+  --grid-primary-color: #007bff;
+  --grid-secondary-color: #6c757d;
+}
+
+/* CSS Grid Support Check */
+@supports (display: grid) {
+  
+  /* Modern Product Grid */
+  .product-grid-modern {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--grid-column-min), 1fr));
+    gap: var(--grid-gap-md);
+    align-items: start;
+  }
+  
+  /* Responsive Grid Breakpoints */
+  @media (min-width: 576px) {
+    .product-grid-modern {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .product-grid-modern {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+  }
+  
+  @media (min-width: 992px) {
+    .product-grid-modern {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    .product-grid-modern {
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    }
+  }
+  
+  /* Grid Areas for Complex Layouts */
+  .layout-grid {
+    display: grid;
+    grid-template-areas: 
+      "header header"
+      "sidebar main"
+      "footer footer";
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+  }
+  
+  .layout-grid .header { grid-area: header; }
+  .layout-grid .sidebar { grid-area: sidebar; }
+  .layout-grid .main { grid-area: main; }
+  .layout-grid .footer { grid-area: footer; }
+  
+  /* Responsive Grid Areas */
+  @media (max-width: 768px) {
+    .layout-grid {
+      grid-template-areas: 
+        "header"
+        "main"
+        "sidebar"
+        "footer";
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  /* Utility Grid Classes */
+  .grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid-4 { grid-template-columns: repeat(4, 1fr); }
+  .grid-auto { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+  
+  /* Grid Alignment Utilities */
+  .grid-center { place-items: center; }
+  .grid-start { place-items: start; }
+  .grid-end { place-items: end; }
+  .grid-stretch { place-items: stretch; }
+  
+  /* Gap Utilities */
+  .gap-sm { gap: var(--grid-gap-sm); }
+  .gap-md { gap: var(--grid-gap-md); }
+  .gap-lg { gap: var(--grid-gap-lg); }
+  
+  /* Aspect Ratio Container */
+  .aspect-ratio {
+    aspect-ratio: 16/9;
+    width: 100%;
+  }
+  
+  .aspect-ratio-square {
+    aspect-ratio: 1/1;
+    width: 100%;
+  }
+  
+  /* Container Queries Support */
+  @container (min-width: 400px) {
+    .container-responsive {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @container (min-width: 600px) {
+    .container-responsive {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  @container (min-width: 800px) {
+    .container-responsive {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  /* Modern Card Grid */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--grid-gap-md);
+    padding: var(--grid-gap-md);
+  }
+  
+  .card-grid .card {
+    border-radius: var(--grid-border-radius);
+    box-shadow: var(--grid-shadow);
+    transition: var(--grid-transition);
+    overflow: hidden;
+  }
+  
+  .card-grid .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Masonry-like Grid */
+  .masonry-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-auto-rows: 0;
+    grid-auto-flow: dense;
+    gap: var(--grid-gap-sm);
+  }
+  
+  .masonry-grid .tall {
+    grid-row: span 2;
+  }
+  
+  .masonry-grid .wide {
+    grid-column: span 2;
+  }
+  
+  /* Smooth Scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Modern Focus Styles */
+  .product-grid-modern .product:focus-within {
+    outline: 2px solid var(--grid-primary-color);
+    outline-offset: 2px;
+    border-radius: var(--grid-border-radius);
+  }
+  
+  /* Loading States */
+  .product-grid-modern.loading {
+    opacity: 0.7;
+    pointer-events: none;
+  }
+  
+  .product-grid-modern.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    margin: -20px 0 0 -20px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid var(--grid-primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+}
+
+/* Fallback for browsers without CSS Grid support */
+@supports not (display: grid) {
+  .product-grid-modern {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -10px;
+  }
+  
+  .product-grid-modern > * {
+    flex: 1 1 280px;
+    margin: 10px;
+  }
+  
+  .card-grid {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -10px;
+  }
+  
+  .card-grid .card {
+    flex: 1 1 300px;
+    margin: 10px;
+  }
+}

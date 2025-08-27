@@ -1,0 +1,246 @@
+{% if section.settings.select_fts == "footer_v5" %}
+{% if template contains 'index' %}
+<footer class="footer_v5" style="background-color : {{section.settings.ft_home_bg_footer}}">
+  <div class="container container-v5"> 
+    <div class="footer-top">
+      <div class="row no-gutters">
+        <div class="col-lg-6">
+          <div class="vc_column-inner">
+            <div class="menu_left row">
+              <div class="col-md-6 menu_footer">
+                <h3 class="title_menu">{{settings.title_menu_fv5}}</h3>
+
+                <ul class="list-unstyled mb-0">
+                  {% for link in linklists[settings.menu_fv5_1].links %}
+                  <li class=" mr-0"><a href="{{link.url}}" title="{{link.title}}">{{link.title}}</a></li>
+                  {% endfor %}
+                </ul>
+              </div>
+              <div class="col-md-6 ">
+                <h3 class="title_menu">{{settings.title_menu_fv5_2}}</h3>
+                <div class="menu-contact-footer">
+                  {{settings.content_fv5_contact}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="logo-footer">
+          {% if settings.logo_svg5 !=blank %}
+          <div class="logosvg" style="max-width:{{settings.fv5_main_logo_maxwidth}}px;">
+            <a class="d-block" href="{{shop.url}}">{{settings.logo_svg5}}</a>
+          </div>          
+          {% else %}            
+          <a href="{{shop.url}}" class="logo block">
+            {% if settings.fv5_main_logo != blank %}
+            <img src="{{settings.fv5_main_logo | img_url:'master'}}"  width="{{settings.fv5_main_logo_maxwidth}}" alt="{{shop.name}}" class="img-fluid">
+            {% else %}
+            <img src="//via.placeholder.com/45x45" width="{{settings.fv5_main_logo_maxwidth}}" alt="{{shop.name}}" class="img-fluid">
+            {% endif %}
+          </a>
+          {% endif %}
+        </div>
+        <div class="col-lg-6">
+          <div class="vc_column-inner-2">
+            <div class="newsletter-footer">
+              <div class="nexio-newsletter style-05">
+                <div class="newsletter-inner">
+                  <div class="newsletter-top">
+                    <div class="newsletter-description">
+                      {{settings.content_fv5}}
+                    </div>
+                  </div>
+                  {% if settings.newsletter_form_action != blank %}
+                  {% assign form_action = settings.newsletter_form_action %}
+                  {% else %}
+                  {% assign form_action = '#' %}
+                  {% endif %}          
+                  <form class="newsletter-form-wrap" action="{{form_action}}" method="post">                         
+                    <input type="email" name="email" class="text-input" placeholder="{{ 'general.newsletter_form.newsletter_email2' | t }}">                 
+                    <button class="btn-submit submit-newsletter" type="submit">{{ 'general.newsletter_form.submit_footer' | t }}</button>
+                  </form>   
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>    
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <div class="row">
+        <div class="col-lg-3 {% if settings.enable_rtl_mode %} text-lg-right {% else %} text-lg-left {% endif %} text-center">
+          <div class="logo_bottom">
+            <a href="{{shop.url}}" class="logo">
+              {% if settings.fv5_bottom_logo != blank %}
+              <img src="{{settings.fv5_bottom_logo | img_url:'master'}}"  alt="{{shop.name}}" class="img-fluid">
+              {% else %}
+              <img src="//via.placeholder.com/72x23" width="{{settings.fv5_main_logo_maxwidth}}" alt="{{shop.name}}" class="img-fluid">
+              {% endif %}
+            </a> 
+          </div>
+        </div>
+        <div class="col-lg-6 text-center">
+          <div class="menu">
+            <ul class="list-inline list-unstyled mb-0">
+              {% for link in linklists[settings.menu_fv5_3].links %}
+              <li class="list-inline-item"><a href="{{link.url}}" title="{{link.title}}">{{link.title}}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="payment-footer {% if settings.enable_rtl_mode %} text-lg-left {% else %} text-lg-right {% endif %} text-center">
+            {% if settings.fv5_bottom_payment_img != blank %}
+            <img src="{{settings.fv5_bottom_payment_img | img_url:'master'}}"  alt="">
+            {% else %}
+            <img src="//via.placeholder.com/215x23"  alt="">
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<style>
+  .footer_v5 .title_menu{
+    color : {{section.settings.ft_home_color_heading}};
+  }
+  .footer_v5 .nexio-newsletter.style-05 .newsletter-description{
+    color : {{section.settings.ft_home_color_heading}};
+  }
+  .footer_v5 .menu_footer ul li a{
+    color : {{section.settings.ft_home_color_text}};
+  }
+  .footer_v5 .menu-contact-footer ul li a{
+    color : {{section.settings.ft_home_color_text}};
+  }
+ 
+</style>
+{% endif %}
+{% endif %}
+
+{% if section.settings.select_fts_all == "footer_ver5" %}
+{% unless template contains 'index' %}
+<footer class="footer_v5" style="background-color : {{section.settings.ft_other_bg_footer}}">
+  <div class="container container-v5"> 
+    <div class="footer-top">
+      <div class="row no-gutters">
+        <div class="col-lg-6">
+          <div class="vc_column-inner">
+            <div class="menu_left row">
+              <div class="col-md-6 menu_footer">
+                <h3 class="title_menu">{{settings.title_menu_fv5}}</h3>
+
+                <ul class="list-unstyled mb-0">
+                  {% for link in linklists[settings.menu_fv5_1].links %}
+                  <li class=" mr-0"><a href="{{link.url}}" title="{{link.title}}">{{link.title}}</a></li>
+                  {% endfor %}
+                </ul>
+              </div>
+              <div class="col-md-6 ">
+                <h3 class="title_menu">{{settings.title_menu_fv5_2}}</h3>
+                <div class="menu-contact-footer">
+                  {{settings.content_fv5_contact}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="logo-footer">
+          {% if settings.logo_svg5 !=blank %}
+          <div class="logosvg" style="max-width:{{settings.fv5_main_logo_maxwidth}}px;">
+            <a class="d-block" href="{{shop.url}}">{{settings.logo_svg5}}</a>
+          </div>          
+          {% else %}            
+          <a href="{{shop.url}}" class="logo block">
+            {% if settings.fv5_main_logo != blank %}
+            <img src="{{settings.fv5_main_logo | img_url:'master'}}"  width="{{settings.fv5_main_logo_maxwidth}}" alt="{{shop.name}}" class="img-fluid">
+            {% else %}
+            <img src="//via.placeholder.com/45x45" width="{{settings.fv5_main_logo_maxwidth}}" alt="{{shop.name}}" class="img-fluid">
+            {% endif %}
+          </a>
+          {% endif %}
+        </div>
+        <div class="col-lg-6">
+          <div class="vc_column-inner-2">
+            <div class="newsletter-footer">
+              <div class="nexio-newsletter style-05">
+                <div class="newsletter-inner">
+                  <div class="newsletter-top">
+                    <div class="newsletter-description">
+                      {{settings.content_fv5}}
+                    </div>
+                  </div>
+                  {% if settings.newsletter_form_action != blank %}
+                  {% assign form_action = settings.newsletter_form_action %}
+                  {% else %}
+                  {% assign form_action = '#' %}
+                  {% endif %}          
+                  <form class="newsletter-form-wrap" action="{{form_action}}" method="post">                         
+                    <input type="email" name="email" class="text-input" placeholder="{{ 'general.newsletter_form.newsletter_email2' | t }}">                 
+                    <button class="btn-submit submit-newsletter" type="submit">{{ 'general.newsletter_form.submit_footer' | t }}</button>
+                  </form>   
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>    
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="row">
+        <div class="col-lg-3 {% if settings.enable_rtl_mode %} text-lg-right {% else %} text-lg-left {% endif %} text-center">
+          <div class="logo_bottom">
+            <a href="{{shop.url}}" class="logo">
+              {% if settings.fv5_bottom_logo != blank %}
+              <img src="{{settings.fv5_bottom_logo | img_url:'master'}}"  alt="{{shop.name}}" class="img-fluid">
+              {% else %}
+              <img src="//via.placeholder.com/72x23" width="{{settings.fv5_main_logo_maxwidth}}" alt="{{shop.name}}" class="img-fluid">
+              {% endif %}
+            </a> 
+          </div>
+        </div>
+        <div class="col-lg-6 text-center">
+          <div class="menu">
+            <ul class="list-inline list-unstyled mb-0">
+              {% for link in linklists[settings.menu_fv5_3].links %}
+              <li class="list-inline-item"><a href="{{link.url}}" title="{{link.title}}">{{link.title}}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="payment-footer {% if settings.enable_rtl_mode %} text-lg-left {% else %} text-lg-right {% endif %} text-center">
+            {% if settings.fv5_bottom_payment_img != blank %}
+            <img src="{{settings.fv5_bottom_payment_img | img_url:'master'}}"  alt="">
+            {% else %}
+            <img src="//via.placeholder.com/215x23"  alt="">
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<style>
+  .footer_v5 .title_menu{
+    color : {{section.settings.ft_other_color_heading}};
+  }
+  .footer_v5 .nexio-newsletter.style-05 .newsletter-description{
+    color : {{section.settings.ft_other_color_heading}};
+  }
+  .footer_v5 .menu_footer ul li a{
+    color : {{section.settings.ft_other_color_text}};
+  }
+  .footer_v5 .list-icon ul li a{
+    color : {{section.settings.ft_other_color_text}};
+  }
+  .footer_v5 .menu-contact-footer ul li a{
+    color : {{section.settings.ft_other_color_text}};
+  }
+  
+</style>
+{% endunless %}
+{% endif %}

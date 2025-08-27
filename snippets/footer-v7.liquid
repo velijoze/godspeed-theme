@@ -1,0 +1,257 @@
+{% if section.settings.select_fts == "footer_v7" %}
+{% if template contains 'index' %}
+<footer class=" footer_v7">
+  <div class="top-footer">
+    <div class="container container-v1">    
+      <div class="row">
+        <div class="col-lg-4 col-12">
+          <div class="info_footer ">
+            <div class="title_footer">          
+              <h4 class="title_border">{{settings.titlecolum_fv7_1}}</h4>         
+            </div>
+            <div class="content">{{settings.content_colum_fv7_1}}</div>
+          </div>
+          
+          <div class="nexio-newsletter"> 
+            {% if settings.newsletter_form_action != blank %}
+            {% assign form_action = settings.newsletter_form_action %}
+            {% else %}
+            {% assign form_action = '#' %}
+            {% endif %}
+            <div class="newsletter-top">
+              <div class="icon">
+                <i class="fa fa-envelope-o" aria-hidden="true"></i>
+              </div>
+            </div>
+            <form class="newsletter-form-wrap" action="{{form_action}}" method="post">
+              <input type="email" name="EMAIL" class="email" placeholder="{{ 'general.newsletter_form.newsletter_email2' | t }}" required >                 
+              <button class="btn-submit submit-newsletter" type="submit">
+                {{ 'general.newsletter_form.submit_footer' | t }}
+              </button>
+            </form>
+          </div>
+          
+        </div>
+        <div class="col-lg-8 col-12">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="info_footer">
+                <div class="title_footer">          
+                  <h4 class="title_border">{{settings.titlecolum_fv7_2}}</h4>         
+                </div>
+                {% if settings.content_colum_fv7_2 != blank %}
+                {{settings.content_colum_fv7_2}}
+                {% else %}            
+                <ul class="list-unstyled mb-0">
+                  <li>Singel 459</li>
+                  <li>1012 WP Amsterdam</li>
+                  <li>The Netherlands</li>
+                  <li><a title="themeocean.team@gmail.com" href="mailto:themeocean.team@gmail.com">themeocean.team@gmail.com</a></li>
+                  <li><a title=" +31 (0) 202 615 614" href="tel:+31 (0) 202 615 614">+31 (0) 202 615 614</a></li>
+                </ul>
+                {% endif %}      
+              </div>    
+            </div>
+            <div class="col-md-4">
+              <div class="info_footer">
+                <div class="title_footer">          
+                  <h4 class="title_border">{{settings.titlecolum_fv7_3}}</h4>         
+                </div>
+                <ul class="list-unstyled mb-0">
+                  {% for link in linklists[settings.menu_fv7_1].links %}
+                  <li><a href="{{link.url}}" title="{{link.title}}">{{link.title}}</a></li>
+                  {% endfor %}
+                </ul>        
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="info_footer">
+                <div class="title_footer">          
+                  <h4 class="title_border">{{settings.titlecolum_fv7_4}}</h4>         
+                </div>
+                <ul class="list-unstyled mb-0">
+                  {% for link in linklists[settings.menu_fv7_2].links %}
+                  <li><a href="{{link.url}}" title="{{link.title}}">{{link.title}}</a></li>
+                  {% endfor %}
+                </ul>        
+              </div>
+            </div>            
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="bottom-footer" {% if settings.fv7_bottom_bg %}style="background:{{settings.fv7_bottom_bg}}"{% endif %}>
+    <div class="container container-v1">
+      <div class="row align-items-center">
+        <div class="col-lg-6 col-md-6  {% if settings.enable_rtl_mode %}text-md-right {% else %}text-md-left{% endif %} text-center">
+          {% if settings.fv7_bottom_copyright != blank %}
+          <p class="text-copyright mb-0">{{settings.fv7_bottom_copyright}}</p>
+          {% else %}
+          <div class="text-copyright mb-0"><p class="mb-0">© Copyright 2022 | <a href="http://themeocean.net/" rel="nofollow" target="_blank" class="underline_hover bold">  Nexio </a> By <a href="http://themeocean.net/" rel="nofollow" target="_blank" class="underline_hover link"> ThemeOcean.</a><a href="https://www.shopify.com/?ref=shopifycenter" rel="nofollow" target="_blank" class=""> Powered by Shopify.</a></p> 
+          </div> 
+          {% endif %}
+        </div>
+        <div class="col-lg-6 col-md-6 {% if settings.enable_rtl_mode %}text-md-left {% else %}text-md-right {% endif %} text-center">
+          {% if settings.fv7_bottom_payment_img != blank %}
+          <img src="{{settings.fv7_bottom_payment_img | img_url:'master'}}"  alt="">
+          {% else %}
+          <img src="//via.placeholder.com/247x23"  alt="">
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<style>
+  .footer_v7{
+    background-color : {{section.settings.ft_home_bg_footer}}
+  }  
+  .footer_v7 .top-footer .info_footer .title_footer h4{
+    color : {{section.settings.ft_home_color_heading}};
+  }  
+  .footer_v7 .top-footer .info_footer .content{
+    color : {{section.settings.ft_home_color_text}};
+  }
+  .footer_v7 .top-footer .info_footer ul li{
+    color : {{section.settings.ft_home_color_text}};
+  }
+  .footer_v7 .top-footer .info_footer ul li a{
+    color : {{section.settings.ft_home_color_text}};
+  }
+  .footer_v7 .bottom-footer .text-copyright p{
+    color : {{section.settings.ft_home_color_text}};
+  }
+</style>
+{% endif %}
+{% endif %}
+
+{% if section.settings.select_fts_all == "footer_ver7" %}
+{% unless template contains 'index' %}
+<footer class=" footer_v7">
+  <div class="top-footer">
+    <div class="container container-v1">    
+      <div class="row">
+        <div class="col-lg-4 col-12">
+          <div class="info_footer ">
+            <div class="title_footer">          
+              <h4 class="title_border">{{settings.titlecolum_fv7_1}}</h4>         
+            </div>
+            <div class="content">{{settings.content_colum_fv7_1}}</div>
+          </div>
+          
+          <div class="nexio-newsletter"> 
+            {% if settings.newsletter_form_action != blank %}
+            {% assign form_action = settings.newsletter_form_action %}
+            {% else %}
+            {% assign form_action = '#' %}
+            {% endif %}
+            <div class="newsletter-top">
+              <div class="icon">
+                <i class="fa fa-envelope-o" aria-hidden="true"></i>
+              </div>
+            </div>
+            <form class="newsletter-form-wrap" action="{{form_action}}" method="post">
+              <input type="email" name="EMAIL" class="email" placeholder="{{ 'general.newsletter_form.newsletter_email2' | t }}" required >                 
+              <button class="btn-submit submit-newsletter" type="submit">
+                {{ 'general.newsletter_form.submit_footer' | t }}
+              </button>
+            </form>
+          </div>
+          
+        </div>
+        <div class="col-lg-8 col-12">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="info_footer">
+                <div class="title_footer">          
+                  <h4 class="title_border">{{settings.titlecolum_fv7_2}}</h4>         
+                </div>
+                {% if settings.content_colum_fv7_2 != blank %}
+                {{settings.content_colum_fv7_2}}
+                {% else %}            
+                <ul class="list-unstyled mb-0">
+                  <li>Singel 459</li>
+                  <li>1012 WP Amsterdam</li>
+                  <li>The Netherlands</li>
+                  <li><a title="themeocean.team@gmail.com" href="mailto:themeocean.team@gmail.com">themeocean.team@gmail.com</a></li>
+                  <li><a title=" +31 (0) 202 615 614" href="tel:+31 (0) 202 615 614">+31 (0) 202 615 614</a></li>
+                </ul>
+                {% endif %}      
+              </div>    
+            </div>
+            <div class="col-md-4">
+              <div class="info_footer">
+                <div class="title_footer">          
+                  <h4 class="title_border">{{settings.titlecolum_fv7_3}}</h4>         
+                </div>
+                <ul class="list-unstyled mb-0">
+                  {% for link in linklists[settings.menu_fv7_1].links %}
+                  <li><a href="{{link.url}}" title="{{link.title}}">{{link.title}}</a></li>
+                  {% endfor %}
+                </ul>        
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="info_footer">
+                <div class="title_footer">          
+                  <h4 class="title_border">{{settings.titlecolum_fv7_4}}</h4>         
+                </div>
+                <ul class="list-unstyled mb-0">
+                  {% for link in linklists[settings.menu_fv7_2].links %}
+                  <li><a href="{{link.url}}" title="{{link.title}}">{{link.title}}</a></li>
+                  {% endfor %}
+                </ul>        
+              </div>
+            </div>            
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="bottom-footer" {% if settings.fv7_bottom_bg %}style="background:{{settings.fv7_bottom_bg}}"{% endif %}>
+    <div class="container container-v1">
+      <div class="row align-items-center">
+        <div class="col-lg-6 col-md-6 {% if settings.enable_rtl_mode %}text-md-right {% else %}text-md-left{% endif %} text-center">
+          {% if settings.fv7_bottom_copyright != blank %}
+          <p class="text-copyright mb-0">{{settings.fv7_bottom_copyright}}</p>
+          {% else %}
+          <div class="text-copyright mb-0"><p class="mb-0">© Copyright 2022 | <a href="http://themeocean.net/" rel="nofollow" target="_blank" class="underline_hover bold">  Nexio </a> By <a href="http://themeocean.net/" rel="nofollow" target="_blank" class="underline_hover link"> ThemeOcean.</a><a href="https://www.shopify.com/?ref=shopifycenter" rel="nofollow" target="_blank" class=""> Powered by Shopify.</a></p> 
+          </div> 
+          {% endif %}
+        </div>
+        <div class="col-lg-6 col-md-6 {% if settings.enable_rtl_mode %}text-md-left {% else %}text-md-right {% endif %} text-center">
+          {% if settings.fv7_bottom_payment_img != blank %}
+          <img src="{{settings.fv7_bottom_payment_img | img_url:'master'}}"  alt="">
+          {% else %}
+          <img src="//via.placeholder.com/247x23"  alt="">
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<style>
+  .footer_v7{
+    background-color : {{section.settings.ft_other_bg_footer}}
+  }  
+  .footer_v7 .top-footer .info_footer .title_footer h4{
+    color : {{section.settings.ft_other_color_heading}};
+  }  
+  .footer_v7 .top-footer .info_footer .content{
+    color : {{section.settings.ft_other_color_text}};
+  }
+  .footer_v7 .top-footer .info_footer ul li{
+    color : {{section.settings.ft_other_color_text}};
+  }
+  .footer_v7 .top-footer .info_footer ul li a{
+    color : {{section.settings.ft_other_color_text}};
+  }
+  .footer_v7 .bottom-footer .text-copyright p{
+    color : {{section.settings.ft_other_color_text}};
+  }
+</style>
+{% endunless %}
+{% endif %}

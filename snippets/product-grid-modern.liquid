@@ -1,0 +1,17 @@
+{% comment %}
+  Modern Product Grid using CSS Grid
+  This snippet provides a modern alternative to the float-based grid
+  while maintaining compatibility with existing layouts
+{% endcomment %}
+
+<div class="product-grid-modern">
+  {% for product in collection.products limit: limit %}
+    {% include 'product-item-v1' %}
+  {% endfor %}
+</div>
+
+{% comment %}
+  Fallback for browsers without CSS Grid support
+  The CSS will automatically fall back to flexbox
+{% endcomment %}
+

@@ -1,0 +1,202 @@
+<div data-section-id="{{ section.id }}" data-section-type="section-banner-v8" style="{% if section.settings.margin_top != blank %}margin-top: {{section.settings.margin_top}}px;{%endif%} {% if section.settings.margin_bottom != blank %}margin-bottom: {{section.settings.margin_bottom}}px;{% endif %}">
+  <div class="section-banner-v8 mt-all">
+    <div class="container container-v2">
+      <div class="row">        
+        <div class="col-sm-6">
+          <div class="banner-item">
+            <div class="box-img">
+              <img data-src="{% if section.settings.img_banner1 != blank %} {{section.settings.img_banner1 | img_url:'master'}} {% else %} //via.placeholder.com/960x960 {% endif %}" class="lazyload img-fluid w-100" alt="_img_banner">
+            </div>
+            <div class="banner-content">
+              {% if section.settings.sub_title1 != blank %}
+              <p class="title-top title-top-{{ section.id }}">{{section.settings.sub_title1}}</p>
+              {% endif %}
+              {% if section.settings.title_banner1 != blank %}
+              <h3 class="title-banner title-{{ section.id }}">{{section.settings.title_banner1}}</h3>
+              {% endif %}
+              {% if section.settings.btn_banner1 != blank %}
+              <a href="{{section.settings.btn_banner1}}" class="btn-banner btn-banner-{{ section.id }}">{{section.settings.btn_banner1}}</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="banner-item">
+            <div class="box-img">
+              <img data-src="{% if section.settings.img_banner2 != blank %} {{section.settings.img_banner2 | img_url:'master'}} {% else %} //via.placeholder.com/960x960 {% endif %}" class="lazyload img-fluid w-100" alt="_img_banner">
+            </div>
+            <div class="banner-content">
+              {% if section.settings.sub_title2 != blank %}
+              <p class="title-top title-top-{{ section.id }}">{{section.settings.sub_title2}}</p>
+              {% endif %}
+              {% if section.settings.title_banner2 != blank %}
+              <h3 class="title-banner title-{{ section.id }}">{{section.settings.title_banner2}}</h3>
+              {% endif %}
+              {% if section.settings.btn_banner2 != blank %}
+              <a href="{{section.settings.btn_banner2}}" class="btn-banner btn-banner-{{ section.id }}">{{section.settings.btn_banner2}}</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  .section-banner-v8 .banner-item .banner-content .title-top-{{ section.id }} {
+    color: {{section.settings.color_top_title}};
+  }
+  .section-banner-v8 .banner-item .banner-content .title-{{ section.id }} {
+    color: {{section.settings.color_title}};
+  }
+  .section-banner-v8 .banner-item .banner-content .btn-banner-{{ section.id }} {
+    color: {{section.settings.color_btn}};
+    transition: all .3s;
+    border: 2px solid {{section.settings.color_btn}};
+    letter-spacing: 2px;
+  }
+  .section-banner-v8 .banner-item .banner-content .btn-banner-{{ section.id }}:hover {
+    background: {{section.settings.bg_btn_hover}};
+    color: {{section.settings.color_btn_hover}};
+    border: 2px solid {{section.settings.bg_btn_hover}};
+  }
+
+</style>
+
+{% schema %}
+{
+  "name": "BANNER V8",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Setting banner 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "img_banner1",
+      "label": "Image",
+      "info": "960 x 960px recommended"
+    },
+    {
+      "type": "text",
+      "id": "sub_title1",
+      "label": "Sub Title banner 1",
+      "default": "WEEKLY OFFER"
+    },
+    {
+      "type": "text",
+      "id": "title_banner1",
+      "label": "Title banner 1",
+      "default": "UP TO 40% OFF<br>ALL FOR FITNESS"
+    },
+    {
+      "type": "text",
+      "id": "btn_banner1",
+      "label": "Button banner 1",
+      "default": "SHOP NOW"
+    },
+    {
+      "type": "url",
+      "id": "url_banner1",
+      "label": "URL banner 1",
+      "default": "/collections/all"
+    },
+    {
+      "type": "header",
+      "content": "Setting banner 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "img_banner2",
+      "label": "Image",
+      "info": "960 x 960px recommended"
+    },
+    {
+      "type": "text",
+      "id": "sub_title2",
+      "label": "Sub Title banner 2",
+      "default": "WEEKLY OFFER"
+    },
+    {
+      "type": "text",
+      "id": "title_banner2",
+      "label": "Title banner 1",
+      "default": "UP TO 40% OFF<br>ALL FOR FITNESS"
+    },
+    {
+      "type": "text",
+      "id": "btn_banner2",
+      "label": "Button banner 2",
+      "default": "SHOP NOW"
+    },
+    {
+      "type": "url",
+      "id": "url_banner2",
+      "label": "URL banner 2",
+      "default": "/collections/all"
+    },
+    {
+      "type": "header",
+      "content": "Settings Color Banner"
+    },
+    {
+      "type": "color",
+      "id": "color_top_title",
+      "label": "Color Top Title",
+      "default": "#222"
+    },
+    {
+      "type": "color",
+      "id": "color_title",
+      "label": "Color Title",
+      "default": "#222"
+    },
+    {
+      "type": "color",
+      "id": "color_btn",
+      "label": "Color Button Banner",
+      "default": "#000"
+    },
+    {
+      "type": "color",
+      "id": "color_btn_hover",
+      "label": "Color Button Hover",
+      "default": "#fff"
+    },
+    {
+      "type": "color",
+      "id": "bg_btn_hover",
+      "label": "Background Button Hover",
+      "default": "#222"
+    },
+    {
+      "type": "header",
+      "content": "Section Space"
+    },
+    {
+      "type": "text",
+      "id": "margin_top",
+      "label": "Margin Top",
+      "info": "Defined in pixels. Do not add the 'px' unit."
+    },
+    {
+      "type": "text",
+      "id": "margin_bottom",
+      "label": "Margin Bottom",
+      "info": "Defined in pixels. Do not add the 'px' unit."
+    }
+  ],
+  "presets": [
+    {
+      "name": "BANNER V8",
+      "category": "HOME"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,72 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {}
+    },
+    "admin_header": {
+      "type": "workshop-hero",
+      "settings": {
+        "hero_title": "Admin Tools & API Management",
+        "hero_subtitle": "Manage VeloConnect, Cube, and other integrations",
+        "hero_description": "Centralized dashboard for managing all your e-bike business tools, API credentials, and system configurations.",
+        "cta_text": "Access Tools",
+        "cta_link": "#tools-section",
+        "background_image": "",
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
+    },
+    "admin_dashboard": {
+      "type": "admin-dashboard",
+      "settings": {
+        "dashboard_title": "System Overview & Configuration",
+        "dashboard_subtitle": "Monitor tool status, configure settings, and manage integrations",
+        "color_title": "#333",
+        "color_subtitle": "#6c757d",
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
+    },
+    "veloconnect_credentials": {
+      "type": "veloconnect-credentials",
+      "settings": {
+        "credentials_title": "VeloConnect API Management",
+        "credentials_subtitle": "Configure supplier integrations and monitor API health",
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
+    },
+    "cube_integration": {
+      "type": "cube-product-specs",
+      "settings": {
+        "specs_title": "Cube Connect Integration",
+        "specs_subtitle": "Monitor API status and product synchronization",
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
+    },
+    "ai_chat_config": {
+      "type": "ai-chat-assistant",
+      "settings": {
+        "chat_title": "AI Chat Configuration",
+        "chat_subtitle": "Test and configure chat responses",
+        "welcome_message": "Hello! I'm your Godspeed e-bike expert. How can I help you find the perfect bike or schedule service today?",
+        "placeholder": "Test chat functionality...",
+        "button_color": "#333333",
+        "header_color": "#f8f9fa",
+        "user_message_color": "#007bff",
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "main",
+    "admin_header",
+    "admin_dashboard",
+    "veloconnect_credentials",
+    "cube_integration",
+    "ai_chat_config"
+  ]
+}

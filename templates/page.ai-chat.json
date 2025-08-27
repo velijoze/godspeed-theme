@@ -1,0 +1,52 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {}
+    },
+    "ai_chat_hero": {
+      "type": "workshop-hero",
+      "settings": {
+        "hero_title": "AI E-Bike Expert",
+        "hero_subtitle": "Get instant answers about e-bikes, service, and financing from our Swiss specialists",
+        "hero_description": "Our AI assistant is trained on Swiss e-bike regulations, local service options, and our complete product catalog. Available 24/7 in German, French, Italian, and English.",
+        "cta_text": "Start Chatting",
+        "cta_link": "#chat-widget",
+        "background_image": "",
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
+    },
+    "ai_chat_features": {
+      "type": "workshop-content",
+      "settings": {
+        "content_title": "What Our AI Can Help You With",
+        "content_text": "<p>Our AI assistant is specifically trained for the Swiss e-bike market and can help with:</p>",
+        "sidebar_title": "Chat Features",
+        "sidebar_content": "<ul><li><strong>Product Recommendations</strong> - Find the perfect e-bike for your needs</li><li><strong>Service Booking</strong> - Schedule maintenance and repairs</li><li><strong>Financing Options</strong> - HeyLight payment plans and rates</li><li><strong>Size & Fit</strong> - Get proper sizing recommendations</li><li><strong>Swiss Regulations</strong> - Vignette requirements and legal info</li><li><strong>Workshop Locations</strong> - Lugano, Locarno, Bellinzona, Zurich</li></ul>",
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
+    },
+    "ai_chat_widget": {
+      "type": "ai-chat-assistant",
+      "settings": {
+        "chat_title": "Godspeed E-Bike Expert",
+        "chat_subtitle": "Swiss e-bike specialists at your service",
+        "welcome_message": "Hello! I'm your Godspeed e-bike expert. How can I help you find the perfect bike or schedule service today?",
+        "placeholder": "Ask about e-bikes, service, or financing...",
+        "button_color": "#333333",
+        "header_color": "#f8f9fa",
+        "user_message_color": "#007bff",
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "main",
+    "ai_chat_hero",
+    "ai_chat_features",
+    "ai_chat_widget"
+  ]
+}

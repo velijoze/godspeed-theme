@@ -1,0 +1,48 @@
+<div class="gs-icon-list" style="{% if section.settings.margin_top != blank %}margin-top: {{ section.settings.margin_top }}px;{% endif %}{% if section.settings.margin_bottom != blank %} margin-bottom: {{ section.settings.margin_bottom }}px;{% endif %}">
+  <div class="container container-v1">
+    {% if section.settings.title != blank %}
+    <h3 class="title_heading text-center mb-4">{{ section.settings.title }}</h3>
+    {% endif %}
+    <div class="row">
+      {% for block in section.blocks %}
+      {% if block.type == 'item' %}
+      <div class="col-6 col-md-4 col-lg-3 text-center mb-4">
+        {% if block.settings.icon_svg != blank %}
+        <div class="icon-box-icon mb-2"><span class="shpi-icon">{{ block.settings.icon_svg }}</span></div>
+        {% endif %}
+        {% if block.settings.heading != blank %}
+        <h5 class="mb-1">{{ block.settings.heading }}</h5>
+        {% endif %}
+        {% if block.settings.text != blank %}
+        <p class="mb-0">{{ block.settings.text }}</p>
+        {% endif %}
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "GS: Icon List",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Title", "default": "Features" },
+    { "type": "text", "id": "margin_top", "label": "Margin top (px)" },
+    { "type": "text", "id": "margin_bottom", "label": "Margin bottom (px)" }
+  ],
+  "blocks": [
+    { "type": "item", "name": "Item", "settings": [
+      { "type": "textarea", "id": "icon_svg", "label": "Icon SVG" },
+      { "type": "text", "id": "heading", "label": "Heading", "default": "Heading" },
+      { "type": "text", "id": "text", "label": "Text", "default": "Short description" }
+    ]}
+  ],
+  "presets": [ { "name": "GS: Icon List", "blocks": [ {"type": "item"}, {"type": "item"}, {"type": "item"} ] } ]
+}
+{% endschema %}
+
+{% stylesheet %}{% endstylesheet %}
+{% javascript %}{% endjavascript %}
+
+

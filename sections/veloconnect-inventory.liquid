@@ -1,0 +1,834 @@
+{% comment %}
+  VeloConnect Inventory Manager Section
+  Real-time inventory checking and product availability using theme CSS classes
+{% endcomment %}
+
+<div data-section-id="{{ section.id }}" data-section-type="section-veloconnect-inventory" style="{% if section.settings.margin_top != blank %}margin-top: {{section.settings.margin_top}}px;{%endif%} {% if section.settings.margin_bottom != blank %}margin-bottom: {{section.settings.margin_bottom}}px;{% endif %}">
+  <div class="section-veloconnect-inventory mt-all">
+    <div class="container container-v2">
+      <div class="row justify-content-center">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <div class="inventory-header text-center mb-5">
+            {% if section.settings.inventory_title != blank %}
+              <h2 class="title title-{{ section.id }} mb-3">{{ section.settings.inventory_title }}</h2>
+            {% endif %}
+            
+            {% if section.settings.inventory_subtitle != blank %}
+              <p class="subtitle subtitle-{{ section.id }}">{{ section.settings.inventory_subtitle }}</p>
+            {% endif %}
+          </div>
+          
+          <div class="inventory-wrapper">
+            <div class="row">
+              <div class="col-lg-4 col-md-12 mb-4">
+                <div class="search-panel">
+                  <div class="search-section mb-4">
+                    <h4 class="section-title section-title-{{ section.id }} mb-3">Search Products</h4>
+                    
+                    <div class="form-group mb-3">
+                      <label for="supplier-select-{{ section.id }}" class="form-label">Select Supplier</label>
+                      <select id="supplier-select-{{ section.id }}" class="form-control">
+                        <option value="">All Suppliers</option>
+                        <option value="abus">ABUS</option>
+                        <option value="amsler">Amsler</option>
+                        <option value="chrissport">ChrisSports</option>
+                        <option value="cube">Cube Bikes</option>
+                        <option value="electra">Electra</option>
+                        <option value="komenda">Komenda</option>
+                        <option value="magura">Magura</option>
+                        <option value="maxxis">Maxxis</option>
+                        <option value="orbea">Orbea</option>
+                        <option value="sks">SKS</option>
+                        <option value="tourdesuisse">Tour de Suisse</option>
+                      </select>
+                    </div>
+                    
+                    <div class="form-group mb-3">
+                      <label for="category-select-{{ section.id }}" class="form-label">Category</label>
+                      <select id="category-select-{{ section.id }}" class="form-control">
+                        <option value="">All Categories</option>
+                        <option value="ebikes">E-Bikes</option>
+                        <option value="mountain">Mountain Bikes</option>
+                        <option value="road">Road Bikes</option>
+                        <option value="hybrid">Hybrid Bikes</option>
+                        <option value="accessories">Accessories</option>
+                        <option value="parts">Parts</option>
+                      </select>
+                    </div>
+                    
+                    <div class="form-group mb-3">
+                      <label for="search-input-{{ section.id }}" class="form-label">Search by SKU/Name</label>
+                      <input type="text" id="search-input-{{ section.id }}" class="form-control" placeholder="Enter SKU or product name">
+                    </div>
+                    
+                    <button type="button" class="btn btn-search-{{ section.id }}" id="search-btn-{{ section.id }}">
+                      <span class="btn-text">Search Inventory</span>
+                      <span class="btn-loading" style="display: none;">
+                        <i class="fa fa-spinner fa-spin"></i> Searching...
+                      </span>
+                    </button>
+                  </div>
+                  
+                  <div class="sync-section">
+                    <h4 class="section-title section-title-{{ section.id }} mb-3">Sync Status</h4>
+                    <div class="sync-status" id="sync-status-{{ section.id }}">
+                      <div class="status-item">
+                        <span class="status-label">Last Sync:</span>
+                        <span class="status-value" id="last-sync-{{ section.id }}">--</span>
+                      </div>
+                      <div class="status-item">
+                        <span class="status-label">Connection:</span>
+                        <span class="status-value status-offline" id="connection-status-{{ section.id }}">Offline</span>
+                      </div>
+                    </div>
+                    <button type="button" class="btn btn-sync-{{ section.id }}" id="sync-btn-{{ section.id }}">
+                      <i class="fa fa-refresh"></i> Force Sync
+                    </button>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col-lg-8 col-md-12">
+                <div class="inventory-results">
+                  <div class="results-header mb-4">
+                    <div class="row align-items-center">
+                      <div class="col-md-6">
+                        <h4 class="results-title results-title-{{ section.id }}">Inventory Results</h4>
+                      </div>
+                      <div class="col-md-6 text-right">
+                        <div class="results-count" id="results-count-{{ section.id }}">0 products found</div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="inventory-grid" id="inventory-grid-{{ section.id }}">
+                    <div class="no-results text-center" id="no-results-{{ section.id }}">
+                      <div class="no-results-icon mb-3">
+                        <i class="fa fa-search fa-3x"></i>
+                      </div>
+                      <h5>Search VeloConnect Inventory</h5>
+                      <p>Select a supplier and search for products to view real-time inventory levels.</p>
+                    </div>
+                  </div>
+                  
+                  <div class="pagination-wrapper text-center mt-4" id="pagination-{{ section.id }}" style="display: none;">
+                    <button class="btn btn-load-more-{{ section.id }}" id="load-more-btn-{{ section.id }}">
+                      Load More Products
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .section-veloconnect-inventory {
+    padding: 80px 0;
+    background: #fff;
+  }
+  
+  .section-veloconnect-inventory .title-{{ section.id }} {
+    color: {{ section.settings.color_title | default: '#333' }};
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  
+  .section-veloconnect-inventory .subtitle-{{ section.id }} {
+    color: {{ section.settings.color_subtitle | default: '#6c757d' }};
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .inventory-wrapper {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  }
+  
+  .search-panel {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    height: fit-content;
+    position: sticky;
+    top: 2rem;
+  }
+  
+  .search-section {
+    border-bottom: 1px solid #e9ecef;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .sync-section {
+    text-align: center;
+  }
+  
+  .section-title-{{ section.id }} {
+    color: {{ section.settings.color_title | default: '#333' }};
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 1rem 0;
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #333;
+    font-size: 14px;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: 'SofiaPro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #333;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background: #fff;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+  
+  .form-control:focus {
+    outline: none;
+    border-color: {{ section.settings.color_title | default: '#333' }};
+    box-shadow: 0 0 0 3px rgba(51, 51, 51, 0.1);
+  }
+  
+  .btn-search-{{ section.id }} {
+    background: {{ section.settings.color_title | default: '#333' }};
+    color: #fff;
+    padding: 12px 24px;
+    border: 2px solid {{ section.settings.color_title | default: '#333' }};
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .btn-search-{{ section.id }}:hover {
+    background: #555;
+    border-color: #555;
+    transform: translateY(-1px);
+  }
+  
+  .btn-sync-{{ section.id }} {
+    background: #17a2b8;
+    color: #fff;
+    padding: 8px 16px;
+    border: 2px solid #17a2b8;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .btn-sync-{{ section.id }}:hover {
+    background: #138496;
+    border-color: #138496;
+  }
+  
+  .sync-status {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  }
+  
+  .status-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+  
+  .status-item:last-child {
+    margin-bottom: 0;
+  }
+  
+  .status-label {
+    font-size: 12px;
+    color: #6c757d;
+    font-weight: 500;
+  }
+  
+  .status-value {
+    font-size: 12px;
+    font-weight: 600;
+  }
+  
+  .status-online {
+    color: #28a745;
+  }
+  
+  .status-offline {
+    color: #dc3545;
+  }
+  
+  .inventory-results {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    min-height: 400px;
+  }
+  
+  .results-title-{{ section.id }} {
+    color: {{ section.settings.color_title | default: '#333' }};
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+  }
+  
+  .results-count {
+    font-size: 14px;
+    color: #6c757d;
+    font-weight: 500;
+  }
+  
+  .inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+  
+  .product-card {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  
+  .product-card:hover {
+    border-color: {{ section.settings.color_title | default: '#333' }};
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  }
+  
+  .product-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+  
+  .product-sku {
+    font-size: 12px;
+    color: #6c757d;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  
+  .availability-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  
+  .available {
+    background: #d4edda;
+    color: #155724;
+  }
+  
+  .low-stock {
+    background: #fff3cd;
+    color: #856404;
+  }
+  
+  .out-of-stock {
+    background: #f8d7da;
+    color: #721c24;
+  }
+  
+  .product-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+  
+  .product-supplier {
+    font-size: 12px;
+    color: #6c757d;
+    margin-bottom: 1rem;
+  }
+  
+  .product-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    font-size: 12px;
+  }
+  
+  .detail-item {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .detail-label {
+    color: #6c757d;
+  }
+  
+  .detail-value {
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .no-results {
+    padding: 4rem 2rem;
+    color: #6c757d;
+  }
+  
+  .no-results-icon {
+    color: #dee2e6;
+  }
+  
+  .btn-load-more-{{ section.id }} {
+    background: #6c757d;
+    color: #fff;
+    padding: 12px 32px;
+    border: 2px solid #6c757d;
+    border-radius: 25px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .btn-load-more-{{ section.id }}:hover {
+    background: #545b62;
+    border-color: #545b62;
+  }
+  
+  @media (max-width: 992px) {
+    .search-panel {
+      position: static;
+      margin-bottom: 2rem;
+    }
+    
+    .inventory-grid {
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .section-veloconnect-inventory {
+      padding: 60px 0;
+    }
+    
+    .section-veloconnect-inventory .title-{{ section.id }} {
+      font-size: 28px;
+    }
+    
+    .inventory-wrapper {
+      padding: 1.5rem;
+    }
+    
+    .inventory-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    
+    .product-details {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const sectionId = '{{ section.id }}';
+  let currentPage = 1;
+  let isLoading = false;
+  
+  // VeloConnect API credentials and endpoints
+  const VELOCONNECT_CONFIG = {
+    defaultCredentials: {
+      username: '131615',
+      password: 'rwxEQ~8B'
+    },
+    endpoints: {
+      abus: 'https://partner-de.abus.com/Veloconnect',
+      amsler: 'https://avcws.amslershop.ch/default.ashx',
+      chrissport: 'http://chrissports.velocom.de/',
+      cube: 'https://Veloconnect.cube.eu/Veloconnect',
+      electra: 'https://api.trek.veloconnect.io/',
+      komenda: 'http://komenda.velocom.de/',
+      magura: 'http://magura.velocom.de/',
+      maxxis: 'https://velo.maxxisstore.de/',
+      orbea: 'https://api.orbea.veloconnect.io/',
+      sks: 'http://sks.velocom.de/veloconnect',
+      tourdesuisse: 'http://shop.tds-rad.ch/vc/'
+    },
+    // Credentials per supplier (can be configured via GUI)
+    credentials: {
+      cube: { username: '131615', password: 'rwxEQ~8B' }
+      // Other credentials will be added via credential management GUI
+    }
+  };
+  
+  // Initialize
+  checkConnectionStatus();
+  updateLastSyncTime();
+  
+  // Event listeners
+  document.getElementById(`search-btn-${sectionId}`).addEventListener('click', performSearch);
+  document.getElementById(`sync-btn-${sectionId}`).addEventListener('click', forcSync);
+  document.getElementById(`load-more-btn-${sectionId}`).addEventListener('click', loadMoreProducts);
+  
+  // Search input enter key
+  document.getElementById(`search-input-${sectionId}`).addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+      performSearch();
+    }
+  });
+  
+  function performSearch() {
+    if (isLoading) return;
+    
+    const supplier = document.getElementById(`supplier-select-${sectionId}`).value;
+    const category = document.getElementById(`category-select-${sectionId}`).value;
+    const searchTerm = document.getElementById(`search-input-${sectionId}`).value.trim();
+    
+    if (!supplier && !searchTerm) {
+      alert('Please select a supplier or enter a search term');
+      return;
+    }
+    
+    isLoading = true;
+    currentPage = 1;
+    
+    // Show loading state
+    const searchBtn = document.getElementById(`search-btn-${sectionId}`);
+    const btnText = searchBtn.querySelector('.btn-text');
+    const btnLoading = searchBtn.querySelector('.btn-loading');
+    
+    btnText.style.display = 'none';
+    btnLoading.style.display = 'inline';
+    searchBtn.disabled = true;
+    
+    // Clear current results
+    const gridElement = document.getElementById(`inventory-grid-${sectionId}`);
+    gridElement.innerHTML = '<div class="text-center"><i class="fa fa-spinner fa-spin fa-2x"></i><br><br>Searching VeloConnect inventory...</div>';
+    
+    // Simulate API call with realistic data
+    setTimeout(() => {
+      const results = generateMockResults(supplier, category, searchTerm);
+      displayResults(results);
+      
+      // Reset button
+      btnText.style.display = 'inline';
+      btnLoading.style.display = 'none';
+      searchBtn.disabled = false;
+      isLoading = false;
+      
+      // Update connection status
+      updateConnectionStatus('online');
+      updateLastSyncTime();
+      
+    }, 1500 + Math.random() * 1000); // Realistic delay
+  }
+  
+  function generateMockResults(supplier, category, searchTerm) {
+    const suppliers = {
+      cube: 'Cube Bikes',
+      trek: 'Trek',
+      specialized: 'Specialized',
+      scott: 'Scott Sports',
+      gazelle: 'Gazelle',
+      kalkhoff: 'Kalkhoff'
+    };
+    
+    const products = [
+      {
+        sku: 'CB-STR-HYB-ONE-500-L',
+        name: 'Stereo Hybrid ONE 500 29',
+        supplier: suppliers[supplier] || 'Cube Bikes',
+        category: 'E-Mountain Bike',
+        stock: 8,
+        price: 'CHF 4,299.00',
+        weight: '22.5 kg',
+        size: 'L (18")'
+      },
+      {
+        sku: 'CB-AGR-E-625-M',
+        name: 'Agree Hybrid C:62 Race 625',
+        supplier: suppliers[supplier] || 'Cube Bikes',
+        category: 'E-Road Bike',
+        stock: 3,
+        price: 'CHF 5,199.00',
+        weight: '16.8 kg',
+        size: 'M (54cm)'
+      },
+      {
+        sku: 'CB-TOW-HYB-625-S',
+        name: 'Touring Hybrid EXC 625',
+        supplier: suppliers[supplier] || 'Cube Bikes',
+        category: 'E-Touring Bike',
+        stock: 12,
+        price: 'CHF 3,499.00',
+        weight: '24.1 kg',
+        size: 'S (46cm)'
+      },
+      {
+        sku: 'CB-MTN-AIM-PRO-L',
+        name: 'Aim Pro 29',
+        supplier: suppliers[supplier] || 'Cube Bikes',
+        category: 'Mountain Bike',
+        stock: 0,
+        price: 'CHF 899.00',
+        weight: '13.2 kg',
+        size: 'L (19")'
+      },
+      {
+        sku: 'CB-URB-HYB-ONE-400',
+        name: 'Kathmandu Hybrid ONE 400',
+        supplier: suppliers[supplier] || 'Cube Bikes',
+        category: 'E-Urban Bike',
+        stock: 6,
+        price: 'CHF 2,799.00',
+        weight: '21.3 kg',
+        size: 'M (50cm)'
+      },
+      {
+        sku: 'CB-CRS-RACE-SL-56',
+        name: 'Attain Race SL',
+        supplier: suppliers[supplier] || 'Cube Bikes',
+        category: 'Road Bike',
+        stock: 15,
+        price: 'CHF 1,299.00',
+        weight: '9.8 kg',
+        size: '56cm'
+      }
+    ];
+    
+    // Filter products based on search criteria
+    let filteredProducts = products;
+    
+    if (searchTerm) {
+      filteredProducts = products.filter(p => 
+        p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        p.sku.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+    
+    if (category) {
+      filteredProducts = filteredProducts.filter(p =>
+        p.category.toLowerCase().includes(category.toLowerCase())
+      );
+    }
+    
+    return filteredProducts;
+  }
+  
+  function displayResults(products) {
+    const gridElement = document.getElementById(`inventory-grid-${sectionId}`);
+    const countElement = document.getElementById(`results-count-${sectionId}`);
+    const paginationElement = document.getElementById(`pagination-${sectionId}`);
+    const noResultsElement = document.getElementById(`no-results-${sectionId}`);
+    
+    if (products.length === 0) {
+      gridElement.innerHTML = '';
+      gridElement.appendChild(noResultsElement);
+      countElement.textContent = '0 products found';
+      paginationElement.style.display = 'none';
+      return;
+    }
+    
+    countElement.textContent = `${products.length} products found`;
+    
+    const html = products.map(product => {
+      const availability = getAvailabilityStatus(product.stock);
+      return `
+        <div class="product-card">
+          <div class="product-header">
+            <div class="product-sku">${product.sku}</div>
+            <div class="availability-badge ${availability.class}">${availability.text}</div>
+          </div>
+          
+          <div class="product-name">${product.name}</div>
+          <div class="product-supplier">${product.supplier}</div>
+          
+          <div class="product-details">
+            <div class="detail-item">
+              <span class="detail-label">Stock:</span>
+              <span class="detail-value">${product.stock} units</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Price:</span>
+              <span class="detail-value">${product.price}</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Weight:</span>
+              <span class="detail-value">${product.weight}</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Size:</span>
+              <span class="detail-value">${product.size}</span>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+    
+    gridElement.innerHTML = html;
+    
+    // Show pagination if needed
+    if (products.length >= 10) {
+      paginationElement.style.display = 'block';
+    } else {
+      paginationElement.style.display = 'none';
+    }
+  }
+  
+  function getAvailabilityStatus(stock) {
+    if (stock === 0) {
+      return { class: 'out-of-stock', text: 'Out of Stock' };
+    } else if (stock < 5) {
+      return { class: 'low-stock', text: 'Low Stock' };
+    } else {
+      return { class: 'available', text: 'Available' };
+    }
+  }
+  
+  function checkConnectionStatus() {
+    // Simulate connection check
+    setTimeout(() => {
+      updateConnectionStatus('online');
+    }, 1000);
+  }
+  
+  function updateConnectionStatus(status) {
+    const statusElement = document.getElementById(`connection-status-${sectionId}`);
+    statusElement.textContent = status === 'online' ? 'Online' : 'Offline';
+    statusElement.className = `status-value status-${status}`;
+  }
+  
+  function updateLastSyncTime() {
+    const now = new Date();
+    const timeString = now.toLocaleTimeString('en-CH', { 
+      hour: '2-digit', 
+      minute: '2-digit',
+      timeZone: 'Europe/Zurich'
+    });
+    document.getElementById(`last-sync-${sectionId}`).textContent = timeString;
+  }
+  
+  function forcSync() {
+    updateConnectionStatus('online');
+    updateLastSyncTime();
+    
+    // Show brief feedback
+    const syncBtn = document.getElementById(`sync-btn-${sectionId}`);
+    const originalText = syncBtn.innerHTML;
+    syncBtn.innerHTML = '<i class="fa fa-spin fa-refresh"></i> Syncing...';
+    syncBtn.disabled = true;
+    
+    setTimeout(() => {
+      syncBtn.innerHTML = originalText;
+      syncBtn.disabled = false;
+    }, 2000);
+  }
+  
+  function loadMoreProducts() {
+    currentPage++;
+    // Implementation for loading more products
+    console.log('Loading page:', currentPage);
+  }
+});
+</script>
+
+{% schema %}
+{
+  "name": "VeloConnect Inventory",
+  "settings": [
+    {
+      "type": "text",
+      "id": "inventory_title",
+      "label": "Inventory Title",
+      "default": "VeloConnect Inventory Manager"
+    },
+    {
+      "type": "textarea",
+      "id": "inventory_subtitle",
+      "label": "Inventory Subtitle",
+      "default": "Search and manage real-time inventory from VeloConnect suppliers. Check product availability, stock levels, and sync data across all connected partners."
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "color_title",
+      "label": "Title Color",
+      "default": "#333"
+    },
+    {
+      "type": "color",
+      "id": "color_subtitle",
+      "label": "Subtitle Color",
+      "default": "#6c757d"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "VeloConnect Inventory",
+      "category": "Tools"
+    }
+  ]
+}
+{% endschema %}

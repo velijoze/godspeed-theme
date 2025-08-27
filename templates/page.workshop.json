@@ -1,0 +1,19 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {}
+    },
+    "rich_text": {
+      "type": "rich-text",
+      "settings": {
+        "title": "Workshop & Service Center",
+        "text": "<p>Professional bicycle and e-bike service at Switzerland's premier workshop.</p>"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "rich_text"
+  ]
+}
