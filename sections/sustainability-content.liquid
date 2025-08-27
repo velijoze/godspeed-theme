@@ -3,7 +3,7 @@
   Displays Godspeed's commitment to sustainability.
 {% endcomment %}
 
-<div class="section-sustainability-content-{{ section.id }}" style="{% if section.settings.margin_top != blank %}margin-top: {{section.settings.margin_top}}px;{%endif%} {% if section.settings.margin_bottom != blank %}margin-bottom: {{section.settings.margin_bottom}}px;{% endif %}">
+<div class="section-sustainability-content-{{ section.id }}" style="{% if section.settings.margin_top != blank %}margin-top: {{section.settings.margin_top}}px;{% endif %} {% if section.settings.margin_bottom != blank %}margin-bottom: {{section.settings.margin_bottom}}px;{% endif %}">
   <div class="page-width">
     <div class="sustainability-header text-center">
       <h1 class="section-header__title">{{ section.settings.title | default: "Our Commitment to Sustainability" }}</h1>
@@ -209,7 +209,7 @@
 
     <div class="sustainability-section text-center">
       <h2 class="sustainability-section-title">{{ section.settings.join_movement_title | default: "Join the Movement" }}</h2>
-      <p class="sustainability-section-text">{{ section.settings.join_movement_text | default: "Every bike purchase is a vote for a more sustainable future. Together, we can transform transportation in Switzerland and create healthier, happier communities." }}</p>
+      <p class="sustainability-section-text">{{ section.settings.join_movement_text | default: "Every bike purchase is a vote for a sustainable future. Together, we can transform transportation in Switzerland and create healthier, happier communities." }}</p>
       <p class="sustainability-call-to-action">{{ section.settings.call_to_action_text | default: "Choose GODSPEED. Choose Sustainability. Choose the Future." }}</p>
       <div class="sustainability-links">
         <a href="/pages/about-us" class="button button--primary">About Us</a>
@@ -221,7 +221,6 @@
 </div>
 
 <style>
-  /* Scoped styles for sustainability section */
   .section-sustainability-content-{{ section.id }} {
     padding: 50px 0;
     color: #333;
@@ -350,7 +349,6 @@
     background-color: #555;
   }
 
-  /* Responsive adjustments */
   @media (max-width: 768px) {
     .section-header__title {
       font-size: 2.2em;
@@ -604,7 +602,7 @@
     },
     {
       "type": "text",
-      "id": "durability_item2",
+      "id": "eco_operations_item2",
       "label": "Durability Item 2",
       "default": "Comprehensive maintenance services to extend product life"
     },
@@ -698,7 +696,7 @@
     },
     {
       "type": "text",
-      "id": "battery_innovation_item1",
+      "id": "eco_brands_item1",
       "label": "Battery Innovation Item 1",
       "default": "Latest battery technology for longer life"
     },
@@ -750,7 +748,7 @@
     },
     {
       "type": "text",
-      "id": "cycling_culture_item3",
+      "id": "eco_brands_item3",
       "label": "Cycling Culture Item 3",
       "default": "Partnerships with schools and organizations"
     },
@@ -774,7 +772,7 @@
     },
     {
       "type": "text",
-      "id": "cycling_accessibility_item2",
+      "id": "eco_brands_item2",
       "label": "Cycling Accessibility Item 2",
       "default": "Budget-friendly models available"
     },
@@ -808,7 +806,7 @@
     },
     {
       "type": "text",
-      "id": "year_target_item1",
+      "id": "eco_brands_item1",
       "label": "2025 Target Item 1",
       "default": "Carbon-neutral operations at all locations"
     },
@@ -838,19 +836,19 @@
     },
     {
       "type": "text",
-      "id": "long_term_vision_item1",
+      "id": "eco_brands_item2",
       "label": "Long-Term Vision Item 1",
       "default": "Contribute to Switzerland's climate goals"
     },
     {
       "type": "text",
-      "id": "long_term_vision_item2",
+      "id": "eco_brands_item3",
       "label": "Long-Term Vision Item 2",
       "default": "Help create car-free city centers"
     },
     {
       "type": "text",
-      "id": "long_term_vision_item3",
+      "id": "eco_brands_item4",
       "label": "Long-Term Vision Item 3",
       "default": "Support the transition to sustainable mobility"
     },
@@ -884,19 +882,19 @@
     },
     {
       "type": "text",
-      "id": "choose_sustainable_item2",
+      "id": "eco_brands_item2",
       "label": "Choose Sustainable Item 2",
       "default": "Replace car trips with e-bike rides"
     },
     {
       "type": "text",
-      "id": "choose_sustainable_item3",
+      "id": "eco_brands_item3",
       "label": "Choose Sustainable Item 3",
       "default": "Encourage friends and family to cycle"
     },
     {
       "type": "text",
-      "id": "choose_sustainable_item4",
+      "id": "eco_brands_item4",
       "label": "Choose Sustainable Item 4",
       "default": "Support cycling infrastructure improvements"
     },
@@ -1018,7 +1016,7 @@
       "type": "textarea",
       "id": "join_movement_text",
       "label": "Join the Movement Text",
-      "default": "Every bike purchase is a vote for a more sustainable future. Together, we can transform transportation in Switzerland and create healthier, happier communities."
+      "default": "Every bike purchase is a vote for a sustainable future. Together, we can transform transportation in Switzerland and create healthier, happier communities."
     },
     {
       "type": "text",
