@@ -1,1 +1,44 @@
-{"sections":{"collection_template":{"type":"collection-template","settings":{"select_style_bread":"style_6","ena_bg_img":false,"bg_color_breadcrumb":"#ffffff","color_breadcrumb":"#ffffff","collection_layout":"sidebar","prod_per_page":12,"prod_layout":"prod_grid","prod_per_row":"prod_col_3","filter_layout":"filter_push_left","sidebar_layout":"sidebar_left","ena_sticky_sidebar":true,"ena_banner_mordern":true,"big_title":"","mini_title":"","btn_title":"","bannerfull_url":"https:\/\/www.shopify.com\/free-trial?ref=shopifycenter","color_title":"#ffffff","ena_best_seller":true,"title_heading":"BEST SELLERS","select_collection":"frontpage","products_limit":12,"ena_filter":true,"ena_filter2":true}}},"order":["collection_template"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "collection_template": {
+      "type": "collection-template",
+      "settings": {
+        "select_style_bread": "style_6",
+        "ena_bg_img": false,
+        "bg_color_breadcrumb": "#ffffff",
+        "color_breadcrumb": "#ffffff",
+        "collection_layout": "full_width",
+        "prod_per_page": 12,
+        "prod_layout": "prod_grid",
+        "prod_per_row": "prod_col_3",
+        "filter_layout": "filter_push_left",
+        "sidebar_layout": "sidebar_left",
+        "ena_sticky_sidebar": true,
+        "ena_banner_mordern": true,
+        "big_title": "",
+        "mini_title": "",
+        "btn_title": "",
+        "bannerfull_url": "https://www.shopify.com/free-trial?ref=shopifycenter",
+        "color_title": "#ffffff",
+        "ena_best_seller": true,
+        "title_heading": "BEST SELLERS",
+        "select_collection": "frontpage",
+        "products_limit": 12,
+        "ena_filter": true,
+        "ena_filter2": true
+      }
+    }
+  },
+  "order": [
+    "collection_template"
+  ]
+}
