@@ -1,0 +1,10 @@
+{
+  "sections": {
+    "main": {
+      "type": "sustainability-content",
+      "settings": {
+      }
+    }
+  },
+  "order": ["main"]
+}
