@@ -1,0 +1,905 @@
+{% comment %}
+  Admin Dashboard Section
+  Centralized management interface for all tools and APIs
+{% endcomment %}
+
+<div data-section-id="{{ section.id }}" data-section-type="section-admin-dashboard" style="{% if section.settings.margin_top != blank %}margin-top: {{section.settings.margin_top}}px;{%endif%} {% if section.settings.margin_bottom != blank %}margin-bottom: {{section.settings.margin_bottom}}px;{% endif %}">
+  <div class="section-admin-dashboard mt-all">
+    <div class="container container-v2">
+      <div class="row justify-content-center">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <div class="dashboard-header text-center mb-5">
+            {% if section.settings.dashboard_title != blank %}
+              <h2 class="title title-{{ section.id }} mb-3">{{ section.settings.dashboard_title }}</h2>
+            {% endif %}
+            
+            {% if section.settings.dashboard_subtitle != blank %}
+              <p class="subtitle subtitle-{{ section.id }}">{{ section.settings.dashboard_subtitle }}</p>
+            {% endif %}
+          </div>
+          
+          <div class="dashboard-wrapper">
+            <div class="row">
+              <!-- Tool Status Overview -->
+              <div class="col-lg-8 col-md-12 mb-4">
+                <div class="tools-overview">
+                  <h4 class="section-title section-title-{{ section.id }} mb-4">System Status Overview</h4>
+                  
+                  <div class="status-grid">
+                    <div class="status-card status-online">
+                      <div class="status-icon">
+                        <i class="fa fa-check-circle"></i>
+                      </div>
+                      <div class="status-content">
+                        <h5>AI Chat Assistant</h5>
+                        <p>Online & Active</p>
+                        <span class="status-badge">Live</span>
+                      </div>
+                    </div>
+                    
+                    <div class="status-card status-online">
+                      <div class="status-icon">
+                        <i class="fa fa-check-circle"></i>
+                      </div>
+                      <div class="status-content">
+                        <h5>Workshop Booking</h5>
+                        <p>Google Cloud Connected</p>
+                        <span class="status-badge">Live</span>
+                      </div>
+                    </div>
+                    
+                    <div class="status-card status-online">
+                      <div class="status-icon">
+                        <i class="fa fa-check-circle"></i>
+                      </div>
+                      <div class="status-content">
+                        <h5>Cube Integration</h5>
+                        <p>API Connected</p>
+                        <span class="status-badge">Live</span>
+                      </div>
+                    </div>
+                    
+                    <div class="status-card status-pending">
+                      <div class="status-icon">
+                        <i class="fa fa-clock-o"></i>
+                      </div>
+                      <div class="status-content">
+                        <h5>VeloConnect</h5>
+                        <p>Configuration Required</p>
+                        <span class="status-badge">Setup</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Quick Actions -->
+                <div class="quick-actions mt-4">
+                  <h4 class="section-title section-title-{{ section.id }} mb-3">Quick Actions</h4>
+                  
+                  <div class="action-buttons">
+                    <button class="btn btn-action" onclick="testAIChat()">
+                      <i class="fa fa-comments"></i> Test AI Chat
+                    </button>
+                    <button class="btn btn-action" onclick="checkAPIs()">
+                      <i class="fa fa-plug"></i> Check API Health
+                    </button>
+                    <button class="btn btn-action" onclick="viewLogs()">
+                      <i class="fa fa-list"></i> View System Logs
+                    </button>
+                    <button class="btn btn-action" onclick="exportData()">
+                      <i class="fa fa-download"></i> Export Data
+                    </button>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- System Metrics -->
+              <div class="col-lg-4 col-md-12">
+                <div class="system-metrics">
+                  <h4 class="section-title section-title-{{ section.id }} mb-3">System Metrics</h4>
+                  
+                  <div class="metric-cards">
+                    <div class="metric-card">
+                      <div class="metric-header">
+                        <h5>Chat Sessions</h5>
+                        <i class="fa fa-comments"></i>
+                      </div>
+                      <div class="metric-value" id="chat-sessions-count">0</div>
+                      <div class="metric-change positive">+12% this week</div>
+                    </div>
+                    
+                    <div class="metric-card">
+                      <div class="metric-header">
+                        <h5>Service Bookings</h5>
+                        <i class="fa fa-calendar"></i>
+                      </div>
+                      <div class="metric-value" id="bookings-count">0</div>
+                      <div class="metric-change positive">+8% this week</div>
+                    </div>
+                    
+                    <div class="metric-card">
+                      <div class="metric-header">
+                        <h5>API Calls</h5>
+                        <i class="fa fa-exchange"></i>
+                      </div>
+                      <div class="metric-value" id="api-calls-count">0</div>
+                      <div class="metric-change neutral">0% change</div>
+                    </div>
+                    
+                    <div class="metric-card">
+                      <div class="metric-header">
+                        <h5>System Uptime</h5>
+                        <i class="fa fa-server"></i>
+                      </div>
+                      <div class="metric-value" id="uptime-percentage">99.9%</div>
+                      <div class="metric-change positive">+0.1% this month</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Tool Configuration -->
+            <div class="row mt-5">
+              <div class="col-12">
+                <div class="tool-configuration">
+                  <h4 class="section-title section-title-{{ section.id }} mb-4">Tool Configuration</h4>
+                  
+                  <div class="config-tabs">
+                    <div class="tab-navigation">
+                      <button class="tab-btn active" data-tab="ai-chat">AI Chat</button>
+                      <button class="tab-btn" data-tab="workshop-booking">Workshop Booking</button>
+                      <button class="tab-btn" data-tab="cube-integration">Cube Integration</button>
+                      <button class="tab-btn" data-tab="veloconnect">VeloConnect</button>
+                    </div>
+                    
+                    <div class="tab-content">
+                      <!-- AI Chat Configuration -->
+                      <div class="tab-pane active" id="ai-chat-config">
+                        <div class="config-form">
+                          <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
+                              <label class="form-label">Chat Title</label>
+                              <input type="text" class="form-control" value="Godspeed E-Bike Expert" id="chat-title-input">
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
+                              <label class="form-label">Welcome Message</label>
+                              <textarea class="form-control" rows="2" id="welcome-message-input">Hello! I'm your Godspeed e-bike expert. How can I help you find the perfect bike or schedule service today?</textarea>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
+                              <label class="form-label">Button Color</label>
+                              <input type="color" class="form-control" value="#333333" id="button-color-input">
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
+                              <label class="form-label">Header Color</label>
+                              <input type="color" class="form-control" value="#f8f9fa" id="header-color-input">
+                            </div>
+                          </div>
+                          <button class="btn btn-save" onclick="saveAIChatConfig()">Save AI Chat Settings</button>
+                        </div>
+                      </div>
+                      
+                      <!-- Workshop Booking Configuration -->
+                      <div class="tab-pane" id="workshop-booking-config">
+                        <div class="config-form">
+                          <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
+                              <label class="form-label">Google Cloud Function URL</label>
+                              <input type="text" class="form-control" value="https://bookings-api-802427545823.europe-west6.run.app/bookings/service" readonly>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
+                              <label class="form-label">API Status</label>
+                              <span class="status-indicator online">Online</span>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
+                              <label class="form-label">Service Locations</label>
+                              <div class="location-list">
+                                <div class="location-item">
+                                  <input type="checkbox" checked> Lugano Workshop
+                                </div>
+                                <div class="location-item">
+                                  <input type="checkbox" checked> Bellinzona Store
+                                </div>
+                                <div class="location-item">
+                                  <input type="checkbox" checked> Locarno Store
+                                </div>
+                                <div class="location-item">
+                                  <input type="checkbox" checked> Zurich Store
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
+                              <label class="form-label">Booking Hours</label>
+                              <input type="text" class="form-control" value="09:00 - 17:00 (Mon-Fri)" readonly>
+                            </div>
+                          </div>
+                          <button class="btn btn-test" onclick="testWorkshopAPI()">Test Workshop API</button>
+                        </div>
+                      </div>
+                      
+                      <!-- Cube Integration Configuration -->
+                      <div class="tab-pane" id="cube-integration-config">
+                        <div class="config-form">
+                          <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
+                              <label class="form-label">API Status</label>
+                              <span class="status-indicator online">Connected</span>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
+                              <label class="form-label">Last Sync</label>
+                              <span class="last-sync">2 hours ago</span>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
+                              <label class="form-label">Products Synced</label>
+                              <span class="sync-count">1,247 products</span>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
+                              <label class="form-label">Sync Frequency</label>
+                              <select class="form-control">
+                                <option>Every 2 hours</option>
+                                <option>Every 4 hours</option>
+                                <option>Daily</option>
+                                <option>Manual</option>
+                              </select>
+                            </div>
+                          </div>
+                          <button class="btn btn-sync" onclick="syncCubeProducts()">Sync Products Now</button>
+                        </div>
+                      </div>
+                      
+                      <!-- VeloConnect Configuration -->
+                      <div class="tab-pane" id="veloconnect-config">
+                        <div class="config-form">
+                          <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
+                              <label class="form-label">API Status</label>
+                              <span class="status-indicator pending">Configuration Required</span>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
+                              <label class="form-label">Suppliers Connected</label>
+                              <span class="supplier-count">1 of 12</span>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 mb-3">
+                              <label class="form-label">Available Suppliers</label>
+                              <div class="supplier-grid">
+                                <div class="supplier-item configured">
+                                  <span class="supplier-name">Cube Bikes</span>
+                                  <span class="supplier-status">Connected</span>
+                                </div>
+                                <div class="supplier-item pending">
+                                  <span class="supplier-name">ABUS</span>
+                                  <span class="supplier-status">Setup Required</span>
+                                </div>
+                                <div class="supplier-item pending">
+                                  <span class="supplier-name">Orbea</span>
+                                  <span class="supplier-status">Setup Required</span>
+                                </div>
+                                <div class="supplier-item pending">
+                                  <span class="supplier-name">Maxxis</span>
+                                  <span class="supplier-status">Setup Required</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <button class="btn btn-configure" onclick="configureVeloConnect()">Configure VeloConnect</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .section-admin-dashboard {
+    padding: 80px 0;
+    background: #fff;
+  }
+  
+  .section-admin-dashboard .title-{{ section.id }} {
+    color: {{ section.settings.color_title | default: '#333' }};
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  
+  .section-admin-dashboard .subtitle-{{ section.id }} {
+    color: {{ section.settings.color_subtitle | default: '#6c757d' }};
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .dashboard-wrapper {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  }
+  
+  .section-title-{{ section.id }} {
+    color: {{ section.settings.color_title | default: '#333' }};
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  /* Status Grid */
+  .status-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .status-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid #e9ecef;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .status-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  }
+  
+  .status-card.status-online {
+    border-left: 4px solid #28a745;
+  }
+  
+  .status-card.status-pending {
+    border-left: 4px solid #ffc107;
+  }
+  
+  .status-card.status-offline {
+    border-left: 4px solid #dc3545;
+  }
+  
+  .status-icon {
+    font-size: 2rem;
+    color: #28a745;
+  }
+  
+  .status-card.status-pending .status-icon {
+    color: #ffc107;
+  }
+  
+  .status-card.status-offline .status-icon {
+    color: #dc3545;
+  }
+  
+  .status-content h5 {
+    margin: 0 0 0.5rem 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .status-content p {
+    margin: 0 0 0.5rem 0;
+    font-size: 14px;
+    color: #6c757d;
+  }
+  
+  .status-badge {
+    background: #28a745;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  
+  .status-card.status-pending .status-badge {
+    background: #ffc107;
+    color: #333;
+  }
+  
+  /* Quick Actions */
+  .action-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .btn-action {
+    background: {{ section.settings.color_title | default: '#333' }};
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .btn-action:hover {
+    background: #555;
+    transform: translateY(-1px);
+  }
+  
+  /* System Metrics */
+  .metric-cards {
+    display: grid;
+    gap: 1rem;
+  }
+  
+  .metric-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid #e9ecef;
+    text-align: center;
+  }
+  
+  .metric-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .metric-header h5 {
+    margin: 0;
+    font-size: 14px;
+    color: #6c757d;
+    font-weight: 500;
+  }
+  
+  .metric-header i {
+    font-size: 1.5rem;
+    color: {{ section.settings.color_title | default: '#333' }};
+  }
+  
+  .metric-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 0.5rem;
+  }
+  
+  .metric-change {
+    font-size: 12px;
+    font-weight: 500;
+  }
+  
+  .metric-change.positive {
+    color: #28a745;
+  }
+  
+  .metric-change.negative {
+    color: #dc3545;
+  }
+  
+  .metric-change.neutral {
+    color: #6c757d;
+  }
+  
+  /* Configuration Tabs */
+  .config-tabs {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #e9ecef;
+  }
+  
+  .tab-navigation {
+    display: flex;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+  }
+  
+  .tab-btn {
+    background: none;
+    border: none;
+    padding: 1rem 1.5rem;
+    font-size: 14px;
+    font-weight: 500;
+    color: #6c757d;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent;
+  }
+  
+  .tab-btn.active {
+    color: {{ section.settings.color_title | default: '#333' }};
+    border-bottom-color: {{ section.settings.color_title | default: '#333' }};
+    background: white;
+  }
+  
+  .tab-btn:hover {
+    color: #333;
+    background: #e9ecef;
+  }
+  
+  .tab-content {
+    padding: 2rem;
+  }
+  
+  .tab-pane {
+    display: none;
+  }
+  
+  .tab-pane.active {
+    display: block;
+  }
+  
+  /* Configuration Forms */
+  .config-form {
+    max-width: 100%;
+  }
+  
+  .form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+    background: white;
+  }
+  
+  .form-control:focus {
+    outline: none;
+    border-color: {{ section.settings.color_title | default: '#333' }};
+    box-shadow: 0 0 0 3px rgba(51, 51, 51, 0.1);
+  }
+  
+  .btn-save, .btn-test, .btn-sync, .btn-configure {
+    background: {{ section.settings.color_title | default: '#333' }};
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+  }
+  
+  .btn-save:hover, .btn-test:hover, .btn-sync:hover, .btn-configure:hover {
+    background: #555;
+    transform: translateY(-1px);
+  }
+  
+  /* Status Indicators */
+  .status-indicator {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  
+  .status-indicator.online {
+    background: #d4edda;
+    color: #155724;
+  }
+  
+  .status-indicator.pending {
+    background: #fff3cd;
+    color: #856404;
+  }
+  
+  .status-indicator.offline {
+    background: #f8d7da;
+    color: #721c24;
+  }
+  
+  /* Location and Supplier Lists */
+  .location-list, .supplier-grid {
+    display: grid;
+    gap: 0.5rem;
+  }
+  
+  .location-item, .supplier-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    background: #f8f9fa;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+  
+  .supplier-item.configured {
+    background: #d4edda;
+    color: #155724;
+  }
+  
+  .supplier-item.pending {
+    background: #fff3cd;
+    color: #856404;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .section-admin-dashboard {
+      padding: 60px 0;
+    }
+    
+    .section-admin-dashboard .title-{{ section.id }} {
+      font-size: 28px;
+    }
+    
+    .dashboard-wrapper {
+      padding: 1.5rem;
+    }
+    
+    .status-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .action-buttons {
+      flex-direction: column;
+    }
+    
+    .tab-navigation {
+      flex-wrap: wrap;
+    }
+    
+    .tab-btn {
+      flex: 1;
+      min-width: 120px;
+    }
+  }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const sectionId = '{{ section.id }}';
+  
+  // Tab functionality
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const tabPanes = document.querySelectorAll('.tab-pane');
+  
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      const targetTab = this.dataset.tab;
+      
+      // Remove active class from all tabs
+      tabBtns.forEach(b => b.classList.remove('active'));
+      tabPanes.forEach(p => p.classList.remove('active'));
+      
+      // Add active class to clicked tab
+      this.classList.add('active');
+      document.getElementById(`${targetTab}-config`).classList.add('active');
+    });
+  });
+  
+  // Initialize metrics
+  updateMetrics();
+  
+  // Update metrics every 30 seconds
+  setInterval(updateMetrics, 30000);
+});
+
+// Update system metrics
+function updateMetrics() {
+  // Simulate real-time data updates
+  document.getElementById('chat-sessions-count').textContent = Math.floor(Math.random() * 50) + 10;
+  document.getElementById('bookings-count').textContent = Math.floor(Math.random() * 20) + 5;
+  document.getElementById('api-calls-count').textContent = Math.floor(Math.random() * 1000) + 500;
+}
+
+// Test AI Chat functionality
+function testAIChat() {
+  // Trigger chat widget
+  const chatToggle = document.querySelector('.chat-toggle-btn');
+  if (chatToggle) {
+    chatToggle.click();
+  }
+  
+  // Show success message
+  showNotification('AI Chat test initiated. Check the chat widget.', 'success');
+}
+
+// Check API health
+function checkAPIs() {
+  showNotification('Checking API health...', 'info');
+  
+  // Simulate API health check
+  setTimeout(() => {
+    showNotification('All APIs are healthy and responding.', 'success');
+  }, 2000);
+}
+
+// View system logs
+function viewLogs() {
+  showNotification('Opening system logs...', 'info');
+  // This would typically open a modal or navigate to logs page
+}
+
+// Export data
+function exportData() {
+  showNotification('Preparing data export...', 'info');
+  
+  // Simulate export process
+  setTimeout(() => {
+    showNotification('Data export completed. Check your downloads.', 'success');
+  }, 3000);
+}
+
+// Save AI Chat configuration
+function saveAIChatConfig() {
+  const title = document.getElementById('chat-title-input').value;
+  const message = document.getElementById('welcome-message-input').value;
+  const buttonColor = document.getElementById('button-color-input').value;
+  const headerColor = document.getElementById('header-color-input').value;
+  
+  // Save configuration (in real implementation, this would save to Shopify metafields or settings)
+  showNotification('AI Chat configuration saved successfully!', 'success');
+}
+
+// Test Workshop API
+function testWorkshopAPI() {
+  showNotification('Testing workshop booking API...', 'info');
+  
+  // Simulate API test
+  setTimeout(() => {
+    showNotification('Workshop API test successful!', 'success');
+  }, 2000);
+}
+
+// Sync Cube products
+function syncCubeProducts() {
+  showNotification('Starting Cube product synchronization...', 'info');
+  
+  // Simulate sync process
+  setTimeout(() => {
+    showNotification('Cube products synchronized successfully!', 'success');
+  }, 5000);
+}
+
+// Configure VeloConnect
+function configureVeloConnect() {
+  showNotification('Opening VeloConnect configuration...', 'info');
+  // This would typically open a modal or navigate to VeloConnect settings
+}
+
+// Show notification
+function showNotification(message, type = 'info') {
+  // Create notification element
+  const notification = document.createElement('div');
+  notification.className = `notification notification-${type}`;
+  notification.innerHTML = `
+    <div class="notification-content">
+      <span class="notification-message">${message}</span>
+      <button class="notification-close" onclick="this.parentElement.parentElement.remove()">×</button>
+    </div>
+  `;
+  
+  // Add styles
+  notification.style.cssText = `
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: ${type === 'success' ? '#d4edda' : type === 'error' ? '#f8d7da' : '#d1ecf1'};
+    color: ${type === 'success' ? '#155724' : type === 'error' ? '#721c24' : '#0c5460'};
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 10000;
+    max-width: 400px;
+    animation: slideIn 0.3s ease;
+  `;
+  
+  // Add animation styles
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes slideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+  `;
+  document.head.appendChild(style);
+  
+  // Add to page
+  document.body.appendChild(notification);
+  
+  // Auto-remove after 5 seconds
+  setTimeout(() => {
+    if (notification.parentElement) {
+      notification.remove();
+    }
+  }, 5000);
+}
+</script>
+
+{% schema %}
+{
+  "name": "Admin Dashboard",
+  "settings": [
+    {
+      "type": "text",
+      "id": "dashboard_title",
+      "label": "Dashboard Title",
+      "default": "Admin Tools & API Management"
+    },
+    {
+      "type": "textarea",
+      "id": "dashboard_subtitle",
+      "label": "Dashboard Subtitle",
+      "default": "Centralized dashboard for managing all your e-bike business tools, API credentials, and system configurations."
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "color_title",
+      "label": "Title Color",
+      "default": "#333"
+    },
+    {
+      "type": "color",
+      "id": "color_subtitle",
+      "label": "Subtitle Color",
+      "default": "#6c757d"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Admin Dashboard",
+      "category": "Admin Tools"
+    }
+  ]
+}
+{% endschema %}

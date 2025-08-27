@@ -1,0 +1,630 @@
+{% comment %}
+  AI Chat Assistant Section
+  Swiss e-bike expert chat widget using theme CSS classes
+{% endcomment %}
+
+<div data-section-id="{{ section.id }}" data-section-type="section-ai-chat-assistant" style="{% if section.settings.margin_top != blank %}margin-top: {{section.settings.margin_top}}px;{%endif%} {% if section.settings.margin_bottom != blank %}margin-bottom: {{section.settings.margin_bottom}}px;{% endif %}">
+  <div class="ai-chat-widget" id="ai-chat-widget-{{ section.id }}">
+    <!-- Chat Toggle Button -->
+    <button id="ai-chat-toggle-{{ section.id }}" class="chat-toggle-btn" aria-label="Open chat">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+      </svg>
+      <span class="chat-notification" id="chat-notification-{{ section.id }}" style="display: none;">1</span>
+    </button>
+    
+    <!-- Chat Container -->
+    <div id="ai-chat-container-{{ section.id }}" class="chat-container">
+      <!-- Chat Header -->
+      <div class="chat-header">
+        <div class="chat-header-content">
+          <h3 class="chat-title">{{ section.settings.chat_title | default: 'Godspeed E-Bike Expert' }}</h3>
+          <p class="chat-subtitle">{{ section.settings.chat_subtitle | default: 'Swiss e-bike specialists at your service' }}</p>
+        </div>
+        <button id="ai-chat-close-{{ section.id }}" class="chat-close-btn" aria-label="Close chat">×</button>
+      </div>
+      
+      <!-- Chat Messages -->
+      <div id="ai-chat-messages-{{ section.id }}" class="chat-messages">
+        <div class="welcome-message">
+          <div class="ai-avatar">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+          </div>
+          <div class="message-content">
+            <p class="message-text">{{ section.settings.welcome_message | default: 'Hello! I\'m your Godspeed e-bike expert. How can I help you find the perfect bike or schedule service today?' }}</p>
+            <div class="quick-actions">
+              <button class="quick-action-btn" data-action="bike-recommendation">🚲 Bike Recommendation</button>
+              <button class="quick-action-btn" data-action="service-booking">🔧 Service Booking</button>
+              <button class="quick-action-btn" data-action="financing">💰 Financing Options</button>
+              <button class="quick-action-btn" data-action="test-ride">🚴 Test Ride</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Chat Input -->
+      <div class="chat-input-container">
+        <div class="chat-input-wrapper">
+          <input type="text" id="ai-chat-input-{{ section.id }}" class="chat-input" placeholder="{{ section.settings.placeholder | default: 'Ask about e-bikes, service, or financing...' }}" />
+          <button id="ai-chat-send-{{ section.id }}" class="chat-send-btn" aria-label="Send message">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+          </button>
+        </div>
+        <div class="chat-footer">
+          <span class="chat-status">🟢 Online - Swiss time</span>
+          <span class="chat-languages">DE | FR | IT | EN</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .ai-chat-widget {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    font-family: 'SofiaPro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+  
+  .chat-toggle-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: {{ section.settings.button_color | default: '#333' }};
+    color: white;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+  
+  .chat-toggle-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+  }
+  
+  .chat-notification {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #ff4040;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+  }
+  
+  .chat-container {
+    display: none;
+    position: absolute;
+    bottom: 80px;
+    right: 0;
+    width: 380px;
+    height: 550px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    flex-direction: column;
+    border: 1px solid #e9ecef;
+  }
+  
+  .chat-header {
+    padding: 20px;
+    background: {{ section.settings.header_color | default: '#f8f9fa' }};
+    border-radius: 16px 16px 0 0;
+    border-bottom: 1px solid #e9ecef;
+  }
+  
+  .chat-header-content {
+    flex: 1;
+  }
+  
+  .chat-title {
+    margin: 0 0 5px 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+    line-height: 1.2;
+  }
+  
+  .chat-subtitle {
+    margin: 0;
+    font-size: 14px;
+    color: #6c757d;
+    line-height: 1.4;
+  }
+  
+  .chat-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #6c757d;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+  }
+  
+  .chat-close-btn:hover {
+    background: #e9ecef;
+    color: #333;
+  }
+  
+  .chat-messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background: #fff;
+  }
+  
+  .welcome-message {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  
+  .ai-avatar {
+    width: 36px;
+    height: 36px;
+    background: {{ section.settings.button_color | default: '#333' }};
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+  }
+  
+  .message-content {
+    flex: 1;
+  }
+  
+  .message-text {
+    margin: 0 0 15px 0;
+    color: #333;
+    line-height: 1.5;
+    font-size: 14px;
+  }
+  
+  .quick-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  
+  .quick-action-btn {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 12px;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+    line-height: 1.3;
+  }
+  
+  .quick-action-btn:hover {
+    background: #e9ecef;
+    border-color: #dee2e6;
+  }
+  
+  .chat-input-container {
+    padding: 20px;
+    border-top: 1px solid #e9ecef;
+    background: #f8f9fa;
+    border-radius: 0 0 16px 16px;
+  }
+  
+  .chat-input-wrapper {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  
+  .chat-input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+    background: white;
+    height: 44px;
+  }
+  
+  .chat-input:focus {
+    outline: none;
+    border-color: {{ section.settings.button_color | default: '#333' }};
+    box-shadow: 0 0 0 3px rgba(51, 51, 51, 0.1);
+  }
+  
+  .chat-send-btn {
+    width: 44px;
+    height: 44px;
+    background: {{ section.settings.button_color | default: '#333' }};
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+  }
+  
+  .chat-send-btn:hover {
+    background: #555;
+    transform: translateY(-1px);
+  }
+  
+  .chat-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: #6c757d;
+  }
+  
+  .chat-status {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .chat-languages {
+    font-weight: 500;
+  }
+  
+  /* Message Styles */
+  .user-message, .ai-message {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 15px;
+  }
+  
+  .user-message {
+    flex-direction: row-reverse;
+  }
+  
+  .user-message .message-content {
+    background: {{ section.settings.user_message_color | default: '#007bff' }};
+    color: white;
+    padding: 12px 16px;
+    border-radius: 18px 18px 4px 18px;
+    max-width: 280px;
+  }
+  
+  .ai-message .message-content {
+    background: #f8f9fa;
+    color: #333;
+    padding: 12px 16px;
+    border-radius: 18px 18px 18px 4px;
+    max-width: 280px;
+    border: 1px solid #e9ecef;
+  }
+  
+  .user-message .ai-avatar {
+    background: #6c757d;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .chat-container {
+      width: calc(100vw - 40px);
+      right: -10px;
+      height: 70vh;
+    }
+    
+    .quick-actions {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .ai-chat-widget {
+      bottom: 10px;
+      right: 10px;
+    }
+    
+    .chat-toggle-btn {
+      width: 50px;
+      height: 50px;
+    }
+    
+    .chat-container {
+      bottom: 70px;
+      width: calc(100vw - 20px);
+      right: -5px;
+    }
+  }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const sectionId = '{{ section.id }}';
+  const toggle = document.getElementById(`ai-chat-toggle-${sectionId}`);
+  const container = document.getElementById(`ai-chat-container-${sectionId}`);
+  const closeBtn = document.getElementById(`ai-chat-close-${sectionId}`);
+  const input = document.getElementById(`ai-chat-input-${sectionId}`);
+  const sendBtn = document.getElementById(`ai-chat-send-${sectionId}`);
+  const messagesContainer = document.getElementById(`ai-chat-messages-${sectionId}`);
+  const notification = document.getElementById(`chat-notification-${sectionId}`);
+  
+  // Enhanced Swiss e-bike responses
+  const responses = {
+    // Greetings
+    'hello': 'Grüezi! Wie kann ich Ihnen heute helfen? I\'m here to assist you with e-bikes, service, and more!',
+    'hi': 'Hallo! Comment puis-je vous aider? How can I help you today?',
+    'ciao': 'Ciao! Come posso aiutarti? I\'m your Godspeed e-bike expert!',
+    
+    // Pricing & Products
+    'price': 'Our e-bikes range from CHF 2,000 to CHF 8,000. We have models for every budget and need. Would you like me to recommend something specific?',
+    'cost': 'E-bike prices start at CHF 2,000. We offer financing through HeyLight with 0% interest for up to 36 months.',
+    'expensive': 'We understand budget concerns! We have quality e-bikes starting at CHF 2,000, and financing options to make it affordable.',
+    
+    // Shipping & Delivery
+    'shipping': 'Free shipping on all e-bikes within Switzerland! Delivery takes 3-5 business days to Lugano, Locarno, Bellinzona, and Zurich.',
+    'delivery': 'We deliver to all Swiss locations. Free shipping on e-bikes, and we can arrange pickup from our workshops.',
+    'pickup': 'You can collect from any of our 4 locations: Lugano, Locarno, Bellinzona, or Zurich.',
+    
+    // Warranty & Service
+    'warranty': 'All e-bikes come with 2-year warranty covering parts and labor. Plus, our Swiss workshops provide expert service.',
+    'service': 'We offer comprehensive service at our workshops. Book online or call +41 91 224 53 44. Service intervals are typically every 500-1000km.',
+    'maintenance': 'Regular maintenance is crucial for e-bikes. We recommend service every 500-1000km or annually. Book your service today!',
+    
+    // Test Rides & Booking
+    'test ride': 'Absolutely! Book a test ride at any location. Visit our workshop page or call +41 91 224 53 44. Test rides are free and take about 30 minutes.',
+    'prova': 'Sì! Puoi prenotare una prova gratuita. Visit our workshop page or call us to schedule.',
+    'essai': 'Oui! Réservez un essai gratuit. Visit our workshop page or call us to schedule.',
+    
+    // Financing
+    'financing': 'We offer 0% financing through HeyLight for up to 36 months. Check our financing calculator for personalized options.',
+    'payment': 'Multiple payment options: cash, card, or 0% financing through HeyLight. We make e-bikes accessible to everyone.',
+    'credit': '0% interest financing available through HeyLight. Apply online or in-store. Terms and conditions apply.',
+    
+    // Sizing & Fit
+    'size': 'Use our size calculator to find your perfect fit! We consider height, inseam, and riding style. Visit our size calculator page.',
+    'fit': 'Proper fit is essential! Our experts will help you find the right size. We offer virtual sizing consultations too.',
+    'measurement': 'We\'ll help you get the perfect fit. Visit any workshop for a professional fitting session.',
+    
+    // Product Comparison
+    'compare': 'Compare up to 3 bikes side-by-side on our comparison page. We\'ll help you make the best choice for your needs.',
+    'difference': 'I can help you understand the differences between models. What specific features are you looking for?',
+    'recommendation': 'I\'d be happy to recommend the perfect e-bike! What\'s your primary use case and budget?',
+    
+    // Swiss Specific
+    'swiss': 'We\'re proud to serve Switzerland with 4 locations: Lugano, Locarno, Bellinzona, and Zurich. Local expertise, global quality!',
+    'vignette': 'E-bikes over 25km/h require a vignette in Switzerland. We\'ll help you with all legal requirements.',
+    'helmet': 'Helmets are mandatory for e-bikes in Switzerland. We have a great selection of safety gear.',
+    
+    // Workshop & Service
+    'workshop': 'Our workshops offer professional service for all bike types. Book online or call +41 91 224 53 44.',
+    'repair': 'We handle all types of repairs: mechanical, electrical, and software updates. Fast turnaround times.',
+    'diagnostic': 'We offer comprehensive diagnostic services for e-bikes. Identify issues before they become problems.',
+    
+    // Default response
+    'default': 'Thank you for your question! For detailed assistance, please call us at +41 91 224 53 44 or email info@godspeed.ch. I\'m also here to help with general questions about e-bikes, service, and financing.'
+  };
+  
+  // Quick action handlers
+  document.querySelectorAll('.quick-action-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const action = this.dataset.action;
+      let message = '';
+      
+      switch(action) {
+        case 'bike-recommendation':
+          message = 'I\'d love to help you find the perfect e-bike! What\'s your primary use case (commuting, recreation, sport) and budget range?';
+          break;
+        case 'service-booking':
+          message = 'Great choice! I can help you book service. What type of service do you need and which location works best for you?';
+          break;
+        case 'financing':
+          message = 'Financing options available! We offer 0% interest through HeyLight. What\'s your budget and preferred payment timeline?';
+          break;
+        case 'test-ride':
+          message = 'Test rides are the best way to find your perfect bike! Which location works for you? We have workshops in Lugano, Locarno, Bellinzona, and Zurich.';
+          break;
+      }
+      
+      if (message) {
+        addMessage('user', action.replace('-', ' '));
+        setTimeout(() => addMessage('ai', message), 500);
+      }
+    });
+  });
+  
+  // Toggle chat
+  toggle.addEventListener('click', function() {
+    const isVisible = container.style.display === 'flex';
+    container.style.display = isVisible ? 'none' : 'flex';
+    
+    if (!isVisible) {
+      input.focus();
+      // Hide notification when chat is opened
+      notification.style.display = 'none';
+    }
+  });
+  
+  // Close chat
+  closeBtn.addEventListener('click', function() {
+    container.style.display = 'none';
+  });
+  
+  // Add message function
+  function addMessage(type, text) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `${type}-message`;
+    
+    const avatar = document.createElement('div');
+    avatar.className = 'ai-avatar';
+    
+    if (type === 'user') {
+      avatar.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>';
+    } else {
+      avatar.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>';
+    }
+    
+    const content = document.createElement('div');
+    content.className = 'message-content';
+    content.innerHTML = `<p class="message-text">${text}</p>`;
+    
+    messageDiv.appendChild(avatar);
+    messageDiv.appendChild(content);
+    messagesContainer.appendChild(messageDiv);
+    
+    // Scroll to bottom
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  }
+  
+  // Send message function
+  function sendMessage() {
+    const message = input.value.trim();
+    if (!message) return;
+    
+    // Add user message
+    addMessage('user', message);
+    
+    // Clear input
+    input.value = '';
+    
+    // Find response
+    let response = responses.default;
+    const lowerMessage = message.toLowerCase();
+    
+    for (let key in responses) {
+      if (lowerMessage.includes(key)) {
+        response = responses[key];
+        break;
+      }
+    }
+    
+    // Add AI response after delay
+    setTimeout(() => {
+      addMessage('ai', response);
+    }, 500);
+  }
+  
+  // Event listeners
+  sendBtn.addEventListener('click', sendMessage);
+  input.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') sendMessage();
+  });
+  
+  // Show notification after 30 seconds if chat hasn't been opened
+  setTimeout(() => {
+    if (container.style.display !== 'flex') {
+      notification.style.display = 'flex';
+    }
+  }, 30000);
+});
+</script>
+
+{% schema %}
+{
+  "name": "AI Chat Assistant",
+  "settings": [
+    {
+      "type": "text",
+      "id": "chat_title",
+      "label": "Chat Title",
+      "default": "Godspeed E-Bike Expert"
+    },
+    {
+      "type": "textarea",
+      "id": "chat_subtitle",
+      "label": "Chat Subtitle",
+      "default": "Swiss e-bike specialists at your service"
+    },
+    {
+      "type": "textarea",
+      "id": "welcome_message",
+      "label": "Welcome Message",
+      "default": "Hello! I'm your Godspeed e-bike expert. How can I help you find the perfect bike or schedule service today?"
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Input Placeholder",
+      "default": "Ask about e-bikes, service, or financing..."
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Chat Button Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "header_color",
+      "label": "Header Background Color",
+      "default": "#f8f9fa"
+    },
+    {
+      "type": "color",
+      "id": "user_message_color",
+      "label": "User Message Color",
+      "default": "#007bff"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "AI Chat Assistant",
+      "category": "Customer Support"
+    }
+  ]
+}
+{% endschema %}
