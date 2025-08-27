@@ -30,7 +30,7 @@
                 <div class="picture-slideshow">
                   {% if block.settings.block_banerimage_1 != blank %}
                   <a href="{{block.settings.block_url}}">
-                    <img class="w-100" src="{{block.settings.block_banerimage_1 | img_url: 'master'}}" class="img-responsive img_slideh2" alt="">
+                    <img class="w-100" src="{{block.settings.block_banerimage_1 | img_url: 'master'}}" class="img-responsive img_slideh2" alt="{{ block.settings.block_banerimage_1.alt | default: 'Slideshow banner' | escape }}">
                   </a>
                   {% else %}
                   <img class="w-100" src="//via.placeholder.com/960x900" class="img-responsive img_slideh2" alt="slideshow">
@@ -61,7 +61,7 @@
                 <div class="picture-slideshow">
                   {% if block.settings.block_banerimage_2 != blank %}
                   <a href="{{block.settings.block_url_2}}">
-                    <img class="w-100" src="{{block.settings.block_banerimage_2 | img_url: 'master'}}" class="img-responsive img_slideh2" alt="">
+                    <img class="w-100" src="{{block.settings.block_banerimage_2 | img_url: 'master'}}" class="img-responsive img_slideh2" alt="{{ block.settings.block_banerimage_2.alt | default: 'Slideshow banner' | escape }}">
                   </a>
                   {% else %}
                   <img class="w-100" src="//via.placeholder.com/960x900" class="img-responsive img_slideh2" alt="slideshow">

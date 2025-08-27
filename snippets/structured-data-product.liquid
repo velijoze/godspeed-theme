@@ -23,6 +23,11 @@
   },
   "sku": {{ product.selected_or_first_available_variant.sku | default: product.id | json }},
   "mpn": {{ product.selected_or_first_available_variant.sku | default: product.id | json }},
+  "category": "Sporting Goods > Outdoor Recreation > Cycling",
+  "audience": {
+    "@type": "PeopleAudience",
+    "suggestedMinAge": 16
+  },
   "offers": {
     "@type": "Offer",
     "url": {{ shop.url | append: product.url | json }},

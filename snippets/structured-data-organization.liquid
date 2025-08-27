@@ -7,7 +7,7 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": ["Organization", "LocalBusiness", "SportsActivityLocation"],
   "name": {{ shop.name | json }},
   "url": {{ shop.url | json }},
   {%- if settings.logo -%}
@@ -27,10 +27,15 @@
   ],
   "contactPoint": {
     "@type": "ContactPoint",
-    "telephone": {{ settings.contact_phone | default: "+1-555-555-5555" | json }},
+    "telephone": {{ settings.contact_phone | default: "+41-91-xxx-xxxx" | json }},
     "contactType": "customer service",
-    "availableLanguage": {{ shop.locale | json }}
-  }
+    "availableLanguage": ["de-CH", "it-CH", "en"]
+  },
+  "priceRange": "$$",
+  "paymentAccepted": ["Cash", "Credit Card", "Debit Card"],
+  "currenciesAccepted": "CHF",
+  "openingHours": ["Mo-Fr 09:00-18:00", "Sa 09:00-17:00"],
+  "areaServed": ["Ticino", "Switzerland"]
 }
 </script>
 {%- endif -%}

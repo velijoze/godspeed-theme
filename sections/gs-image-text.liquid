@@ -3,9 +3,9 @@
     <div class="row align-items-center {% if section.settings.image_position == 'right' %}flex-row-reverse{% endif %}">
       <div class="col-lg-6 mb-4 mb-lg-0">
         {% if section.settings.image != blank %}
-        <img class="img-fluid w-100" src="{{ section.settings.image | img_url: 'master' }}" alt="">
+        <img class="img-fluid w-100" src="{{ section.settings.image | img_url: 'master' }}" alt="{{ section.settings.image.alt | default: 'Section image' | escape }}">
         {% else %}
-        <img class="img-fluid w-100" src="//via.placeholder.com/800x600" alt="">
+        <img class="img-fluid w-100" src="//via.placeholder.com/800x600" alt="Placeholder image">
         {% endif %}
       </div>
       <div class="col-lg-6">

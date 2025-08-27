@@ -107,7 +107,7 @@
             <div class="{% if section.settings.blog_layout == "blog_layo_left" or section.settings.blog_layout == "blog_layo_right" %} col-lg-6 {% else %}col-lg-4 {% endif %}col-md-6 col-12">
               <div class="blog_grid">
                 <div class="post-thumb">
-                  <a href="{{ article.url }}" class="article_img"><img src="{{ article.image.src | img_url: 'original' }}" alt=""></a>
+                  <a href="{{ article.url }}" class="article_img"><img src="{{ article.image.src | img_url: 'original' }}" alt="{{ article.image.alt | default: article.title | escape }}"></a>
                   {% if section.settings.show_datetime %}
                   <div class="single-post-date">
                     <span class="date">{{ article.published_at | date: "%d" }}</span>
@@ -136,7 +136,7 @@
             <div class="{% if section.settings.blog_layout == "blog_layo_left" or section.settings.blog_layout == "blog_layo_right" %} col-lg-6 {% else %}col-lg-4 {% endif %}col-md-6 col-12">
               <div class="blog_masonry blog_grid">
                 <div class="post-thumb">
-                  <a href="{{ article.url }}" class="article_img"><img src="{{ article.image.src | img_url: 'original' }}" alt=""></a>
+                  <a href="{{ article.url }}" class="article_img"><img src="{{ article.image.src | img_url: 'original' }}" alt="{{ article.image.alt | default: article.title | escape }}"></a>
                   {% if section.settings.show_datetime %}
                   <div class="single-post-date">
                     <span class="date">{{ article.published_at | date: "%d" }}</span>

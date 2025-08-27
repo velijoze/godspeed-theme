@@ -25,9 +25,9 @@
           <div class="box-info-center mb-3">
             <div class="box-img mt-3 text-center mt-sm-0">
               {% if section.settings.img_banner1 != blank %}
-              <a href="{{section.settings.url_banner1}}"> <img src="{{section.settings.img_banner1 | img_url:'master'}}" class="img-fluid"></a>
+              <a href="{{section.settings.url_banner1}}"> <img src="{{section.settings.img_banner1 | img_url:'master'}}" class="img-fluid" alt="{{ section.settings.img_banner1.alt | default: 'Product banner' | escape }}"></a>
               {% else %}
-              <a href="{{section.settings.url_banner1}}"> <img src="//via.placeholder.com/690x950" class="img-fluid" alt=""></a>
+              <a href="{{section.settings.url_banner1}}"> <img src="//via.placeholder.com/690x950" class="img-fluid" alt="Product banner placeholder"></a>
               {% endif %}
             </div>
             <div class="info-bottom text-center mt-3"> 

@@ -6,9 +6,9 @@
           <div class="box-info">
             <div class="box-img-prod">
               {% if section.settings.img_banner1 != blank %}
-              <a href="{{section.settings.url_button1}}"> <img data-src="{{section.settings.img_banner1 | img_url:'master'}}" class="lazyload img-fluid w-100" alt></a>
+              <a href="{{section.settings.url_button1}}"> <img data-src="{{section.settings.img_banner1 | img_url:'master'}}" class="lazyload img-fluid w-100" alt="{{ section.settings.img_banner1.alt | default: 'Product banner' | escape }}"></a>
               {% else %}
-              <a href="{{section.settings.url_button1}}"> <img data-src="//via.placeholder.com/690x875" class="lazyload img-fluid w-100" alt=""></a>
+              <a href="{{section.settings.url_button1}}"> <img data-src="//via.placeholder.com/690x875" class="lazyload img-fluid w-100" alt="Product banner placeholder"></a>
               {% endif %}
             </div>
             <div class="info-bottom"> 
