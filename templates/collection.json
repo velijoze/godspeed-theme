@@ -12,8 +12,9 @@
     "collection_template": {
       "type": "collection-template",
       "settings": {
-        "select_style_bread": "style_6",
+        "select_style_bread": "style_1",
         "ena_bg_img": false,
+        "bg_breadcrumb": "shopify://shop_images/officina-locarno_3.png",
         "bg_color_breadcrumb": "#ffffff",
         "color_breadcrumb": "#ffffff",
         "collection_layout": "full_width",
