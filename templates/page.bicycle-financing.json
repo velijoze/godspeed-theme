@@ -1,11 +1,16 @@
 {
   "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {}
+    },
     "bicycle_financing": {
       "type": "bicycle-financing",
       "settings": {}
     }
   },
   "order": [
+    "main",
     "bicycle_financing"
   ]
 }
