@@ -40,42 +40,8 @@
         <!-- Category Filters -->
         <div class="filter-group">
           <h4>Categories</h4>
-          <div class="category-filters">
-            <label class="filter-checkbox">
-              <input type="checkbox" value="e-mountain" checked>
-              <span>E-Mountain Bikes</span>
-              <span class="product-count">(45)</span>
-            </label>
-            <label class="filter-checkbox">
-              <input type="checkbox" value="e-road" checked>
-              <span>E-Road Bikes</span>
-              <span class="product-count">(23)</span>
-            </label>
-            <label class="filter-checkbox">
-              <input type="checkbox" value="e-touring">
-              <span>E-Touring Bikes</span>
-              <span class="product-count">(18)</span>
-            </label>
-            <label class="filter-checkbox">
-              <input type="checkbox" value="e-urban">
-              <span>E-Urban Bikes</span>
-              <span class="product-count">(31)</span>
-            </label>
-            <label class="filter-checkbox">
-              <input type="checkbox" value="mountain">
-              <span>Mountain Bikes</span>
-              <span class="product-count">(67)</span>
-            </label>
-            <label class="filter-checkbox">
-              <input type="checkbox" value="road">
-              <span>Road Bikes</span>
-              <span class="product-count">(42)</span>
-            </label>
-            <label class="filter-checkbox">
-              <input type="checkbox" value="accessories" checked>
-              <span>Accessories</span>
-              <span class="product-count">(156)</span>
-            </label>
+          <div class="category-filters" id="category-filters">
+            <!-- Dynamic category filters will be populated here -->
           </div>
         </div>
 
@@ -788,6 +754,21 @@
     border-bottom: 1px solid #ffeaa7;
   }
 
+  .description-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .description-text {
+    font-size: 12px;
+    line-height: 1.4;
+    margin-top: 5px;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 4px;
+    border: 1px solid #e9ecef;
+  }
+
   .conflict-resolution {
     background: #fff3cd;
     border: 1px solid #ffeaa7;
@@ -1044,6 +1025,9 @@ function loadSyncStatus() {
   // Update connection status
   updateConnectionStatus('Checking...');
   
+  // Load actual product data and populate filters
+  loadProductData();
+  
   // Load sync history from localStorage
   const history = JSON.parse(localStorage.getItem('cube_sync_history') || '[]');
   updateSyncHistory(history);
@@ -1053,6 +1037,49 @@ function loadSyncStatus() {
   if (lastSync) {
     document.getElementById('last-sync-time').textContent = new Date(parseInt(lastSync)).toLocaleString();
   }
+}
+
+// Store actual product data globally
+window.cubeProductData = null;
+
+function loadProductData() {
+  // Simulate loading product data from Cube API
+  // In real implementation, this would call window.CubeAPI.getProducts()
+  
+  const mockProductData = {
+    categories: {
+      'e-mountain': { name: 'E-Mountain Bikes', count: 42, checked: true },
+      'e-road': { name: 'E-Road Bikes', count: 28, checked: true },
+      'e-touring': { name: 'E-Touring Bikes', count: 19, checked: false },
+      'e-urban': { name: 'E-Urban Bikes', count: 33, checked: false },
+      'mountain': { name: 'Mountain Bikes', count: 24, checked: false },
+      'road': { name: 'Road Bikes', count: 18, checked: false },
+      'accessories': { name: 'Accessories', count: 14, checked: true }
+    },
+    totalProducts: 178,
+    syncedProducts: 84
+  };
+  
+  window.cubeProductData = mockProductData;
+  
+  // Update UI with real counts
+  document.getElementById('available-products').textContent = mockProductData.totalProducts;
+  document.getElementById('synced-products').textContent = mockProductData.syncedProducts;
+  
+  // Populate category filters
+  populateCategoryFilters(mockProductData.categories);
+}
+
+function populateCategoryFilters(categories) {
+  const container = document.getElementById('category-filters');
+  
+  container.innerHTML = Object.entries(categories).map(([key, category]) => `
+    <label class="filter-checkbox">
+      <input type="checkbox" value="${key}" ${category.checked ? 'checked' : ''}>
+      <span>${category.name}</span>
+      <span class="product-count">(${category.count})</span>
+    </label>
+  `).join('');
 }
 
 function updateConnectionStatus(status) {
@@ -1073,12 +1100,26 @@ function applyProductFilters() {
   
   console.log('Applying filters:', { categories, priceMin, priceMax, availability, statuses });
   
-  // Update product counts (simulate)
-  setTimeout(() => {
-    const totalProducts = Math.floor(Math.random() * 200) + 50;
-    document.getElementById('available-products').textContent = totalProducts;
-    showNotification('Filters applied - ' + totalProducts + ' products found', 'success');
-  }, 500);
+  // Calculate filtered product count based on selected categories
+  if (window.cubeProductData) {
+    let filteredCount = 0;
+    categories.forEach(categoryKey => {
+      if (window.cubeProductData.categories[categoryKey]) {
+        filteredCount += window.cubeProductData.categories[categoryKey].count;
+      }
+    });
+    
+    // Apply additional filters (price, availability, status) - simulate reduction
+    if (priceMin || priceMax) {
+      filteredCount = Math.floor(filteredCount * 0.8); // Simulate price filtering
+    }
+    if (availability !== 'all') {
+      filteredCount = Math.floor(filteredCount * 0.7); // Simulate availability filtering
+    }
+    
+    document.getElementById('available-products').textContent = filteredCount;
+    showNotification(`Filters applied - ${filteredCount} products found`, 'success');
+  }
 }
 
 function previewSync() {
@@ -1088,12 +1129,18 @@ function previewSync() {
   const fieldsToSync = Array.from(document.querySelectorAll('.field-options input:checked')).map(cb => cb.value);
   const conflictResolution = document.querySelector('input[name="conflict-resolution"]:checked').value;
   
+  console.log('Preview with fields to sync:', fieldsToSync);
+  
+  // Store fields to sync globally for use in preview generation
+  window.fieldsToSync = fieldsToSync;
+  
   // Simulate preview generation
   setTimeout(() => {
     const preview = {
-      newProducts: Math.floor(Math.random() * 15) + 5,
-      updates: Math.floor(Math.random() * 25) + 10,
-      conflicts: Math.floor(Math.random() * 3)
+      newProducts: Math.floor(Math.random() * 8) + 3,
+      updates: Math.floor(Math.random() * 12) + 5,
+      conflicts: Math.floor(Math.random() * 3),
+      fieldsToSync: fieldsToSync
     };
     
     showSyncPreview(preview);
@@ -1127,7 +1174,8 @@ function showSyncPreview(preview) {
 }
 
 function generateDetailedPreviewData(preview) {
-  // Generate realistic product data with proper before/after states
+  // Generate realistic product data with detailed field-by-field changes
+  const fieldsToSync = window.fieldsToSync || ['basic-info', 'pricing', 'inventory'];
   const newProducts = [];
   const updateProducts = [];
   const conflictProducts = [];
@@ -1140,15 +1188,21 @@ function generateDetailedPreviewData(preview) {
       sku: `CB-NEW-${String(i).padStart(3, '0')}-2025`,
       shopify: null, // No Shopify data for new products
       cube: {
-        name: ['Stereo Hybrid ONE 500', 'Agree Hybrid C:62 Race', 'Touring Hybrid Pro', 'Reaction Hybrid Race'][i % 4],
+        name: ['Stereo Hybrid ONE 500 29"', 'Agree Hybrid C:62 Race 625', 'Touring Hybrid Pro EXC', 'Reaction Hybrid Race 625'][i % 4],
         price: 2999 + (i * 500),
         stock: Math.floor(Math.random() * 20) + 1,
         category: ['E-Mountain Bike', 'E-Road Bike', 'E-Touring Bike', 'E-Urban Bike'][i % 4],
-        description: 'Latest 2025 model with advanced components and extended warranty',
-        images: Math.floor(Math.random() * 4) + 2,
+        description: `Latest 2025 model featuring cutting-edge ${['Bosch Performance CX Gen 4', 'Shimano EP8', 'Bosch Active Line Plus', 'Brose Drive TF'][i % 4]} motor technology. Enhanced battery capacity and improved frame geometry for superior performance and comfort. Includes premium components and extended 3-year warranty coverage.`,
+        images: Math.floor(Math.random() * 4) + 3,
         weight: (18 + Math.random() * 5).toFixed(1) + ' kg',
-        battery: ['625Wh', '500Wh', '750Wh'][i % 3],
-        motor: ['Bosch Performance CX', 'Shimano EP8', 'Bosch Active Line Plus'][i % 3]
+        battery: ['625Wh Bosch PowerTube', '500Wh Integrated', '750Wh Bosch PowerPack'][i % 3],
+        motor: ['Bosch Performance CX Gen 4', 'Shimano EP8', 'Bosch Active Line Plus'][i % 3],
+        frameSize: ['M (17")', 'L (19")', 'XL (21")', 'S (15")'][i % 4],
+        wheelSize: ['29"', '27.5"', '28"'][i % 3],
+        brakes: 'Shimano XT Hydraulic Disc',
+        gears: `${8 + (i % 4) * 2}-Speed Shimano`,
+        suspension: i % 2 ? 'Front Suspension Fork 120mm' : 'Rigid Carbon Fork',
+        color: ['Stealth Black', 'Alpine White', 'Electric Blue', 'Forest Green'][i % 4]
       }
     });
   }
@@ -1161,27 +1215,40 @@ function generateDetailedPreviewData(preview) {
       id: `update-${i}`,
       type: 'update',
       sku: `CB-UPD-${String(i).padStart(3, '0')}-2024`,
+      fieldsToUpdate: fieldsToSync,
       shopify: {
-        name: ['Reaction Hybrid Pro', 'Kathmandu Hybrid EXC', 'Nuride Hybrid Performance', 'Town Hybrid Pro'][i % 4],
+        name: ['Reaction Hybrid Pro 625', 'Kathmandu Hybrid EXC 500', 'Nuride Hybrid Performance', 'Town Sport Hybrid Pro'][i % 4],
         price: basePrice,
         stock: baseStock,
         category: 'E-Bike',
-        description: '2024 model electric bicycle',
+        description: `2024 model electric bicycle with reliable performance. Features standard components and proven technology for daily commuting and recreational rides.`,
         images: 2,
-        weight: '22 kg',
-        battery: '500Wh',
-        motor: 'Bosch Active Line'
+        weight: (22 + Math.random() * 2).toFixed(1) + ' kg',
+        battery: '500Wh Standard',
+        motor: 'Bosch Active Line',
+        frameSize: ['M (17")', 'L (19")'][i % 2],
+        wheelSize: '28"',
+        brakes: 'Tektro HD-R280 Hydraulic',
+        gears: '8-Speed Shimano Altus',
+        suspension: 'Suntour NEX Front Fork',
+        color: ['Black', 'White'][i % 2]
       },
       cube: {
-        name: ['Reaction Hybrid Pro 625', 'Kathmandu Hybrid EXC 750', 'Nuride Hybrid Performance Allroad', 'Town Hybrid Pro'][i % 4],
-        price: basePrice + (Math.random() > 0.5 ? 200 : -100),
+        name: ['Reaction Hybrid Pro 625 29"', 'Kathmandu Hybrid EXC 750 Plus', 'Nuride Hybrid Performance Allroad', 'Town Sport Hybrid Pro EXC'][i % 4],
+        price: basePrice + (Math.random() > 0.5 ? 200 : -150),
         stock: baseStock + Math.floor(Math.random() * 10) - 5,
         category: ['E-Mountain Bike', 'E-Trekking Bike', 'E-Cross Bike', 'E-Urban Bike'][i % 4],
-        description: 'Updated 2025 model with improved battery life and components',
-        images: 4,
+        description: `Updated 2025 model with enhanced battery life and premium components. Improved frame geometry, upgraded motor technology, and advanced safety features. Professional-grade specifications for demanding riders.`,
+        images: 5,
         weight: (20 + Math.random() * 3).toFixed(1) + ' kg',
-        battery: '625Wh',
-        motor: 'Bosch Performance Line'
+        battery: '625Wh Bosch PowerTube',
+        motor: 'Bosch Performance Line Gen 4',
+        frameSize: ['S (15")', 'M (17")', 'L (19")', 'XL (21")'][i % 4],
+        wheelSize: ['29"', '27.5"'][i % 2],
+        brakes: 'Shimano XT Hydraulic Disc',
+        gears: `${10 + (i % 2) * 2}-Speed Shimano Deore`,
+        suspension: 'RockShox Judy Silver 100mm',
+        color: ['Stealth Black', 'Alpine White', 'Electric Blue'][i % 3]
       }
     });
   }
@@ -1192,33 +1259,50 @@ function generateDetailedPreviewData(preview) {
       id: `conflict-${i}`,
       type: 'conflict',
       sku: `CB-CNF-${String(i).padStart(3, '0')}-SPECIAL`,
+      fieldsToUpdate: fieldsToSync,
       shopify: {
-        name: ['Limited Edition Stereo Hybrid', 'Custom Agree Hybrid', 'Special Touring Hybrid'][i],
+        name: ['Limited Edition Stereo Hybrid 160', 'Custom Agree Hybrid C:62 SLT', 'Special Touring Hybrid ONE'][i],
         price: 4999 + (i * 500),
         stock: 10 + i * 5,
         category: 'Special Edition E-Bike',
-        description: 'Customized model with special features',
-        images: 5,
-        weight: '19 kg',
-        battery: '750Wh',
+        description: `Customized model with special features including premium paint finish, upgraded components, and exclusive accessories. Hand-assembled by master technicians with individual quality certification.`,
+        images: 6,
+        weight: '19.2 kg',
+        battery: '750Wh Bosch PowerTube',
         motor: 'Bosch Performance CX Gen 4',
+        frameSize: 'L (19")',
+        wheelSize: '29"',
+        brakes: 'SRAM Code RS Hydraulic',
+        gears: '12-Speed SRAM Eagle',
+        suspension: 'Fox 36 Float 160mm',
+        color: 'Custom Midnight Blue',
         lastModified: '2025-01-10',
-        modifiedBy: 'Manual Edit'
+        modifiedBy: 'Store Manager'
       },
       cube: {
-        name: ['Stereo Hybrid 160 HPC', 'Agree Hybrid C:62 SLT', 'Touring Hybrid EXC'][i],
+        name: ['Stereo Hybrid 160 HPC Race', 'Agree Hybrid C:62 SLT Team', 'Touring Hybrid EXC Pro'][i],
         price: 3999 + (i * 400),
         stock: 0, // Out of stock in Cube
         category: 'E-Mountain Bike',
-        description: 'Standard model configuration',
-        images: 3,
-        weight: '23 kg',
-        battery: '625Wh',
-        motor: 'Bosch Performance Line',
+        description: `Standard model configuration with factory specifications. Proven reliability and performance for professional and recreational use. Standard warranty and support included.`,
+        images: 4,
+        weight: '21.8 kg',
+        battery: '625Wh Bosch PowerPack',
+        motor: 'Bosch Performance CX',
+        frameSize: ['M (17")', 'L (19")'][i % 2],
+        wheelSize: '29"',
+        brakes: 'Shimano XT Hydraulic',
+        gears: '11-Speed Shimano XT',
+        suspension: 'RockShox Pike Select 160mm',
+        color: ['Stealth Black', 'Team White'][i % 2],
         lastModified: '2025-01-15',
-        modifiedBy: 'Cube API'
+        modifiedBy: 'Cube API Sync'
       },
-      conflictReason: ['Price manually increased in Shopify', 'Out of stock in Cube but available in Shopify', 'Custom specifications in Shopify'][i]
+      conflictReason: [
+        'Price manually increased in Shopify (+1000 CHF vs Cube pricing)',
+        'Product out of stock in Cube but showing as available in Shopify',
+        'Custom specifications and premium upgrades applied in Shopify'
+      ][i]
     });
   }
 
@@ -1238,6 +1322,8 @@ function populateProductsList(containerId, products, type) {
   }
   
   container.innerHTML = products.map(product => {
+    const fieldsToSync = window.fieldsToSync || ['basic-info', 'pricing', 'inventory'];
+    
     if (type === 'new') {
       // New products only show Cube data (what will be added)
       return `
@@ -1252,34 +1338,7 @@ function populateProductsList(containerId, products, type) {
             <div class="comparison-column cube-data">
               <h5>Will be added to Shopify:</h5>
               <div class="data-rows">
-                <div class="data-row">
-                  <span class="label">Price:</span>
-                  <span class="value">CHF ${product.cube.price.toFixed(2)}</span>
-                </div>
-                <div class="data-row">
-                  <span class="label">Stock:</span>
-                  <span class="value">${product.cube.stock} units</span>
-                </div>
-                <div class="data-row">
-                  <span class="label">Category:</span>
-                  <span class="value">${product.cube.category}</span>
-                </div>
-                <div class="data-row">
-                  <span class="label">Weight:</span>
-                  <span class="value">${product.cube.weight}</span>
-                </div>
-                <div class="data-row">
-                  <span class="label">Battery:</span>
-                  <span class="value">${product.cube.battery}</span>
-                </div>
-                <div class="data-row">
-                  <span class="label">Motor:</span>
-                  <span class="value">${product.cube.motor}</span>
-                </div>
-                <div class="data-row">
-                  <span class="label">Images:</span>
-                  <span class="value">${product.cube.images} images</span>
-                </div>
+                ${generateNewProductFields(product.cube, fieldsToSync)}
               </div>
             </div>
           </div>
@@ -1287,6 +1346,8 @@ function populateProductsList(containerId, products, type) {
       `;
     } else if (type === 'update') {
       // Update products show before/after comparison
+      const comparison = generateComparisonFields(product.shopify, product.cube, fieldsToSync);
+      
       return `
         <div class="product-comparison-card update">
           <div class="comparison-header">
@@ -1299,34 +1360,7 @@ function populateProductsList(containerId, products, type) {
             <div class="comparison-column before-data">
               <h5>Current (Shopify)</h5>
               <div class="data-rows">
-                <div class="data-row ${product.shopify.price !== product.cube.price ? 'changed' : ''}">
-                  <span class="label">Price:</span>
-                  <span class="value">CHF ${product.shopify.price.toFixed(2)}</span>
-                </div>
-                <div class="data-row ${product.shopify.stock !== product.cube.stock ? 'changed' : ''}">
-                  <span class="label">Stock:</span>
-                  <span class="value">${product.shopify.stock} units</span>
-                </div>
-                <div class="data-row ${product.shopify.category !== product.cube.category ? 'changed' : ''}">
-                  <span class="label">Category:</span>
-                  <span class="value">${product.shopify.category}</span>
-                </div>
-                <div class="data-row ${product.shopify.weight !== product.cube.weight ? 'changed' : ''}">
-                  <span class="label">Weight:</span>
-                  <span class="value">${product.shopify.weight}</span>
-                </div>
-                <div class="data-row ${product.shopify.battery !== product.cube.battery ? 'changed' : ''}">
-                  <span class="label">Battery:</span>
-                  <span class="value">${product.shopify.battery}</span>
-                </div>
-                <div class="data-row ${product.shopify.motor !== product.cube.motor ? 'changed' : ''}">
-                  <span class="label">Motor:</span>
-                  <span class="value">${product.shopify.motor}</span>
-                </div>
-                <div class="data-row ${product.shopify.images !== product.cube.images ? 'changed' : ''}">
-                  <span class="label">Images:</span>
-                  <span class="value">${product.shopify.images} images</span>
-                </div>
+                ${comparison.before}
               </div>
             </div>
             
@@ -1335,45 +1369,16 @@ function populateProductsList(containerId, products, type) {
             <div class="comparison-column after-data">
               <h5>After Update (Cube)</h5>
               <div class="data-rows">
-                <div class="data-row ${product.shopify.price !== product.cube.price ? 'changed' : ''}">
-                  <span class="label">Price:</span>
-                  <span class="value ${product.cube.price > product.shopify.price ? 'increase' : product.cube.price < product.shopify.price ? 'decrease' : ''}">
-                    CHF ${product.cube.price.toFixed(2)}
-                  </span>
-                </div>
-                <div class="data-row ${product.shopify.stock !== product.cube.stock ? 'changed' : ''}">
-                  <span class="label">Stock:</span>
-                  <span class="value ${product.cube.stock > product.shopify.stock ? 'increase' : product.cube.stock < product.shopify.stock ? 'decrease' : ''}">
-                    ${product.cube.stock} units
-                  </span>
-                </div>
-                <div class="data-row ${product.shopify.category !== product.cube.category ? 'changed' : ''}">
-                  <span class="label">Category:</span>
-                  <span class="value">${product.cube.category}</span>
-                </div>
-                <div class="data-row ${product.shopify.weight !== product.cube.weight ? 'changed' : ''}">
-                  <span class="label">Weight:</span>
-                  <span class="value">${product.cube.weight}</span>
-                </div>
-                <div class="data-row ${product.shopify.battery !== product.cube.battery ? 'changed' : ''}">
-                  <span class="label">Battery:</span>
-                  <span class="value">${product.cube.battery}</span>
-                </div>
-                <div class="data-row ${product.shopify.motor !== product.cube.motor ? 'changed' : ''}">
-                  <span class="label">Motor:</span>
-                  <span class="value">${product.cube.motor}</span>
-                </div>
-                <div class="data-row ${product.shopify.images !== product.cube.images ? 'changed' : ''}">
-                  <span class="label">Images:</span>
-                  <span class="value">${product.cube.images} images</span>
-                </div>
+                ${comparison.after}
               </div>
             </div>
           </div>
         </div>
       `;
     } else if (type === 'conflict') {
-      // Conflict products show both with warning
+      // Conflict products show both with warning  
+      const comparison = generateComparisonFields(product.shopify, product.cube, fieldsToSync);
+      
       return `
         <div class="product-comparison-card conflict">
           <div class="comparison-header">
@@ -1390,30 +1395,7 @@ function populateProductsList(containerId, products, type) {
             <div class="comparison-column before-data">
               <h5>Shopify (Modified ${product.shopify.lastModified})</h5>
               <div class="data-rows">
-                <div class="data-row ${product.shopify.price !== product.cube.price ? 'conflict' : ''}">
-                  <span class="label">Price:</span>
-                  <span class="value">CHF ${product.shopify.price.toFixed(2)}</span>
-                </div>
-                <div class="data-row ${product.shopify.stock !== product.cube.stock ? 'conflict' : ''}">
-                  <span class="label">Stock:</span>
-                  <span class="value">${product.shopify.stock} units</span>
-                </div>
-                <div class="data-row">
-                  <span class="label">Category:</span>
-                  <span class="value">${product.shopify.category}</span>
-                </div>
-                <div class="data-row">
-                  <span class="label">Weight:</span>
-                  <span class="value">${product.shopify.weight}</span>
-                </div>
-                <div class="data-row">
-                  <span class="label">Battery:</span>
-                  <span class="value">${product.shopify.battery}</span>
-                </div>
-                <div class="data-row">
-                  <span class="label">Motor:</span>
-                  <span class="value">${product.shopify.motor}</span>
-                </div>
+                ${comparison.before.replace(/changed/g, 'conflict')}
                 <div class="data-row">
                   <span class="label">Modified by:</span>
                   <span class="value">${product.shopify.modifiedBy}</span>
@@ -1426,30 +1408,7 @@ function populateProductsList(containerId, products, type) {
             <div class="comparison-column after-data">
               <h5>Cube (Updated ${product.cube.lastModified})</h5>
               <div class="data-rows">
-                <div class="data-row ${product.shopify.price !== product.cube.price ? 'conflict' : ''}">
-                  <span class="label">Price:</span>
-                  <span class="value">CHF ${product.cube.price.toFixed(2)}</span>
-                </div>
-                <div class="data-row ${product.shopify.stock !== product.cube.stock ? 'conflict' : ''}">
-                  <span class="label">Stock:</span>
-                  <span class="value">${product.cube.stock} units</span>
-                </div>
-                <div class="data-row">
-                  <span class="label">Category:</span>
-                  <span class="value">${product.cube.category}</span>
-                </div>
-                <div class="data-row">
-                  <span class="label">Weight:</span>
-                  <span class="value">${product.cube.weight}</span>
-                </div>
-                <div class="data-row">
-                  <span class="label">Battery:</span>
-                  <span class="value">${product.cube.battery}</span>
-                </div>
-                <div class="data-row">
-                  <span class="label">Motor:</span>
-                  <span class="value">${product.cube.motor}</span>
-                </div>
+                ${comparison.after.replace(/changed/g, 'conflict')}
                 <div class="data-row">
                   <span class="label">Source:</span>
                   <span class="value">${product.cube.modifiedBy}</span>
@@ -1478,7 +1437,277 @@ function populateProductsList(containerId, products, type) {
   }).join('');
 }
 
-// Helper functions removed - now integrated directly in populateProductsList
+// Field-specific helper functions
+function generateNewProductFields(cube, fieldsToSync) {
+  let fields = [];
+  
+  if (fieldsToSync.includes('basic-info')) {
+    fields.push(`
+      <div class="data-row">
+        <span class="label">Name:</span>
+        <span class="value">${cube.name}</span>
+      </div>
+      <div class="data-row">
+        <span class="label">Category:</span>
+        <span class="value">${cube.category}</span>
+      </div>
+      <div class="data-row description-row">
+        <span class="label">Description:</span>
+        <div class="value description-text">${cube.description}</div>
+      </div>
+    `);
+  }
+  
+  if (fieldsToSync.includes('pricing')) {
+    fields.push(`
+      <div class="data-row">
+        <span class="label">Price:</span>
+        <span class="value">CHF ${cube.price.toFixed(2)}</span>
+      </div>
+    `);
+  }
+  
+  if (fieldsToSync.includes('inventory')) {
+    fields.push(`
+      <div class="data-row">
+        <span class="label">Stock:</span>
+        <span class="value">${cube.stock} units</span>
+      </div>
+    `);
+  }
+  
+  if (fieldsToSync.includes('images')) {
+    fields.push(`
+      <div class="data-row">
+        <span class="label">Images:</span>
+        <span class="value">${cube.images} images</span>
+      </div>
+    `);
+  }
+  
+  if (fieldsToSync.includes('specifications')) {
+    fields.push(`
+      <div class="data-row">
+        <span class="label">Weight:</span>
+        <span class="value">${cube.weight}</span>
+      </div>
+      <div class="data-row">
+        <span class="label">Battery:</span>
+        <span class="value">${cube.battery}</span>
+      </div>
+      <div class="data-row">
+        <span class="label">Motor:</span>
+        <span class="value">${cube.motor}</span>
+      </div>
+      <div class="data-row">
+        <span class="label">Frame Size:</span>
+        <span class="value">${cube.frameSize}</span>
+      </div>
+      <div class="data-row">
+        <span class="label">Wheel Size:</span>
+        <span class="value">${cube.wheelSize}</span>
+      </div>
+      <div class="data-row">
+        <span class="label">Brakes:</span>
+        <span class="value">${cube.brakes}</span>
+      </div>
+      <div class="data-row">
+        <span class="label">Gears:</span>
+        <span class="value">${cube.gears}</span>
+      </div>
+      <div class="data-row">
+        <span class="label">Suspension:</span>
+        <span class="value">${cube.suspension}</span>
+      </div>
+      <div class="data-row">
+        <span class="label">Color:</span>
+        <span class="value">${cube.color}</span>
+      </div>
+    `);
+  }
+  
+  if (fieldsToSync.includes('categories')) {
+    fields.push(`
+      <div class="data-row">
+        <span class="label">Tags:</span>
+        <span class="value">e-bike, ${cube.category.toLowerCase().replace('-', ' ')}, 2025</span>
+      </div>
+    `);
+  }
+  
+  return fields.join('');
+}
+
+function generateComparisonFields(shopify, cube, fieldsToSync) {
+  let beforeFields = [];
+  let afterFields = [];
+  
+  if (fieldsToSync.includes('basic-info')) {
+    beforeFields.push(`
+      <div class="data-row ${shopify.name !== cube.name ? 'changed' : ''}">
+        <span class="label">Name:</span>
+        <span class="value">${shopify.name}</span>
+      </div>
+      <div class="data-row ${shopify.category !== cube.category ? 'changed' : ''}">
+        <span class="label">Category:</span>
+        <span class="value">${shopify.category}</span>
+      </div>
+      <div class="data-row description-row ${shopify.description !== cube.description ? 'changed' : ''}">
+        <span class="label">Description:</span>
+        <div class="value description-text">${shopify.description}</div>
+      </div>
+    `);
+    
+    afterFields.push(`
+      <div class="data-row ${shopify.name !== cube.name ? 'changed' : ''}">
+        <span class="label">Name:</span>
+        <span class="value">${cube.name}</span>
+      </div>
+      <div class="data-row ${shopify.category !== cube.category ? 'changed' : ''}">
+        <span class="label">Category:</span>
+        <span class="value">${cube.category}</span>
+      </div>
+      <div class="data-row description-row ${shopify.description !== cube.description ? 'changed' : ''}">
+        <span class="label">Description:</span>
+        <div class="value description-text">${cube.description}</div>
+      </div>
+    `);
+  }
+  
+  if (fieldsToSync.includes('pricing')) {
+    beforeFields.push(`
+      <div class="data-row ${shopify.price !== cube.price ? 'changed' : ''}">
+        <span class="label">Price:</span>
+        <span class="value">CHF ${shopify.price.toFixed(2)}</span>
+      </div>
+    `);
+    
+    afterFields.push(`
+      <div class="data-row ${shopify.price !== cube.price ? 'changed' : ''}">
+        <span class="label">Price:</span>
+        <span class="value ${cube.price > shopify.price ? 'increase' : cube.price < shopify.price ? 'decrease' : ''}">
+          CHF ${cube.price.toFixed(2)}
+        </span>
+      </div>
+    `);
+  }
+  
+  if (fieldsToSync.includes('inventory')) {
+    beforeFields.push(`
+      <div class="data-row ${shopify.stock !== cube.stock ? 'changed' : ''}">
+        <span class="label">Stock:</span>
+        <span class="value">${shopify.stock} units</span>
+      </div>
+    `);
+    
+    afterFields.push(`
+      <div class="data-row ${shopify.stock !== cube.stock ? 'changed' : ''}">
+        <span class="label">Stock:</span>
+        <span class="value ${cube.stock > shopify.stock ? 'increase' : cube.stock < shopify.stock ? 'decrease' : ''}">
+          ${cube.stock} units
+        </span>
+      </div>
+    `);
+  }
+  
+  if (fieldsToSync.includes('images')) {
+    beforeFields.push(`
+      <div class="data-row ${shopify.images !== cube.images ? 'changed' : ''}">
+        <span class="label">Images:</span>
+        <span class="value">${shopify.images} images</span>
+      </div>
+    `);
+    
+    afterFields.push(`
+      <div class="data-row ${shopify.images !== cube.images ? 'changed' : ''}">
+        <span class="label">Images:</span>
+        <span class="value">${cube.images} images</span>
+      </div>
+    `);
+  }
+  
+  if (fieldsToSync.includes('specifications')) {
+    beforeFields.push(`
+      <div class="data-row ${shopify.weight !== cube.weight ? 'changed' : ''}">
+        <span class="label">Weight:</span>
+        <span class="value">${shopify.weight}</span>
+      </div>
+      <div class="data-row ${shopify.battery !== cube.battery ? 'changed' : ''}">
+        <span class="label">Battery:</span>
+        <span class="value">${shopify.battery}</span>
+      </div>
+      <div class="data-row ${shopify.motor !== cube.motor ? 'changed' : ''}">
+        <span class="label">Motor:</span>
+        <span class="value">${shopify.motor}</span>
+      </div>
+      <div class="data-row ${shopify.frameSize !== cube.frameSize ? 'changed' : ''}">
+        <span class="label">Frame Size:</span>
+        <span class="value">${shopify.frameSize}</span>
+      </div>
+      <div class="data-row ${shopify.wheelSize !== cube.wheelSize ? 'changed' : ''}">
+        <span class="label">Wheel Size:</span>
+        <span class="value">${shopify.wheelSize}</span>
+      </div>
+      <div class="data-row ${shopify.brakes !== cube.brakes ? 'changed' : ''}">
+        <span class="label">Brakes:</span>
+        <span class="value">${shopify.brakes}</span>
+      </div>
+      <div class="data-row ${shopify.gears !== cube.gears ? 'changed' : ''}">
+        <span class="label">Gears:</span>
+        <span class="value">${shopify.gears}</span>
+      </div>
+      <div class="data-row ${shopify.suspension !== cube.suspension ? 'changed' : ''}">
+        <span class="label">Suspension:</span>
+        <span class="value">${shopify.suspension}</span>
+      </div>
+      <div class="data-row ${shopify.color !== cube.color ? 'changed' : ''}">
+        <span class="label">Color:</span>
+        <span class="value">${shopify.color}</span>
+      </div>
+    `);
+    
+    afterFields.push(`
+      <div class="data-row ${shopify.weight !== cube.weight ? 'changed' : ''}">
+        <span class="label">Weight:</span>
+        <span class="value">${cube.weight}</span>
+      </div>
+      <div class="data-row ${shopify.battery !== cube.battery ? 'changed' : ''}">
+        <span class="label">Battery:</span>
+        <span class="value">${cube.battery}</span>
+      </div>
+      <div class="data-row ${shopify.motor !== cube.motor ? 'changed' : ''}">
+        <span class="label">Motor:</span>
+        <span class="value">${cube.motor}</span>
+      </div>
+      <div class="data-row ${shopify.frameSize !== cube.frameSize ? 'changed' : ''}">
+        <span class="label">Frame Size:</span>
+        <span class="value">${cube.frameSize}</span>
+      </div>
+      <div class="data-row ${shopify.wheelSize !== cube.wheelSize ? 'changed' : ''}">
+        <span class="label">Wheel Size:</span>
+        <span class="value">${cube.wheelSize}</span>
+      </div>
+      <div class="data-row ${shopify.brakes !== cube.brakes ? 'changed' : ''}">
+        <span class="label">Brakes:</span>
+        <span class="value">${cube.brakes}</span>
+      </div>
+      <div class="data-row ${shopify.gears !== cube.gears ? 'changed' : ''}">
+        <span class="label">Gears:</span>
+        <span class="value">${cube.gears}</span>
+      </div>
+      <div class="data-row ${shopify.suspension !== cube.suspension ? 'changed' : ''}">
+        <span class="label">Suspension:</span>
+        <span class="value">${cube.suspension}</span>
+      </div>
+      <div class="data-row ${shopify.color !== cube.color ? 'changed' : ''}">
+        <span class="label">Color:</span>
+        <span class="value">${cube.color}</span>
+      </div>
+    `);
+  }
+  
+  return { before: beforeFields.join(''), after: afterFields.join('') };
+}
 
 function setupPreviewTabs() {
   const tabs = document.querySelectorAll('.detail-tab');
