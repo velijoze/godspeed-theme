@@ -21,15 +21,17 @@
       {% endfor %}
     {% else %}
       <!-- Native Shopify language options -->
-      {% for language in localization.available_languages %}
+      {% assign available_locales = shop.published_locales %}
+      {% for locale in available_locales %}
       <li class="menu-item">
-        <a href="{{ language.root_url }}" class="language-option {% if language.iso_code == localization.language.iso_code %}current{% endif %}">
-          {% case language.iso_code %}
+        <a href="{{ locale.root_url }}" class="language-option {% if locale.iso_code == request.locale.iso_code %}current{% endif %}" 
+           onclick="switchToLanguage('{{ locale.iso_code }}', '{{ locale.root_url }}'); return false;">
+          {% case locale.iso_code %}
             {% when 'en' %}English
             {% when 'de' %}Deutsch  
             {% when 'fr' %}Français
             {% when 'it' %}Italiano
-            {% else %}{{ language.endonym_name }}
+            {% else %}{{ locale.name }}
           {% endcase %}
         </a>
       </li>
@@ -53,6 +55,15 @@ function toggleLanguageDropdown(e) {
   
   // Toggle this dropdown
   dropdown.style.display = isVisible ? 'none' : 'block';
+}
+
+function switchToLanguage(langCode, rootUrl) {
+  // Hide dropdown first
+  document.getElementById('language-dropdown').style.display = 'none';
+  
+  // Navigate to the language URL
+  console.log('Switching to language:', langCode, 'URL:', rootUrl);
+  window.location.href = rootUrl;
 }
 
 // Close dropdown when clicking outside

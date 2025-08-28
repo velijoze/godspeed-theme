@@ -231,6 +231,26 @@
             <!-- Preview items will be populated here -->
           </div>
           
+          <div class="preview-details" id="preview-details">
+            <div class="detail-tabs">
+              <button class="detail-tab active" data-tab="new-products">New Products</button>
+              <button class="detail-tab" data-tab="updates">Updates</button>
+              <button class="detail-tab" data-tab="conflicts">Conflicts</button>
+            </div>
+            
+            <div class="tab-content">
+              <div class="tab-pane active" id="new-products-tab">
+                <div class="products-list" id="new-products-list"></div>
+              </div>
+              <div class="tab-pane" id="updates-tab">
+                <div class="products-list" id="updates-list"></div>
+              </div>
+              <div class="tab-pane" id="conflicts-tab">
+                <div class="products-list" id="conflicts-list"></div>
+              </div>
+            </div>
+          </div>
+          
           <div class="preview-actions">
             <button class="btn-cancel" onclick="cancelPreview()">Cancel</button>
             <button class="btn-approve" onclick="approveSync()">
@@ -526,6 +546,282 @@
     color: #333;
   }
 
+  .preview-details {
+    margin-top: 20px;
+  }
+
+  .detail-tabs {
+    display: flex;
+    border-bottom: 2px solid #e9ecef;
+    margin-bottom: 20px;
+  }
+
+  .detail-tab {
+    padding: 10px 20px;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    font-weight: 500;
+    color: #6c757d;
+    transition: all 0.3s ease;
+  }
+
+  .detail-tab.active {
+    color: #333;
+    border-bottom-color: #333;
+  }
+
+  .detail-tab:hover {
+    color: #333;
+  }
+
+  .tab-pane {
+    display: none;
+  }
+
+  .tab-pane.active {
+    display: block;
+  }
+
+  .products-list {
+    display: grid;
+    gap: 15px;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+
+  /* Product Comparison Cards */
+  .product-comparison-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border: 1px solid #e9ecef;
+    transition: all 0.3s ease;
+  }
+
+  .product-comparison-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  }
+
+  .product-comparison-card.new {
+    border-left: 4px solid #28a745;
+  }
+
+  .product-comparison-card.update {
+    border-left: 4px solid #17a2b8;
+  }
+
+  .product-comparison-card.conflict {
+    border-left: 4px solid #ffc107;
+  }
+
+  .comparison-header {
+    padding: 15px 20px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .product-title {
+    font-weight: 600;
+    color: #333;
+    font-size: 16px;
+    margin: 0;
+    flex: 1;
+  }
+
+  .product-sku {
+    font-size: 12px;
+    color: #6c757d;
+    font-family: 'Courier New', monospace;
+    background: #f8f9fa;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  .badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .badge-new {
+    background: #d4edda;
+    color: #155724;
+  }
+
+  .badge-update {
+    background: #d1ecf1;
+    color: #0c5460;
+  }
+
+  .badge-conflict {
+    background: #fff3cd;
+    color: #856404;
+  }
+
+  .comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 20px;
+    padding: 20px;
+    align-items: start;
+  }
+
+  .comparison-grid.single {
+    grid-template-columns: 1fr;
+  }
+
+  .comparison-column {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 15px;
+  }
+
+  .comparison-column h5 {
+    margin: 0 0 15px 0;
+    font-size: 14px;
+    color: #333;
+    font-weight: 600;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #dee2e6;
+  }
+
+  .comparison-column.before-data {
+    background: #fff5f5;
+  }
+
+  .comparison-column.after-data {
+    background: #f0f9ff;
+  }
+
+  .comparison-column.cube-data {
+    background: #f0fff4;
+  }
+
+  .comparison-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #6c757d;
+    padding-top: 30px;
+  }
+
+  .comparison-arrow.conflict {
+    color: #ffc107;
+    font-size: 32px;
+  }
+
+  .data-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .data-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    font-size: 13px;
+    border-bottom: 1px solid #e9ecef;
+  }
+
+  .data-row:last-child {
+    border-bottom: none;
+  }
+
+  .data-row.changed {
+    background: rgba(255, 193, 7, 0.1);
+    padding: 6px 8px;
+    margin: 0 -8px;
+    border-radius: 4px;
+  }
+
+  .data-row.conflict {
+    background: rgba(220, 53, 69, 0.1);
+    padding: 6px 8px;
+    margin: 0 -8px;
+    border-radius: 4px;
+  }
+
+  .data-row .label {
+    color: #6c757d;
+    font-weight: 500;
+  }
+
+  .data-row .value {
+    font-weight: 600;
+    color: #333;
+    text-align: right;
+  }
+
+  .data-row .value.increase {
+    color: #28a745;
+  }
+
+  .data-row .value.increase::before {
+    content: '↑ ';
+  }
+
+  .data-row .value.decrease {
+    color: #dc3545;
+  }
+
+  .data-row .value.decrease::before {
+    content: '↓ ';
+  }
+
+  .conflict-reason {
+    background: #fff3cd;
+    color: #856404;
+    padding: 12px 20px;
+    font-size: 13px;
+    border-bottom: 1px solid #ffeaa7;
+  }
+
+  .conflict-resolution {
+    background: #fff3cd;
+    border: 1px solid #ffeaa7;
+    border-radius: 6px;
+    padding: 10px;
+    margin-top: 10px;
+  }
+
+  .conflict-options {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+  }
+
+  .conflict-btn {
+    padding: 4px 12px;
+    font-size: 11px;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .conflict-btn:hover {
+    background: #f8f9fa;
+  }
+
+  .conflict-btn.selected {
+    background: #333;
+    color: white;
+    border-color: #333;
+  }
+
   .preview-actions {
     display: flex;
     gap: 10px;
@@ -652,6 +948,24 @@
     .sync-panel {
       order: 1;
     }
+    
+    .comparison-grid {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    
+    .comparison-arrow {
+      display: none;
+    }
+    
+    .comparison-column h5 {
+      background: #333;
+      color: white;
+      padding: 8px 10px;
+      margin: -15px -15px 15px -15px;
+      border-radius: 8px 8px 0 0;
+      border: none;
+    }
   }
 
   @media (max-width: 768px) {
@@ -670,6 +984,23 @@
     .history-item {
       grid-template-columns: 1fr;
       gap: 5px;
+    }
+    
+    .comparison-header {
+      flex-wrap: wrap;
+    }
+    
+    .product-title {
+      width: 100%;
+      margin-bottom: 8px;
+    }
+    
+    .conflict-options {
+      flex-direction: column;
+    }
+    
+    .conflict-btn {
+      width: 100%;
     }
   }
 </style>
@@ -777,11 +1108,410 @@ function showSyncPreview(preview) {
   document.getElementById('preview-updates').textContent = preview.updates;
   document.getElementById('preview-conflicts').textContent = preview.conflicts;
   
+  // Generate detailed product data
+  const detailedData = generateDetailedPreviewData(preview);
+  
+  // Populate detailed tabs
+  populateProductsList('new-products-list', detailedData.newProducts, 'new');
+  populateProductsList('updates-list', detailedData.updates, 'update');
+  populateProductsList('conflicts-list', detailedData.conflicts, 'conflict');
+  
+  // Setup tab switching
+  setupPreviewTabs();
+  
   // Show preview panel
   previewPanel.style.display = 'block';
   previewPanel.scrollIntoView({ behavior: 'smooth' });
   
   showNotification('Preview ready - Review changes before syncing', 'success');
+}
+
+function generateDetailedPreviewData(preview) {
+  // Generate realistic product data with proper before/after states
+  const newProducts = [];
+  const updateProducts = [];
+  const conflictProducts = [];
+  
+  // New products - only have Cube data (after)
+  for (let i = 0; i < Math.min(preview.newProducts, 10); i++) {
+    newProducts.push({
+      id: `new-${i}`,
+      type: 'new',
+      sku: `CB-NEW-${String(i).padStart(3, '0')}-2025`,
+      shopify: null, // No Shopify data for new products
+      cube: {
+        name: ['Stereo Hybrid ONE 500', 'Agree Hybrid C:62 Race', 'Touring Hybrid Pro', 'Reaction Hybrid Race'][i % 4],
+        price: 2999 + (i * 500),
+        stock: Math.floor(Math.random() * 20) + 1,
+        category: ['E-Mountain Bike', 'E-Road Bike', 'E-Touring Bike', 'E-Urban Bike'][i % 4],
+        description: 'Latest 2025 model with advanced components and extended warranty',
+        images: Math.floor(Math.random() * 4) + 2,
+        weight: (18 + Math.random() * 5).toFixed(1) + ' kg',
+        battery: ['625Wh', '500Wh', '750Wh'][i % 3],
+        motor: ['Bosch Performance CX', 'Shimano EP8', 'Bosch Active Line Plus'][i % 3]
+      }
+    });
+  }
+  
+  // Updated products - have both Shopify (before) and Cube (after) data
+  for (let i = 0; i < Math.min(preview.updates, 10); i++) {
+    const basePrice = 3499 + (i * 300);
+    const baseStock = Math.floor(Math.random() * 15) + 5;
+    updateProducts.push({
+      id: `update-${i}`,
+      type: 'update',
+      sku: `CB-UPD-${String(i).padStart(3, '0')}-2024`,
+      shopify: {
+        name: ['Reaction Hybrid Pro', 'Kathmandu Hybrid EXC', 'Nuride Hybrid Performance', 'Town Hybrid Pro'][i % 4],
+        price: basePrice,
+        stock: baseStock,
+        category: 'E-Bike',
+        description: '2024 model electric bicycle',
+        images: 2,
+        weight: '22 kg',
+        battery: '500Wh',
+        motor: 'Bosch Active Line'
+      },
+      cube: {
+        name: ['Reaction Hybrid Pro 625', 'Kathmandu Hybrid EXC 750', 'Nuride Hybrid Performance Allroad', 'Town Hybrid Pro'][i % 4],
+        price: basePrice + (Math.random() > 0.5 ? 200 : -100),
+        stock: baseStock + Math.floor(Math.random() * 10) - 5,
+        category: ['E-Mountain Bike', 'E-Trekking Bike', 'E-Cross Bike', 'E-Urban Bike'][i % 4],
+        description: 'Updated 2025 model with improved battery life and components',
+        images: 4,
+        weight: (20 + Math.random() * 3).toFixed(1) + ' kg',
+        battery: '625Wh',
+        motor: 'Bosch Performance Line'
+      }
+    });
+  }
+  
+  // Conflict products - significant differences between Shopify and Cube
+  for (let i = 0; i < Math.min(preview.conflicts, 3); i++) {
+    conflictProducts.push({
+      id: `conflict-${i}`,
+      type: 'conflict',
+      sku: `CB-CNF-${String(i).padStart(3, '0')}-SPECIAL`,
+      shopify: {
+        name: ['Limited Edition Stereo Hybrid', 'Custom Agree Hybrid', 'Special Touring Hybrid'][i],
+        price: 4999 + (i * 500),
+        stock: 10 + i * 5,
+        category: 'Special Edition E-Bike',
+        description: 'Customized model with special features',
+        images: 5,
+        weight: '19 kg',
+        battery: '750Wh',
+        motor: 'Bosch Performance CX Gen 4',
+        lastModified: '2025-01-10',
+        modifiedBy: 'Manual Edit'
+      },
+      cube: {
+        name: ['Stereo Hybrid 160 HPC', 'Agree Hybrid C:62 SLT', 'Touring Hybrid EXC'][i],
+        price: 3999 + (i * 400),
+        stock: 0, // Out of stock in Cube
+        category: 'E-Mountain Bike',
+        description: 'Standard model configuration',
+        images: 3,
+        weight: '23 kg',
+        battery: '625Wh',
+        motor: 'Bosch Performance Line',
+        lastModified: '2025-01-15',
+        modifiedBy: 'Cube API'
+      },
+      conflictReason: ['Price manually increased in Shopify', 'Out of stock in Cube but available in Shopify', 'Custom specifications in Shopify'][i]
+    });
+  }
+
+  return {
+    newProducts,
+    updates: updateProducts,
+    conflicts: conflictProducts
+  };
+}
+
+function populateProductsList(containerId, products, type) {
+  const container = document.getElementById(containerId);
+  
+  if (products.length === 0) {
+    container.innerHTML = '<div class="no-products">No products in this category</div>';
+    return;
+  }
+  
+  container.innerHTML = products.map(product => {
+    if (type === 'new') {
+      // New products only show Cube data (what will be added)
+      return `
+        <div class="product-comparison-card new">
+          <div class="comparison-header">
+            <h4 class="product-title">${product.cube.name}</h4>
+            <span class="product-sku">${product.sku}</span>
+            <span class="badge badge-new">NEW PRODUCT</span>
+          </div>
+          
+          <div class="comparison-grid single">
+            <div class="comparison-column cube-data">
+              <h5>Will be added to Shopify:</h5>
+              <div class="data-rows">
+                <div class="data-row">
+                  <span class="label">Price:</span>
+                  <span class="value">CHF ${product.cube.price.toFixed(2)}</span>
+                </div>
+                <div class="data-row">
+                  <span class="label">Stock:</span>
+                  <span class="value">${product.cube.stock} units</span>
+                </div>
+                <div class="data-row">
+                  <span class="label">Category:</span>
+                  <span class="value">${product.cube.category}</span>
+                </div>
+                <div class="data-row">
+                  <span class="label">Weight:</span>
+                  <span class="value">${product.cube.weight}</span>
+                </div>
+                <div class="data-row">
+                  <span class="label">Battery:</span>
+                  <span class="value">${product.cube.battery}</span>
+                </div>
+                <div class="data-row">
+                  <span class="label">Motor:</span>
+                  <span class="value">${product.cube.motor}</span>
+                </div>
+                <div class="data-row">
+                  <span class="label">Images:</span>
+                  <span class="value">${product.cube.images} images</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    } else if (type === 'update') {
+      // Update products show before/after comparison
+      return `
+        <div class="product-comparison-card update">
+          <div class="comparison-header">
+            <h4 class="product-title">${product.shopify.name} ${product.shopify.name !== product.cube.name ? `→ ${product.cube.name}` : ''}</h4>
+            <span class="product-sku">${product.sku}</span>
+            <span class="badge badge-update">UPDATE</span>
+          </div>
+          
+          <div class="comparison-grid">
+            <div class="comparison-column before-data">
+              <h5>Current (Shopify)</h5>
+              <div class="data-rows">
+                <div class="data-row ${product.shopify.price !== product.cube.price ? 'changed' : ''}">
+                  <span class="label">Price:</span>
+                  <span class="value">CHF ${product.shopify.price.toFixed(2)}</span>
+                </div>
+                <div class="data-row ${product.shopify.stock !== product.cube.stock ? 'changed' : ''}">
+                  <span class="label">Stock:</span>
+                  <span class="value">${product.shopify.stock} units</span>
+                </div>
+                <div class="data-row ${product.shopify.category !== product.cube.category ? 'changed' : ''}">
+                  <span class="label">Category:</span>
+                  <span class="value">${product.shopify.category}</span>
+                </div>
+                <div class="data-row ${product.shopify.weight !== product.cube.weight ? 'changed' : ''}">
+                  <span class="label">Weight:</span>
+                  <span class="value">${product.shopify.weight}</span>
+                </div>
+                <div class="data-row ${product.shopify.battery !== product.cube.battery ? 'changed' : ''}">
+                  <span class="label">Battery:</span>
+                  <span class="value">${product.shopify.battery}</span>
+                </div>
+                <div class="data-row ${product.shopify.motor !== product.cube.motor ? 'changed' : ''}">
+                  <span class="label">Motor:</span>
+                  <span class="value">${product.shopify.motor}</span>
+                </div>
+                <div class="data-row ${product.shopify.images !== product.cube.images ? 'changed' : ''}">
+                  <span class="label">Images:</span>
+                  <span class="value">${product.shopify.images} images</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="comparison-arrow">→</div>
+            
+            <div class="comparison-column after-data">
+              <h5>After Update (Cube)</h5>
+              <div class="data-rows">
+                <div class="data-row ${product.shopify.price !== product.cube.price ? 'changed' : ''}">
+                  <span class="label">Price:</span>
+                  <span class="value ${product.cube.price > product.shopify.price ? 'increase' : product.cube.price < product.shopify.price ? 'decrease' : ''}">
+                    CHF ${product.cube.price.toFixed(2)}
+                  </span>
+                </div>
+                <div class="data-row ${product.shopify.stock !== product.cube.stock ? 'changed' : ''}">
+                  <span class="label">Stock:</span>
+                  <span class="value ${product.cube.stock > product.shopify.stock ? 'increase' : product.cube.stock < product.shopify.stock ? 'decrease' : ''}">
+                    ${product.cube.stock} units
+                  </span>
+                </div>
+                <div class="data-row ${product.shopify.category !== product.cube.category ? 'changed' : ''}">
+                  <span class="label">Category:</span>
+                  <span class="value">${product.cube.category}</span>
+                </div>
+                <div class="data-row ${product.shopify.weight !== product.cube.weight ? 'changed' : ''}">
+                  <span class="label">Weight:</span>
+                  <span class="value">${product.cube.weight}</span>
+                </div>
+                <div class="data-row ${product.shopify.battery !== product.cube.battery ? 'changed' : ''}">
+                  <span class="label">Battery:</span>
+                  <span class="value">${product.cube.battery}</span>
+                </div>
+                <div class="data-row ${product.shopify.motor !== product.cube.motor ? 'changed' : ''}">
+                  <span class="label">Motor:</span>
+                  <span class="value">${product.cube.motor}</span>
+                </div>
+                <div class="data-row ${product.shopify.images !== product.cube.images ? 'changed' : ''}">
+                  <span class="label">Images:</span>
+                  <span class="value">${product.cube.images} images</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    } else if (type === 'conflict') {
+      // Conflict products show both with warning
+      return `
+        <div class="product-comparison-card conflict">
+          <div class="comparison-header">
+            <h4 class="product-title">${product.shopify.name}</h4>
+            <span class="product-sku">${product.sku}</span>
+            <span class="badge badge-conflict">CONFLICT</span>
+          </div>
+          
+          <div class="conflict-reason">
+            <strong>⚠️ Conflict Reason:</strong> ${product.conflictReason}
+          </div>
+          
+          <div class="comparison-grid">
+            <div class="comparison-column before-data">
+              <h5>Shopify (Modified ${product.shopify.lastModified})</h5>
+              <div class="data-rows">
+                <div class="data-row ${product.shopify.price !== product.cube.price ? 'conflict' : ''}">
+                  <span class="label">Price:</span>
+                  <span class="value">CHF ${product.shopify.price.toFixed(2)}</span>
+                </div>
+                <div class="data-row ${product.shopify.stock !== product.cube.stock ? 'conflict' : ''}">
+                  <span class="label">Stock:</span>
+                  <span class="value">${product.shopify.stock} units</span>
+                </div>
+                <div class="data-row">
+                  <span class="label">Category:</span>
+                  <span class="value">${product.shopify.category}</span>
+                </div>
+                <div class="data-row">
+                  <span class="label">Weight:</span>
+                  <span class="value">${product.shopify.weight}</span>
+                </div>
+                <div class="data-row">
+                  <span class="label">Battery:</span>
+                  <span class="value">${product.shopify.battery}</span>
+                </div>
+                <div class="data-row">
+                  <span class="label">Motor:</span>
+                  <span class="value">${product.shopify.motor}</span>
+                </div>
+                <div class="data-row">
+                  <span class="label">Modified by:</span>
+                  <span class="value">${product.shopify.modifiedBy}</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="comparison-arrow conflict">⚠️</div>
+            
+            <div class="comparison-column after-data">
+              <h5>Cube (Updated ${product.cube.lastModified})</h5>
+              <div class="data-rows">
+                <div class="data-row ${product.shopify.price !== product.cube.price ? 'conflict' : ''}">
+                  <span class="label">Price:</span>
+                  <span class="value">CHF ${product.cube.price.toFixed(2)}</span>
+                </div>
+                <div class="data-row ${product.shopify.stock !== product.cube.stock ? 'conflict' : ''}">
+                  <span class="label">Stock:</span>
+                  <span class="value">${product.cube.stock} units</span>
+                </div>
+                <div class="data-row">
+                  <span class="label">Category:</span>
+                  <span class="value">${product.cube.category}</span>
+                </div>
+                <div class="data-row">
+                  <span class="label">Weight:</span>
+                  <span class="value">${product.cube.weight}</span>
+                </div>
+                <div class="data-row">
+                  <span class="label">Battery:</span>
+                  <span class="value">${product.cube.battery}</span>
+                </div>
+                <div class="data-row">
+                  <span class="label">Motor:</span>
+                  <span class="value">${product.cube.motor}</span>
+                </div>
+                <div class="data-row">
+                  <span class="label">Source:</span>
+                  <span class="value">${product.cube.modifiedBy}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="conflict-resolution">
+            <strong>Choose Resolution:</strong>
+            <div class="conflict-options">
+              <button class="conflict-btn" onclick="resolveConflict('${product.id}', 'cube')">
+                <i class="fa fa-cube"></i> Use Cube Data
+              </button>
+              <button class="conflict-btn" onclick="resolveConflict('${product.id}', 'shopify')">
+                <i class="fa fa-shopping-cart"></i> Keep Shopify
+              </button>
+              <button class="conflict-btn" onclick="resolveConflict('${product.id}', 'skip')">
+                <i class="fa fa-forward"></i> Skip Product
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+  }).join('');
+}
+
+// Helper functions removed - now integrated directly in populateProductsList
+
+function setupPreviewTabs() {
+  const tabs = document.querySelectorAll('.detail-tab');
+  const panes = document.querySelectorAll('.tab-pane');
+  
+  tabs.forEach(tab => {
+    tab.addEventListener('click', function() {
+      const tabId = this.dataset.tab;
+      
+      // Remove active class from all tabs and panes
+      tabs.forEach(t => t.classList.remove('active'));
+      panes.forEach(p => p.classList.remove('active'));
+      
+      // Add active class to clicked tab and corresponding pane
+      this.classList.add('active');
+      document.getElementById(`${tabId}-tab`).classList.add('active');
+    });
+  });
+}
+
+function resolveConflict(productId, resolution) {
+  // Update UI to show selection
+  const conflictCard = document.querySelector(`[data-product-id="${productId}"]`);
+  const buttons = conflictCard?.querySelectorAll('.conflict-btn') || [];
+  
+  buttons.forEach(btn => btn.classList.remove('selected'));
+  event.target.classList.add('selected');
+  
+  // Store resolution decision
+  window.conflictResolutions = window.conflictResolutions || {};
+  window.conflictResolutions[productId] = resolution;
+  
+  showNotification(`Conflict resolved: ${resolution} data will be used`, 'info');
 }
 
 function cancelPreview() {
