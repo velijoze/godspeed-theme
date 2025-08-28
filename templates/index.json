@@ -228,6 +228,20 @@
         "title_heading": "Our Best Seller",
         "color_title": "#222222"
       }
+    },
+    "section_blog_v3_Nigp4F": {
+      "type": "section-blog-v3",
+      "name": "BLOG V3",
+      "settings": {
+        "section_title": "Our Blog",
+        "color_title": "#fff",
+        "select_blog": "news",
+        "blogs_limit": 2,
+        "enable_description": true,
+        "button_name": "Read More",
+        "margin_top": "",
+        "margin_bottom": ""
+      }
     }
   },
   "order": [
@@ -238,6 +252,7 @@
     "section_blog_v2_KdMAdt",
     "section_service_v2_qfprta",
     "section_product_v1_NQJG9z",
-    "section_product_v2_tdBRie"
+    "section_product_v2_tdBRie",
+    "section_blog_v3_Nigp4F"
   ]
 }
