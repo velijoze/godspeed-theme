@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "main": {
+      "type": "bike-size-guide",
+      "settings": {
+        "page_title": "Bike Size Guide",
+        "page_subtitle": "Finding the right bike size is crucial for comfort, performance, and safety. Use this comprehensive guide to determine your ideal frame size.",
+        "show_cta_buttons": true,
+        "test_ride_url": "/pages/test-ride",
+        "stores_url": "/pages/store-locations", 
+        "contact_url": "/pages/contact"
+      }
+    }
+  },
+  "order": ["main"]
+}

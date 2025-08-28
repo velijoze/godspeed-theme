@@ -1,0 +1,721 @@
+<div data-section-id="{{ section.id }}" data-section-type="bike-size-guide">
+  <section class="size-guide-header">
+    <div class="container">
+      <div class="pt-40 pb-20">
+        <div class="wrap-bread-crumb">
+          {% include 'breadcrumb' %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="size-guide-title-section">
+    <div class="container">
+      <div class="size-guide-title-wrapper">
+        <div class="text-center">
+          <h1 class="size-guide-title">{{ section.settings.page_title | default: "Bike Size Guide" }}</h1>
+          <div class="size-guide-subtitle">{{ section.settings.page_subtitle | default: "Finding the right bike size is crucial for comfort, performance, and safety. Use this comprehensive guide to determine your ideal frame size." }}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="size-guide-content">
+    <div class="container">
+      <div class="size-guide-wrapper">
+
+        <!-- Quick Size Calculator -->
+        <div class="size-guide-section calculator-section">
+          <h2 class="section-title">{{ section.settings.calculator_title | default: "Quick Size Calculator" }}</h2>
+          
+          <!-- E-Bikes & City Bikes -->
+          <div class="bike-type-section">
+            <h3>{{ section.settings.ebike_title | default: "E-Bikes & City Bikes" }}</h3>
+            <div class="size-table-wrapper">
+              <table class="size-table">
+                <thead>
+                  <tr>
+                    <th>Your Height</th>
+                    <th>Frame Size</th>
+                    <th>Frame Size (cm)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>150-160 cm</td><td>XS</td><td>45-48 cm</td></tr>
+                  <tr><td>160-170 cm</td><td>S</td><td>48-52 cm</td></tr>
+                  <tr><td>170-180 cm</td><td>M</td><td>52-56 cm</td></tr>
+                  <tr><td>180-190 cm</td><td>L</td><td>56-60 cm</td></tr>
+                  <tr><td>190-200 cm</td><td>XL</td><td>60-64 cm</td></tr>
+                  <tr><td>200+ cm</td><td>XXL</td><td>64+ cm</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Mountain Bikes -->
+          <div class="bike-type-section">
+            <h3>{{ section.settings.mountain_title | default: "Mountain Bikes" }}</h3>
+            <div class="size-table-wrapper">
+              <table class="size-table">
+                <thead>
+                  <tr>
+                    <th>Your Height</th>
+                    <th>Frame Size</th>
+                    <th>Frame Size (inches)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>150-160 cm</td><td>XS</td><td>13-14"</td></tr>
+                  <tr><td>160-170 cm</td><td>S</td><td>15-16"</td></tr>
+                  <tr><td>170-180 cm</td><td>M</td><td>17-18"</td></tr>
+                  <tr><td>180-190 cm</td><td>L</td><td>19-20"</td></tr>
+                  <tr><td>190-200 cm</td><td>XL</td><td>21-22"</td></tr>
+                  <tr><td>200+ cm</td><td>XXL</td><td>23+"</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- How to Measure -->
+        <div class="size-guide-section measure-section">
+          <h2 class="section-title">{{ section.settings.measure_title | default: "How to Measure Yourself" }}</h2>
+          
+          <div class="measure-steps">
+            <div class="measure-step">
+              <h3>Step 1: Measure Your Inseam</h3>
+              <ul>
+                <li>Stand barefoot against a wall</li>
+                <li>Place a book between your legs, spine against your crotch</li>
+                <li>Mark where the book meets the wall</li>
+                <li>Measure from floor to mark</li>
+              </ul>
+            </div>
+            
+            <div class="measure-step">
+              <h3>Step 2: Calculate Frame Size</h3>
+              <ul>
+                <li><strong>Road/City bikes:</strong> Inseam (cm) × 0.66</li>
+                <li><strong>Mountain bikes:</strong> Inseam (cm) × 0.226</li>
+                <li><strong>Trekking bikes:</strong> Inseam (cm) × 0.66</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Frame Styles -->
+        <div class="size-guide-section frame-styles-section">
+          <h2 class="section-title">{{ section.settings.frame_title | default: "Frame Styles" }}</h2>
+          
+          <div class="frame-types">
+            <div class="frame-type">
+              <h3>Diamond Frame (Traditional)</h3>
+              <ul>
+                <li>Standard frame design</li>
+                <li>Best power transfer</li>
+                <li>Sportier riding position</li>
+                <li>Requires leg flexibility to mount</li>
+              </ul>
+            </div>
+            
+            <div class="frame-type">
+              <h3>Step-Through Frame</h3>
+              <ul>
+                <li>Easy mounting and dismounting</li>
+                <li>Ideal for city riding</li>
+                <li>Perfect with skirts/dresses</li>
+                <li>Slightly heavier</li>
+              </ul>
+            </div>
+            
+            <div class="frame-type">
+              <h3>Mixte Frame</h3>
+              <ul>
+                <li>Compromise between diamond and step-through</li>
+                <li>Moderate step-over height</li>
+                <li>Good stability</li>
+                <li>Versatile design</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Special Considerations -->
+        <div class="size-guide-section considerations-section">
+          <h2 class="section-title">{{ section.settings.considerations_title | default: "Special Considerations" }}</h2>
+          
+          <div class="considerations-grid">
+            <div class="consideration-item">
+              <h3>Between Sizes?</h3>
+              <ul>
+                <li><strong>Choose smaller:</strong> For agile handling and sporty riding</li>
+                <li><strong>Choose larger:</strong> For stability and comfort</li>
+                <li><strong>Test ride both:</strong> Personal preference matters</li>
+              </ul>
+            </div>
+            
+            <div class="consideration-item">
+              <h3>E-Bike Specific</h3>
+              <ul>
+                <li>Step-through frames more popular due to weight</li>
+                <li>Battery position affects balance</li>
+                <li>Consider ease of mounting with added weight</li>
+                <li>Motor assistance compensates for less optimal fit</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Women's Specific -->
+        <div class="size-guide-section womens-section">
+          <h2 class="section-title">{{ section.settings.womens_title | default: "Women's Specific Geometry" }}</h2>
+          <p>Many women benefit from:</p>
+          <ul class="womens-features">
+            <li>Shorter top tubes</li>
+            <li>Narrower handlebars</li>
+            <li>Women-specific saddles</li>
+            <li>Adjusted stem lengths</li>
+          </ul>
+        </div>
+
+        <!-- Kids Sizing -->
+        <div class="size-guide-section kids-section">
+          <h2 class="section-title">{{ section.settings.kids_title | default: "Kids Bike Sizing" }}</h2>
+          <div class="size-table-wrapper">
+            <table class="size-table kids-table">
+              <thead>
+                <tr>
+                  <th>Age</th>
+                  <th>Height</th>
+                  <th>Wheel Size</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>2-4 years</td><td>85-100 cm</td><td>12"</td></tr>
+                <tr><td>3-5 years</td><td>95-110 cm</td><td>14"</td></tr>
+                <tr><td>4-6 years</td><td>100-120 cm</td><td>16"</td></tr>
+                <tr><td>5-8 years</td><td>110-130 cm</td><td>18"</td></tr>
+                <tr><td>7-10 years</td><td>120-140 cm</td><td>20"</td></tr>
+                <tr><td>9-12 years</td><td>130-150 cm</td><td>24"</td></tr>
+                <tr><td>11+ years</td><td>140+ cm</td><td>26" or adult</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Professional Fitting -->
+        <div class="size-guide-section fitting-section highlight-section">
+          <h2 class="section-title">{{ section.settings.fitting_title | default: "Professional Bike Fitting" }}</h2>
+          <p>For optimal comfort and performance, consider our professional fitting service:</p>
+          <ul class="fitting-features">
+            <li>Body measurements and flexibility assessment</li>
+            <li>Saddle height and position optimization</li>
+            <li>Handlebar reach and height adjustment</li>
+            <li>Cleat positioning for clipless pedals</li>
+            <li>Follow-up adjustments included</li>
+          </ul>
+        </div>
+
+        <!-- Common Mistakes -->
+        <div class="size-guide-section mistakes-section">
+          <h2 class="section-title">{{ section.settings.mistakes_title | default: "Common Sizing Mistakes" }}</h2>
+          <ul class="mistakes-list">
+            <li><strong>Choosing by height alone</strong> - Inseam is more important</li>
+            <li><strong>Ignoring reach</strong> - Top tube length matters</li>
+            <li><strong>Not testing</strong> - Always test ride when possible</li>
+            <li><strong>Copying friends</strong> - Everyone's body is different</li>
+            <li><strong>Prioritizing looks</strong> - Comfort should come first</li>
+          </ul>
+        </div>
+
+        <!-- Help Section -->
+        <div class="size-guide-section help-section highlight-section">
+          <h2 class="section-title">{{ section.settings.help_title | default: "Need Help?" }}</h2>
+          <p>Our expert staff provides free sizing consultations:</p>
+          <ul class="help-features">
+            <li>In-store measurements</li>
+            <li>Test rides in multiple sizes</li>
+            <li>Professional recommendations</li>
+            <li>Post-purchase adjustments</li>
+          </ul>
+          <p class="help-cta">Visit any of our locations for personalized sizing assistance!</p>
+          
+          {% if section.settings.show_cta_buttons %}
+          <div class="cta-buttons">
+            {% if section.settings.test_ride_url != blank %}
+            <a href="{{ section.settings.test_ride_url }}" class="cta-btn primary-btn">Book a Test Ride</a>
+            {% endif %}
+            {% if section.settings.stores_url != blank %}
+            <a href="{{ section.settings.stores_url }}" class="cta-btn secondary-btn">Visit Our Stores</a>
+            {% endif %}
+            {% if section.settings.contact_url != blank %}
+            <a href="{{ section.settings.contact_url }}" class="cta-btn secondary-btn">Contact Us</a>
+            {% endif %}
+          </div>
+          {% endif %}
+        </div>
+
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Bike Size Guide",
+  "class": "index-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Page Header"
+    },
+    {
+      "type": "text",
+      "id": "page_title",
+      "label": "Page Title",
+      "default": "Bike Size Guide"
+    },
+    {
+      "type": "textarea",
+      "id": "page_subtitle",
+      "label": "Page Subtitle",
+      "default": "Finding the right bike size is crucial for comfort, performance, and safety. Use this comprehensive guide to determine your ideal frame size."
+    },
+    {
+      "type": "header",
+      "content": "Section Titles"
+    },
+    {
+      "type": "text",
+      "id": "calculator_title",
+      "label": "Calculator Section Title",
+      "default": "Quick Size Calculator"
+    },
+    {
+      "type": "text",
+      "id": "ebike_title",
+      "label": "E-Bike Section Title",
+      "default": "E-Bikes & City Bikes"
+    },
+    {
+      "type": "text",
+      "id": "mountain_title",
+      "label": "Mountain Bike Section Title",
+      "default": "Mountain Bikes"
+    },
+    {
+      "type": "text",
+      "id": "measure_title",
+      "label": "Measurement Section Title",
+      "default": "How to Measure Yourself"
+    },
+    {
+      "type": "text",
+      "id": "frame_title",
+      "label": "Frame Styles Section Title",
+      "default": "Frame Styles"
+    },
+    {
+      "type": "text",
+      "id": "considerations_title",
+      "label": "Considerations Section Title",
+      "default": "Special Considerations"
+    },
+    {
+      "type": "text",
+      "id": "womens_title",
+      "label": "Women's Section Title",
+      "default": "Women's Specific Geometry"
+    },
+    {
+      "type": "text",
+      "id": "kids_title",
+      "label": "Kids Section Title",
+      "default": "Kids Bike Sizing"
+    },
+    {
+      "type": "text",
+      "id": "fitting_title",
+      "label": "Professional Fitting Title",
+      "default": "Professional Bike Fitting"
+    },
+    {
+      "type": "text",
+      "id": "mistakes_title",
+      "label": "Common Mistakes Title",
+      "default": "Common Sizing Mistakes"
+    },
+    {
+      "type": "text",
+      "id": "help_title",
+      "label": "Help Section Title",
+      "default": "Need Help?"
+    },
+    {
+      "type": "header",
+      "content": "Call-to-Action Buttons"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cta_buttons",
+      "label": "Show CTA Buttons",
+      "default": true
+    },
+    {
+      "type": "url",
+      "id": "test_ride_url",
+      "label": "Test Ride URL"
+    },
+    {
+      "type": "url",
+      "id": "stores_url",
+      "label": "Store Locations URL"
+    },
+    {
+      "type": "url",
+      "id": "contact_url",
+      "label": "Contact URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bike Size Guide",
+      "category": "GUIDES"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+.size-guide-header {
+  background: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.size-guide-title-section {
+  padding: 50px 0 40px;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border-bottom: 1px solid #e9ecef;
+}
+
+.size-guide-title-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.size-guide-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.size-guide-subtitle {
+  font-size: 1.2rem;
+  color: #6c757d;
+  line-height: 1.4;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.size-guide-content {
+  padding: 60px 0;
+  background: #ffffff;
+}
+
+.size-guide-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.size-guide-section {
+  margin-bottom: 50px;
+  background: #f8f9fa;
+  padding: 35px;
+  border-radius: 12px;
+  border-left: 4px solid #007bff;
+}
+
+.section-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 25px;
+  line-height: 1.3;
+}
+
+.bike-type-section {
+  margin-bottom: 35px;
+}
+
+.bike-type-section:last-child {
+  margin-bottom: 0;
+}
+
+.bike-type-section h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #34495e;
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.size-table-wrapper {
+  overflow-x: auto;
+  margin: 20px 0;
+}
+
+.size-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.size-table th,
+.size-table td {
+  padding: 15px;
+  text-align: center;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.size-table th {
+  background: #34495e;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.size-table td {
+  font-size: 0.9rem;
+  color: #495057;
+}
+
+.size-table tbody tr:hover {
+  background: #f8f9fa;
+}
+
+.measure-steps {
+  display: grid;
+  gap: 25px;
+}
+
+.measure-step h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.measure-step ul {
+  margin-bottom: 0;
+  padding-left: 20px;
+}
+
+.measure-step li {
+  margin-bottom: 8px;
+  line-height: 1.4;
+  color: #495057;
+}
+
+.frame-types {
+  display: grid;
+  gap: 25px;
+}
+
+.frame-type {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.frame-type h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.frame-type ul {
+  margin-bottom: 0;
+  padding-left: 20px;
+}
+
+.frame-type li {
+  margin-bottom: 8px;
+  line-height: 1.4;
+  color: #495057;
+}
+
+.considerations-grid {
+  display: grid;
+  gap: 25px;
+}
+
+.consideration-item {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.consideration-item h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.consideration-item ul {
+  margin-bottom: 0;
+  padding-left: 20px;
+}
+
+.consideration-item li {
+  margin-bottom: 8px;
+  line-height: 1.4;
+  color: #495057;
+}
+
+.womens-features,
+.fitting-features,
+.help-features {
+  display: grid;
+  gap: 8px;
+  padding-left: 20px;
+  margin-bottom: 0;
+}
+
+.womens-features li,
+.fitting-features li,
+.help-features li {
+  line-height: 1.4;
+  color: #495057;
+}
+
+.mistakes-list {
+  padding-left: 20px;
+  margin-bottom: 0;
+}
+
+.mistakes-list li {
+  margin-bottom: 12px;
+  line-height: 1.4;
+  color: #495057;
+}
+
+.highlight-section {
+  border-left-color: #ff4040;
+  background: linear-gradient(135deg, #fff5f2 0%, #f8f9fa 100%);
+}
+
+.highlight-section .section-title {
+  color: #d63031;
+}
+
+.help-cta {
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 20px 0;
+  font-size: 1.1rem;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 25px;
+  flex-wrap: wrap;
+}
+
+.cta-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.primary-btn {
+  background: #007bff;
+  color: #ffffff;
+  border: 2px solid #007bff;
+}
+
+.primary-btn:hover {
+  background: #0056b3;
+  border-color: #0056b3;
+  color: #ffffff;
+}
+
+.secondary-btn {
+  background: transparent;
+  color: #007bff;
+  border: 2px solid #007bff;
+}
+
+.secondary-btn:hover {
+  background: #007bff;
+  color: #ffffff;
+}
+
+@media (min-width: 768px) {
+  .frame-types {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+  
+  .considerations-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .measure-steps {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 767px) {
+  .size-guide-title {
+    font-size: 2.2rem;
+  }
+  
+  .size-guide-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .size-guide-content {
+    padding: 40px 0;
+  }
+  
+  .size-guide-section {
+    padding: 25px 20px;
+  }
+  
+  .section-title {
+    font-size: 1.5rem;
+  }
+  
+  .size-table th,
+  .size-table td {
+    padding: 10px 8px;
+    font-size: 0.85rem;
+  }
+  
+  .cta-buttons {
+    flex-direction: column;
+  }
+  
+  .cta-btn {
+    text-align: center;
+  }
+}
+{% endstylesheet %}

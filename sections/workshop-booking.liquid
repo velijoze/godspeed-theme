@@ -23,9 +23,9 @@
               <div class="row">
                 <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                   <div class="form-group">
-                    <label for="service-location-{{ section.id }}" class="form-label">Service Location *</label>
+                    <label for="service-location-{{ section.id }}" class="form-label">{{ 'workshop.booking.service_location' | t }} *</label>
                     <select id="service-location-{{ section.id }}" name="service_location" class="form-control" required>
-                      <option value="">Select a location</option>
+                      <option value="">{{ 'workshop.booking.select_location' | t }}</option>
                       <option value="Lugano Workshop - Via Pian Scairolo 8, 6915 Pambio-Noranco">Lugano Workshop - Via Pian Scairolo 8</option>
                       <option value="Bellinzona Store - Via Orico 13, 6500 Bellinzona">Bellinzona Store - Via Orico 13</option>
                       <option value="Locarno Store - Via della Stazione 1, 6600 Locarno">Locarno Store - Via della Stazione 1</option>
@@ -36,9 +36,9 @@
                 
                 <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                   <div class="form-group">
-                    <label for="workshop-type-{{ section.id }}" class="form-label">Service Type *</label>
+                    <label for="workshop-type-{{ section.id }}" class="form-label">{{ 'workshop.booking.service_type' | t }} *</label>
                     <select id="workshop-type-{{ section.id }}" name="workshop_type" class="form-control" required>
-                      <option value="">Select a service</option>
+                      <option value="">{{ 'workshop.booking.select_service' | t }}</option>
                       {% for block in section.blocks %}
                         {% if block.type == "service_option" %}
                           <option value="{{ block.settings.service_name }}" 
@@ -54,7 +54,7 @@
                 
                 <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                   <div class="form-group">
-                    <label for="workshop-date-{{ section.id }}" class="form-label">Preferred Date *</label>
+                    <label for="workshop-date-{{ section.id }}" class="form-label">{{ 'workshop.booking.preferred_date' | t }} *</label>
                     <input type="date" id="workshop-date-{{ section.id }}" name="workshop_date" class="form-control" required>
                   </div>
                 </div>
@@ -63,9 +63,9 @@
               <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 mb-4">
                   <div class="form-group">
-                    <label for="workshop-time-{{ section.id }}" class="form-label">Preferred Time *</label>
+                    <label for="workshop-time-{{ section.id }}" class="form-label">{{ 'workshop.booking.preferred_time' | t }} *</label>
                     <select id="workshop-time-{{ section.id }}" name="workshop_time" class="form-control" required>
-                      <option value="">Select time</option>
+                      <option value="">{{ 'workshop.booking.select_time' | t }}</option>
                       <option value="09:00">9:00 AM</option>
                       <option value="10:00">10:00 AM</option>
                       <option value="11:00">11:00 AM</option>
@@ -88,7 +88,7 @@
               <div class="row">
                 <div class="col-12 mb-4">
                   <div class="form-group">
-                    <label for="special-requirements-{{ section.id }}" class="form-label">Special Requirements</label>
+                    <label for="special-requirements-{{ section.id }}" class="form-label">{{ 'workshop.booking.special_requirements' | t }}</label>
                     <textarea id="special-requirements-{{ section.id }}" name="special_requirements" class="form-control" rows="3" placeholder="Describe any issues or specific service needs..."></textarea>
                   </div>
                 </div>
@@ -128,19 +128,19 @@
               
               <div class="booking-summary mb-4" id="booking-summary-{{ section.id }}" style="display: none;">
                 <div class="summary-header">
-                  <h4 class="summary-title">Booking Summary</h4>
+                  <h4 class="summary-title">{{ 'workshop.booking.booking_summary' | t }}</h4>
                 </div>
                 <div class="summary-content">
                   <div class="summary-row">
-                    <span class="summary-label">Location:</span>
+                    <span class="summary-label">{{ 'workshop.booking.location_label' | t }}</span>
                     <span class="summary-value" id="summary-location-{{ section.id }}"></span>
                   </div>
                   <div class="summary-row">
-                    <span class="summary-label">Service:</span>
+                    <span class="summary-label">{{ 'workshop.booking.service_label' | t }}</span>
                     <span class="summary-value" id="summary-service-{{ section.id }}"></span>
                   </div>
                   <div class="summary-row">
-                    <span class="summary-label">Date & Time:</span>
+                    <span class="summary-label">{{ 'workshop.booking.date_label' | t }} {{ 'workshop.booking.time_label' | t }}</span>
                     <span class="summary-value" id="summary-datetime-{{ section.id }}"></span>
                   </div>
                   <div class="summary-row">
@@ -152,7 +152,7 @@
               
               <div class="form-submit text-center">
                 <button type="submit" class="btn btn-submit-{{ section.id }}" id="submit-btn-{{ section.id }}">
-                  <span class="btn-text">Schedule Service</span>
+                  <span class="btn-text">{{ 'workshop.booking.schedule_service' | t }}</span>
                   <span class="btn-loading" style="display: none;">
                     <i class="fa fa-spinner fa-spin"></i> Processing...
                   </span>

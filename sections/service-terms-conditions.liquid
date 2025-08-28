@@ -1,0 +1,1013 @@
+<div data-section-id="{{ section.id }}" data-section-type="service-terms-conditions" style="{% if section.settings.margin_top != blank %}margin-top: {{section.settings.margin_top}}px;{%endif%} {% if section.settings.margin_bottom != blank %}margin-bottom: {{section.settings.margin_bottom}}px;{% endif %}">
+  <section class="terms-header">
+    <div class="container">
+      <div class="pt-40 pb-20">
+        <div class="wrap-bread-crumb">
+          {% include 'breadcrumb' %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="terms-title-section">
+    <div class="container">
+      <div class="terms-title-wrapper">
+        <div class="text-center">
+          <h1 class="terms-title">{{ section.settings.page_title | default: "Service Terms & Conditions" }}</h1>
+          <div class="terms-subtitle">{{ section.settings.page_subtitle | default: "Professional bicycle and e-bike service terms governing our workshop services, repairs, and maintenance offerings." }}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="terms-content-section">
+    <div class="container">
+      <div class="terms-content-wrapper">
+
+        <!-- Service Overview -->
+        {% if section.settings.show_overview %}
+        <div class="terms-block overview-highlight">
+          <h2 class="section-title">{{ section.settings.overview_title | default: "Service Overview" }}</h2>
+          
+          <div class="service-types">
+            <div class="service-type">
+              <h3>Workshop Services</h3>
+              <ul>
+                <li>Basic maintenance and tune-ups</li>
+                <li>Component repairs and replacements</li>
+                <li>Wheel building and truing</li>
+                <li>Brake and drivetrain servicing</li>
+                <li>Safety inspections</li>
+              </ul>
+            </div>
+            
+            <div class="service-type">
+              <h3>E-Bike Specialist Services</h3>
+              <ul>
+                <li>Motor diagnostics and repairs</li>
+                <li>Battery testing and replacement</li>
+                <li>Electrical system troubleshooting</li>
+                <li>Software updates and programming</li>
+                <li>Charging system maintenance</li>
+              </ul>
+            </div>
+            
+            <div class="service-type">
+              <h3>Assembly Services</h3>
+              <ul>
+                <li>Complete bike assembly from box</li>
+                <li>Professional setup and adjustments</li>
+                <li>Safety check and test ride</li>
+                <li>Delivery and setup service</li>
+                <li>Custom fitting and positioning</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- Service Terms -->
+        {% if section.settings.show_terms %}
+        <div class="terms-block service-highlight">
+          <h2 class="section-title">{{ section.settings.terms_title | default: "Service Terms" }}</h2>
+          
+          <div class="terms-grid">
+            <div class="terms-item">
+              <h3>Booking & Scheduling</h3>
+              <ul>
+                <li><strong>Appointments:</strong> Required for all workshop services</li>
+                <li><strong>Walk-ins:</strong> Subject to availability</li>
+                <li><strong>Cancellation:</strong> 24-hour notice required</li>
+                <li><strong>No-shows:</strong> May incur CHF 50 fee</li>
+              </ul>
+            </div>
+            
+            <div class="terms-item">
+              <h3>Service Estimates</h3>
+              <ul>
+                <li>Free diagnostic assessment</li>
+                <li>Written estimates for repairs over CHF 100</li>
+                <li>Approval required before work begins</li>
+                <li>Estimates valid for 30 days</li>
+              </ul>
+            </div>
+            
+            <div class="terms-item">
+              <h3>Parts & Components</h3>
+              <ul>
+                <li>Genuine manufacturer parts when available</li>
+                <li>Quality aftermarket alternatives approved</li>
+                <li>Customer-supplied parts not warranted</li>
+                <li>Old parts returned upon request</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="important-notice">
+            <h3>Service Guarantee</h3>
+            <p>All workshop services are guaranteed for <strong>90 days</strong> from completion date. This guarantee covers workmanship only and does not include normal wear or misuse of components.</p>
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- Pricing & Payment -->
+        {% if section.settings.show_pricing %}
+        <div class="terms-block pricing-highlight">
+          <h2 class="section-title">{{ section.settings.pricing_title | default: "Pricing & Payment" }}</h2>
+          
+          <div class="pricing-info">
+            <div class="pricing-section">
+              <h3>Service Pricing</h3>
+              <div class="pricing-table">
+                <div class="pricing-row">
+                  <span class="service-name">Basic Tune-up</span>
+                  <span class="price">CHF 89</span>
+                </div>
+                <div class="pricing-row">
+                  <span class="service-name">Complete Service</span>
+                  <span class="price">CHF 149</span>
+                </div>
+                <div class="pricing-row">
+                  <span class="service-name">E-bike Service</span>
+                  <span class="price">CHF 179</span>
+                </div>
+                <div class="pricing-row">
+                  <span class="service-name">Assembly Service</span>
+                  <span class="price">CHF 150</span>
+                </div>
+                <div class="pricing-row">
+                  <span class="service-name">Hourly Rate</span>
+                  <span class="price">CHF 120/hour</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="payment-terms">
+              <h3>Payment Terms</h3>
+              <ul>
+                <li>Payment due upon service completion</li>
+                <li>Cash, credit card, or bank transfer accepted</li>
+                <li>Invoice available for business customers</li>
+                <li>30-day payment terms for approved accounts</li>
+                <li>Late payment fee: CHF 25 after 30 days</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- Liability & Responsibility -->
+        {% if section.settings.show_liability %}
+        <div class="terms-block liability-section">
+          <h2 class="section-title">{{ section.settings.liability_title | default: "Liability & Responsibility" }}</h2>
+          
+          <div class="liability-content">
+            <div class="liability-item">
+              <h3>Customer Responsibilities</h3>
+              <ul>
+                <li>Accurate description of service requirements</li>
+                <li>Disclosure of previous repairs or modifications</li>
+                <li>Removal of personal items from bicycle</li>
+                <li>Prompt collection of completed work</li>
+                <li>Payment of service fees as agreed</li>
+              </ul>
+            </div>
+            
+            <div class="liability-item">
+              <h3>GODSPEED Responsibilities</h3>
+              <ul>
+                <li>Professional workmanship standards</li>
+                <li>Use of appropriate tools and techniques</li>
+                <li>Secure storage of customer property</li>
+                <li>Clear communication of service scope</li>
+                <li>Timely completion of agreed work</li>
+              </ul>
+            </div>
+
+            <div class="limitation-notice">
+              <h3>Limitation of Liability</h3>
+              <p>Our liability is limited to the cost of services provided. We are not responsible for:</p>
+              <ul>
+                <li>Damage from pre-existing conditions</li>
+                <li>Normal wear and tear of components</li>
+                <li>Consequential or indirect damages</li>
+                <li>Loss of use or business interruption</li>
+                <li>Personal items left on bicycles</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- Storage & Collection -->
+        {% if section.settings.show_storage %}
+        <div class="terms-block storage-section">
+          <h2 class="section-title">{{ section.settings.storage_title | default: "Storage & Collection" }}</h2>
+          
+          <div class="storage-terms">
+            <div class="storage-item">
+              <h3>Storage Policy</h3>
+              <ul>
+                <li>Secure indoor storage provided</li>
+                <li>30-day storage included in service</li>
+                <li>Extended storage: CHF 10 per day after 30 days</li>
+                <li>Maximum storage period: 90 days</li>
+                <li>Items may be disposed of after 90 days</li>
+              </ul>
+            </div>
+            
+            <div class="storage-item">
+              <h3>Collection Requirements</h3>
+              <ul>
+                <li>Photo ID required for collection</li>
+                <li>Service receipt or reference number</li>
+                <li>Payment must be completed before release</li>
+                <li>Collection hours: Monday-Friday 9:00-18:00</li>
+                <li>Saturday collection by appointment only</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="abandonment-notice">
+            <h3>Abandonment Policy</h3>
+            <p>Bicycles not collected within 90 days are considered abandoned. After notification attempts, items may be sold to recover storage costs. Any remaining proceeds will be held for the customer for 12 months.</p>
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- Warranty Claims -->
+        {% if section.settings.show_warranty_work %}
+        <div class="terms-block warranty-highlight">
+          <h2 class="section-title">{{ section.settings.warranty_title | default: "Warranty Work" }}</h2>
+          
+          <div class="warranty-terms">
+            <h3>Manufacturer Warranty Claims</h3>
+            <ul class="warranty-list">
+              <li>Free assessment for warranty-eligible issues</li>
+              <li>Direct coordination with manufacturers</li>
+              <li>Customer notification of claim status</li>
+              <li>Expedited processing when possible</li>
+            </ul>
+
+            <h3>Warranty Work Requirements</h3>
+            <div class="warranty-requirements">
+              <ul>
+                <li>Original proof of purchase required</li>
+                <li>Product within warranty period</li>
+                <li>Defect covered under manufacturer terms</li>
+                <li>No evidence of misuse or modification</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- Contact & Disputes -->
+        {% if section.settings.show_contact %}
+        <div class="terms-block contact-section">
+          <h2 class="section-title">{{ section.settings.contact_title | default: "Contact & Disputes" }}</h2>
+          
+          <div class="contact-info">
+            <div class="contact-method">
+              <h3>Service Department</h3>
+              <p><strong>Email:</strong> {{ section.settings.service_email | default: "service@godspeed.ch" }}</p>
+              <p><strong>Phone:</strong> {{ section.settings.service_phone | default: "+41 91 224 53 43" }}</p>
+              <p><strong>Hours:</strong> Monday-Friday 9:00-18:00, Saturday 9:00-17:00</p>
+            </div>
+            
+            <div class="contact-method">
+              <h3>Workshop Locations</h3>
+              <ul>
+                <li><strong>Lugano:</strong> Via Pretorio 15, 6900 Lugano</li>
+                <li><strong>Bellinzona:</strong> Via Stazione 8, 6500 Bellinzona</li>
+                <li><strong>Locarno:</strong> Via Della Pace 12, 6600 Locarno</li>
+                <li><strong>Zurich:</strong> Langstrasse 45, 8004 Zurich</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="dispute-resolution">
+            <h3>Dispute Resolution</h3>
+            <p>Any disputes arising from service work will be resolved through direct negotiation. If necessary, disputes will be subject to Swiss law and jurisdiction of local courts.</p>
+          </div>
+        </div>
+        {% endif %}
+
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Service Terms & Conditions",
+  "class": "index-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Page Header"
+    },
+    {
+      "type": "text",
+      "id": "page_title",
+      "label": "Page Title",
+      "default": "Service Terms & Conditions"
+    },
+    {
+      "type": "textarea",
+      "id": "page_subtitle",
+      "label": "Page Subtitle",
+      "default": "Professional bicycle and e-bike service terms governing our workshop services, repairs, and maintenance offerings."
+    },
+    {
+      "type": "header",
+      "content": "Content Sections"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_overview",
+      "label": "Show Service Overview",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "overview_title",
+      "label": "Overview Section Title",
+      "default": "Service Overview"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_terms",
+      "label": "Show Service Terms",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "terms_title",
+      "label": "Terms Section Title",
+      "default": "Service Terms"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pricing",
+      "label": "Show Pricing & Payment",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "pricing_title",
+      "label": "Pricing Section Title",
+      "default": "Pricing & Payment"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_liability",
+      "label": "Show Liability & Responsibility",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "liability_title",
+      "label": "Liability Section Title",
+      "default": "Liability & Responsibility"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_storage",
+      "label": "Show Storage & Collection",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "storage_title",
+      "label": "Storage Section Title",
+      "default": "Storage & Collection"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_warranty_work",
+      "label": "Show Warranty Work",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "warranty_title",
+      "label": "Warranty Work Title",
+      "default": "Warranty Work"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_contact",
+      "label": "Show Contact & Disputes",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "contact_title",
+      "label": "Contact Section Title",
+      "default": "Contact & Disputes"
+    },
+    {
+      "type": "header",
+      "content": "Contact Information"
+    },
+    {
+      "type": "text",
+      "id": "service_email",
+      "label": "Service Email",
+      "default": "service@godspeed.ch"
+    },
+    {
+      "type": "text",
+      "id": "service_phone",
+      "label": "Service Phone",
+      "default": "+41 91 224 53 43"
+    },
+    {
+      "type": "header",
+      "content": "Section Spacing"
+    },
+    {
+      "type": "text",
+      "id": "margin_top",
+      "label": "Margin Top",
+      "info": "Defined in pixels. Do not add the 'px' unit."
+    },
+    {
+      "type": "text",
+      "id": "margin_bottom",
+      "label": "Margin Bottom",
+      "info": "Defined in pixels. Do not add the 'px' unit."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Service Terms & Conditions",
+      "category": "POLICIES"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+.terms-header {
+  background: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.terms-title-section {
+  padding: 50px 0 40px;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border-bottom: 1px solid #e9ecef;
+}
+
+.terms-title-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.terms-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.terms-subtitle {
+  font-size: 1.2rem;
+  color: #6c757d;
+  line-height: 1.4;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.terms-content-section {
+  padding: 60px 0;
+  background: #ffffff;
+}
+
+.terms-content-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.terms-block {
+  margin-bottom: 50px;
+  background: #f8f9fa;
+  padding: 40px;
+  border-radius: 12px;
+  border-left: 4px solid #ff4040;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 30px;
+  line-height: 1.3;
+}
+
+.overview-highlight {
+  border-left-color: #28a745;
+  background: linear-gradient(135deg, #f8fff9 0%, #f8f9fa 100%);
+}
+
+.overview-highlight .section-title {
+  color: #155724;
+}
+
+.service-types {
+  display: grid;
+  gap: 25px;
+}
+
+.service-type {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.service-type h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.service-type ul {
+  margin-bottom: 0;
+  padding-left: 20px;
+}
+
+.service-type li {
+  margin-bottom: 6px;
+  line-height: 1.4;
+  color: #495057;
+}
+
+.service-highlight {
+  border-left-color: #ff4040;
+  background: linear-gradient(135deg, #f0fdff 0%, #f8f9fa 100%);
+}
+
+.service-highlight .section-title {
+  color: #ff4040;
+}
+
+.terms-grid {
+  display: grid;
+  gap: 25px;
+  margin-bottom: 35px;
+}
+
+.terms-item {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.terms-item h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.terms-item ul {
+  margin-bottom: 0;
+  padding-left: 20px;
+}
+
+.terms-item li {
+  margin-bottom: 8px;
+  line-height: 1.4;
+  color: #495057;
+}
+
+.important-notice {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 8px;
+  border: 2px solid #ffc107;
+  margin-top: 25px;
+}
+
+.important-notice h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #856404;
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.important-notice p {
+  margin-bottom: 0;
+  line-height: 1.5;
+  color: #495057;
+}
+
+.pricing-highlight {
+  border-left-color: #ff4040;
+  background: linear-gradient(135deg, #fff5f2 0%, #f8f9fa 100%);
+}
+
+.pricing-highlight .section-title {
+  color: #d63031;
+}
+
+.pricing-info {
+  display: grid;
+  gap: 25px;
+}
+
+.pricing-section {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.pricing-section h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  line-height: 1.3;
+}
+
+.pricing-table {
+  display: grid;
+  gap: 10px;
+}
+
+.pricing-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #f1f3f4;
+}
+
+.pricing-row:last-child {
+  border-bottom: none;
+}
+
+.service-name {
+  font-weight: 500;
+  color: #495057;
+}
+
+.price {
+  font-weight: 600;
+  color: #2c3e50;
+  font-size: 1.1rem;
+}
+
+.payment-terms {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.payment-terms h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.payment-terms ul {
+  margin-bottom: 0;
+  padding-left: 20px;
+}
+
+.payment-terms li {
+  margin-bottom: 8px;
+  line-height: 1.4;
+  color: #495057;
+}
+
+.liability-section {
+  border-left-color: #6c5ce7;
+  background: linear-gradient(135deg, #f8f7ff 0%, #f8f9fa 100%);
+}
+
+.liability-section .section-title {
+  color: #5f3dc4;
+}
+
+.liability-content {
+  display: grid;
+  gap: 25px;
+}
+
+.liability-item {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.liability-item h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.liability-item ul {
+  margin-bottom: 0;
+  padding-left: 20px;
+}
+
+.liability-item li {
+  margin-bottom: 8px;
+  line-height: 1.4;
+  color: #495057;
+}
+
+.limitation-notice {
+  background: #fff3cd;
+  border: 1px solid #ffeaa7;
+  padding: 25px;
+  border-radius: 8px;
+  margin-top: 25px;
+}
+
+.limitation-notice h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #856404;
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.limitation-notice p {
+  margin-bottom: 10px;
+  line-height: 1.5;
+  color: #495057;
+}
+
+.limitation-notice ul {
+  margin-bottom: 0;
+  padding-left: 20px;
+}
+
+.limitation-notice li {
+  margin-bottom: 6px;
+  line-height: 1.4;
+  color: #495057;
+}
+
+.storage-section {
+  border-left-color: #fd7e14;
+  background: linear-gradient(135deg, #fff8f0 0%, #f8f9fa 100%);
+}
+
+.storage-section .section-title {
+  color: #e8590c;
+}
+
+.storage-terms {
+  display: grid;
+  gap: 25px;
+  margin-bottom: 25px;
+}
+
+.storage-item {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.storage-item h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.storage-item ul {
+  margin-bottom: 0;
+  padding-left: 20px;
+}
+
+.storage-item li {
+  margin-bottom: 8px;
+  line-height: 1.4;
+  color: #495057;
+}
+
+.abandonment-notice {
+  background: #f8d7da;
+  border: 1px solid #f5c6cb;
+  padding: 25px;
+  border-radius: 8px;
+}
+
+.abandonment-notice h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #721c24;
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.abandonment-notice p {
+  margin-bottom: 0;
+  line-height: 1.5;
+  color: #495057;
+}
+
+.warranty-highlight {
+  border-left-color: #20c997;
+  background: linear-gradient(135deg, #f0fff4 0%, #f8f9fa 100%);
+}
+
+.warranty-highlight .section-title {
+  color: #0f5132;
+}
+
+.warranty-terms h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  margin-top: 25px;
+  line-height: 1.3;
+}
+
+.warranty-terms h3:first-child {
+  margin-top: 0;
+}
+
+.warranty-list {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+  margin-bottom: 25px;
+  padding-left: 40px;
+}
+
+.warranty-list li {
+  margin-bottom: 8px;
+  line-height: 1.4;
+  color: #495057;
+}
+
+.warranty-requirements {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.warranty-requirements ul {
+  margin-bottom: 0;
+  padding-left: 20px;
+}
+
+.warranty-requirements li {
+  margin-bottom: 8px;
+  line-height: 1.4;
+  color: #495057;
+}
+
+.contact-section {
+  border-left-color: #dc3545;
+  background: linear-gradient(135deg, #fff5f5 0%, #f8f9fa 100%);
+}
+
+.contact-section .section-title {
+  color: #721c24;
+}
+
+.contact-info {
+  display: grid;
+  gap: 25px;
+  margin-bottom: 25px;
+}
+
+.contact-method {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.contact-method h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.contact-method p {
+  margin-bottom: 8px;
+  line-height: 1.4;
+  color: #495057;
+}
+
+.contact-method p:last-child {
+  margin-bottom: 0;
+}
+
+.contact-method ul {
+  margin-bottom: 0;
+  padding-left: 20px;
+}
+
+.contact-method li {
+  margin-bottom: 6px;
+  line-height: 1.4;
+  color: #495057;
+}
+
+.dispute-resolution {
+  background: #e2e3e5;
+  border: 1px solid #d3d6db;
+  padding: 25px;
+  border-radius: 8px;
+}
+
+.dispute-resolution h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.dispute-resolution p {
+  margin-bottom: 0;
+  line-height: 1.5;
+  color: #495057;
+}
+
+@media (min-width: 768px) {
+  .service-types {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+  
+  .terms-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+  
+  .pricing-info {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .liability-content {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .storage-terms {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .contact-info {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .terms-title {
+    font-size: 2.2rem;
+  }
+  
+  .terms-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .terms-content-section {
+    padding: 40px 0;
+  }
+  
+  .terms-block {
+    padding: 25px 20px;
+  }
+  
+  .section-title {
+    font-size: 1.6rem;
+  }
+  
+  .pricing-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+}
+{% endstylesheet %}

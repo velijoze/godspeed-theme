@@ -1,0 +1,20 @@
+{
+  "sections": {
+    "main": {
+      "type": "service-terms-conditions",
+      "settings": {
+        "page_title": "Service Terms & Conditions",
+        "page_subtitle": "Professional bicycle and e-bike service terms governing our workshop services, repairs, and maintenance offerings.",
+        "show_overview": true,
+        "show_terms": true,
+        "show_pricing": true,
+        "show_liability": true,
+        "show_storage": true,
+        "show_warranty_work": true,
+        "show_contact": true,
+        "service_email": "service@godspeed.ch"
+      }
+    }
+  },
+  "order": ["main"]
+}

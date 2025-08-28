@@ -1,0 +1,1218 @@
+<div data-section-id="{{ section.id }}" data-section-type="privacy-policy" style="{% if section.settings.margin_top != blank %}margin-top: {{section.settings.margin_top}}px;{%endif%} {% if section.settings.margin_bottom != blank %}margin-bottom: {{section.settings.margin_bottom}}px;{% endif %}">
+  <section class="privacy-header">
+    <div class="container">
+      <div class="pt-40 pb-20">
+        <div class="wrap-bread-crumb">
+          {% include 'breadcrumb' %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="privacy-title-section">
+    <div class="container">
+      <div class="privacy-title-wrapper">
+        <div class="text-center">
+          <h1 class="privacy-title">{{ section.settings.page_title | default: "Privacy Policy" }}</h1>
+          <div class="privacy-subtitle">{{ section.settings.page_subtitle | default: "We respect your privacy and are committed to protecting your personal data. Learn how we collect, use, and safeguard your information." }}</div>
+          <div class="last-updated">Last updated: {{ section.settings.last_updated | default: "December 2024" }}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="privacy-content-section">
+    <div class="container">
+      <div class="privacy-content-wrapper">
+
+        <!-- Data Collection -->
+        {% if section.settings.show_collection %}
+        <div class="privacy-block collection-highlight">
+          <h2 class="section-title">{{ section.settings.collection_title | default: "Information We Collect" }}</h2>
+          
+          <div class="data-types">
+            <div class="data-type">
+              <h3>Personal Information</h3>
+              <ul>
+                <li>Name, email address, and phone number</li>
+                <li>Billing and shipping addresses</li>
+                <li>Payment information (processed securely by payment providers)</li>
+                <li>Account credentials and preferences</li>
+              </ul>
+            </div>
+            
+            <div class="data-type">
+              <h3>Service Information</h3>
+              <ul>
+                <li>Bicycle and e-bike specifications</li>
+                <li>Service history and maintenance records</li>
+                <li>Workshop appointment details</li>
+                <li>Warranty and purchase information</li>
+              </ul>
+            </div>
+            
+            <div class="data-type">
+              <h3>Technical Information</h3>
+              <ul>
+                <li>IP address and browser information</li>
+                <li>Device type and operating system</li>
+                <li>Website usage and analytics data</li>
+                <li>Cookies and similar technologies</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="collection-methods">
+            <h3>How We Collect Information</h3>
+            <div class="methods-grid">
+              <div class="method-item">
+                <h4>Direct Collection</h4>
+                <p>When you create an account, make a purchase, or book services</p>
+              </div>
+              <div class="method-item">
+                <h4>Automated Collection</h4>
+                <p>Through website analytics, cookies, and technical logs</p>
+              </div>
+              <div class="method-item">
+                <h4>Third Parties</h4>
+                <p>From payment processors and delivery partners (with consent)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- Data Usage -->
+        {% if section.settings.show_usage %}
+        <div class="privacy-block usage-highlight">
+          <h2 class="section-title">{{ section.settings.usage_title | default: "How We Use Your Information" }}</h2>
+          
+          <div class="usage-purposes">
+            <div class="purpose-item">
+              <h3>Order Processing</h3>
+              <ul>
+                <li>Process and fulfill your orders</li>
+                <li>Manage payments and billing</li>
+                <li>Coordinate delivery and pickup</li>
+                <li>Provide order updates and tracking</li>
+              </ul>
+            </div>
+            
+            <div class="purpose-item">
+              <h3>Service Delivery</h3>
+              <ul>
+                <li>Schedule and manage workshop appointments</li>
+                <li>Maintain service records and history</li>
+                <li>Process warranty claims</li>
+                <li>Provide customer support</li>
+              </ul>
+            </div>
+            
+            <div class="purpose-item">
+              <h3>Communication</h3>
+              <ul>
+                <li>Send important service notifications</li>
+                <li>Respond to inquiries and support requests</li>
+                <li>Share product updates and safety information</li>
+                <li>Marketing communications (with consent)</li>
+              </ul>
+            </div>
+            
+            <div class="purpose-item">
+              <h3>Business Operations</h3>
+              <ul>
+                <li>Improve our products and services</li>
+                <li>Analyze website performance</li>
+                <li>Prevent fraud and ensure security</li>
+                <li>Comply with legal obligations</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- Data Sharing -->
+        {% if section.settings.show_sharing %}
+        <div class="privacy-block sharing-section">
+          <h2 class="section-title">{{ section.settings.sharing_title | default: "Information Sharing" }}</h2>
+          
+          <div class="sharing-content">
+            <div class="sharing-item">
+              <h3>✓ When We Share Information</h3>
+              <ul class="share-list">
+                <li><strong>Service Providers:</strong> Delivery companies, payment processors, and technical support</li>
+                <li><strong>Legal Requirements:</strong> When required by law or to protect our rights</li>
+                <li><strong>Business Transfers:</strong> In case of merger, acquisition, or asset sale</li>
+                <li><strong>Consent:</strong> With your explicit consent for specific purposes</li>
+              </ul>
+            </div>
+            
+            <div class="sharing-item">
+              <h3>✗ When We Don't Share Information</h3>
+              <ul class="no-share-list">
+                <li>We never sell your personal information to third parties</li>
+                <li>No sharing for marketing without your consent</li>
+                <li>No sharing with competitors or unrelated businesses</li>
+                <li>No sharing of payment details (handled by secure processors)</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="third-party-notice">
+            <h3>Third-Party Services</h3>
+            <p>We use trusted third-party services including:</p>
+            <div class="third-parties">
+              <span class="third-party-tag">Payment Processing (Stripe, PayPal)</span>
+              <span class="third-party-tag">Shipping (Swiss Post, DPD)</span>
+              <span class="third-party-tag">Analytics (Google Analytics)</span>
+              <span class="third-party-tag">Email (Mailchimp)</span>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- Data Security -->
+        {% if section.settings.show_security %}
+        <div class="privacy-block security-highlight">
+          <h2 class="section-title">{{ section.settings.security_title | default: "Data Security" }}</h2>
+          
+          <div class="security-measures">
+            <div class="security-item">
+              <h3>Technical Safeguards</h3>
+              <ul>
+                <li>SSL encryption for all data transmission</li>
+                <li>Secure servers with regular security updates</li>
+                <li>Encrypted storage of sensitive information</li>
+                <li>Regular security audits and monitoring</li>
+              </ul>
+            </div>
+            
+            <div class="security-item">
+              <h3>Access Controls</h3>
+              <ul>
+                <li>Limited staff access on need-to-know basis</li>
+                <li>Multi-factor authentication for admin accounts</li>
+                <li>Regular access reviews and updates</li>
+                <li>Secure disposal of old data and equipment</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="security-notice">
+            <h3>Your Role in Security</h3>
+            <p>Help us protect your information by:</p>
+            <ul class="user-security">
+              <li>Using strong, unique passwords</li>
+              <li>Logging out of shared devices</li>
+              <li>Reporting suspicious activity immediately</li>
+              <li>Keeping your contact information updated</li>
+            </ul>
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- Your Rights -->
+        {% if section.settings.show_rights %}
+        <div class="privacy-block rights-highlight">
+          <h2 class="section-title">{{ section.settings.rights_title | default: "Your Rights" }}</h2>
+          
+          <div class="rights-content">
+            <h3>Under Swiss and EU Data Protection Laws, You Have the Right To:</h3>
+            
+            <div class="rights-grid">
+              <div class="right-item">
+                <h4>Access</h4>
+                <p>Request a copy of the personal information we hold about you</p>
+              </div>
+              
+              <div class="right-item">
+                <h4>Correction</h4>
+                <p>Request correction of inaccurate or incomplete information</p>
+              </div>
+              
+              <div class="right-item">
+                <h4>Deletion</h4>
+                <p>Request deletion of your personal information (where legally permitted)</p>
+              </div>
+              
+              <div class="right-item">
+                <h4>Portability</h4>
+                <p>Request transfer of your data to another service provider</p>
+              </div>
+              
+              <div class="right-item">
+                <h4>Restriction</h4>
+                <p>Request limitation of processing in certain circumstances</p>
+              </div>
+              
+              <div class="right-item">
+                <h4>Objection</h4>
+                <p>Object to processing based on legitimate interests or direct marketing</p>
+              </div>
+            </div>
+
+            <div class="rights-exercise">
+              <h3>Exercising Your Rights</h3>
+              <p>To exercise any of these rights, contact us at <strong>{{ section.settings.privacy_email | default: "privacy@godspeed.ch" }}</strong></p>
+              <p>We will respond to your request within 30 days and may require verification of your identity.</p>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- Cookies & Tracking -->
+        {% if section.settings.show_cookies %}
+        <div class="privacy-block cookies-section">
+          <h2 class="section-title">{{ section.settings.cookies_title | default: "Cookies & Tracking" }}</h2>
+          
+          <div class="cookies-content">
+            <div class="cookie-type">
+              <h3>Essential Cookies</h3>
+              <p>Required for basic website functionality including shopping cart, login, and security features.</p>
+            </div>
+            
+            <div class="cookie-type">
+              <h3>Analytics Cookies</h3>
+              <p>Help us understand website usage and improve user experience. You can opt-out through cookie settings.</p>
+            </div>
+            
+            <div class="cookie-type">
+              <h3>Marketing Cookies</h3>
+              <p>Used for targeted advertising and measuring campaign effectiveness. Requires your consent.</p>
+            </div>
+          </div>
+
+          <div class="cookie-management">
+            <h3>Cookie Management</h3>
+            <p>You can control cookies through:</p>
+            <ul>
+              <li>Browser settings and preferences</li>
+              <li>Our cookie banner (when visiting the site)</li>
+              <li>Third-party opt-out tools</li>
+              <li>Contacting us directly</li>
+            </ul>
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- Data Retention -->
+        {% if section.settings.show_retention %}
+        <div class="privacy-block retention-section">
+          <h2 class="section-title">{{ section.settings.retention_title | default: "Data Retention" }}</h2>
+          
+          <div class="retention-periods">
+            <div class="retention-item">
+              <h3>Account Information</h3>
+              <p>Retained while your account is active plus 3 years after closure</p>
+            </div>
+            
+            <div class="retention-item">
+              <h3>Order History</h3>
+              <p>Retained for 10 years for warranty and legal compliance purposes</p>
+            </div>
+            
+            <div class="retention-item">
+              <h3>Service Records</h3>
+              <p>Retained for 7 years to support warranty claims and safety records</p>
+            </div>
+            
+            <div class="retention-item">
+              <h3>Marketing Data</h3>
+              <p>Retained until you withdraw consent or 2 years of inactivity</p>
+            </div>
+          </div>
+
+          <div class="retention-policy">
+            <h3>Retention Policy</h3>
+            <p>We regularly review and delete data that is no longer needed. Some information may be retained longer for legal, safety, or warranty purposes as required by Swiss law.</p>
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- Contact & Updates -->
+        {% if section.settings.show_contact %}
+        <div class="privacy-block contact-section">
+          <h2 class="section-title">{{ section.settings.contact_title | default: "Contact & Updates" }}</h2>
+          
+          <div class="contact-info">
+            <div class="contact-method">
+              <h3>Data Protection Officer</h3>
+              <p><strong>Email:</strong> {{ section.settings.privacy_email | default: "privacy@godspeed.ch" }}</p>
+              <p><strong>Address:</strong> GODSPEED SA, Via Pretorio 15, 6900 Lugano, Switzerland</p>
+              <p><strong>Phone:</strong> {{ section.settings.privacy_phone | default: "+41 91 224 53 43" }}</p>
+            </div>
+            
+            <div class="supervisory-authority">
+              <h3>Supervisory Authority</h3>
+              <p>If you have concerns about our data practices, you can contact:</p>
+              <p><strong>Federal Data Protection and Information Commissioner (FDPIC)</strong></p>
+              <p>Feldeggweg 1, CH-3003 Bern</p>
+              <p>Website: www.edoeb.admin.ch</p>
+            </div>
+          </div>
+
+          <div class="policy-updates">
+            <h3>Policy Updates</h3>
+            <p>We may update this privacy policy to reflect changes in our practices or legal requirements. We will notify you of significant changes via email or website notice.</p>
+            <p><strong>Current version:</strong> {{ section.settings.version | default: "Version 2.1" }}</p>
+          </div>
+        </div>
+        {% endif %}
+
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Privacy Policy",
+  "class": "index-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Page Header"
+    },
+    {
+      "type": "text",
+      "id": "page_title",
+      "label": "Page Title",
+      "default": "Privacy Policy"
+    },
+    {
+      "type": "textarea",
+      "id": "page_subtitle",
+      "label": "Page Subtitle",
+      "default": "We respect your privacy and are committed to protecting your personal data. Learn how we collect, use, and safeguard your information."
+    },
+    {
+      "type": "text",
+      "id": "last_updated",
+      "label": "Last Updated Date",
+      "default": "December 2024"
+    },
+    {
+      "type": "text",
+      "id": "version",
+      "label": "Policy Version",
+      "default": "Version 2.1"
+    },
+    {
+      "type": "header",
+      "content": "Content Sections"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collection",
+      "label": "Show Information Collection",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "collection_title",
+      "label": "Collection Section Title",
+      "default": "Information We Collect"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_usage",
+      "label": "Show Information Usage",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "usage_title",
+      "label": "Usage Section Title",
+      "default": "How We Use Your Information"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sharing",
+      "label": "Show Information Sharing",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "sharing_title",
+      "label": "Sharing Section Title",
+      "default": "Information Sharing"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_security",
+      "label": "Show Data Security",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "security_title",
+      "label": "Security Section Title",
+      "default": "Data Security"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rights",
+      "label": "Show Your Rights",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "rights_title",
+      "label": "Rights Section Title",
+      "default": "Your Rights"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cookies",
+      "label": "Show Cookies & Tracking",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "cookies_title",
+      "label": "Cookies Section Title",
+      "default": "Cookies & Tracking"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_retention",
+      "label": "Show Data Retention",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "retention_title",
+      "label": "Retention Section Title",
+      "default": "Data Retention"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_contact",
+      "label": "Show Contact & Updates",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "contact_title",
+      "label": "Contact Section Title",
+      "default": "Contact & Updates"
+    },
+    {
+      "type": "header",
+      "content": "Contact Information"
+    },
+    {
+      "type": "text",
+      "id": "privacy_email",
+      "label": "Privacy Contact Email",
+      "default": "privacy@godspeed.ch"
+    },
+    {
+      "type": "text",
+      "id": "privacy_phone",
+      "label": "Privacy Contact Phone",
+      "default": "+41 91 224 53 43"
+    },
+    {
+      "type": "header",
+      "content": "Section Spacing"
+    },
+    {
+      "type": "text",
+      "id": "margin_top",
+      "label": "Margin Top",
+      "info": "Defined in pixels. Do not add the 'px' unit."
+    },
+    {
+      "type": "text",
+      "id": "margin_bottom",
+      "label": "Margin Bottom",
+      "info": "Defined in pixels. Do not add the 'px' unit."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Privacy Policy",
+      "category": "POLICIES"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+.privacy-header {
+  background: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.privacy-title-section {
+  padding: 50px 0 40px;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border-bottom: 1px solid #e9ecef;
+}
+
+.privacy-title-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.privacy-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.privacy-subtitle {
+  font-size: 1.2rem;
+  color: #6c757d;
+  line-height: 1.4;
+  max-width: 700px;
+  margin: 0 auto 15px;
+}
+
+.last-updated {
+  font-size: 0.95rem;
+  color: #ff4040;
+  font-weight: 500;
+}
+
+.privacy-content-section {
+  padding: 60px 0;
+  background: #ffffff;
+}
+
+.privacy-content-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.privacy-block {
+  margin-bottom: 50px;
+  background: #f8f9fa;
+  padding: 40px;
+  border-radius: 12px;
+  border-left: 4px solid #ff4040;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 30px;
+  line-height: 1.3;
+}
+
+.collection-highlight {
+  border-left-color: #28a745;
+  background: linear-gradient(135deg, #f8fff9 0%, #f8f9fa 100%);
+}
+
+.collection-highlight .section-title {
+  color: #155724;
+}
+
+.data-types {
+  display: grid;
+  gap: 25px;
+  margin-bottom: 35px;
+}
+
+.data-type {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.data-type h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.data-type ul {
+  margin-bottom: 0;
+  padding-left: 20px;
+}
+
+.data-type li {
+  margin-bottom: 6px;
+  line-height: 1.4;
+  color: #495057;
+}
+
+.collection-methods {
+  margin-top: 35px;
+}
+
+.collection-methods h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  line-height: 1.3;
+}
+
+.methods-grid {
+  display: grid;
+  gap: 20px;
+}
+
+.method-item {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.method-item h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.method-item p {
+  margin-bottom: 0;
+  line-height: 1.4;
+  color: #495057;
+  font-size: 0.95rem;
+}
+
+.usage-highlight {
+  border-left-color: #ff4040;
+  background: linear-gradient(135deg, #f0fdff 0%, #f8f9fa 100%);
+}
+
+.usage-highlight .section-title {
+  color: #ff4040;
+}
+
+.usage-purposes {
+  display: grid;
+  gap: 25px;
+}
+
+.purpose-item {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.purpose-item h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.purpose-item ul {
+  margin-bottom: 0;
+  padding-left: 20px;
+}
+
+.purpose-item li {
+  margin-bottom: 8px;
+  line-height: 1.4;
+  color: #495057;
+}
+
+.sharing-section {
+  border-left-color: #ffc107;
+  background: linear-gradient(135deg, #fffbf0 0%, #f8f9fa 100%);
+}
+
+.sharing-section .section-title {
+  color: #856404;
+}
+
+.sharing-content {
+  display: grid;
+  gap: 25px;
+  margin-bottom: 35px;
+}
+
+.sharing-item {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.sharing-item h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.sharing-item h3:contains("✓") {
+  color: #28a745;
+}
+
+.sharing-item h3:contains("✗") {
+  color: #dc3545;
+}
+
+.share-list,
+.no-share-list {
+  margin-bottom: 0;
+  padding-left: 20px;
+}
+
+.share-list li,
+.no-share-list li {
+  margin-bottom: 8px;
+  line-height: 1.4;
+  color: #495057;
+}
+
+.third-party-notice {
+  background: #e9ecef;
+  padding: 25px;
+  border-radius: 8px;
+}
+
+.third-party-notice h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.third-party-notice p {
+  margin-bottom: 15px;
+  line-height: 1.4;
+  color: #495057;
+}
+
+.third-parties {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.third-party-tag {
+  background: #ff4040;
+  color: #ffffff;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.security-highlight {
+  border-left-color: #dc3545;
+  background: linear-gradient(135deg, #fff5f5 0%, #f8f9fa 100%);
+}
+
+.security-highlight .section-title {
+  color: #721c24;
+}
+
+.security-measures {
+  display: grid;
+  gap: 25px;
+  margin-bottom: 35px;
+}
+
+.security-item {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.security-item h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.security-item ul {
+  margin-bottom: 0;
+  padding-left: 20px;
+}
+
+.security-item li {
+  margin-bottom: 8px;
+  line-height: 1.4;
+  color: #495057;
+}
+
+.security-notice {
+  background: #fff3cd;
+  border: 1px solid #ffeaa7;
+  padding: 25px;
+  border-radius: 8px;
+}
+
+.security-notice h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #856404;
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.security-notice p {
+  margin-bottom: 10px;
+  line-height: 1.4;
+  color: #495057;
+}
+
+.user-security {
+  margin-bottom: 0;
+  padding-left: 20px;
+}
+
+.user-security li {
+  margin-bottom: 6px;
+  line-height: 1.4;
+  color: #495057;
+}
+
+.rights-highlight {
+  border-left-color: #6c5ce7;
+  background: linear-gradient(135deg, #f8f7ff 0%, #f8f9fa 100%);
+}
+
+.rights-highlight .section-title {
+  color: #5f3dc4;
+}
+
+.rights-content h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  line-height: 1.3;
+}
+
+.rights-grid {
+  display: grid;
+  gap: 20px;
+  margin-bottom: 35px;
+}
+
+.right-item {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.right-item h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.right-item p {
+  margin-bottom: 0;
+  line-height: 1.4;
+  color: #495057;
+  font-size: 0.95rem;
+}
+
+.rights-exercise {
+  background: #e7f3ff;
+  border: 1px solid #b3d9ff;
+  padding: 25px;
+  border-radius: 8px;
+}
+
+.rights-exercise h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #004085;
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.rights-exercise p {
+  margin-bottom: 8px;
+  line-height: 1.4;
+  color: #495057;
+}
+
+.rights-exercise p:last-child {
+  margin-bottom: 0;
+}
+
+.cookies-section {
+  border-left-color: #fd7e14;
+  background: linear-gradient(135deg, #fff8f0 0%, #f8f9fa 100%);
+}
+
+.cookies-section .section-title {
+  color: #e8590c;
+}
+
+.cookies-content {
+  margin-bottom: 35px;
+}
+
+.cookie-type {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+  margin-bottom: 15px;
+}
+
+.cookie-type:last-child {
+  margin-bottom: 0;
+}
+
+.cookie-type h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.cookie-type p {
+  margin-bottom: 0;
+  line-height: 1.4;
+  color: #495057;
+}
+
+.cookie-management {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.cookie-management h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.cookie-management p {
+  margin-bottom: 10px;
+  line-height: 1.4;
+  color: #495057;
+}
+
+.cookie-management ul {
+  margin-bottom: 0;
+  padding-left: 20px;
+}
+
+.cookie-management li {
+  margin-bottom: 6px;
+  line-height: 1.4;
+  color: #495057;
+}
+
+.retention-section {
+  border-left-color: #20c997;
+  background: linear-gradient(135deg, #f0fff4 0%, #f8f9fa 100%);
+}
+
+.retention-section .section-title {
+  color: #0f5132;
+}
+
+.retention-periods {
+  display: grid;
+  gap: 20px;
+  margin-bottom: 35px;
+}
+
+.retention-item {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.retention-item h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.retention-item p {
+  margin-bottom: 0;
+  line-height: 1.4;
+  color: #495057;
+  font-size: 0.95rem;
+}
+
+.retention-policy {
+  background: #d1ecf1;
+  border: 1px solid #bee5eb;
+  padding: 25px;
+  border-radius: 8px;
+}
+
+.retention-policy h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #0c5460;
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.retention-policy p {
+  margin-bottom: 0;
+  line-height: 1.5;
+  color: #495057;
+}
+
+.contact-section {
+  border-left-color: #ff4040;
+  background: linear-gradient(135deg, #f0f7ff 0%, #f8f9fa 100%);
+}
+
+.contact-section .section-title {
+  color: #004085;
+}
+
+.contact-info {
+  display: grid;
+  gap: 25px;
+  margin-bottom: 35px;
+}
+
+.contact-method,
+.supervisory-authority {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.contact-method h3,
+.supervisory-authority h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.contact-method p,
+.supervisory-authority p {
+  margin-bottom: 8px;
+  line-height: 1.4;
+  color: #495057;
+}
+
+.contact-method p:last-child,
+.supervisory-authority p:last-child {
+  margin-bottom: 0;
+}
+
+.policy-updates {
+  background: #e2e3e5;
+  border: 1px solid #d3d6db;
+  padding: 25px;
+  border-radius: 8px;
+}
+
+.policy-updates h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.policy-updates p {
+  margin-bottom: 8px;
+  line-height: 1.4;
+  color: #495057;
+}
+
+.policy-updates p:last-child {
+  margin-bottom: 0;
+}
+
+@media (min-width: 768px) {
+  .data-types {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+  
+  .methods-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .usage-purposes {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .sharing-content {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .security-measures {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .rights-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .retention-periods {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .contact-info {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 767px) {
+  .privacy-title {
+    font-size: 2.2rem;
+  }
+  
+  .privacy-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .privacy-content-section {
+    padding: 40px 0;
+  }
+  
+  .privacy-block {
+    padding: 25px 20px;
+  }
+  
+  .section-title {
+    font-size: 1.6rem;
+  }
+  
+  .third-parties {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .third-party-tag {
+    text-align: center;
+  }
+}
+{% endstylesheet %}

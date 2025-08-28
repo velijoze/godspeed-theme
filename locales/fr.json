@@ -299,6 +299,42 @@
       "add_to_apple_wallet": "Ajouter à Apple Wallet"
     }
   },
+  "workshop": {
+    "booking": {
+      "title": "Réservez Votre Service",
+      "service_location": "Lieu de Service",
+      "service_type": "Type de Service",
+      "preferred_date": "Date Préférée",
+      "preferred_time": "Heure Préférée",
+      "special_requirements": "Exigences Particulières",
+      "customer_name": "Nom",
+      "customer_email": "E-mail",
+      "customer_phone": "Numéro de Téléphone",
+      "booking_summary": "Résumé de Réservation",
+      "location_label": "Lieu:",
+      "service_label": "Service:",
+      "date_label": "Date:",
+      "time_label": "Heure:",
+      "schedule_service": "Réserver le Service",
+      "select_location": "Sélectionnez un lieu",
+      "select_service": "Sélectionnez un service",
+      "select_time": "Sélectionnez l'heure"
+    },
+    "hero": {
+      "title": "Atelier & Centre de Service",
+      "button_text": "Réservez Votre Service",
+      "scroll_text": "Faites défiler pour explorer"
+    },
+    "content": {
+      "main_title": "Plus Grand Centre de Service du Tessin",
+      "sidebar_title": "Ce Qui Nous Rend Différents",
+      "cta_button": "Réserver le Service Maintenant"
+    },
+    "testimonials": {
+      "title": "Ce Que Nos Clients Disent",
+      "cta_button": "Réservez Votre Service"
+    }
+  },
   "date_formats": {
     "month_day_year": "%d %B, %Y"
   }

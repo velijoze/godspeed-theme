@@ -329,6 +329,9 @@
                       <button type="submit" class="shop-button enj-add-to-cart-btn engoj-btn-addtocart">
                         {{settings.pia_addcart_name}}
                       </button>
+                      
+                      <!-- Test Ride Button -->
+                      {% render 'test-ride-button', product: product %}
                     </div>
                     <!-- End add to cart & quantity -->
                     {% form 'product', product %}

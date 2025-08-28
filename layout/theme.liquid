@@ -71,6 +71,11 @@
 
   <!-- Header hook for plugins ================================================== -->
   {{ content_for_header }}
+  
+  {%- comment -%} 
+    Weglot Integration Point: 
+    Weglot script will be automatically injected here when the app is installed
+  {%- endcomment -%}
   {%- comment -%} Disabled legacy IE script include {%- endcomment -%}
   {%- comment -%} {% include 'oldIE-js' %} {%- endcomment -%}
   {%- comment -%} Essential scripts in head - others moved to footer {%- endcomment -%}
@@ -145,7 +150,6 @@ Add the page template as a class for easy page or template specific styling.
       {% include 'promo-topbar' %}
       {% endif %}
       {% section 'header' %}
-      {% render 'language-debug' %}
 
       <!-- HEADING HIDDEN SEO -->
       {% if template contains 'index' %}
@@ -533,7 +537,8 @@ Add the page template as a class for easy page or template specific styling.
   </script>
   {% endunless %}
 
-
+  <!-- Test Ride Modal -->
+  {% render 'test-ride-modal' %}
 
 </body>
 </html>

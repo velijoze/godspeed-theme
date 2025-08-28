@@ -1,0 +1,19 @@
+{
+  "sections": {
+    "main": {
+      "type": "returns-warranty-policy",
+      "settings": {
+        "page_title": "Returns & Warranty Policy",
+        "page_subtitle": "Your satisfaction is our priority. Learn about our comprehensive returns and warranty coverage for all bicycles and e-bikes.",
+        "show_returns": true,
+        "show_warranty": true,
+        "show_claims": true,
+        "show_exclusions": true,
+        "show_contact": true,
+        "returns_email": "returns@godspeed.ch",
+        "warranty_email": "warranty@godspeed.ch"
+      }
+    }
+  },
+  "order": ["main"]
+}

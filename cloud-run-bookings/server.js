@@ -41,6 +41,70 @@ function getAuthClient(oauth) {
   return oAuth2Client;
 }
 
+async function sendInternalNotification(auth, bookingType, bookingData) {
+  try {
+    const gmail = google.gmail({version: 'v1', auth});
+    
+    let subject, body;
+    if (bookingType === 'test-ride') {
+      subject = `New Test Ride Booking - ${bookingData.customer_name}`;
+      body = `New test ride booking received:
+
+Customer: ${bookingData.customer_name}
+Email: ${bookingData.customer_email}
+Phone: ${bookingData.customer_phone}
+Location: ${bookingData.test_ride_location}
+Date: ${bookingData.test_ride_date}
+Time: ${bookingData.test_ride_time}
+Experience: ${bookingData.experience_level}
+Duration: ${bookingData.ride_length}
+Product: ${bookingData.product_title || 'N/A'}
+
+Special Requests: ${bookingData.special_requests || 'None'}
+
+Please contact the customer to confirm the appointment.`;
+    } else if (bookingType === 'service') {
+      subject = `New Service Booking - ${bookingData.customer_name}`;
+      body = `New service appointment received:
+
+Customer: ${bookingData.customer_name}
+Email: ${bookingData.customer_email}
+Phone: ${bookingData.customer_phone}
+Location: ${bookingData.service_location}
+Date: ${bookingData.workshop_date}
+Time: ${bookingData.workshop_time}
+Service: ${bookingData.workshop_type}
+Bikes: ${bookingData.participants}
+Duration: ${bookingData.workshop_duration || '1 hour'}
+
+Special Requirements: ${bookingData.special_requirements || 'None'}
+
+Please contact the customer to confirm the appointment.`;
+    }
+
+    const email = [
+      'To: info@godspeed.ch',
+      `Subject: ${subject}`,
+      'Content-Type: text/plain; charset=utf-8',
+      '',
+      body
+    ].join('\n');
+
+    const encodedEmail = Buffer.from(email).toString('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+
+    await gmail.users.messages.send({
+      userId: 'me',
+      requestBody: {
+        raw: encodedEmail
+      }
+    });
+
+    console.log(`Internal notification sent for ${bookingType} booking`);
+  } catch (error) {
+    console.error('Failed to send internal notification:', error.message);
+  }
+}
+
 app.get('/health', (req, res) => res.json({ok: true}));
 
 // Test endpoint
@@ -136,6 +200,9 @@ app.post('/bookings/test-ride', async (req, res) => {
       sendUpdates: 'all'
     });
 
+    // Send internal notification
+    await sendInternalNotification(auth, 'test-ride', req.body);
+
     res.json({
       success: true,
       booking_id: response.data.id,
@@ -210,6 +277,9 @@ app.post('/bookings/service', async (req, res) => {
       requestBody: event,
       sendUpdates: 'all'
     });
+
+    // Send internal notification
+    await sendInternalNotification(auth, 'service', req.body);
 
     res.json({
       success: true,

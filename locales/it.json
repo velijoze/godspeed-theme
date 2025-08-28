@@ -584,5 +584,41 @@
     "star_reviews_info": "{{ rating_value }} su {{ rating_max }} stelle",
     "collapsible_content_title": "Contenuto comprimibile",
     "complementary_products": "Prodotti complementari"
+  },
+  "workshop": {
+    "booking": {
+      "title": "Prenota il Tuo Servizio",
+      "service_location": "Posizione del Servizio",
+      "service_type": "Tipo di Servizio",
+      "preferred_date": "Data Preferita",
+      "preferred_time": "Orario Preferito",
+      "special_requirements": "Requisiti Speciali",
+      "customer_name": "Nome",
+      "customer_email": "Email",
+      "customer_phone": "Numero di Telefono",
+      "booking_summary": "Riepilogo Prenotazione",
+      "location_label": "Posizione:",
+      "service_label": "Servizio:",
+      "date_label": "Data:",
+      "time_label": "Orario:",
+      "schedule_service": "Prenota Servizio",
+      "select_location": "Seleziona una posizione",
+      "select_service": "Seleziona un servizio",
+      "select_time": "Seleziona orario"
+    },
+    "hero": {
+      "title": "Centro Assistenza e Riparazioni",
+      "button_text": "Prenota il Tuo Servizio",
+      "scroll_text": "Scorri per esplorare"
+    },
+    "content": {
+      "main_title": "Il Più Grande Centro Assistenza del Ticino",
+      "sidebar_title": "Cosa Ci Rende Diversi",
+      "cta_button": "Prenota Servizio Ora"
+    },
+    "testimonials": {
+      "title": "Cosa Dicono i Nostri Clienti",
+      "cta_button": "Prenota il Tuo Servizio"
+    }
   }
 }

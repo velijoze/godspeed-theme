@@ -1,0 +1,23 @@
+{
+  "sections": {
+    "main": {
+      "type": "privacy-policy",
+      "settings": {
+        "page_title": "Privacy Policy",
+        "page_subtitle": "We respect your privacy and are committed to protecting your personal data. Learn how we collect, use, and safeguard your information.",
+        "last_updated": "December 2024",
+        "version": "Version 2.1",
+        "show_collection": true,
+        "show_usage": true,
+        "show_sharing": true,
+        "show_security": true,
+        "show_rights": true,
+        "show_cookies": true,
+        "show_retention": true,
+        "show_contact": true,
+        "privacy_email": "privacy@godspeed.ch"
+      }
+    }
+  },
+  "order": ["main"]
+}

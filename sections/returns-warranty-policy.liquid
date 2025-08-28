@@ -1,0 +1,847 @@
+<div data-section-id="{{ section.id }}" data-section-type="returns-warranty-policy" style="{% if section.settings.margin_top != blank %}margin-top: {{section.settings.margin_top}}px;{%endif%} {% if section.settings.margin_bottom != blank %}margin-bottom: {{section.settings.margin_bottom}}px;{% endif %}">
+  <section class="policy-header">
+    <div class="container">
+      <div class="pt-40 pb-20">
+        <div class="wrap-bread-crumb">
+          {% include 'breadcrumb' %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="policy-title-section">
+    <div class="container">
+      <div class="policy-title-wrapper">
+        <div class="text-center">
+          <h1 class="policy-title">{{ section.settings.page_title | default: "Returns & Warranty Policy" }}</h1>
+          <div class="policy-subtitle">{{ section.settings.page_subtitle | default: "Your satisfaction is our priority. Learn about our comprehensive returns and warranty coverage for all bicycles and e-bikes." }}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="policy-content-section">
+    <div class="container">
+      <div class="policy-content-wrapper">
+
+        <!-- Return Policy -->
+        {% if section.settings.show_returns %}
+        <div class="policy-block returns-highlight">
+          <h2 class="section-title">{{ section.settings.returns_title | default: "Return Policy" }}</h2>
+          
+          <div class="policy-grid">
+            <div class="policy-item">
+              <h3>Return Window</h3>
+              <p><strong>30 days</strong> from delivery date for unused items in original condition</p>
+              <p><strong>14 days</strong> for used items with minimal wear</p>
+            </div>
+            
+            <div class="policy-item">
+              <h3>What Can Be Returned</h3>
+              <ul>
+                <li>Bicycles and e-bikes in original condition</li>
+                <li>Accessories and components</li>
+                <li>Helmets and safety gear (unused only)</li>
+                <li>Clothing and shoes (with tags attached)</li>
+              </ul>
+            </div>
+            
+            <div class="policy-item">
+              <h3>Return Conditions</h3>
+              <ul>
+                <li>Original packaging and documentation</li>
+                <li>No excessive wear or damage</li>
+                <li>All accessories and manuals included</li>
+                <li>Return authorization required</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="process-steps">
+            <h3>Return Process</h3>
+            <div class="steps-grid">
+              <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                  <h4>Contact Us</h4>
+                  <p>Email returns@godspeed.ch with order number and reason</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                  <h4>Get Authorization</h4>
+                  <p>Receive return authorization and shipping label</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                  <h4>Pack & Ship</h4>
+                  <p>Securely package item and ship using provided label</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                  <h4>Get Refund</h4>
+                  <p>Receive refund within 5-7 business days</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- Warranty Coverage -->
+        {% if section.settings.show_warranty %}
+        <div class="policy-block warranty-highlight">
+          <h2 class="section-title">{{ section.settings.warranty_title | default: "Warranty Coverage" }}</h2>
+          
+          <div class="warranty-types">
+            <div class="warranty-type">
+              <h3>E-Bike Warranty</h3>
+              <div class="warranty-details">
+                <div class="warranty-item">
+                  <strong>Frame:</strong> 5 years against manufacturing defects
+                </div>
+                <div class="warranty-item">
+                  <strong>Motor:</strong> 2 years full coverage
+                </div>
+                <div class="warranty-item">
+                  <strong>Battery:</strong> 2 years (minimum 70% capacity)
+                </div>
+                <div class="warranty-item">
+                  <strong>Components:</strong> 1-2 years depending on manufacturer
+                </div>
+              </div>
+            </div>
+            
+            <div class="warranty-type">
+              <h3>Bicycle Warranty</h3>
+              <div class="warranty-details">
+                <div class="warranty-item">
+                  <strong>Frame:</strong> Lifetime against manufacturing defects
+                </div>
+                <div class="warranty-item">
+                  <strong>Fork:</strong> 2-3 years depending on type
+                </div>
+                <div class="warranty-item">
+                  <strong>Components:</strong> 1-2 years manufacturer warranty
+                </div>
+                <div class="warranty-item">
+                  <strong>Wheels:</strong> 1 year against defects
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="warranty-coverage">
+            <h3>What's Covered</h3>
+            <div class="coverage-grid">
+              <div class="coverage-item covered">
+                <h4>✓ Covered</h4>
+                <ul>
+                  <li>Manufacturing defects</li>
+                  <li>Material failures</li>
+                  <li>Motor malfunctions</li>
+                  <li>Battery capacity loss below 70%</li>
+                  <li>Frame cracks from normal use</li>
+                </ul>
+              </div>
+              <div class="coverage-item not-covered">
+                <h4>✗ Not Covered</h4>
+                <ul>
+                  <li>Crash or impact damage</li>
+                  <li>Normal wear and tear</li>
+                  <li>Improper maintenance</li>
+                  <li>Modifications or upgrades</li>
+                  <li>Water damage from misuse</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- Warranty Claims -->
+        {% if section.settings.show_claims %}
+        <div class="policy-block">
+          <h2 class="section-title">{{ section.settings.claims_title | default: "Making a Warranty Claim" }}</h2>
+          
+          <div class="claims-process">
+            <h3>Required Documentation</h3>
+            <ul class="documentation-list">
+              <li>Original proof of purchase</li>
+              <li>Product serial number</li>
+              <li>Photos of the issue/defect</li>
+              <li>Description of the problem</li>
+            </ul>
+
+            <h3>Claim Process</h3>
+            <div class="claim-steps">
+              <div class="claim-step">
+                <h4>1. Initial Assessment</h4>
+                <p>Contact our service team with documentation and photos</p>
+              </div>
+              <div class="claim-step">
+                <h4>2. Evaluation</h4>
+                <p>Bring item to store for professional inspection</p>
+              </div>
+              <div class="claim-step">
+                <h4>3. Resolution</h4>
+                <p>Repair, replace, or refund based on warranty terms</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- Exclusions -->
+        {% if section.settings.show_exclusions %}
+        <div class="policy-block exclusions-section">
+          <h2 class="section-title">{{ section.settings.exclusions_title | default: "Important Exclusions" }}</h2>
+          
+          <div class="exclusions-content">
+            <h3>Items That Cannot Be Returned</h3>
+            <ul class="exclusions-list">
+              <li>Custom or personalized bicycles</li>
+              <li>Used helmets or safety equipment</li>
+              <li>Consumable items (tubes, brake pads, etc.)</li>
+              <li>Items damaged by customer</li>
+              <li>Items beyond 30-day return window</li>
+            </ul>
+
+            <h3>Warranty Void Conditions</h3>
+            <ul class="void-conditions">
+              <li>Unauthorized repairs or modifications</li>
+              <li>Damage from accidents or misuse</li>
+              <li>Failure to follow maintenance guidelines</li>
+              <li>Use beyond recommended specifications</li>
+            </ul>
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- Contact Information -->
+        {% if section.settings.show_contact %}
+        <div class="policy-block contact-section">
+          <h2 class="section-title">{{ section.settings.contact_title | default: "Contact Support" }}</h2>
+          
+          <div class="contact-grid">
+            <div class="contact-method">
+              <h3>Returns & Exchanges</h3>
+              <p><strong>Email:</strong> {{ section.settings.returns_email | default: "returns@godspeed.ch" }}</p>
+              <p><strong>Phone:</strong> {{ section.settings.returns_phone | default: "+41 91 224 53 43" }}</p>
+            </div>
+            <div class="contact-method">
+              <h3>Warranty Claims</h3>
+              <p><strong>Email:</strong> {{ section.settings.warranty_email | default: "warranty@godspeed.ch" }}</p>
+              <p><strong>Phone:</strong> {{ section.settings.warranty_phone | default: "+41 91 224 53 43" }}</p>
+            </div>
+            <div class="contact-method">
+              <h3>In-Store Support</h3>
+              <p>Visit any of our locations for immediate assistance</p>
+              <p><strong>Hours:</strong> Monday-Friday 9:00-18:00, Saturday 9:00-17:00</p>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Returns & Warranty Policy",
+  "class": "index-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Page Header"
+    },
+    {
+      "type": "text",
+      "id": "page_title",
+      "label": "Page Title",
+      "default": "Returns & Warranty Policy"
+    },
+    {
+      "type": "textarea",
+      "id": "page_subtitle",
+      "label": "Page Subtitle",
+      "default": "Your satisfaction is our priority. Learn about our comprehensive returns and warranty coverage for all bicycles and e-bikes."
+    },
+    {
+      "type": "header",
+      "content": "Content Sections"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_returns",
+      "label": "Show Return Policy",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "returns_title",
+      "label": "Returns Section Title",
+      "default": "Return Policy"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_warranty",
+      "label": "Show Warranty Coverage",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "warranty_title",
+      "label": "Warranty Section Title",
+      "default": "Warranty Coverage"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_claims",
+      "label": "Show Warranty Claims Process",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "claims_title",
+      "label": "Claims Section Title",
+      "default": "Making a Warranty Claim"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_exclusions",
+      "label": "Show Exclusions",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "exclusions_title",
+      "label": "Exclusions Section Title",
+      "default": "Important Exclusions"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_contact",
+      "label": "Show Contact Information",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "contact_title",
+      "label": "Contact Section Title",
+      "default": "Contact Support"
+    },
+    {
+      "type": "header",
+      "content": "Contact Information"
+    },
+    {
+      "type": "text",
+      "id": "returns_email",
+      "label": "Returns Email",
+      "default": "returns@godspeed.ch"
+    },
+    {
+      "type": "text",
+      "id": "returns_phone",
+      "label": "Returns Phone",
+      "default": "+41 91 224 53 43"
+    },
+    {
+      "type": "text",
+      "id": "warranty_email",
+      "label": "Warranty Email",
+      "default": "warranty@godspeed.ch"
+    },
+    {
+      "type": "text",
+      "id": "warranty_phone",
+      "label": "Warranty Phone",
+      "default": "+41 91 224 53 43"
+    },
+    {
+      "type": "header",
+      "content": "Section Spacing"
+    },
+    {
+      "type": "text",
+      "id": "margin_top",
+      "label": "Margin Top",
+      "info": "Defined in pixels. Do not add the 'px' unit."
+    },
+    {
+      "type": "text",
+      "id": "margin_bottom",
+      "label": "Margin Bottom",
+      "info": "Defined in pixels. Do not add the 'px' unit."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Returns & Warranty Policy",
+      "category": "POLICIES"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+.policy-header {
+  background: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.policy-title-section {
+  padding: 50px 0 40px;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border-bottom: 1px solid #e9ecef;
+}
+
+.policy-title-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.policy-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.policy-subtitle {
+  font-size: 1.2rem;
+  color: #6c757d;
+  line-height: 1.4;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.policy-content-section {
+  padding: 60px 0;
+  background: #ffffff;
+}
+
+.policy-content-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.policy-block {
+  margin-bottom: 50px;
+  background: #f8f9fa;
+  padding: 40px;
+  border-radius: 12px;
+  border-left: 4px solid #ff4040;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 30px;
+  line-height: 1.3;
+}
+
+.policy-grid {
+  display: grid;
+  gap: 25px;
+  margin-bottom: 35px;
+}
+
+.policy-item {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.policy-item h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.policy-item p {
+  margin-bottom: 10px;
+  line-height: 1.5;
+  color: #495057;
+}
+
+.policy-item ul {
+  margin-bottom: 0;
+  padding-left: 20px;
+}
+
+.policy-item li {
+  margin-bottom: 6px;
+  line-height: 1.4;
+  color: #495057;
+}
+
+.process-steps {
+  margin-top: 35px;
+}
+
+.process-steps h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  line-height: 1.3;
+}
+
+.steps-grid {
+  display: grid;
+  gap: 20px;
+}
+
+.step {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.step-number {
+  background: #ff4040;
+  color: #ffffff;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.step-content h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.step-content p {
+  margin-bottom: 0;
+  line-height: 1.4;
+  color: #495057;
+  font-size: 0.95rem;
+}
+
+.returns-highlight {
+  border-left-color: #28a745;
+  background: linear-gradient(135deg, #f8fff9 0%, #f8f9fa 100%);
+}
+
+.returns-highlight .section-title {
+  color: #155724;
+}
+
+.warranty-highlight {
+  border-left-color: #ff4040;
+  background: linear-gradient(135deg, #fff5f2 0%, #f8f9fa 100%);
+}
+
+.warranty-highlight .section-title {
+  color: #d63031;
+}
+
+.warranty-types {
+  display: grid;
+  gap: 25px;
+  margin-bottom: 35px;
+}
+
+.warranty-type {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.warranty-type h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.warranty-details {
+  display: grid;
+  gap: 10px;
+}
+
+.warranty-item {
+  padding: 10px 0;
+  border-bottom: 1px solid #f1f3f4;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #495057;
+}
+
+.warranty-item:last-child {
+  border-bottom: none;
+}
+
+.warranty-coverage {
+  margin-top: 35px;
+}
+
+.warranty-coverage h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  line-height: 1.3;
+}
+
+.coverage-grid {
+  display: grid;
+  gap: 25px;
+}
+
+.coverage-item {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.coverage-item.covered {
+  border-left: 4px solid #ff4040;
+}
+
+.coverage-item.not-covered {
+  border-left: 4px solid #dc3545;
+}
+
+.coverage-item h4 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.coverage-item.covered h4 {
+  color: #ff4040;
+}
+
+.coverage-item.not-covered h4 {
+  color: #dc3545;
+}
+
+.coverage-item ul {
+  margin-bottom: 0;
+  padding-left: 20px;
+}
+
+.coverage-item li {
+  margin-bottom: 8px;
+  line-height: 1.4;
+  color: #495057;
+}
+
+.claims-process h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  margin-top: 25px;
+  line-height: 1.3;
+}
+
+.claims-process h3:first-child {
+  margin-top: 0;
+}
+
+.documentation-list {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+  margin-bottom: 25px;
+  padding-left: 40px;
+}
+
+.documentation-list li {
+  margin-bottom: 8px;
+  line-height: 1.4;
+  color: #495057;
+}
+
+.claim-steps {
+  display: grid;
+  gap: 20px;
+}
+
+.claim-step {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.claim-step h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.claim-step p {
+  margin-bottom: 0;
+  line-height: 1.4;
+  color: #495057;
+}
+
+.exclusions-section {
+  border-left-color: #6c5ce7;
+  background: linear-gradient(135deg, #f8f7ff 0%, #f8f9fa 100%);
+}
+
+.exclusions-section .section-title {
+  color: #5f3dc4;
+}
+
+.exclusions-content h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  margin-top: 25px;
+  line-height: 1.3;
+}
+
+.exclusions-content h3:first-child {
+  margin-top: 0;
+}
+
+.exclusions-list,
+.void-conditions {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+  margin-bottom: 20px;
+  padding-left: 40px;
+}
+
+.exclusions-list li,
+.void-conditions li {
+  margin-bottom: 8px;
+  line-height: 1.4;
+  color: #495057;
+}
+
+.contact-section {
+  border-left-color: #17a2b8;
+  background: linear-gradient(135deg, #f0fdff 0%, #f8f9fa 100%);
+}
+
+.contact-section .section-title {
+  color: #0c5460;
+}
+
+.contact-grid {
+  display: grid;
+  gap: 25px;
+}
+
+.contact-method {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.contact-method h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.contact-method p {
+  margin-bottom: 8px;
+  line-height: 1.4;
+  color: #495057;
+}
+
+.contact-method p:last-child {
+  margin-bottom: 0;
+}
+
+@media (min-width: 768px) {
+  .policy-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+  
+  .steps-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .warranty-types {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .coverage-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .contact-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .policy-title {
+    font-size: 2.2rem;
+  }
+  
+  .policy-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .policy-content-section {
+    padding: 40px 0;
+  }
+  
+  .policy-block {
+    padding: 25px 20px;
+  }
+  
+  .section-title {
+    font-size: 1.6rem;
+  }
+  
+  .step {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .step-number {
+    margin: 0 auto;
+  }
+}
+{% endstylesheet %}

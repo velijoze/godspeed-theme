@@ -1,0 +1,468 @@
+<div data-section-id="{{ section.id }}" data-section-type="shipping-policy" style="{% if section.settings.margin_top != blank %}margin-top: {{section.settings.margin_top}}px;{%endif%} {% if section.settings.margin_bottom != blank %}margin-bottom: {{section.settings.margin_bottom}}px;{% endif %} {% if section.settings.sections_layout == "dark" %}background: {{section.settings.sections_bg_color}};{% endif %}">
+  <div class="container container-v2">
+    <div class="shipping-policy-section">
+      {% if section.settings.section_title != blank %}
+      <div class="section-header text-center">
+        <h2 class="section-title">{{ section.settings.section_title }}</h2>
+        {% if section.settings.section_subtitle != blank %}
+        <p class="section-subtitle">{{ section.settings.section_subtitle }}</p>
+        {% endif %}
+      </div>
+      {% endif %}
+
+      <div class="shipping-content">
+        <!-- Delivery Coverage -->
+        {% if section.settings.show_coverage %}
+        <div class="shipping-block">
+          <h3>{{ section.settings.coverage_title | default: "Delivery Coverage" }}</h3>
+          <p>{{ section.settings.coverage_content | default: "We deliver throughout Switzerland and Liechtenstein. International shipping may be available upon request - please contact us for details." }}</p>
+        </div>
+        {% endif %}
+
+        <!-- Shipping Rates Table -->
+        {% if section.settings.show_rates %}
+        <div class="shipping-block">
+          <h3>{{ section.settings.rates_title | default: "Shipping Rates" }}</h3>
+          <div class="shipping-rates-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Weight Range</th>
+                  <th>Shipping Cost</th>
+                  <th>Typical Items</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Under 10kg</td>
+                  <td>CHF 9.95</td>
+                  <td>Accessories, parts, clothing</td>
+                </tr>
+                <tr>
+                  <td>10-32kg</td>
+                  <td>CHF 49.95</td>
+                  <td>Bikes, larger parts</td>
+                </tr>
+                <tr>
+                  <td>32-100kg</td>
+                  <td>CHF 59.95</td>
+                  <td>E-bikes, cargo bikes</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="rates-note">Free shipping promotions may apply to certain orders. Check checkout for current offers.</p>
+        </div>
+        {% endif %}
+
+        <!-- Delivery Timeframes -->
+        {% if section.settings.show_timeframes %}
+        <div class="shipping-block">
+          <h3>{{ section.settings.timeframes_title | default: "Delivery Timeframes" }}</h3>
+          <div class="delivery-types">
+            <div class="delivery-type">
+              <h4>Standard Delivery</h4>
+              <ul>
+                <li>Small items: 1-2 business days</li>
+                <li>Bicycles: 2-3 business days</li>
+                <li>E-bikes: 3-5 business days</li>
+                <li>Special orders: 7-14 business days</li>
+              </ul>
+            </div>
+            <div class="delivery-type">
+              <h4>Express Delivery</h4>
+              <ul>
+                <li>Next-day delivery available for orders placed before 12:00 PM</li>
+                <li>Excludes e-bikes, bikes, and large items</li>
+                <li>Additional charges may apply</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- Assembly Service -->
+        {% if section.settings.show_assembly %}
+        <div class="shipping-block assembly-highlight">
+          <h3>{{ section.settings.assembly_title | default: "Professional Assembly Service - CHF 150" }}</h3>
+          <p>Have your bike delivered fully assembled and ready to ride:</p>
+          <ul>
+            <li>Professional assembly by certified mechanics</li>
+            <li>Complete safety check</li>
+            <li>Basic adjustments for your height</li>
+            <li>Test ride completed</li>
+            <li>Ready to ride upon delivery</li>
+          </ul>
+        </div>
+        {% endif %}
+
+        <!-- Store Pickup -->
+        {% if section.settings.show_pickup %}
+        <div class="shipping-block">
+          <h3>{{ section.settings.pickup_title | default: "Store Pickup Option" }}</h3>
+          <p>Save on shipping by picking up at any of our locations:</p>
+          <ul>
+            <li>Free of charge</li>
+            <li>Ready for pickup within 1-2 business days</li>
+            <li>Email notification when ready</li>
+            <li>Bring ID for collection</li>
+          </ul>
+        </div>
+        {% endif %}
+
+        <!-- Packaging Notice -->
+        {% if section.settings.show_packaging %}
+        <div class="shipping-block eco-notice">
+          <h3>{{ section.settings.packaging_title | default: "Eco-Friendly Packaging Notice" }}</h3>
+          <p>{{ section.settings.packaging_content | default: "We use recycled and repurposed packaging materials. Your box may appear worn or previously used - this is our commitment to reducing waste. Rest assured, your products are securely packed and protected inside." }}</p>
+        </div>
+        {% endif %}
+
+        <!-- Contact Information -->
+        {% if section.settings.show_contact %}
+        <div class="shipping-block contact-info">
+          <h3>{{ section.settings.contact_title | default: "Questions?" }}</h3>
+          <p>For shipping inquiries:</p>
+          <ul>
+            <li>Email: {{ section.settings.contact_email | default: "shipping@godspeed.ch" }}</li>
+            <li>Phone: {{ section.settings.contact_phone | default: "+41 91 224 53 43" }}</li>
+            <li>Live chat during business hours</li>
+          </ul>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Shipping Policy",
+  "class": "index-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Header"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Shipping Policy"
+    },
+    {
+      "type": "textarea",
+      "id": "section_subtitle",
+      "label": "Section Subtitle",
+      "default": "This shipping policy applies to all orders placed through our online store. For complete terms and conditions, please refer to our full Terms of Service."
+    },
+    {
+      "type": "header",
+      "content": "Content Sections"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_coverage",
+      "label": "Show Delivery Coverage",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "coverage_title",
+      "label": "Coverage Section Title",
+      "default": "Delivery Coverage"
+    },
+    {
+      "type": "textarea",
+      "id": "coverage_content",
+      "label": "Coverage Content",
+      "default": "We deliver throughout Switzerland and Liechtenstein. International shipping may be available upon request - please contact us for details."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rates",
+      "label": "Show Shipping Rates",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "rates_title",
+      "label": "Rates Section Title",
+      "default": "Shipping Rates"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_timeframes",
+      "label": "Show Delivery Timeframes",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "timeframes_title",
+      "label": "Timeframes Section Title",
+      "default": "Delivery Timeframes"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_assembly",
+      "label": "Show Assembly Service",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "assembly_title",
+      "label": "Assembly Section Title",
+      "default": "Professional Assembly Service - CHF 150"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pickup",
+      "label": "Show Store Pickup",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "pickup_title",
+      "label": "Pickup Section Title",
+      "default": "Store Pickup Option"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_packaging",
+      "label": "Show Packaging Notice",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "packaging_title",
+      "label": "Packaging Section Title",
+      "default": "Eco-Friendly Packaging Notice"
+    },
+    {
+      "type": "textarea",
+      "id": "packaging_content",
+      "label": "Packaging Content",
+      "default": "We use recycled and repurposed packaging materials. Your box may appear worn or previously used - this is our commitment to reducing waste. Rest assured, your products are securely packed and protected inside."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_contact",
+      "label": "Show Contact Information",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "contact_title",
+      "label": "Contact Section Title",
+      "default": "Questions?"
+    },
+    {
+      "type": "text",
+      "id": "contact_email",
+      "label": "Contact Email",
+      "default": "shipping@godspeed.ch"
+    },
+    {
+      "type": "text",
+      "id": "contact_phone",
+      "label": "Contact Phone",
+      "default": "+41 91 224 53 43"
+    },
+    {
+      "type": "header",
+      "content": "Section Space"
+    },
+    {
+      "type": "text",
+      "id": "margin_top",
+      "label": "Margin Top",
+      "info": "Defined in pixels. Do not add the 'px' unit."
+    },
+    {
+      "type": "text",
+      "id": "margin_bottom",
+      "label": "Margin Bottom",
+      "info": "Defined in pixels. Do not add the 'px' unit."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shipping Policy",
+      "category": "POLICIES"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+.shipping-policy-section {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.section-header {
+  margin-bottom: 40px;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 0;
+  line-height: 1.4;
+}
+
+.shipping-content {
+  display: grid;
+  gap: 30px;
+}
+
+.shipping-block {
+  background: #f8f9fa;
+  padding: 25px;
+  border-radius: 8px;
+  border-left: 4px solid #ff4040;
+}
+
+.shipping-block h3 {
+  color: #2c3e50;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.shipping-block h4 {
+  color: #34495e;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  line-height: 1.3;
+}
+
+.shipping-block h4:first-child {
+  margin-top: 0;
+}
+
+.shipping-block p {
+  margin-bottom: 15px;
+  line-height: 1.4;
+  color: #555;
+}
+
+.shipping-block ul {
+  margin-bottom: 15px;
+  padding-left: 20px;
+}
+
+.shipping-block li {
+  margin-bottom: 8px;
+  line-height: 1.4;
+  color: #555;
+}
+
+.shipping-rates-table {
+  margin: 20px 0;
+  overflow-x: auto;
+}
+
+.shipping-rates-table table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.shipping-rates-table th,
+.shipping-rates-table td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.shipping-rates-table th {
+  background: #ff4040;
+  color: white;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.shipping-rates-table td {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.shipping-rates-table tr:hover {
+  background: #f8f9fa;
+}
+
+.rates-note {
+  font-size: 0.9rem;
+  font-style: italic;
+  color: #666;
+  margin-top: 15px;
+}
+
+.delivery-types {
+  display: grid;
+  gap: 25px;
+  margin-top: 20px;
+}
+
+.delivery-type {
+  background: white;
+  padding: 20px;
+  border-radius: 6px;
+  border: 1px solid #e9ecef;
+}
+
+.assembly-highlight {
+  border-left-color: #ff4040;
+  background: linear-gradient(135deg, #fff5f2 0%, #f8f9fa 100%);
+}
+
+.assembly-highlight h3 {
+  color: #d63031;
+}
+
+.eco-notice {
+  border-left-color: #00b894;
+  background: linear-gradient(135deg, #f1fffe 0%, #f8f9fa 100%);
+}
+
+.eco-notice h3 {
+  color: #00b894;
+}
+
+.contact-info {
+  border-left-color: #6c5ce7;
+  background: linear-gradient(135deg, #f8f7ff 0%, #f8f9fa 100%);
+}
+
+.contact-info h3 {
+  color: #5f3dc4;
+}
+
+@media (min-width: 768px) {
+  .delivery-types {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .shipping-policy-section {
+    padding: 60px 20px;
+  }
+}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

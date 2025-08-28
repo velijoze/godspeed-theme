@@ -299,6 +299,42 @@
       "add_to_apple_wallet": "Hinzufügen zu Apple Wallet"
     }
   },
+  "workshop": {
+    "booking": {
+      "title": "Ihren Service Buchen",
+      "service_location": "Service-Standort",
+      "service_type": "Service-Art",
+      "preferred_date": "Bevorzugtes Datum",
+      "preferred_time": "Bevorzugte Zeit",
+      "special_requirements": "Besondere Anforderungen",
+      "customer_name": "Name",
+      "customer_email": "E-Mail",
+      "customer_phone": "Telefonnummer",
+      "booking_summary": "Buchungsübersicht",
+      "location_label": "Standort:",
+      "service_label": "Service:",
+      "date_label": "Datum:",
+      "time_label": "Zeit:",
+      "schedule_service": "Service Buchen",
+      "select_location": "Standort auswählen",
+      "select_service": "Service auswählen",
+      "select_time": "Zeit auswählen"
+    },
+    "hero": {
+      "title": "Werkstatt & Service Center",
+      "button_text": "Ihren Service Buchen",
+      "scroll_text": "Scrollen zum Erkunden"
+    },
+    "content": {
+      "main_title": "Größtes Service Center im Tessin",
+      "sidebar_title": "Was Uns Auszeichnet",
+      "cta_button": "Jetzt Service Buchen"
+    },
+    "testimonials": {
+      "title": "Was Unsere Kunden Sagen",
+      "cta_button": "Ihren Service Buchen"
+    }
+  },
   "date_formats": {
     "month_day_year": "%B %d, %Y"
   }
