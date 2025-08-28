@@ -1,0 +1,19 @@
+<!-- Language Debug Info -->
+<div style="position: fixed; top: 10px; right: 10px; background: white; border: 1px solid #ccc; padding: 10px; z-index: 9999; font-size: 12px;">
+  <strong>Debug Info:</strong><br>
+  Current locale: {{ request.locale.iso_code }}<br>
+  Available locales: 
+  {% for locale in shop.published_locales %}
+    {{ locale.iso_code }}{% unless forloop.last %}, {% endunless %}
+  {% endfor %}<br>
+  Count: {{ shop.published_locales.size }}<br>
+  
+  {% if shop.published_locales.size > 1 %}
+    <strong>Language Links:</strong><br>
+    {% for locale in shop.published_locales %}
+      <a href="{{ locale.root_url }}" style="display: block;">{{ locale.iso_code }}: {{ locale.root_url }}</a>
+    {% endfor %}
+  {% else %}
+    <span style="color: red;">Only one locale published!</span>
+  {% endif %}
+</div>
