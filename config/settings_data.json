@@ -11,8 +11,8 @@
   "current": {
     "show_multiple_currencies": true,
     "currency_format": "money_format",
-    "supported_currencies": "INR GBP CAD USD AUD EUR JPY BND",
-    "default_currency": "USD",
+    "supported_currencies": "CHF",
+    "default_currency": "CHF",
     "bg_color_body": "#ffffff",
     "bg_image_body": "",
     "enable_promo_topbar": true,
@@ -6208,6 +6208,20 @@
         "settings": {
           "title": "Happy Clients"
         }
+      },
+      "ai-chat-assistant": {
+        "type": "ai-chat-assistant",
+        "settings": {
+          "chat_title": "Godspeed E-Bike Expert",
+          "chat_subtitle": "Swiss e-bike specialists at your service",
+          "welcome_message": "Hello! I'm your Godspeed e-bike expert. How can I help you find the perfect bike or schedule service today?",
+          "placeholder": "Ask about e-bikes, service, or financing...",
+          "button_color": "#333333",
+          "header_color": "#f8f9fa",
+          "user_message_color": "#007bff",
+          "margin_top": 0,
+          "margin_bottom": 0
+        }
       }
     },
     "content_for_index": [
@@ -6220,7 +6234,14 @@
       "1623030751ead92bdd",
       "16173320280a632935",
       "162373083198e445e0"
-    ]
+    ],
+    "blocks": {
+      "6987625696575125306": {
+        "type": "shopify://apps/weglot-translate-your-store/blocks/weglot/3097482a-fafe-42ff-bc33-ea19e35c4a20",
+        "disabled": false,
+        "settings": {}
+      }
+    }
   },
   "presets": {
     "Home 1": {
