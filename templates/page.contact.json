@@ -80,11 +80,31 @@
         "ins_limit_number": "7",
         "item_icon": "fa fa-instagram"
       }
+    },
+    "admin_dashboard": {
+      "type": "admin-dashboard",
+      "settings": {
+        "dashboard_title": "System Overview & Configuration",
+        "dashboard_subtitle": "Monitor tool status, configure settings, and manage integrations",
+        "color_title": "#333",
+        "color_subtitle": "#6c757d",
+        "margin_top": 50,
+        "margin_bottom": 0
+      }
+    },
+    "veloconnect_dynamic": {
+      "type": "veloconnect-dynamic",
+      "settings": {
+        "title": "VeloConnect Supplier Management",
+        "subtitle": "Configure and manage all 10 supplier API connections with secure credential storage"
+      }
     }
   },
   "order": [
     "contact_template",
     "newsletter_contact",
-    "instagram_contact"
+    "instagram_contact",
+    "admin_dashboard",
+    "veloconnect_dynamic"
   ]
 }

@@ -10,7 +10,7 @@
     <span class="dropdown-arrow">▼</span>
   </a>
   <ul class="language-dropdown list-unstyled" id="language-dropdown" style="display: none;">
-    <!-- Weglot will automatically populate this or fallback to manual links -->
+    <!-- Native Shopify language switching -->
     {% if linklists[section.settings.hd_multi_lang_menu].links.size > 0 %}
       {% for link in linklists[section.settings.hd_multi_lang_menu].links %}
       <li class="menu-item"> 
@@ -20,19 +20,20 @@
       </li>
       {% endfor %}
     {% else %}
-      <!-- Default language options when no menu is set -->
+      <!-- Native Shopify language options -->
+      {% for language in localization.available_languages %}
       <li class="menu-item">
-        <a href="#" class="language-option" onclick="switchLanguage('en')">English</a>
+        <a href="{{ language.root_url }}" class="language-option {% if language.iso_code == localization.language.iso_code %}current{% endif %}">
+          {% case language.iso_code %}
+            {% when 'en' %}English
+            {% when 'de' %}Deutsch  
+            {% when 'fr' %}Français
+            {% when 'it' %}Italiano
+            {% else %}{{ language.endonym_name }}
+          {% endcase %}
+        </a>
       </li>
-      <li class="menu-item">
-        <a href="#" class="language-option" onclick="switchLanguage('de')">Deutsch</a>
-      </li>
-      <li class="menu-item">
-        <a href="#" class="language-option" onclick="switchLanguage('fr')">Français</a>
-      </li>
-      <li class="menu-item">
-        <a href="#" class="language-option" onclick="switchLanguage('it')">Italiano</a>
-      </li>
+      {% endfor %}
     {% endif %}
   </ul>
 </div>
@@ -54,22 +55,6 @@ function toggleLanguageDropdown(e) {
   dropdown.style.display = isVisible ? 'none' : 'block';
 }
 
-function switchLanguage(langCode) {
-  // If Weglot is available, use it
-  if (window.Weglot && window.Weglot.switchTo) {
-    window.Weglot.switchTo(langCode);
-  } else {
-    // Fallback: try to find the language link and navigate
-    const langLink = document.querySelector(`a[href*="/${langCode}"]`);
-    if (langLink) {
-      window.location.href = langLink.href;
-    }
-  }
-  
-  // Hide dropdown
-  document.getElementById('language-dropdown').style.display = 'none';
-}
-
 // Close dropdown when clicking outside
 document.addEventListener('click', function(e) {
   if (!e.target.closest('.language-selector-wrapper')) {
@@ -77,24 +62,6 @@ document.addEventListener('click', function(e) {
       dd.style.display = 'none';
     });
   }
-});
-
-// Initialize Weglot switcher if available
-document.addEventListener('DOMContentLoaded', function() {
-  // Wait for Weglot to load and replace the dropdown content
-  setTimeout(function() {
-    if (window.Weglot && window.Weglot.getCurrentLang) {
-      // Weglot is loaded, let it handle the language switching
-      const weglotSwitcher = document.querySelector('#weglot_here');
-      if (weglotSwitcher) {
-        // Hide our custom dropdown and use Weglot's
-        const customDropdown = document.querySelector('.language-selector-wrapper');
-        if (customDropdown) {
-          customDropdown.style.display = 'none';
-        }
-      }
-    }
-  }, 1000);
 });
 </script>
 
@@ -168,6 +135,16 @@ document.addEventListener('DOMContentLoaded', function() {
   background-color: #f5f5f5;
   text-decoration: none;
   color: #333;
+}
+
+.language-dropdown .language-option.current {
+  background-color: #ff4040;
+  color: white;
+}
+
+.language-dropdown .language-option.current:hover {
+  background-color: #ff4040;
+  color: white;
 }
 
 /* Dark header compatibility */

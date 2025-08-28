@@ -1,0 +1,969 @@
+{% comment %}
+  Cube Sync Manager - Advanced Product Sync Controls
+  Provides granular control over what, when, and how Cube products sync
+{% endcomment %}
+
+<div class="cube-sync-manager-section" data-section-id="{{ section.id }}">
+  <div class="container">
+    <div class="sync-manager-header">
+      <h2>{{ section.settings.title | default: 'Cube Sync Manager' }}</h2>
+      <p>{{ section.settings.subtitle | default: 'Granular control over product synchronization from Cube Connect API' }}</p>
+    </div>
+
+    <!-- Sync Status Overview -->
+    <div class="sync-status-panel">
+      <div class="status-row">
+        <div class="status-item">
+          <span class="status-label">Connection Status:</span>
+          <span class="status-value" id="cube-connection-status">Checking...</span>
+        </div>
+        <div class="status-item">
+          <span class="status-label">Last Sync:</span>
+          <span class="status-value" id="last-sync-time">Never</span>
+        </div>
+        <div class="status-item">
+          <span class="status-label">Products Available:</span>
+          <span class="status-value" id="available-products">0</span>
+        </div>
+        <div class="status-item">
+          <span class="status-label">Synced Products:</span>
+          <span class="status-value" id="synced-products">0</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sync-controls-container">
+      <!-- Left Panel: Filters & Selection -->
+      <div class="selection-panel">
+        <h3>Product Selection</h3>
+        
+        <!-- Category Filters -->
+        <div class="filter-group">
+          <h4>Categories</h4>
+          <div class="category-filters">
+            <label class="filter-checkbox">
+              <input type="checkbox" value="e-mountain" checked>
+              <span>E-Mountain Bikes</span>
+              <span class="product-count">(45)</span>
+            </label>
+            <label class="filter-checkbox">
+              <input type="checkbox" value="e-road" checked>
+              <span>E-Road Bikes</span>
+              <span class="product-count">(23)</span>
+            </label>
+            <label class="filter-checkbox">
+              <input type="checkbox" value="e-touring">
+              <span>E-Touring Bikes</span>
+              <span class="product-count">(18)</span>
+            </label>
+            <label class="filter-checkbox">
+              <input type="checkbox" value="e-urban">
+              <span>E-Urban Bikes</span>
+              <span class="product-count">(31)</span>
+            </label>
+            <label class="filter-checkbox">
+              <input type="checkbox" value="mountain">
+              <span>Mountain Bikes</span>
+              <span class="product-count">(67)</span>
+            </label>
+            <label class="filter-checkbox">
+              <input type="checkbox" value="road">
+              <span>Road Bikes</span>
+              <span class="product-count">(42)</span>
+            </label>
+            <label class="filter-checkbox">
+              <input type="checkbox" value="accessories" checked>
+              <span>Accessories</span>
+              <span class="product-count">(156)</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Price Range Filter -->
+        <div class="filter-group">
+          <h4>Price Range (CHF)</h4>
+          <div class="price-range-controls">
+            <input type="number" id="price-min" placeholder="Min" min="0" step="100" value="500">
+            <span>to</span>
+            <input type="number" id="price-max" placeholder="Max" min="0" step="100" value="8000">
+          </div>
+        </div>
+
+        <!-- Availability Filter -->
+        <div class="filter-group">
+          <h4>Availability</h4>
+          <div class="availability-filters">
+            <label class="filter-radio">
+              <input type="radio" name="availability" value="all" checked>
+              <span>All Products</span>
+            </label>
+            <label class="filter-radio">
+              <input type="radio" name="availability" value="in-stock">
+              <span>In Stock Only</span>
+            </label>
+            <label class="filter-radio">
+              <input type="radio" name="availability" value="out-of-stock">
+              <span>Out of Stock Only</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- New Products Filter -->
+        <div class="filter-group">
+          <h4>Product Status</h4>
+          <div class="status-filters">
+            <label class="filter-checkbox">
+              <input type="checkbox" value="new-products" checked>
+              <span>New Products (not in Shopify)</span>
+            </label>
+            <label class="filter-checkbox">
+              <input type="checkbox" value="updated-products">
+              <span>Products with Updates</span>
+            </label>
+            <label class="filter-checkbox">
+              <input type="checkbox" value="existing-products">
+              <span>Existing Products</span>
+            </label>
+          </div>
+        </div>
+
+        <button class="btn-apply-filters" onclick="applyProductFilters()">
+          <i class="fa fa-filter"></i> Apply Filters
+        </button>
+      </div>
+
+      <!-- Right Panel: Sync Controls & Preview -->
+      <div class="sync-panel">
+        <!-- Sync Options -->
+        <div class="sync-options">
+          <h3>Sync Configuration</h3>
+          
+          <!-- What to Sync -->
+          <div class="sync-group">
+            <h4>Fields to Update</h4>
+            <div class="field-options">
+              <label class="option-checkbox">
+                <input type="checkbox" value="basic-info" checked>
+                <span>Basic Info (Name, Description)</span>
+              </label>
+              <label class="option-checkbox">
+                <input type="checkbox" value="pricing" checked>
+                <span>Pricing</span>
+              </label>
+              <label class="option-checkbox">
+                <input type="checkbox" value="inventory" checked>
+                <span>Inventory Levels</span>
+              </label>
+              <label class="option-checkbox">
+                <input type="checkbox" value="images">
+                <span>Product Images</span>
+              </label>
+              <label class="option-checkbox">
+                <input type="checkbox" value="specifications">
+                <span>Technical Specifications</span>
+              </label>
+              <label class="option-checkbox">
+                <input type="checkbox" value="categories">
+                <span>Categories & Tags</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Conflict Resolution -->
+          <div class="sync-group">
+            <h4>Conflict Resolution</h4>
+            <div class="conflict-options">
+              <label class="conflict-radio">
+                <input type="radio" name="conflict-resolution" value="cube-wins" checked>
+                <span>Cube Overrides Shopify</span>
+                <small>Always use Cube data</small>
+              </label>
+              <label class="conflict-radio">
+                <input type="radio" name="conflict-resolution" value="shopify-wins">
+                <span>Keep Shopify Changes</span>
+                <small>Skip products modified in Shopify</small>
+              </label>
+              <label class="conflict-radio">
+                <input type="radio" name="conflict-resolution" value="ask-me">
+                <span>Ask for Each Conflict</span>
+                <small>Review conflicts manually</small>
+              </label>
+            </div>
+          </div>
+
+          <!-- Sync Mode -->
+          <div class="sync-group">
+            <h4>Sync Mode</h4>
+            <div class="mode-options">
+              <label class="mode-radio">
+                <input type="radio" name="sync-mode" value="preview" checked>
+                <span>Preview First</span>
+                <small>Show changes before applying</small>
+              </label>
+              <label class="mode-radio">
+                <input type="radio" name="sync-mode" value="immediate">
+                <span>Sync Immediately</span>
+                <small>Apply changes directly</small>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Preview Panel -->
+        <div class="sync-preview" id="sync-preview" style="display: none;">
+          <h3>Sync Preview</h3>
+          <div class="preview-summary">
+            <div class="summary-item">
+              <span class="summary-label">New Products:</span>
+              <span class="summary-value" id="preview-new">0</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Updates:</span>
+              <span class="summary-value" id="preview-updates">0</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Conflicts:</span>
+              <span class="summary-value" id="preview-conflicts">0</span>
+            </div>
+          </div>
+          
+          <div class="preview-list" id="preview-list">
+            <!-- Preview items will be populated here -->
+          </div>
+          
+          <div class="preview-actions">
+            <button class="btn-cancel" onclick="cancelPreview()">Cancel</button>
+            <button class="btn-approve" onclick="approveSync()">
+              <i class="fa fa-check"></i> Approve Sync
+            </button>
+          </div>
+        </div>
+
+        <!-- Sync Actions -->
+        <div class="sync-actions">
+          <button class="btn-preview-sync" onclick="previewSync()">
+            <i class="fa fa-eye"></i> Preview Sync
+          </button>
+          <button class="btn-manual-sync" onclick="manualSync()">
+            <i class="fa fa-sync"></i> Sync Now
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scheduling Panel -->
+    <div class="scheduling-panel">
+      <h3>Sync Scheduling</h3>
+      
+      <div class="schedule-options">
+        <div class="schedule-group">
+          <h4>Automatic Sync</h4>
+          <label class="schedule-radio">
+            <input type="radio" name="schedule" value="disabled" checked>
+            <span>Manual Only</span>
+          </label>
+          <label class="schedule-radio">
+            <input type="radio" name="schedule" value="hourly">
+            <span>Every Hour (Inventory Only)</span>
+          </label>
+          <label class="schedule-radio">
+            <input type="radio" name="schedule" value="daily">
+            <span>Daily at 3:00 AM</span>
+          </label>
+          <label class="schedule-radio">
+            <input type="radio" name="schedule" value="weekly">
+            <span>Weekly on Sunday</span>
+          </label>
+          <label class="schedule-radio">
+            <input type="radio" name="schedule" value="custom">
+            <span>Custom Schedule</span>
+          </label>
+        </div>
+
+        <div class="custom-schedule" id="custom-schedule" style="display: none;">
+          <div class="schedule-time">
+            <label>Time:</label>
+            <select id="schedule-hour">
+              <option value="03">3:00 AM</option>
+              <option value="06">6:00 AM</option>
+              <option value="12">12:00 PM</option>
+              <option value="18">6:00 PM</option>
+              <option value="21">9:00 PM</option>
+            </select>
+          </div>
+          <div class="schedule-days">
+            <label>Days:</label>
+            <div class="day-checkboxes">
+              <label><input type="checkbox" value="1">Mon</label>
+              <label><input type="checkbox" value="2">Tue</label>
+              <label><input type="checkbox" value="3">Wed</label>
+              <label><input type="checkbox" value="4">Thu</label>
+              <label><input type="checkbox" value="5">Fri</label>
+              <label><input type="checkbox" value="6">Sat</label>
+              <label><input type="checkbox" value="0">Sun</label>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn-save-schedule" onclick="saveSchedule()">
+          <i class="fa fa-clock"></i> Save Schedule
+        </button>
+      </div>
+    </div>
+
+    <!-- Recent Sync History -->
+    <div class="sync-history">
+      <h3>Recent Sync History</h3>
+      <div class="history-list" id="sync-history-list">
+        <div class="history-item">
+          <div class="history-time">2025-01-15 10:30 AM</div>
+          <div class="history-action">Manual Sync</div>
+          <div class="history-result">✅ 12 products synced, 2 conflicts resolved</div>
+        </div>
+        <div class="history-item">
+          <div class="history-time">2025-01-14 3:00 AM</div>
+          <div class="history-action">Scheduled Sync</div>
+          <div class="history-result">✅ 5 inventory updates</div>
+        </div>
+        <div class="history-item">
+          <div class="history-time">2025-01-13 2:15 PM</div>
+          <div class="history-action">Manual Sync</div>
+          <div class="history-result">❌ Failed - API timeout</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .cube-sync-manager-section {
+    padding: 40px 0;
+    background: #f8f9fa;
+  }
+
+  .sync-manager-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .sync-manager-header h2 {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+
+  .sync-status-panel {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .status-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+
+  .status-item {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .status-label {
+    font-size: 12px;
+    color: #6c757d;
+    font-weight: 500;
+  }
+
+  .status-value {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-top: 5px;
+  }
+
+  .sync-controls-container {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+  }
+
+  .selection-panel, .sync-panel {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .selection-panel h3, .sync-panel h3 {
+    margin: 0 0 20px 0;
+    font-size: 20px;
+    color: #333;
+  }
+
+  .filter-group, .sync-group {
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e9ecef;
+  }
+
+  .filter-group:last-child, .sync-group:last-child {
+    border-bottom: none;
+  }
+
+  .filter-group h4, .sync-group h4 {
+    margin: 0 0 15px 0;
+    font-size: 14px;
+    color: #333;
+    font-weight: 600;
+  }
+
+  .filter-checkbox, .option-checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0;
+    cursor: pointer;
+  }
+
+  .filter-checkbox input, .option-checkbox input {
+    margin-right: 10px;
+  }
+
+  .product-count {
+    font-size: 12px;
+    color: #6c757d;
+  }
+
+  .price-range-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .price-range-controls input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+
+  .filter-radio, .conflict-radio, .mode-radio, .schedule-radio {
+    display: block;
+    padding: 8px 0;
+    cursor: pointer;
+  }
+
+  .filter-radio input, .conflict-radio input, .mode-radio input, .schedule-radio input {
+    margin-right: 10px;
+  }
+
+  .conflict-radio small, .mode-radio small {
+    display: block;
+    color: #6c757d;
+    font-size: 11px;
+    margin-left: 25px;
+  }
+
+  .btn-apply-filters, .btn-preview-sync, .btn-manual-sync, .btn-save-schedule {
+    width: 100%;
+    padding: 12px 20px;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .btn-apply-filters:hover, .btn-preview-sync:hover, .btn-manual-sync:hover, .btn-save-schedule:hover {
+    background: #555;
+    transform: translateY(-1px);
+  }
+
+  .sync-preview {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+  }
+
+  .preview-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+
+  .summary-item {
+    text-align: center;
+    padding: 10px;
+    background: white;
+    border-radius: 6px;
+  }
+
+  .summary-label {
+    display: block;
+    font-size: 12px;
+    color: #6c757d;
+  }
+
+  .summary-value {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .preview-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .btn-cancel {
+    flex: 1;
+    padding: 10px;
+    background: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  .btn-approve {
+    flex: 2;
+    padding: 10px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .scheduling-panel, .sync-history {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+  }
+
+  .scheduling-panel h3, .sync-history h3 {
+    margin: 0 0 20px 0;
+    font-size: 20px;
+    color: #333;
+  }
+
+  .schedule-options {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 30px;
+    align-items: start;
+  }
+
+  .custom-schedule {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+  }
+
+  .schedule-time, .schedule-days {
+    margin-bottom: 15px;
+  }
+
+  .schedule-time select {
+    margin-left: 10px;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+
+  .day-checkboxes {
+    display: flex;
+    gap: 10px;
+    margin-left: 10px;
+  }
+
+  .day-checkboxes label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+  }
+
+  .history-list {
+    max-height: 300px;
+    overflow-y: auto;
+  }
+
+  .history-item {
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    gap: 20px;
+    padding: 15px;
+    border-bottom: 1px solid #e9ecef;
+    align-items: center;
+  }
+
+  .history-time {
+    font-size: 12px;
+    color: #6c757d;
+    white-space: nowrap;
+  }
+
+  .history-action {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+  }
+
+  .history-result {
+    font-size: 12px;
+    color: #6c757d;
+  }
+
+  @media (max-width: 1200px) {
+    .sync-controls-container {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    
+    .selection-panel {
+      order: 2;
+    }
+    
+    .sync-panel {
+      order: 1;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .status-row {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .preview-summary {
+      grid-template-columns: 1fr;
+    }
+    
+    .schedule-options {
+      grid-template-columns: 1fr;
+    }
+    
+    .history-item {
+      grid-template-columns: 1fr;
+      gap: 5px;
+    }
+  }
+</style>
+
+<script src="{{ 'cube-api-client.js' | asset_url }}"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize sync manager
+  initializeSyncManager();
+  
+  // Setup event listeners
+  setupEventListeners();
+  
+  // Load initial data
+  loadSyncStatus();
+});
+
+function initializeSyncManager() {
+  console.log('🔄 Cube Sync Manager initialized');
+  
+  // Initialize Cube API client
+  if (window.CubeAPI) {
+    window.CubeAPI.initialize().then(success => {
+      updateConnectionStatus(success ? 'Connected' : 'Not Connected');
+    });
+  }
+}
+
+function setupEventListeners() {
+  // Schedule radio buttons
+  const scheduleRadios = document.querySelectorAll('input[name="schedule"]');
+  scheduleRadios.forEach(radio => {
+    radio.addEventListener('change', function() {
+      const customSchedule = document.getElementById('custom-schedule');
+      customSchedule.style.display = this.value === 'custom' ? 'block' : 'none';
+    });
+  });
+}
+
+function loadSyncStatus() {
+  // Update connection status
+  updateConnectionStatus('Checking...');
+  
+  // Load sync history from localStorage
+  const history = JSON.parse(localStorage.getItem('cube_sync_history') || '[]');
+  updateSyncHistory(history);
+  
+  // Check last sync time
+  const lastSync = localStorage.getItem('cube_last_sync');
+  if (lastSync) {
+    document.getElementById('last-sync-time').textContent = new Date(parseInt(lastSync)).toLocaleString();
+  }
+}
+
+function updateConnectionStatus(status) {
+  const statusElement = document.getElementById('cube-connection-status');
+  statusElement.textContent = status;
+  
+  // Update styling based on status
+  statusElement.style.color = status === 'Connected' ? '#28a745' : 
+                               status === 'Not Connected' ? '#dc3545' : '#6c757d';
+}
+
+function applyProductFilters() {
+  const categories = Array.from(document.querySelectorAll('.category-filters input:checked')).map(cb => cb.value);
+  const priceMin = document.getElementById('price-min').value;
+  const priceMax = document.getElementById('price-max').value;
+  const availability = document.querySelector('input[name="availability"]:checked').value;
+  const statuses = Array.from(document.querySelectorAll('.status-filters input:checked')).map(cb => cb.value);
+  
+  console.log('Applying filters:', { categories, priceMin, priceMax, availability, statuses });
+  
+  // Update product counts (simulate)
+  setTimeout(() => {
+    const totalProducts = Math.floor(Math.random() * 200) + 50;
+    document.getElementById('available-products').textContent = totalProducts;
+    showNotification('Filters applied - ' + totalProducts + ' products found', 'success');
+  }, 500);
+}
+
+function previewSync() {
+  showNotification('Generating sync preview...', 'info');
+  
+  const syncMode = document.querySelector('input[name="sync-mode"]:checked').value;
+  const fieldsToSync = Array.from(document.querySelectorAll('.field-options input:checked')).map(cb => cb.value);
+  const conflictResolution = document.querySelector('input[name="conflict-resolution"]:checked').value;
+  
+  // Simulate preview generation
+  setTimeout(() => {
+    const preview = {
+      newProducts: Math.floor(Math.random() * 15) + 5,
+      updates: Math.floor(Math.random() * 25) + 10,
+      conflicts: Math.floor(Math.random() * 3)
+    };
+    
+    showSyncPreview(preview);
+  }, 2000);
+}
+
+function showSyncPreview(preview) {
+  const previewPanel = document.getElementById('sync-preview');
+  
+  // Update preview summary
+  document.getElementById('preview-new').textContent = preview.newProducts;
+  document.getElementById('preview-updates').textContent = preview.updates;
+  document.getElementById('preview-conflicts').textContent = preview.conflicts;
+  
+  // Show preview panel
+  previewPanel.style.display = 'block';
+  previewPanel.scrollIntoView({ behavior: 'smooth' });
+  
+  showNotification('Preview ready - Review changes before syncing', 'success');
+}
+
+function cancelPreview() {
+  document.getElementById('sync-preview').style.display = 'none';
+  showNotification('Preview cancelled', 'info');
+}
+
+function approveSync() {
+  showNotification('Starting approved sync...', 'info');
+  
+  // Hide preview
+  document.getElementById('sync-preview').style.display = 'none';
+  
+  // Execute sync
+  executeSync();
+}
+
+function manualSync() {
+  const syncMode = document.querySelector('input[name="sync-mode"]:checked').value;
+  
+  if (syncMode === 'preview') {
+    previewSync();
+  } else {
+    executeSync();
+  }
+}
+
+function executeSync() {
+  showNotification('Executing sync operation...', 'info');
+  
+  // Simulate sync process
+  const startTime = Date.now();
+  
+  setTimeout(() => {
+    const syncResult = {
+      success: true,
+      newProducts: Math.floor(Math.random() * 15) + 5,
+      updatedProducts: Math.floor(Math.random() * 25) + 10,
+      errors: Math.floor(Math.random() * 2)
+    };
+    
+    // Update sync history
+    const historyEntry = {
+      timestamp: Date.now(),
+      type: 'Manual Sync',
+      result: syncResult
+    };
+    
+    addSyncHistoryEntry(historyEntry);
+    
+    // Update last sync time
+    localStorage.setItem('cube_last_sync', startTime.toString());
+    document.getElementById('last-sync-time').textContent = new Date(startTime).toLocaleString();
+    
+    // Update synced products count
+    const currentSynced = parseInt(document.getElementById('synced-products').textContent) || 0;
+    document.getElementById('synced-products').textContent = currentSynced + syncResult.newProducts;
+    
+    if (syncResult.success) {
+      showNotification(`Sync completed! ${syncResult.newProducts} new, ${syncResult.updatedProducts} updated`, 'success');
+    } else {
+      showNotification('Sync completed with errors - check history for details', 'warning');
+    }
+  }, 5000);
+}
+
+function saveSchedule() {
+  const schedule = document.querySelector('input[name="schedule"]:checked').value;
+  
+  let scheduleConfig = { type: schedule };
+  
+  if (schedule === 'custom') {
+    scheduleConfig.hour = document.getElementById('schedule-hour').value;
+    scheduleConfig.days = Array.from(document.querySelectorAll('.day-checkboxes input:checked')).map(cb => cb.value);
+  }
+  
+  localStorage.setItem('cube_sync_schedule', JSON.stringify(scheduleConfig));
+  showNotification('Sync schedule saved successfully', 'success');
+  
+  console.log('Schedule saved:', scheduleConfig);
+}
+
+function addSyncHistoryEntry(entry) {
+  const history = JSON.parse(localStorage.getItem('cube_sync_history') || '[]');
+  history.unshift(entry);
+  
+  // Keep only last 20 entries
+  if (history.length > 20) {
+    history.splice(20);
+  }
+  
+  localStorage.setItem('cube_sync_history', JSON.stringify(history));
+  updateSyncHistory(history);
+}
+
+function updateSyncHistory(history) {
+  const historyList = document.getElementById('sync-history-list');
+  
+  historyList.innerHTML = history.slice(0, 10).map(entry => {
+    const result = entry.result || {};
+    const success = result.success !== false;
+    const icon = success ? '✅' : '❌';
+    
+    let resultText;
+    if (success) {
+      resultText = `${result.newProducts || 0} new, ${result.updatedProducts || 0} updated`;
+      if (result.errors && result.errors > 0) {
+        resultText += `, ${result.errors} errors`;
+      }
+    } else {
+      resultText = result.message || 'Sync failed';
+    }
+    
+    return `
+      <div class="history-item">
+        <div class="history-time">${new Date(entry.timestamp).toLocaleString()}</div>
+        <div class="history-action">${entry.type}</div>
+        <div class="history-result">${icon} ${resultText}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+function showNotification(message, type = 'info') {
+  const notification = document.createElement('div');
+  notification.className = `sync-notification sync-notification-${type}`;
+  notification.innerHTML = `
+    <div class="notification-content">
+      <span>${message}</span>
+      <button onclick="this.parentElement.parentElement.remove()">×</button>
+    </div>
+  `;
+  
+  notification.style.cssText = `
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: ${type === 'success' ? '#d4edda' : type === 'error' ? '#f8d7da' : type === 'warning' ? '#fff3cd' : '#d1ecf1'};
+    color: ${type === 'success' ? '#155724' : type === 'error' ? '#721c24' : type === 'warning' ? '#856404' : '#0c5460'};
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 10000;
+    max-width: 400px;
+    animation: slideIn 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  `;
+  
+  document.body.appendChild(notification);
+  
+  setTimeout(() => {
+    if (notification.parentElement) {
+      notification.remove();
+    }
+  }, 5000);
+}
+</script>
+
+{% schema %}
+{
+  "name": "Cube Sync Manager",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Cube Sync Manager"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Section Subtitle",
+      "default": "Granular control over product synchronization from Cube Connect API"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cube Sync Manager",
+      "category": "Admin Tools"
+    }
+  ]
+}
+{% endschema %}

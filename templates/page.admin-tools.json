@@ -40,13 +40,11 @@
         "margin_bottom": 0
       }
     },
-    "cube_integration": {
-      "type": "cube-product-specs",
+    "cube_sync_manager": {
+      "type": "cube-sync-manager",
       "settings": {
-        "specs_title": "Cube Connect Integration",
-        "specs_subtitle": "Monitor API status and product synchronization",
-        "margin_top": 0,
-        "margin_bottom": 0
+        "title": "Cube Sync Manager",
+        "subtitle": "Complete control over product synchronization - choose what, when, and how to sync"
       }
     },
     "workshop_tools": {
@@ -76,7 +74,7 @@
     "admin_header",
     "admin_dashboard",
     "veloconnect_credentials",
-    "cube_integration",
+    "cube_sync_manager",
     "workshop_tools",
     "ai_chat_config"
   ]
