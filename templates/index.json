@@ -35,7 +35,7 @@
       "settings": {
         "title_heading": "FEATURED",
         "color_title": "#222222",
-        "select_collection": "mountain-bikes",
+        "select_collection": "featured-2",
         "products_limit": 8,
         "buttom_name": "Load More",
         "button_name_url": "shopify://collections/accessories-general",
@@ -195,7 +195,7 @@
           "type": "tab",
           "settings": {
             "tab_title": "NEW ARRIVALS",
-            "tab_collection": "road-bikes",
+            "tab_collection": "cube",
             "tab_limit": 8
           }
         },
@@ -203,7 +203,7 @@
           "type": "tab",
           "settings": {
             "tab_title": "BEST SELLERS",
-            "tab_collection": "e-bikes",
+            "tab_collection": "riese-muller",
             "tab_limit": 8
           }
         },
@@ -211,7 +211,7 @@
           "type": "tab",
           "settings": {
             "tab_title": "TOP RATES",
-            "tab_collection": "accessories",
+            "tab_collection": "featured-1",
             "tab_limit": 8
           }
         }
@@ -228,20 +228,6 @@
         "title_heading": "Our Best Seller",
         "color_title": "#222222"
       }
-    },
-    "section_blog_v3_Nigp4F": {
-      "type": "section-blog-v3",
-      "name": "BLOG V3",
-      "settings": {
-        "section_title": "Our Blog",
-        "color_title": "#fff",
-        "select_blog": "news",
-        "blogs_limit": 2,
-        "enable_description": true,
-        "button_name": "Read More",
-        "margin_top": "",
-        "margin_bottom": ""
-      }
     }
   },
   "order": [
@@ -252,7 +238,6 @@
     "section_blog_v2_KdMAdt",
     "section_service_v2_qfprta",
     "section_product_v1_NQJG9z",
-    "section_product_v2_tdBRie",
-    "section_blog_v3_Nigp4F"
+    "section_product_v2_tdBRie"
   ]
 }
