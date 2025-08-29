@@ -184,9 +184,8 @@
       ],
       "name": "SERVICE V2",
       "settings": {
-        "bg_img": "shopify://shop_images/biking-lugano-with-kids.jpg",
-        "margin_top": "",
-        "margin_bottom": ""
+        "margin_top": "50",
+        "margin_bottom": "50"
       }
     },
     "section_product_v2_tdBRie": {
