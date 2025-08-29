@@ -228,6 +228,25 @@
         "title_heading": "Our Best Seller",
         "color_title": "#222222"
       }
+    },
+    "section_product_v5_jeNMfa": {
+      "type": "section-product-v5",
+      "name": "PRODUCT V5",
+      "settings": {
+        "select_collection": "lights",
+        "products_limit": 2,
+        "img_banner1": "shopify://shop_images/5S5A2675.jpg",
+        "button_1": "Shop now",
+        "url_banner1": "shopify://collections/all",
+        "color_btn": "#fff",
+        "color_hover_button": "#fff",
+        "bgcolor_btn": "#000",
+        "bg_hovercolor_buton": "#000",
+        "select_collection2": "helmets",
+        "products_limit2": 2,
+        "margin_top": "",
+        "margin_bottom": ""
+      }
     }
   },
   "order": [
@@ -238,6 +257,7 @@
     "section_blog_v2_KdMAdt",
     "section_service_v2_qfprta",
     "section_product_v1_NQJG9z",
-    "section_product_v2_tdBRie"
+    "section_product_v2_tdBRie",
+    "section_product_v5_jeNMfa"
   ]
 }
