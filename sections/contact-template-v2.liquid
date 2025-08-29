@@ -40,6 +40,139 @@
   {% if section.settings.enable_get_find %}
   <div class="get_find">
     <div class="container container-v1">
+      <!-- Four Address Locations -->
+      {% if section.settings.enable_addresses %}
+      <div class="addresses-section mb-5">
+        {% if section.settings.addresses_title != blank %}
+        <div class="text-center mb-4">
+          <h3>{{ section.settings.addresses_title }}</h3>
+          {% if section.settings.addresses_description != blank %}
+          <p>{{ section.settings.addresses_description }}</p>
+          {% endif %}
+        </div>
+        {% endif %}
+        
+        <div class="row">
+          <!-- Address 1 -->
+          {% if section.settings.enable_address1 %}
+          <div class="col-xl-3 col-lg-6 col-md-6 mb-4">
+            <div class="address-card">
+              {% if section.settings.address1_title != blank %}
+              <h5 class="address-title">{{ section.settings.address1_title }}</h5>
+              {% endif %}
+              {% if section.settings.address1_address != blank %}
+              <div class="address-info">
+                <i class="fa fa-map-marker"></i>
+                <p>{{ section.settings.address1_address }}</p>
+              </div>
+              {% endif %}
+              {% if section.settings.address1_phone != blank %}
+              <div class="address-info">
+                <i class="fa fa-phone"></i>
+                <p>{{ section.settings.address1_phone }}</p>
+              </div>
+              {% endif %}
+              {% if section.settings.address1_email != blank %}
+              <div class="address-info">
+                <i class="fa fa-envelope"></i>
+                <p>{{ section.settings.address1_email }}</p>
+              </div>
+              {% endif %}
+            </div>
+          </div>
+          {% endif %}
+
+          <!-- Address 2 -->
+          {% if section.settings.enable_address2 %}
+          <div class="col-xl-3 col-lg-6 col-md-6 mb-4">
+            <div class="address-card">
+              {% if section.settings.address2_title != blank %}
+              <h5 class="address-title">{{ section.settings.address2_title }}</h5>
+              {% endif %}
+              {% if section.settings.address2_address != blank %}
+              <div class="address-info">
+                <i class="fa fa-map-marker"></i>
+                <p>{{ section.settings.address2_address }}</p>
+              </div>
+              {% endif %}
+              {% if section.settings.address2_phone != blank %}
+              <div class="address-info">
+                <i class="fa fa-phone"></i>
+                <p>{{ section.settings.address2_phone }}</p>
+              </div>
+              {% endif %}
+              {% if section.settings.address2_email != blank %}
+              <div class="address-info">
+                <i class="fa fa-envelope"></i>
+                <p>{{ section.settings.address2_email }}</p>
+              </div>
+              {% endif %}
+            </div>
+          </div>
+          {% endif %}
+
+          <!-- Address 3 -->
+          {% if section.settings.enable_address3 %}
+          <div class="col-xl-3 col-lg-6 col-md-6 mb-4">
+            <div class="address-card">
+              {% if section.settings.address3_title != blank %}
+              <h5 class="address-title">{{ section.settings.address3_title }}</h5>
+              {% endif %}
+              {% if section.settings.address3_address != blank %}
+              <div class="address-info">
+                <i class="fa fa-map-marker"></i>
+                <p>{{ section.settings.address3_address }}</p>
+              </div>
+              {% endif %}
+              {% if section.settings.address3_phone != blank %}
+              <div class="address-info">
+                <i class="fa fa-phone"></i>
+                <p>{{ section.settings.address3_phone }}</p>
+              </div>
+              {% endif %}
+              {% if section.settings.address3_email != blank %}
+              <div class="address-info">
+                <i class="fa fa-envelope"></i>
+                <p>{{ section.settings.address3_email }}</p>
+              </div>
+              {% endif %}
+            </div>
+          </div>
+          {% endif %}
+
+          <!-- Address 4 -->
+          {% if section.settings.enable_address4 %}
+          <div class="col-xl-3 col-lg-6 col-md-6 mb-4">
+            <div class="address-card">
+              {% if section.settings.address4_title != blank %}
+              <h5 class="address-title">{{ section.settings.address4_title }}</h5>
+              {% endif %}
+              {% if section.settings.address4_address != blank %}
+              <div class="address-info">
+                <i class="fa fa-map-marker"></i>
+                <p>{{ section.settings.address4_address }}</p>
+              </div>
+              {% endif %}
+              {% if section.settings.address4_phone != blank %}
+              <div class="address-info">
+                <i class="fa fa-phone"></i>
+                <p>{{ section.settings.address4_phone }}</p>
+              </div>
+              {% endif %}
+              {% if section.settings.address4_email != blank %}
+              <div class="address-info">
+                <i class="fa fa-envelope"></i>
+                <p>{{ section.settings.address4_email }}</p>
+              </div>
+              {% endif %}
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      {% endif %}
+
+      <!-- Original Contact Form and Blocks Section -->
       <div class="row">
         {% if section.settings.enable_find_left %}
         <div class="col-lg-6 col-md-6">
@@ -117,8 +250,6 @@
 
           </div>
         </div>
-        
-
       </div>
     </div>
   </div> 
@@ -242,6 +373,154 @@
       "id": "description_find_left",
       "label": "Description Find Left",
       "default": "Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras mattis consectetur purus sit amet fermentum. Sed posuere est at lobortis."
+    },
+    {
+      "type": "header",
+      "content": "Four Address Locations"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_addresses",
+      "label": "Enable Four Address Section",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "addresses_title",
+      "label": "Addresses Section Title",
+      "default": "Our Locations"
+    },
+    {
+      "type": "textarea",
+      "id": "addresses_description",
+      "label": "Addresses Section Description"
+    },
+    {
+      "type": "header",
+      "content": "Address Location 1"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_address1",
+      "label": "Enable Address 1",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "address1_title",
+      "label": "Address 1 Title",
+      "default": "Lugano Store"
+    },
+    {
+      "type": "textarea",
+      "id": "address1_address",
+      "label": "Address 1",
+      "default": "Via Pian Scairolo 8, 6915 Pambio-Noranco"
+    },
+    {
+      "type": "text",
+      "id": "address1_phone",
+      "label": "Address 1 Phone",
+      "default": "+41 91 224 53 43"
+    },
+    {
+      "type": "text",
+      "id": "address1_email",
+      "label": "Address 1 Email",
+      "default": "lugano@godspeed.ch"
+    },
+    {
+      "type": "header",
+      "content": "Address Location 2"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_address2",
+      "label": "Enable Address 2",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "address2_title",
+      "label": "Address 2 Title",
+      "default": "Bellinzona Store"
+    },
+    {
+      "type": "textarea",
+      "id": "address2_address",
+      "label": "Address 2"
+    },
+    {
+      "type": "text",
+      "id": "address2_phone",
+      "label": "Address 2 Phone"
+    },
+    {
+      "type": "text",
+      "id": "address2_email",
+      "label": "Address 2 Email"
+    },
+    {
+      "type": "header",
+      "content": "Address Location 3"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_address3",
+      "label": "Enable Address 3",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "address3_title",
+      "label": "Address 3 Title",
+      "default": "Locarno Store"
+    },
+    {
+      "type": "textarea",
+      "id": "address3_address",
+      "label": "Address 3"
+    },
+    {
+      "type": "text",
+      "id": "address3_phone",
+      "label": "Address 3 Phone"
+    },
+    {
+      "type": "text",
+      "id": "address3_email",
+      "label": "Address 3 Email"
+    },
+    {
+      "type": "header",
+      "content": "Address Location 4"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_address4",
+      "label": "Enable Address 4",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "address4_title",
+      "label": "Address 4 Title",
+      "default": "Zurich Store"
+    },
+    {
+      "type": "textarea",
+      "id": "address4_address",
+      "label": "Address 4"
+    },
+    {
+      "type": "text",
+      "id": "address4_phone",
+      "label": "Address 4 Phone"
+    },
+    {
+      "type": "text",
+      "id": "address4_email",
+      "label": "Address 4 Email"
     }
   ],
   "blocks": [
@@ -276,6 +555,98 @@
 {% endschema %}
 
 {% stylesheet %}
+.addresses-section {
+  padding: 40px 0;
+}
+
+.address-card {
+  background: #f8f9fa;
+  padding: 30px;
+  border-radius: 8px;
+  height: 100%;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 1px solid #e9ecef;
+}
+
+.address-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.address-title {
+  {% if settings.font_type == 'google_fonts' %}
+  font-family: {{settings.fonts_name_1}};
+  {% else %}
+  font-family: SofiaPro;
+  {% endif %}
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: {{settings.color_main2}};
+  margin-bottom: 20px;
+  line-height: 1.3;
+}
+
+.address-info {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.address-info i {
+  color: {{settings.color_main2}};
+  margin-right: 12px;
+  margin-top: 2px;
+  font-size: 14px;
+  min-width: 16px;
+}
+
+.address-info p {
+  {% if settings.font_type == 'google_fonts' %}
+  font-family: {{settings.fonts_name_1}};
+  {% else %}
+  font-family: SofiaPro;
+  {% endif %}
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #555;
+}
+
+@media (max-width: 768px) {
+  .addresses-section {
+    padding: 30px 0;
+  }
+  
+  .address-card {
+    padding: 25px;
+    margin-bottom: 20px;
+  }
+  
+  .address-title {
+    font-size: 1.2rem;
+  }
+  
+  .address-info {
+    margin-bottom: 12px;
+  }
+}
+
+@media (max-width: 576px) {
+  .address-card {
+    padding: 20px;
+  }
+  
+  .address-title {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+  }
+  
+  .address-info p {
+    font-size: 0.9rem;
+  }
+}
 {% endstylesheet %}
 
 {% javascript %}

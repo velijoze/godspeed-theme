@@ -40,43 +40,37 @@
   <style>
     /* Critical CSS - Above the fold styles with dynamic fonts */
     :root {
-      {% if settings.body_font %}
+      {% if settings.body_font and settings.body_font.family %}
         --font-body: {{ settings.body_font.family }}, {{ settings.body_font.fallback_families }};
-      {% elsif settings.fonts_name_1 != blank %}
-        --font-body: '{{ settings.fonts_name_1 }}', sans-serif;
       {% else %}
         --font-body: 'Jost', sans-serif;
       {% endif %}
       
-      {% if settings.heading_font %}
+      {% if settings.heading_font and settings.heading_font.family %}
         --font-heading: {{ settings.heading_font.family }}, {{ settings.heading_font.fallback_families }};
-      {% elsif settings.fonts_name_1 != blank %}
-        --font-heading: '{{ settings.fonts_name_1 }}', sans-serif;
       {% else %}
         --font-heading: 'Jost', sans-serif;
       {% endif %}
       
-      {% if settings.navigation_font %}
+      {% if settings.navigation_font and settings.navigation_font.family %}
         --font-nav: {{ settings.navigation_font.family }}, {{ settings.navigation_font.fallback_families }};
-      {% elsif settings.fonts_name_1 != blank %}
-        --font-nav: '{{ settings.fonts_name_1 }}', sans-serif;
       {% else %}
         --font-nav: 'Jost', sans-serif;
       {% endif %}
     }
     *,*::before,*::after{box-sizing:border-box}
-    body{margin:0;font-family:var(--font-body);line-height:1.5;color:#333;background-color:#fff}
+    body{margin:0;font-family:var(--font-body) !important;line-height:1.5;color:#333;background-color:#fff}
     img{max-width:100%;height:auto;display:block}
     .header{position:relative;background:#fff;z-index:100}
     .header-container{max-width:1200px;margin:0 auto;padding:0 15px}
-    .logo{display:inline-block;font-size:24px;font-weight:600;font-family:var(--font-heading)}
-    .main-nav{display:flex;align-items:center;font-family:var(--font-nav)}
+    .logo{display:inline-block;font-size:24px;font-weight:600;font-family:var(--font-heading) !important}
+    .main-nav{display:flex;align-items:center;font-family:var(--font-nav) !important}
     .container{max-width:1200px;margin:0 auto;padding:0 15px}
     .row{display:flex;flex-wrap:wrap;margin:0 -15px}
     .col-12{flex:0 0 100%;max-width:100%;padding:0 15px}
     .col-md-6{flex:0 0 50%;max-width:50%;padding:0 15px}
     .col-lg-4{flex:0 0 33.333%;max-width:33.333%;padding:0 15px}
-    h1,h2,h3,h4,h5,h6{margin-top:0;margin-bottom:0.5rem;font-weight:500;line-height:1.2;font-family:var(--font-heading)}
+    h1,h2,h3,h4,h5,h6{margin-top:0;margin-bottom:0.5rem;font-weight:500;line-height:1.2;font-family:var(--font-heading) !important}
     h1{font-size:2.5rem}h2{font-size:2rem}h3{font-size:1.75rem}
     p{margin-top:0;margin-bottom:1rem}
     .btn{display:inline-block;padding:0.75rem 1.5rem;font-size:1rem;line-height:1.5;text-align:center;text-decoration:none;border:1px solid transparent;transition:all 0.3s ease}

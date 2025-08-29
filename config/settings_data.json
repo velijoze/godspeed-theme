@@ -59,8 +59,6 @@
     "products__relate_limit": 16,
     "color_main": "#000000",
     "color_main2": "#ff4040",
-    "font_type": "google_fonts",
-    "fonts_name_1": "Oswald",
     "enable_sticky_mobile": false,
     "bgmenu_mobile": "#ffffff",
     "hd_icon_search_mb": "",

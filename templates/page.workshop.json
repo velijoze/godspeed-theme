@@ -1,9 +1,5 @@
 {
   "sections": {
-    "main": {
-      "type": "main-page",
-      "settings": {}
-    },
     "rich_text": {
       "type": "rich-text",
       "settings": {
@@ -13,7 +9,6 @@
     }
   },
   "order": [
-    "main",
     "rich_text"
   ]
 }
