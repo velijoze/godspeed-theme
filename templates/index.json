@@ -189,6 +189,103 @@
         "margin_bottom": "50"
       }
     },
+    "logos_list_K4eiwP": {
+      "type": "logos-list",
+      "blocks": {
+        "logo_Dhdn8q": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/RM_Logo_black.jpg",
+            "url_image": ""
+          }
+        },
+        "logo_FxqiU3": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/CUBE_Logo.png",
+            "url_image": ""
+          }
+        },
+        "logo_ycRCGq": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/Brompton_Bicycle_logo_svg.png",
+            "url_image": ""
+          }
+        },
+        "logo_CxjfLd": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/mondraker_1200x627_67625aa8-57cc-4c62-a485-cc3ef45083d8.png",
+            "url_image": ""
+          }
+        },
+        "logo_AY4BCL": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/1200px-Bosch-logotype_svg.png",
+            "url_image": ""
+          }
+        },
+        "logo_bWMdU7": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/schwalbe.png",
+            "url_image": ""
+          }
+        },
+        "logo_GjAcwA": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/benno_logo2018.gif",
+            "url_image": ""
+          }
+        },
+        "logo_BGHV7K": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/giro-logo.png",
+            "url_image": ""
+          }
+        },
+        "logo_YyG8Mf": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/orbea-logo.png",
+            "url_image": ""
+          }
+        },
+        "logo_TejpTR": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/sram.png",
+            "url_image": ""
+          }
+        },
+        "logo_naz7dg": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/Stromer-EBIKE_Logo.png",
+            "url_image": ""
+          }
+        }
+      },
+      "block_order": [
+        "logo_Dhdn8q",
+        "logo_FxqiU3",
+        "logo_ycRCGq",
+        "logo_CxjfLd",
+        "logo_AY4BCL",
+        "logo_bWMdU7",
+        "logo_GjAcwA",
+        "logo_BGHV7K",
+        "logo_YyG8Mf",
+        "logo_TejpTR",
+        "logo_naz7dg"
+      ],
+      "name": "Logo list",
+      "settings": {}
+    },
     "section_info_v1_pyGdjP": {
       "type": "section-info-v1",
       "name": "INFO V1",
@@ -276,6 +373,7 @@
     "section_service_v1_AEYTQP",
     "section_blog_v2_KdMAdt",
     "section_product_v1_NQJG9z",
+    "logos_list_K4eiwP",
     "section_info_v1_pyGdjP",
     "section_product_v2_tdBRie",
     "shipping_partners_QCQNde"

@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero_section": {
@@ -55,7 +64,12 @@
           }
         }
       },
-      "block_order": ["benefit_time_money", "benefit_health", "benefit_environment"],
+      "block_order": [
+        "benefit_time_money",
+        "benefit_health",
+        "benefit_environment"
+      ],
+      "disabled": true,
       "settings": {
         "title": "The Advantages of E-Bikes",
         "bg_color": "#ffffff",
@@ -140,7 +154,7 @@
         "bg_color": "#f8f9fa",
         "bg_color_newletter": "",
         "bg_color_inputnewletter": "",
-        "border_color_newletter": "#fff",
+        "border_color_newletter": "#ffffff",
         "url_banner": "/collections/e-bikes",
         "title_newletter": "Join the E-Bike Revolution",
         "color_title": "",
