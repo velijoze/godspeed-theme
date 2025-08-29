@@ -9,6 +9,28 @@
  */
 {
   "sections": {
+    "section_banner_v7_EiT8gx": {
+      "type": "section-banner-v7",
+      "name": "BANNER V7",
+      "settings": {
+        "margin_top": "",
+        "margin_bottom": "",
+        "ena_container": false,
+        "ena_margin_top": false,
+        "select_pos": "left",
+        "title_banner": "",
+        "color_title": "#fff",
+        "content_banner": "",
+        "color_content_banner": "#fff",
+        "button_banner": "",
+        "color_btn": "#F3A395",
+        "bg_btn": "#fff",
+        "color_btn_hover": "#fff",
+        "bg_btn_hover": "#F3A395",
+        "url_button": "shopify://collections/all",
+        "img_banner": "shopify://shop_images/bike2work.png"
+      }
+    },
     "sustainability": {
       "type": "sustainability-content",
       "settings": {
@@ -113,48 +135,10 @@
         "margin_top": 0,
         "margin_bottom": 0
       }
-    },
-    "section_banner_v6_zzLKci": {
-      "type": "section-banner-v6",
-      "name": "BANNER V6",
-      "settings": {
-        "img_banner1": "shopify://shop_images/bike2work.png",
-        "url_btn": "shopify://collections/all",
-        "title_banner": "",
-        "color_title": "#fff",
-        "btn_banner": "",
-        "color_btn": "#000",
-        "color_btn_hover": "#fff",
-        "margin_top": "",
-        "margin_bottom": ""
-      }
-    },
-    "section_banner_v7_EiT8gx": {
-      "type": "section-banner-v7",
-      "name": "BANNER V7",
-      "settings": {
-        "margin_top": "",
-        "margin_bottom": "",
-        "ena_container": false,
-        "ena_margin_top": false,
-        "select_pos": "left",
-        "title_banner": "",
-        "color_title": "#fff",
-        "content_banner": "",
-        "color_content_banner": "#fff",
-        "button_banner": "",
-        "color_btn": "#F3A395",
-        "bg_btn": "#fff",
-        "color_btn_hover": "#fff",
-        "bg_btn_hover": "#F3A395",
-        "url_button": "shopify://collections/all",
-        "img_banner": "shopify://shop_images/bike2work.png"
-      }
     }
   },
   "order": [
-    "sustainability",
-    "section_banner_v6_zzLKci",
-    "section_banner_v7_EiT8gx"
+    "section_banner_v7_EiT8gx",
+    "sustainability"
   ]
 }
