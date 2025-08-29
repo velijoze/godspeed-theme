@@ -1,36 +1,19 @@
-{%- comment -%} Modern Shopify font loading with font_picker support {%- endcomment -%}
+{%- comment -%} Font loading for font_picker theme {%- endcomment -%}
 
-{%- comment -%} Load fonts from font_picker settings when available {%- endcomment -%}
-{%- assign has_heading_font = false -%}
-{%- assign has_body_font = false -%}
-{%- assign has_nav_font = false -%}
-
-{%- if settings.heading_font and settings.heading_font.family -%}
-  {%- assign has_heading_font = true -%}
-{%- endif -%}
-{%- if settings.body_font and settings.body_font.family -%}
-  {%- assign has_body_font = true -%}
-{%- endif -%}
-{%- if settings.navigation_font and settings.navigation_font.family -%}
-  {%- assign has_nav_font = true -%}
-{%- endif -%}
-
-{%- comment -%} Output font CSS in proper style tags {%- endcomment -%}
-{%- if has_heading_font or has_body_font or has_nav_font -%}
 <style>
-  {%- if has_heading_font -%}
+  {%- comment -%} Load font_picker fonts properly {%- endcomment -%}
+  {% if settings.heading_font %}
     {{ settings.heading_font | font_face: font_display: 'swap' }}
-  {%- endif -%}
-  {%- if has_body_font -%}
+  {% endif %}
+  {% if settings.body_font %}
     {{ settings.body_font | font_face: font_display: 'swap' }}
-  {%- endif -%}
-  {%- if has_nav_font -%}
+  {% endif %}
+  {% if settings.navigation_font %}
     {{ settings.navigation_font | font_face: font_display: 'swap' }}
-  {%- endif -%}
+  {% endif %}
 </style>
-{%- endif -%}
 
-{%- comment -%} Fallback fonts when no custom fonts are selected {%- endcomment -%}
-{%- unless has_heading_font or has_body_font or has_nav_font -%}
+{%- comment -%} Load fallback font if no custom fonts selected {%- endcomment -%}
+{% unless settings.heading_font and settings.body_font and settings.navigation_font %}
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-{%- endunless -%}
+{% endunless %}

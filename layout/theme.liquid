@@ -38,25 +38,11 @@
   
   {%- comment -%} Critical CSS inline for performance {%- endcomment -%}
   <style>
-    /* Critical CSS - Above the fold styles with dynamic fonts */
+    /* Critical CSS - Above the fold styles with font_picker fonts */
     :root {
-      {% if settings.body_font and settings.body_font.family %}
-        --font-body: {{ settings.body_font.family }}, {{ settings.body_font.fallback_families }};
-      {% else %}
-        --font-body: 'Jost', sans-serif;
-      {% endif %}
-      
-      {% if settings.heading_font and settings.heading_font.family %}
-        --font-heading: {{ settings.heading_font.family }}, {{ settings.heading_font.fallback_families }};
-      {% else %}
-        --font-heading: 'Jost', sans-serif;
-      {% endif %}
-      
-      {% if settings.navigation_font and settings.navigation_font.family %}
-        --font-nav: {{ settings.navigation_font.family }}, {{ settings.navigation_font.fallback_families }};
-      {% else %}
-        --font-nav: 'Jost', sans-serif;
-      {% endif %}
+      --font-body: {% if settings.body_font %}{{ settings.body_font.family }}, {{ settings.body_font.fallback_families }}{% else %}'Jost', sans-serif{% endif %};
+      --font-heading: {% if settings.heading_font %}{{ settings.heading_font.family }}, {{ settings.heading_font.fallback_families }}{% else %}'Jost', sans-serif{% endif %};
+      --font-nav: {% if settings.navigation_font %}{{ settings.navigation_font.family }}, {{ settings.navigation_font.fallback_families }}{% else %}'Jost', sans-serif{% endif %};
     }
     *,*::before,*::after{box-sizing:border-box}
     body{margin:0;font-family:var(--font-body) !important;line-height:1.5;color:#333;background-color:#fff}
