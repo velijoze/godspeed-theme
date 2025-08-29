@@ -31782,3 +31782,32 @@ a[style*="blue"],
 .badge-info {
   background-color: #ff4040 !important;
 }
+
+/* Ensure all orange buttons have white text */
+.btn-primary,
+.btn[style*="{{settings.color_main2}}"],
+.btn[style*="#ff4040"],
+.btn[style*="#FF871D"],
+button[style*="{{settings.color_main2}}"],
+button[style*="#ff4040"],
+button[style*="#FF871D"],
+.workshop-hero .hero-button,
+.test-ride-button,
+.btn.btn-primary {
+  color: #fff !important;
+  background-color: {{settings.color_main2}} !important;
+}
+
+.btn-primary:hover,
+.btn[style*="{{settings.color_main2}}"]:hover,
+.btn[style*="#ff4040"]:hover,
+.btn[style*="#FF871D"]:hover,
+button[style*="{{settings.color_main2}}"]:hover,
+button[style*="#ff4040"]:hover,
+button[style*="#FF871D"]:hover,
+.workshop-hero .hero-button:hover,
+.test-ride-button:hover {
+  color: #fff !important;
+  background-color: {{settings.color_main2}} !important;
+  opacity: 0.9;
+}
