@@ -191,41 +191,41 @@
     "section_product_v2_tdBRie": {
       "type": "section-product-v2",
       "blocks": {
-        "tab_g86zNz": {
-          "type": "tab",
-          "settings": {
-            "tab_title": "NEW ARRIVALS",
-            "tab_collection": "cube",
-            "tab_limit": 8
-          }
-        },
         "tab_m44Vek": {
           "type": "tab",
           "settings": {
-            "tab_title": "BEST SELLERS",
+            "tab_title": "Riese & muller",
             "tab_collection": "riese-muller",
+            "tab_limit": 8
+          }
+        },
+        "tab_g86zNz": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "CUBE",
+            "tab_collection": "cube",
             "tab_limit": 8
           }
         },
         "tab_VU9geH": {
           "type": "tab",
           "settings": {
-            "tab_title": "TOP RATES",
+            "tab_title": "Benno",
             "tab_collection": "featured-1",
             "tab_limit": 8
           }
         }
       },
       "block_order": [
-        "tab_g86zNz",
         "tab_m44Vek",
+        "tab_g86zNz",
         "tab_VU9geH"
       ],
       "name": "PRODUCT V2",
       "settings": {
         "margin_top": "",
         "margin_bottom": "",
-        "title_heading": "Our Best Seller",
+        "title_heading": "Our Best Sellers",
         "color_title": "#222222"
       }
     },
