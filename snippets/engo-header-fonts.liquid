@@ -1,42 +1,28 @@
-{% if settings.font_type == 'google_fonts' %}
+{%- comment -%} Modern Shopify font loading with font_picker support {%- endcomment -%}
 
-{% assign fonts_1 = false %}
-{% if settings.fonts_name_1 != blank %}
-{% assign fonts_1 = true %}
-{% endif %}
+{%- comment -%} 
+  For now, disable font_face filter to avoid CSS display issues
+  This will use legacy font loading until the font_face issue is resolved
+{%- endcomment -%}
 
-
-
-
-<script type="text/javascript">
-  WebFontConfig = {
-    google: { families: [ 
-      {% if fonts_1 %}
-      '{{ settings.fonts_name_1 }}:100,200,300,400,500,600,700,800,900'
-      {% endif %}
-
-    ] }
-  };
-  (function() {
-    var wf = document.createElement('script');
-    wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
-      '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
-    wf.type = 'text/javascript';
-    wf.async = 'true';
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(wf, s);
-  })(); 
-</script>
+{%- comment -%} Legacy font support - always used for now {%- endcomment -%}
+{% if settings.font_type == 'google_fonts' and settings.fonts_name_1 != blank %}
+  <link href="https://fonts.googleapis.com/css2?family={{ settings.fonts_name_1 | url_encode }}:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+{% elsif settings.font_type == 'normal_fonts' %}
+  <link href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
 {% else %}
-
-<link href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Oswald=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans=swap" rel="stylesheet">
-
-
-
+  {%- comment -%} Default fallback to Jost font {%- endcomment -%}
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 {% endif %}
+
+{%- comment -%} 
+  NOTE: Modern font_picker fonts will be implemented properly later
+  The font_picker settings are available in the customizer but currently 
+  fall back to legacy font loading to avoid CSS display issues
+{%- endcomment -%}
