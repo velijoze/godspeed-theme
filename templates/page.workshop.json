@@ -79,59 +79,6 @@
         "margin_bottom": 0
       }
     },
-    "workshop_testimonials_ecMEaH": {
-      "type": "workshop-testimonials",
-      "blocks": {
-        "testimonial_kjQBXB": {
-          "type": "testimonial",
-          "settings": {
-            "quote": "Outstanding service! They diagnosed my e-bike issues quickly and had it running like new. The team really knows their stuff and explained everything clearly.",
-            "author": "Marco Rossi",
-            "author_title": "Daily Commuter",
-            "workshop_name": "Complete System Analysis & Repair",
-            "rating": 5
-          }
-        },
-        "testimonial_EXybTL": {
-          "type": "testimonial",
-          "settings": {
-            "quote": "Outstanding service! They diagnosed my e-bike issues quickly and had it running like new. The team really knows their stuff and explained everything clearly.",
-            "author": "Marco Rossi",
-            "author_title": "Daily Commuter",
-            "workshop_name": "Complete System Analysis & Repair",
-            "rating": 5
-          }
-        },
-        "testimonial_AM6q4L": {
-          "type": "testimonial",
-          "settings": {
-            "quote": "Outstanding service! They diagnosed my e-bike issues quickly and had it running like new. The team really knows their stuff and explained everything clearly.",
-            "author": "Marco Rossi",
-            "author_title": "Daily Commuter",
-            "workshop_name": "Complete System Analysis & Repair",
-            "rating": 5
-          }
-        }
-      },
-      "block_order": [
-        "testimonial_kjQBXB",
-        "testimonial_EXybTL",
-        "testimonial_AM6q4L"
-      ],
-      "name": "Workshop - Testimonials",
-      "settings": {
-        "show_title": true,
-        "title": "What Our Customers Say",
-        "subtitle": "Hear from cyclists who trust us with their bike service and maintenance needs.",
-        "show_cta": true,
-        "cta_text": "Schedule Your Service",
-        "cta_link": "",
-        "color_title": "#333",
-        "color_subtitle": "#6c757d",
-        "margin_top": 0,
-        "margin_bottom": 0
-      }
-    },
     "workshop_booking_9nbtNN": {
       "type": "workshop-booking",
       "blocks": {
@@ -172,6 +119,59 @@
       "settings": {
         "booking_title": "Schedule Your Service",
         "booking_subtitle": "Ready to give your bike the care it deserves? Schedule your service appointment today. Contact us at +41 91 224 53 44 or info@godspeed.ch",
+        "color_title": "#333",
+        "color_subtitle": "#6c757d",
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
+    },
+    "workshop_testimonials_ecMEaH": {
+      "type": "workshop-testimonials",
+      "blocks": {
+        "testimonial_kjQBXB": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Outstanding service! They diagnosed my e-bike issues quickly and had it running like new. The team really knows their stuff and explained everything clearly.",
+            "author": "Anna Keller",
+            "author_title": "Mountain Rider",
+            "workshop_name": "Complete System Analysis & Repair",
+            "rating": 5
+          }
+        },
+        "testimonial_EXybTL": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "I brought my Cube in for a full check-up and was impressed by the detailed diagnostics. Professional, fast, and very transparent.",
+            "author": "Marco Rossi",
+            "author_title": "Daily Commuter",
+            "workshop_name": "Complete System Analysis & Repair",
+            "rating": 5
+          }
+        },
+        "testimonial_AM6q4L": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "“Finally a workshop that cares about both the bike and the rider. Clear communication, eco-friendly cleaning, and top-quality repairs.”",
+            "author": "Luca Bernasconi",
+            "author_title": "Daily Commuter",
+            "workshop_name": "Complete System Analysis & Repair",
+            "rating": 5
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_kjQBXB",
+        "testimonial_EXybTL",
+        "testimonial_AM6q4L"
+      ],
+      "name": "Workshop - Testimonials",
+      "settings": {
+        "show_title": true,
+        "title": "What Our Customers Say",
+        "subtitle": "Hear from cyclists who trust us with their bike service and maintenance needs.",
+        "show_cta": false,
+        "cta_text": "Schedule Your Service",
+        "cta_link": "",
         "color_title": "#333",
         "color_subtitle": "#6c757d",
         "margin_top": 0,
