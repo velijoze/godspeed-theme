@@ -18,44 +18,38 @@
         "select_style_bread": "style_1"
       }
     },
-    "sub_collection1_template_XBkKnK": {
-      "type": "sub-collection1-template",
-      "blocks": {
-        "collection_AwjHMr": {
-          "type": "collection",
-          "settings": {
-            "block_collection": "riese-muller"
-          }
-        },
-        "collection_GBqBf6": {
-          "type": "collection",
-          "settings": {
-            "block_collection": "featured-1"
-          }
-        },
-        "collection_8M9ihM": {
-          "type": "collection",
-          "settings": {
-            "block_collection": "cube"
-          }
-        }
-      },
-      "block_order": [
-        "collection_AwjHMr",
-        "collection_GBqBf6",
-        "collection_8M9ihM"
-      ],
-      "name": "Collection sub v1",
+    "collection_template_eCzLGq": {
+      "type": "collection-template",
+      "name": "Collection Page",
       "settings": {
-        "margin_top": "",
-        "margin_bottom": "",
-        "enable_info_collection": true,
-        "prod_per_row": "prod_col_12"
+        "select_style_bread": "style_1",
+        "ena_bg_img": false,
+        "bg_color_breadcrumb": "#fff",
+        "color_breadcrumb": "#000",
+        "collection_layout": "full_width",
+        "prod_per_page": 8,
+        "prod_layout": "prod_grid",
+        "prod_per_row": "prod_col_4",
+        "filter_layout": "filter_draw",
+        "sidebar_layout": "sidebar_left",
+        "ena_sticky_sidebar": true,
+        "ena_banner_mordern": true,
+        "big_title": "A NEW COLLECTION",
+        "mini_title": "SALE UP TO 30%",
+        "btn_title": "Shop Now",
+        "bannerfull_url": "",
+        "color_title": "#fff",
+        "ena_best_seller": false,
+        "title_heading": "BEST SELLERS",
+        "select_collection": "",
+        "products_limit": 6,
+        "ena_filter": true,
+        "ena_filter2": true
       }
     }
   },
   "order": [
     "main",
-    "sub_collection1_template_XBkKnK"
+    "collection_template_eCzLGq"
   ]
 }
