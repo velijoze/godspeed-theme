@@ -36,7 +36,7 @@
         "title_heading": "FEATURED",
         "color_title": "#222222",
         "select_collection": "featured-2",
-        "products_limit": 8,
+        "products_limit": 4,
         "buttom_name": "Load More",
         "button_name_url": "shopify://collections/accessories-general",
         "margin_top": "",
@@ -111,7 +111,7 @@
       "settings": {
         "margin_top": "",
         "margin_bottom": "",
-        "bg_section": "#ff0000"
+        "bg_section": "#222222"
       }
     },
     "section_blog_v2_KdMAdt": {
