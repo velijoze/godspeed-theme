@@ -9,14 +9,6 @@
  */
 {
   "sections": {
-    "hero_section": {
-      "type": "section-banner-v1",
-      "settings": {
-        "color_title": "#ffffff",
-        "margin_top": "",
-        "margin_bottom": ""
-      }
-    },
     "philosophy_section": {
       "type": "section-info-v1",
       "settings": {
@@ -49,23 +41,23 @@
         "benefit_time_money": {
           "type": "service",
           "settings": {
-            "block_icon_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><polyline points=\"12,6 12,12 16,14\"></polyline></svg>",
+            "block_icon_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><polyline points=\"12,6 12,12 16,14\"></polyline></svg>",
             "block_title": "Time & Money Savings",
             "block_content": "Reach your destination quickly while avoiding traffic jams, parking searches, and expensive fines. Maintenance and insurance costs are minimal compared to cars or public transport."
           }
         },
-        "benefit_health": {
+        "service_EJcyiX": {
           "type": "service",
           "settings": {
-            "block_icon_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7z\"></path></svg>",
-            "block_title": "Health Benefits",
-            "block_content": "Daily movement in fresh air contributes to physical and mental well-being. E-bikes provide just the right support on challenging routes, letting you arrive fresh and energized."
+            "block_icon_svg": "",
+            "block_title": "Design",
+            "block_content": "Praesent metus tellus, elementum eu, semper Vestibulum volutpat pretium libero"
           }
         },
         "benefit_environment": {
           "type": "service",
           "settings": {
-            "block_icon_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21.54 15.88A17.9 17.9 0 0 0 12 2.56a17.9 17.9 0 0 0-9.54 13.32 8 8 0 1 0 19.08 0z\"></path></svg>",
+            "block_icon_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21.54 15.88A17.9 17.9 0 0 0 12 2.56a17.9 17.9 0 0 0-9.54 13.32 8 8 0 1 0 19.08 0z\"></path></svg>",
             "block_title": "Environmental Impact",
             "block_content": "E-bikes emit no harmful gases, reducing air and noise pollution significantly. Even disposal has far less environmental impact than cars – every bike means one less car on the road."
           }
@@ -73,9 +65,10 @@
       },
       "block_order": [
         "benefit_time_money",
-        "benefit_health",
+        "service_EJcyiX",
         "benefit_environment"
       ],
+      "disabled": true,
       "settings": {
         "enable_s_servicebox": true
       }
@@ -119,14 +112,6 @@
         "margin_bottom": "60px"
       }
     },
-    "cta_section": {
-      "type": "section-banner-v1",
-      "settings": {
-        "color_title": "#ffffff",
-        "margin_top": "",
-        "margin_bottom": ""
-      }
-    },
     "newsletter_section": {
       "type": "section-newsletter-v1",
       "settings": {
@@ -136,7 +121,7 @@
         "bg_color": "#f8f9fa",
         "bg_color_newletter": "",
         "bg_color_inputnewletter": "",
-        "border_color_newletter": "#fff",
+        "border_color_newletter": "#ffffff",
         "url_banner": "/collections/e-bikes",
         "title_newletter": "Join the E-Bike Revolution",
         "color_title": "",
@@ -148,14 +133,12 @@
     }
   },
   "order": [
-    "hero_section",
     "philosophy_section",
     "bike_vs_car_section",
     "benefits_section",
     "why_godspeed_section",
     "revolution_section",
     "quote_section",
-    "cta_section",
     "newsletter_section"
   ]
 }
