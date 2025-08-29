@@ -4,6 +4,15 @@
   Usage: {% render 'test-ride-button', product: product %}
 {% endcomment %}
 
+{% assign is_bike = false %}
+{% for collection in product.collections %}
+  {% if collection.handle contains 'bike' or collection.handle contains 'e-bike' or collection.handle contains 'bicycle' %}
+    {% assign is_bike = true %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% if product.available and is_bike %}
 <div class="test-ride-button-wrapper">
   <button class="btn-test-ride" onclick="openTestRideModal({
     id: {{ product.id }},
@@ -85,3 +94,6 @@
   }
 }
 </style>
+
+</div>
+{% endif %}
