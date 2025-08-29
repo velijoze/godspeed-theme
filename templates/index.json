@@ -30,6 +30,48 @@
         "margin_bottom": ""
       }
     },
+    "section_service_v2_qfprta": {
+      "type": "section-service-v2",
+      "blocks": {
+        "service_VqNyVe": {
+          "type": "service",
+          "settings": {
+            "block_number": "",
+            "img_icon": "shopify://shop_images/mode_heat_80dp_FF4040_FILL0_wght0_GRAD0_opsz48.svg",
+            "block_title": "Founded on Passion",
+            "block_content": ""
+          }
+        },
+        "service_zJ7nNR": {
+          "type": "service",
+          "settings": {
+            "block_number": "2",
+            "img_icon": "shopify://shop_images/diversity_4_80dp_FF4040_FILL0_wght0_GRAD0_opsz48.svg",
+            "block_title": "Powered by Community",
+            "block_content": ""
+          }
+        },
+        "service_mYUNtT": {
+          "type": "service",
+          "settings": {
+            "block_number": "3",
+            "img_icon": "shopify://shop_images/pedal_bike_80dp_FF4040_FILL0_wght0_GRAD0_opsz48.svg",
+            "block_title": "Freedom on Two Wheels",
+            "block_content": ""
+          }
+        }
+      },
+      "block_order": [
+        "service_VqNyVe",
+        "service_zJ7nNR",
+        "service_mYUNtT"
+      ],
+      "name": "SERVICE V2",
+      "settings": {
+        "margin_top": "",
+        "margin_bottom": ""
+      }
+    },
     "163711855463067829": {
       "type": "section-product-v4",
       "settings": {
@@ -43,20 +85,21 @@
         "margin_bottom": ""
       }
     },
-    "section_product_v6_hHBLXm": {
-      "type": "section-product-v6",
-      "name": "PRODUCT V6",
+    "section_product_v5_jeNMfa": {
+      "type": "section-product-v5",
+      "name": "PRODUCT V5",
       "settings": {
-        "section_layout": "banner_left",
+        "select_collection": "lights",
+        "products_limit": 2,
         "img_banner1": "shopify://shop_images/5S5A2675.jpg",
         "button_1": "Shop now",
-        "url_button1": "shopify://collections/all",
-        "color_btn": "",
-        "bg_btn": "#ffffff",
-        "color_btn_hover": "#ffffff",
-        "bg_btn_hover": "#88c000",
-        "select_collection": "lights",
-        "products_limit": 4,
+        "url_banner1": "shopify://collections/all",
+        "color_btn": "#ffffff",
+        "color_hover_button": "#ffffff",
+        "bgcolor_btn": "#000000",
+        "bg_hovercolor_buton": "#000000",
+        "select_collection2": "helmets",
+        "products_limit2": 2,
         "margin_top": "",
         "margin_bottom": ""
       }
@@ -109,8 +152,8 @@
       ],
       "name": "SERVICE BOX",
       "settings": {
-        "margin_top": "",
-        "margin_bottom": "",
+        "margin_top": "50",
+        "margin_bottom": "50",
         "bg_section": "#222222"
       }
     },
@@ -143,49 +186,21 @@
         "select_collection": "under-3000-chf",
         "products_limit": 4,
         "margin_top": "",
-        "margin_bottom": ""
+        "margin_bottom": "50"
       }
     },
-    "section_service_v2_qfprta": {
-      "type": "section-service-v2",
-      "blocks": {
-        "service_VqNyVe": {
-          "type": "service",
-          "settings": {
-            "block_number": "",
-            "img_icon": "shopify://shop_images/mode_heat_80dp_FF4040_FILL0_wght0_GRAD0_opsz48.svg",
-            "block_title": "Founded on Passion",
-            "block_content": ""
-          }
-        },
-        "service_zJ7nNR": {
-          "type": "service",
-          "settings": {
-            "block_number": "2",
-            "img_icon": "shopify://shop_images/diversity_4_80dp_FF4040_FILL0_wght0_GRAD0_opsz48.svg",
-            "block_title": "Powered by Community",
-            "block_content": ""
-          }
-        },
-        "service_mYUNtT": {
-          "type": "service",
-          "settings": {
-            "block_number": "3",
-            "img_icon": "shopify://shop_images/pedal_bike_80dp_FF4040_FILL0_wght0_GRAD0_opsz48.svg",
-            "block_title": "Freedom on Two Wheels",
-            "block_content": ""
-          }
-        }
-      },
-      "block_order": [
-        "service_VqNyVe",
-        "service_zJ7nNR",
-        "service_mYUNtT"
-      ],
-      "name": "SERVICE V2",
+    "section_info_v1_pyGdjP": {
+      "type": "section-info-v1",
+      "name": "INFO V1",
       "settings": {
-        "margin_top": "50",
-        "margin_bottom": "50"
+        "title_info": "Surprising Health Benefits Of Green Tea",
+        "color_title_info": "",
+        "content_info": "We don’t just sell bikes — we back them with service, advice, and years of experience. Every model we stock is chosen for Swiss roads, mountains, and riders. Whether you’re buying your first e-bike or maintaining a fleet, Godspeed delivers reliable solutions, transparent advice, and the largest service network in Ticino.",
+        "color_content_info": "",
+        "more_about": "More about us",
+        "url_banner": "shopify://pages/about-us",
+        "margin_top": "",
+        "margin_bottom": ""
       }
     },
     "section_product_v2_tdBRie": {
@@ -223,41 +238,46 @@
       ],
       "name": "PRODUCT V2",
       "settings": {
-        "margin_top": "",
+        "margin_top": "50",
         "margin_bottom": "",
         "title_heading": "Our Best Sellers",
         "color_title": "#222222"
       }
     },
-    "section_product_v5_jeNMfa": {
-      "type": "section-product-v5",
-      "name": "PRODUCT V5",
+    "shipping_partners_QCQNde": {
+      "type": "shipping-partners",
+      "name": "Shipping Partners",
       "settings": {
-        "select_collection": "lights",
-        "products_limit": 2,
-        "img_banner1": "shopify://shop_images/5S5A2675.jpg",
-        "button_1": "Shop now",
-        "url_banner1": "shopify://collections/all",
-        "color_btn": "#ffffff",
-        "color_hover_button": "#ffffff",
-        "bgcolor_btn": "#000000",
-        "bg_hovercolor_buton": "#000000",
-        "select_collection2": "helmets",
-        "products_limit2": 2,
-        "margin_top": "",
-        "margin_bottom": ""
+        "title": "Our Shipping Partners",
+        "description": "We work with trusted shipping partners to deliver your orders safely and efficiently.",
+        "partner1_logo": "shopify://shop_images/Logo_Swiss_Post_svg.png",
+        "partner1_name": "",
+        "partner1_url": "",
+        "partner2_logo": "shopify://shop_images/dhl-1-logo-png-transparent.png",
+        "partner2_name": "",
+        "partner2_url": "",
+        "partner3_logo": "shopify://shop_images/mobile-schlauchrecycling-ch-zibatra-logo.jpg",
+        "partner3_name": "",
+        "partner3_url": "",
+        "partner4_name": "",
+        "partner4_url": "",
+        "partner5_name": "",
+        "partner5_url": "",
+        "partner6_name": "",
+        "partner6_url": ""
       }
     }
   },
   "order": [
     "section_banner_v2_rhQT93",
+    "section_service_v2_qfprta",
     "163711855463067829",
-    "section_product_v6_hHBLXm",
+    "section_product_v5_jeNMfa",
     "section_service_v1_AEYTQP",
     "section_blog_v2_KdMAdt",
     "section_product_v1_NQJG9z",
-    "section_service_v2_qfprta",
+    "section_info_v1_pyGdjP",
     "section_product_v2_tdBRie",
-    "section_product_v5_jeNMfa"
+    "shipping_partners_QCQNde"
   ]
 }
