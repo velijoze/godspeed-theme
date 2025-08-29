@@ -121,6 +121,66 @@
         "margin_bottom": 0
       }
     },
+    "about_template_v2_KM8f44": {
+      "type": "about-template-v2",
+      "blocks": {
+        "teams_m79t3i": {
+          "type": "teams",
+          "settings": {
+            "people_teams_image": "shopify://shop_images/GodSpeed-39_1.jpg",
+            "block_people_teams": "Assaf",
+            "block_position_teams": "Chief of Service",
+            "link_people_teams": ""
+          }
+        },
+        "teams_8fF9T3": {
+          "type": "teams",
+          "settings": {
+            "people_teams_image": "shopify://shop_images/marchino_310a5109-be97-4f6e-bf4b-c61eb91dd69a.jpg",
+            "block_people_teams": "Marchino",
+            "block_position_teams": "Senior Mechanic",
+            "link_people_teams": ""
+          }
+        },
+        "teams_DeY4y9": {
+          "type": "teams",
+          "settings": {
+            "people_teams_image": "shopify://shop_images/giorgio_eedb1e11-87e7-4f22-97d1-e8cdc0bedae0.jpg",
+            "block_people_teams": "Giorgio",
+            "block_position_teams": "Main Assembler",
+            "link_people_teams": "/collections/all"
+          }
+        }
+      },
+      "block_order": [
+        "teams_m79t3i",
+        "teams_8fF9T3",
+        "teams_DeY4y9"
+      ],
+      "name": "People In Teams",
+      "settings": {
+        "enable_slide": false,
+        "bg_breadcrumb": "shopify://shop_images/officina-locarno_3.png",
+        "enable_about_top": false,
+        "title_abouttop": "Unique & Stylist Fashion We Are An Awesome Agency.",
+        "description_abouttop": "I am a highly organised and motivated professional Fashion Designer with a wealth of experience in a range of photographic styles and services. Just run your Fashion Store which will be a reflection of you a sexy and confident woman that shines with her unique style. Our goal is to make fashion as easy possible. We bring you the best of glam and sexy clothes while keeping in mind that high quality things arent always too expensive. Our goal is to make fashion as easy as possible, that is why we add carefully selected products on a daily basis, and this is essential for us. This is how you keep up with the times in style! We ship worldwide & space!",
+        "button_about_top": "EXPLORE MORE",
+        "link_abouttop": "shopify://collections/all",
+        "enable_video": false,
+        "url_section_video": "",
+        "enable_teams": true,
+        "title_teams": "THE BOYS FROM DOWNSTAIRS",
+        "description_teams": "",
+        "enable_store": false,
+        "title_store": "Store in the world",
+        "description_store": "Quisque vitae nibh iaculis neque blandit hendrerit euismod.Maecenas sit amet purus eget ipsum elementum venenatis. Aenean maximus urna magna, quis rutrum mi semper non. Cras rhoncus elit non arcu hendrerit rhoncus sit amet purus eget ipsum.",
+        "urlimage_store1": "shopify://collections/all",
+        "urlimage_store2": "shopify://collections/all",
+        "urlimage_store3": "shopify://collections/all",
+        "urlimage_store4": "shopify://collections/all",
+        "enable_address": true
+      }
+    },
     "workshop_testimonials_ecMEaH": {
       "type": "workshop-testimonials",
       "blocks": {
@@ -173,81 +233,13 @@
         "margin_top": 0,
         "margin_bottom": 0
       }
-    },
-    "about_template_v2_KM8f44": {
-      "type": "about-template-v2",
-      "blocks": {
-        "teams_m79t3i": {
-          "type": "teams",
-          "settings": {
-            "people_teams_image": "shopify://shop_images/GodSpeed-39_1.jpg",
-            "block_people_teams": "Assaf",
-            "block_position_teams": "Chief",
-            "link_people_teams": ""
-          }
-        },
-        "teams_8fF9T3": {
-          "type": "teams",
-          "settings": {
-            "people_teams_image": "shopify://shop_images/marchino_310a5109-be97-4f6e-bf4b-c61eb91dd69a.jpg",
-            "block_people_teams": "Marchino",
-            "block_position_teams": "Senior Mechanic",
-            "link_people_teams": ""
-          }
-        },
-        "teams_DeY4y9": {
-          "type": "teams",
-          "settings": {
-            "people_teams_image": "shopify://shop_images/giorgio_eedb1e11-87e7-4f22-97d1-e8cdc0bedae0.jpg",
-            "block_people_teams": "Giorgio",
-            "block_position_teams": "Main Assembler",
-            "link_people_teams": "/collections/all"
-          }
-        },
-        "teams_xYKcze": {
-          "type": "teams",
-          "settings": {
-            "block_people_teams": "Sebastian Reave",
-            "block_position_teams": "Art Director",
-            "link_people_teams": "/collections/all"
-          }
-        }
-      },
-      "block_order": [
-        "teams_m79t3i",
-        "teams_8fF9T3",
-        "teams_DeY4y9",
-        "teams_xYKcze"
-      ],
-      "name": "People In Teams",
-      "settings": {
-        "enable_slide": false,
-        "enable_about_top": false,
-        "title_abouttop": "Unique & Stylist Fashion We Are An Awesome Agency.",
-        "description_abouttop": "I am a highly organised and motivated professional Fashion Designer with a wealth of experience in a range of photographic styles and services. Just run your Fashion Store which will be a reflection of you a sexy and confident woman that shines with her unique style. Our goal is to make fashion as easy possible. We bring you the best of glam and sexy clothes while keeping in mind that high quality things arent always too expensive. Our goal is to make fashion as easy as possible, that is why we add carefully selected products on a daily basis, and this is essential for us. This is how you keep up with the times in style! We ship worldwide & space!",
-        "button_about_top": "EXPLORE MORE",
-        "link_abouttop": "shopify://collections/all",
-        "enable_video": true,
-        "url_section_video": "",
-        "enable_teams": true,
-        "title_teams": "Meet Our Teams",
-        "description_teams": "Donec sed odio dui. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, <br> ut fermentum massa justo. condimentum nibh.",
-        "enable_store": true,
-        "title_store": "Store in the world",
-        "description_store": "Quisque vitae nibh iaculis neque blandit hendrerit euismod.Maecenas sit amet purus eget ipsum elementum venenatis. Aenean maximus urna magna, quis rutrum mi semper non. Cras rhoncus elit non arcu hendrerit rhoncus sit amet purus eget ipsum.",
-        "urlimage_store1": "shopify://collections/all",
-        "urlimage_store2": "shopify://collections/all",
-        "urlimage_store3": "shopify://collections/all",
-        "urlimage_store4": "shopify://collections/all",
-        "enable_address": true
-      }
     }
   },
   "order": [
     "workshop_hero_DAfQqB",
     "workshop_content_MiYzGU",
     "workshop_booking_9nbtNN",
-    "workshop_testimonials_ecMEaH",
-    "about_template_v2_KM8f44"
+    "about_template_v2_KM8f44",
+    "workshop_testimonials_ecMEaH"
   ]
 }
