@@ -1,19 +1,142 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
       "type": "main-page",
       "settings": {}
     },
-    "rich_text": {
-      "type": "rich-text",
+    "workshop_hero_DAfQqB": {
+      "type": "workshop-hero",
+      "name": "Workshop - Hero",
       "settings": {
-        "title": "Workshop & Service Center",
-        "text": "<p>Professional bicycle and e-bike service at Switzerland's premier workshop.</p>"
+        "hero_image": "shopify://shop_images/5S5A5823.jpg",
+        "hero_title": "Workshop & Service Center",
+        "hero_subtitle": "Expert Bicycle Care at Switzerland's Premier E-Bike Service Center. Keep your e-bike and bicycle running smoothly with professional maintenance and repairs from our certified technicians.",
+        "hero_button_text": "Schedule Your Service",
+        "hero_button_link": "shopify://pages/workshop",
+        "show_scroll_indicator": true,
+        "color_title": "#f8f9fa",
+        "color_subtitle": "#f8f9fa",
+        "bg_btn": "#ff4040",
+        "color_btn": "#fff",
+        "hover_bg_btn": "#0056b3",
+        "hover_color_btn": "#fff",
+        "overlay_opacity": 0.4,
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
+    },
+    "workshop_content_MiYzGU": {
+      "type": "workshop-content",
+      "blocks": {
+        "content_block_87C3pe": {
+          "type": "content_block",
+          "settings": {
+            "block_title": "Our Services",
+            "block_text": "<h4>Complete System Analysis & Diagnostics</h4><ul><li>Battery diagnosis and capacity testing</li><li>E-bike system visual inspection and maintenance</li><li>Error code analysis and resolution</li><li>Component cleaning and lubrication</li><li>Support level testing and calibration</li><li>Performance certification and consultation</li></ul><h4>General Maintenance & Repairs</h4><ul><li>Functional checks of drive and electrical systems</li><li>Frame, fork, and wheel inspections</li><li>Brake system maintenance and adjustments</li><li>Gear tuning and drivetrain optimization</li><li>Chain maintenance and replacement</li><li>Tire and tube services</li><li>Light system checks and repairs</li></ul>",
+            "block_button_text": "",
+            "block_link": ""
+          }
+        },
+        "content_block_FKYDgc": {
+          "type": "content_block",
+          "settings": {
+            "block_title": "Booking Your Service",
+            "block_text": "<h4>Easy Appointment Scheduling</h4><ul><li>Online booking system available</li><li>Flexible timeframes to fit your schedule</li><li>Progress updates throughout the service</li><li>While-you-wait repairs for quick fixes</li></ul><h4>What to Bring</h4><ul><li>Your bicycle or e-bike</li><li>Any accessories that need attention</li><li>Proof of purchase (for warranty work)</li><li>Description of any issues you've noticed</li></ul><h4>Contact</h4><p><strong>Workshop Direct Line:</strong> +41 91 224 53 44<br/><strong>Workshop Email:</strong> info@godspeed.ch</p><h4>Workshop Hours:</h4><ul><li>Tuesday - Friday: 9:00 - 18:00</li><li>Saturday: 9:00 - 17:00</li><li>Sunday & Monday: Closed</li></ul>",
+            "block_button_text": "",
+            "block_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "content_block_87C3pe",
+        "content_block_FKYDgc"
+      ],
+      "name": "Workshop - Content",
+      "settings": {
+        "show_title": true,
+        "content_title": "Largest Service Center in Ticino",
+        "content_subtitle": "Located at our Lugano flagship store, our workshop is equipped with the latest diagnostic equipment and certified mechanics.",
+        "content_text": "<p>Located at our Lugano flagship store, our workshop is equipped with:</p><ul><li>Latest diagnostic equipment for all e-bike systems</li><li>Certified mechanics with specialized e-bike training</li><li>Comprehensive parts inventory</li><li>Environmental-friendly cleaning solutions</li><li>State-of-the-art tools and facilities</li></ul>",
+        "show_content_blocks": true,
+        "show_sidebar": true,
+        "sidebar_title": "What Makes Us Different",
+        "sidebar_content": "<ul><li>All brands accepted - We service any bicycle or e-bike</li><li>No job too small or complex - From basic tune-ups to complete overhauls</li><li>Clear explanations - We help you understand your bike's needs</li><li>Long-term focus - Solutions that extend your bike's life</li><li>Eco-conscious approach - Environmentally responsible service methods</li><li>Quality guarantee on all work performed</li></ul><h4>Maintenance Tips</h4><p><strong>Keep Your E-Bike Running Smoothly</strong></p><ul><li>Regular cleaning - Wipe down after rides, especially in wet conditions</li><li>Battery care - Charge regularly, store in moderate temperatures</li><li>Tire pressure - Check monthly for optimal performance</li><li>Chain lubrication - Clean and lubricate every 200-300km</li><li>Professional service - Annual tune-up recommended</li></ul><h4>All Brands Welcome</h4><p>We service all bicycle and e-bike brands, including:</p><ul><li>Cube, Trek, Specialized, Giant</li><li>Bosch, Shimano, Yamaha systems</li><li>Traditional bicycles of any make</li><li>Custom and specialty builds</li></ul><p>Don't see your brand listed? Contact us - we likely service it!</p>",
+        "show_sidebar_cta": false,
+        "sidebar_cta_text": "Book Service Now",
+        "sidebar_cta_link": "",
+        "color_title": "#333",
+        "color_subtitle": "#6c757d",
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
+    },
+    "workshop_testimonials_ecMEaH": {
+      "type": "workshop-testimonials",
+      "blocks": {
+        "testimonial_kjQBXB": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Outstanding service! They diagnosed my e-bike issues quickly and had it running like new. The team really knows their stuff and explained everything clearly.",
+            "author": "Marco Rossi",
+            "author_title": "Daily Commuter",
+            "workshop_name": "Complete System Analysis & Repair",
+            "rating": 5
+          }
+        },
+        "testimonial_EXybTL": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Outstanding service! They diagnosed my e-bike issues quickly and had it running like new. The team really knows their stuff and explained everything clearly.",
+            "author": "Marco Rossi",
+            "author_title": "Daily Commuter",
+            "workshop_name": "Complete System Analysis & Repair",
+            "rating": 5
+          }
+        },
+        "testimonial_AM6q4L": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Outstanding service! They diagnosed my e-bike issues quickly and had it running like new. The team really knows their stuff and explained everything clearly.",
+            "author": "Marco Rossi",
+            "author_title": "Daily Commuter",
+            "workshop_name": "Complete System Analysis & Repair",
+            "rating": 5
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_kjQBXB",
+        "testimonial_EXybTL",
+        "testimonial_AM6q4L"
+      ],
+      "name": "Workshop - Testimonials",
+      "settings": {
+        "show_title": true,
+        "title": "What Our Customers Say",
+        "subtitle": "Hear from cyclists who trust us with their bike service and maintenance needs.",
+        "show_cta": true,
+        "cta_text": "Schedule Your Service",
+        "cta_link": "",
+        "color_title": "#333",
+        "color_subtitle": "#6c757d",
+        "margin_top": 0,
+        "margin_bottom": 0
       }
     }
   },
   "order": [
     "main",
-    "rich_text"
+    "workshop_hero_DAfQqB",
+    "workshop_content_MiYzGU",
+    "workshop_testimonials_ecMEaH"
   ]
 }
