@@ -3976,8 +3976,8 @@
         "settings": {
           "select_hds": "header_v2",
           "hd_home_color_text": "#ffffff",
-          "hd_home_enable_transparents": false,
-          "hd_home_bg_header_normal": "#403b46",
+          "hd_home_enable_transparents": true,
+          "hd_home_bg_header_normal": "#222222",
           "hd_bg_header_opacity": 1,
           "enable_sticky_hd_home": false,
           "hd_home_logo": "shopify://shop_images/GODSPEED_LOGO_WHITE.png",
