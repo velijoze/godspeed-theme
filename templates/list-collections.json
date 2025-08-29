@@ -1,1 +1,61 @@
-{"sections":{"main":{"type":"list-collection","settings":{"ena_bg_img":true,"bg_breadcrumb":"shopify:\/\/shop_images\/bn_blog_fe02adcf-746c-45b4-bce5-25be1f5578e6.jpg","bg_color_breadcrumb":"#ffffff","color_breadcrumb":"#ffffff","select_style_bread":"style_2"}}},"order":["main"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "list-collection",
+      "settings": {
+        "ena_bg_img": true,
+        "bg_color_breadcrumb": "#ffffff",
+        "color_breadcrumb": "#ffffff",
+        "select_style_bread": "style_1"
+      }
+    },
+    "sub_collection1_template_XBkKnK": {
+      "type": "sub-collection1-template",
+      "blocks": {
+        "collection_AwjHMr": {
+          "type": "collection",
+          "settings": {
+            "block_collection": "riese-muller"
+          }
+        },
+        "collection_GBqBf6": {
+          "type": "collection",
+          "settings": {
+            "block_collection": "featured-1"
+          }
+        },
+        "collection_8M9ihM": {
+          "type": "collection",
+          "settings": {
+            "block_collection": "cube"
+          }
+        }
+      },
+      "block_order": [
+        "collection_AwjHMr",
+        "collection_GBqBf6",
+        "collection_8M9ihM"
+      ],
+      "name": "Collection sub v1",
+      "settings": {
+        "margin_top": "",
+        "margin_bottom": "",
+        "enable_info_collection": true,
+        "prod_per_row": "prod_col_12"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "sub_collection1_template_XBkKnK"
+  ]
+}
