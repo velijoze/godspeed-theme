@@ -29,7 +29,7 @@
         "color_btn": "#fff",
         "hover_bg_btn": "#0056b3",
         "hover_color_btn": "#fff",
-        "overlay_opacity": 0.4,
+        "overlay_opacity": 0.1,
         "margin_top": 0,
         "margin_bottom": 0
       }
@@ -131,12 +131,59 @@
         "margin_top": 0,
         "margin_bottom": 0
       }
+    },
+    "workshop_booking_9nbtNN": {
+      "type": "workshop-booking",
+      "blocks": {
+        "service_option_3mjEyT": {
+          "type": "service_option",
+          "settings": {
+            "service_name": "Complete System Analysis",
+            "duration": "2 hours",
+            "price": 95,
+            "description": "Comprehensive diagnostic testing and analysis of your e-bike system including battery, motor, and electrical components."
+          }
+        },
+        "service_option_mihida": {
+          "type": "service_option",
+          "settings": {
+            "service_name": "Complete System Analysis",
+            "duration": "2 hours",
+            "price": 95,
+            "description": "Comprehensive diagnostic testing and analysis of your e-bike system including battery, motor, and electrical components."
+          }
+        },
+        "service_option_Wh3dKX": {
+          "type": "service_option",
+          "settings": {
+            "service_name": "Complete System Analysis",
+            "duration": "2 hours",
+            "price": 95,
+            "description": "Comprehensive diagnostic testing and analysis of your e-bike system including battery, motor, and electrical components."
+          }
+        }
+      },
+      "block_order": [
+        "service_option_3mjEyT",
+        "service_option_mihida",
+        "service_option_Wh3dKX"
+      ],
+      "name": "Service Booking",
+      "settings": {
+        "booking_title": "Schedule Your Service",
+        "booking_subtitle": "Ready to give your bike the care it deserves? Schedule your service appointment today. Contact us at +41 91 224 53 44 or info@godspeed.ch",
+        "color_title": "#333",
+        "color_subtitle": "#6c757d",
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
     }
   },
   "order": [
     "main",
     "workshop_hero_DAfQqB",
     "workshop_content_MiYzGU",
+    "workshop_booking_9nbtNN",
     "workshop_testimonials_ecMEaH"
   ]
 }
