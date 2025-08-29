@@ -13,7 +13,7 @@ For more information on collection tags:
 {%- assign per_page = settings.nb_per_page -%}
 {% endif %}
 
-{% paginate collection.products by {{section.settings.prod_per_page}} %}
+{% paginate collection.products by section.settings.prod_per_page %}
 
 {% comment %}
 Use .grid--rev so that the collection tags appear below the products on mobile

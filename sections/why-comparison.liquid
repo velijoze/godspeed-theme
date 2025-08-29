@@ -1,0 +1,223 @@
+{% comment %}
+  Why Comparison Section
+  Bike vs Car comparison content section
+{% endcomment %}
+
+<div class="why-comparison-section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="comparison-content">
+          {% if section.settings.title != blank %}
+            <h2 class="comparison-title">{{ section.settings.title }}</h2>
+          {% endif %}
+          
+          {% if section.settings.content != blank %}
+            <div class="comparison-text">{{ section.settings.content }}</div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.why-comparison-section {
+  padding: {{ section.settings.padding_top | default: 80 }}px 0 {{ section.settings.padding_bottom | default: 80 }}px 0;
+  background: {{ section.settings.bg_color | default: '#f8f9fa' }};
+  position: relative;
+}
+
+.comparison-content {
+  text-align: {{ section.settings.text_align | default: 'center' }};
+  position: relative;
+  z-index: 2;
+}
+
+.comparison-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: {{ section.settings.title_color | default: settings.color_main2 }};
+  margin-bottom: 1.5rem;
+  line-height: 1.3;
+  {% if settings.font_type == 'google_fonts' %}
+  font-family: {{ settings.fonts_name_1 }};
+  {% endif %}
+}
+
+.comparison-text {
+  font-size: 1.2rem;
+  color: {{ section.settings.content_color | default: '#2c3e50' }};
+  line-height: 1.7;
+  font-weight: 400;
+}
+
+.comparison-text p {
+  margin-bottom: 1.2rem;
+}
+
+.comparison-text p:last-child {
+  margin-bottom: 0;
+}
+
+/* Optional decorative elements */
+.why-comparison-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 100px;
+  background: {{ section.settings.accent_color | default: settings.color_main2 }};
+  opacity: 0.1;
+  border-radius: 50%;
+  transform: translate(-50px, -50px);
+}
+
+.why-comparison-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 150px;
+  height: 150px;
+  background: {{ section.settings.accent_color | default: settings.color_main2 }};
+  opacity: 0.05;
+  border-radius: 50%;
+  transform: translate(75px, 75px);
+}
+
+@media (max-width: 992px) {
+  .comparison-title {
+    font-size: 2rem;
+  }
+  
+  .comparison-text {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .why-comparison-section {
+    padding: 60px 0;
+  }
+  
+  .comparison-title {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+  
+  .comparison-text {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .comparison-title {
+    font-size: 1.6rem;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Why Comparison",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Why Bikes Beat Cars"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content",
+      "default": "<p>Bicycles cause neither traffic nor pollution and offer complete freedom of movement. They're good for the soul, strengthen legs and lungs, and simply make you happy. Unlike cars, bikes connect you with your environment while providing an efficient, joyful way to travel.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "Text Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#f8f9fa"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#ff4040"
+    },
+    {
+      "type": "color",
+      "id": "content_color",
+      "label": "Content Color",
+      "default": "#2c3e50"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#ff4040"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top Padding",
+      "min": 0,
+      "max": 150,
+      "step": 10,
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom Padding",
+      "min": 0,
+      "max": 150,
+      "step": 10,
+      "default": 80
+    }
+  ],
+  "presets": [
+    {
+      "name": "Why Comparison"
+    }
+  ]
+}
+{% endschema %}

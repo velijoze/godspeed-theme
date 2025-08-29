@@ -1,0 +1,403 @@
+{% comment %}
+  Why CTA Section
+  Final call-to-action section with background image
+{% endcomment %}
+
+<div class="why-cta-section" style="
+  {% if section.settings.bg_image != blank %}
+    background-image: url('{{ section.settings.bg_image | img_url: 'master' }}');
+    background-size: cover;
+    background-position: center;
+    background-attachment: {{ section.settings.bg_attachment | default: 'scroll' }};
+  {% else %}
+    background: linear-gradient(135deg, {{ section.settings.bg_color | default: settings.color_main2 }} 0%, {{ section.settings.bg_color_secondary | default: '#e74c3c' }} 100%);
+  {% endif %}
+">
+  <div class="cta-overlay"></div>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center">
+        <div class="cta-content">
+          {% if section.settings.title != blank %}
+            <h2 class="cta-title">{{ section.settings.title }}</h2>
+          {% endif %}
+          
+          {% if section.settings.subtitle != blank %}
+            <div class="cta-subtitle">{{ section.settings.subtitle }}</div>
+          {% endif %}
+          
+          <div class="cta-buttons">
+            {% if section.settings.primary_cta_text != blank and section.settings.primary_cta_url != blank %}
+              <a href="{{ section.settings.primary_cta_url }}" class="btn btn-primary btn-cta btn-cta-primary">
+                {% if section.settings.primary_cta_icon != blank %}
+                  <span class="btn-icon">{{ section.settings.primary_cta_icon }}</span>
+                {% endif %}
+                {{ section.settings.primary_cta_text }}
+              </a>
+            {% endif %}
+            
+            {% if section.settings.secondary_cta_text != blank and section.settings.secondary_cta_url != blank %}
+              <a href="{{ section.settings.secondary_cta_url }}" class="btn btn-outline btn-cta btn-cta-secondary">
+                {% if section.settings.secondary_cta_icon != blank %}
+                  <span class="btn-icon">{{ section.settings.secondary_cta_icon }}</span>
+                {% endif %}
+                {{ section.settings.secondary_cta_text }}
+              </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.why-cta-section {
+  padding: {{ section.settings.padding_top | default: 120 }}px 0 {{ section.settings.padding_bottom | default: 120 }}px 0;
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+}
+
+.cta-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: {{ section.settings.overlay_color | default: 'rgba(0, 0, 0, 0.5)' }};
+  z-index: 1;
+}
+
+.cta-content {
+  position: relative;
+  z-index: 2;
+}
+
+.cta-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: {{ section.settings.title_color | default: '#ffffff' }};
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+  {% if settings.font_type == 'google_fonts' %}
+  font-family: {{ settings.fonts_name_1 }};
+  {% endif %}
+}
+
+.cta-subtitle {
+  font-size: 1.3rem;
+  color: {{ section.settings.subtitle_color | default: '#f8f9fa' }};
+  margin-bottom: 3rem;
+  line-height: 1.6;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-cta {
+  padding: 1.2rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 200px;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.btn-cta-primary {
+  background: {{ section.settings.primary_btn_color | default: '#ffffff' }};
+  color: {{ section.settings.primary_btn_text_color | default: settings.color_main2 }};
+  border: 2px solid {{ section.settings.primary_btn_color | default: '#ffffff' }};
+}
+
+.btn-cta-primary:hover {
+  background: transparent;
+  color: {{ section.settings.primary_btn_color | default: '#ffffff' }};
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+}
+
+.btn-cta-secondary {
+  background: transparent;
+  color: {{ section.settings.secondary_btn_color | default: '#ffffff' }};
+  border: 2px solid {{ section.settings.secondary_btn_color | default: '#ffffff' }};
+}
+
+.btn-cta-secondary:hover {
+  background: {{ section.settings.secondary_btn_color | default: '#ffffff' }};
+  color: {{ section.settings.secondary_btn_text_hover | default: settings.color_main2 }};
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+}
+
+.btn-icon {
+  font-size: 1.2rem;
+}
+
+/* Animated background effect */
+.why-cta-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, {{ section.settings.accent_color | default: settings.color_main2 }}20, transparent, {{ section.settings.accent_color | default: settings.color_main2 }}10);
+  animation: gradientShift 8s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes gradientShift {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.1; }
+}
+
+@media (max-width: 992px) {
+  .cta-title {
+    font-size: 2.5rem;
+  }
+  
+  .cta-subtitle {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .why-cta-section {
+    padding: 80px 0;
+    min-height: 50vh;
+  }
+  
+  .cta-title {
+    font-size: 2rem;
+  }
+  
+  .cta-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .btn-cta {
+    width: 100%;
+    max-width: 300px;
+    padding: 1rem 2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .cta-title {
+    font-size: 1.8rem;
+  }
+  
+  .btn-cta {
+    font-size: 1rem;
+    min-width: auto;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Why CTA",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Ready to Start Your E-Bike Journey?"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Experience the freedom of sustainable mobility. Visit our showrooms or book a test ride today."
+    },
+    {
+      "type": "header",
+      "content": "Primary Button"
+    },
+    {
+      "type": "text",
+      "id": "primary_cta_text",
+      "label": "Primary Button Text",
+      "default": "Book Test Ride"
+    },
+    {
+      "type": "url",
+      "id": "primary_cta_url",
+      "label": "Primary Button URL",
+      "default": "/collections/e-bikes"
+    },
+    {
+      "type": "textarea",
+      "id": "primary_cta_icon",
+      "label": "Primary Button Icon (SVG)",
+      "info": "Optional SVG icon code"
+    },
+    {
+      "type": "header",
+      "content": "Secondary Button"
+    },
+    {
+      "type": "text",
+      "id": "secondary_cta_text",
+      "label": "Secondary Button Text",
+      "default": "Visit Stores"
+    },
+    {
+      "type": "url",
+      "id": "secondary_cta_url",
+      "label": "Secondary Button URL",
+      "default": "/pages/contact"
+    },
+    {
+      "type": "textarea",
+      "id": "secondary_cta_icon",
+      "label": "Secondary Button Icon (SVG)",
+      "info": "Optional SVG icon code"
+    },
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "select",
+      "id": "bg_attachment",
+      "label": "Background Attachment",
+      "options": [
+        {
+          "value": "scroll",
+          "label": "Scroll"
+        },
+        {
+          "value": "fixed",
+          "label": "Fixed (Parallax)"
+        }
+      ],
+      "default": "scroll"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ff4040"
+    },
+    {
+      "type": "color",
+      "id": "bg_color_secondary",
+      "label": "Background Color Secondary",
+      "default": "#e74c3c"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay Color",
+      "default": "rgba(0, 0, 0, 0.5)"
+    },
+    {
+      "type": "header",
+      "content": "Text Colors"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle Color",
+      "default": "#f8f9fa"
+    },
+    {
+      "type": "header",
+      "content": "Button Colors"
+    },
+    {
+      "type": "color",
+      "id": "primary_btn_color",
+      "label": "Primary Button Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "primary_btn_text_color",
+      "label": "Primary Button Text",
+      "default": "#ff4040"
+    },
+    {
+      "type": "color",
+      "id": "secondary_btn_color",
+      "label": "Secondary Button Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "secondary_btn_text_hover",
+      "label": "Secondary Button Text Hover",
+      "default": "#ff4040"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#ff4040"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top Padding",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom Padding",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "default": 120
+    }
+  ],
+  "presets": [
+    {
+      "name": "Why CTA"
+    }
+  ]
+}
+{% endschema %}

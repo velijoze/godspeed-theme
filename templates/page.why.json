@@ -1,133 +1,134 @@
 {
   "sections": {
     "hero_section": {
-      "type": "section-banner-v1",
+      "type": "why-hero",
       "settings": {
-        "select_style": "style_1",
-        "banner_image": "shopify://shop_images/why-hero-bg.jpg",
-        "banner_height": "medium",
-        "title_banner": "Why Choose E-Bikes?",
-        "color_title": "#ffffff",
-        "content_banner": "Discover the freedom of sustainable, stylish mobility",
-        "color_content": "#ffffff",
-        "url_banner": "/collections/e-bikes",
-        "text_banner": "Shop E-Bikes",
-        "margin_top": "",
-        "margin_bottom": ""
-      }
-    },
-    "philosophy_section": {
-      "type": "section-info-v1",
-      "settings": {
-        "title_info": "Our Philosophy: Sustainable & Stylish Mobility",
-        "color_title_info": "",
-        "content_info": "We believe in promoting the joy of moving sustainably and stylishly – with our e-bikes. GODSPEED supports alternative mobility that is healthy and environmentally friendly, offering e-bikes for every need. Experience the perfect blend of innovation, sustainability, and Swiss design excellence.",
-        "color_content_info": "",
-        "more_about": "Explore Our Collection",
-        "url_banner": "/collections/e-bikes",
-        "margin_top": "60px",
-        "margin_bottom": "40px"
+        "title": "Our Philosophy: Sustainable & Stylish Mobility",
+        "subtitle": "We believe in promoting the joy of moving sustainably and stylishly – with our e-bikes. GODSPEED supports alternative mobility that is healthy and environmentally friendly, offering e-bikes for every need.",
+        "cta_text": "Explore E-Bikes",
+        "cta_url": "/collections/e-bikes",
+        "bg_image": "",
+        "bg_color": "#f8f9fa",
+        "bg_color_secondary": "#ffffff",
+        "title_color": "#2c3e50",
+        "subtitle_color": "#6c757d",
+        "cta_color": "#ff4040"
       }
     },
     "bike_vs_car_section": {
-      "type": "section-info-v1", 
+      "type": "why-comparison",
       "settings": {
-        "title_info": "Why Bikes Beat Cars",
-        "color_title_info": "#ff4040",
-        "content_info": "Bicycles cause neither traffic nor pollution and offer complete freedom of movement. They're good for the soul, strengthen legs and lungs, and simply make you happy. Unlike cars, bikes connect you with your environment while providing an efficient, joyful way to travel.",
-        "color_content_info": "",
-        "more_about": "",
-        "url_banner": "",
-        "margin_top": "40px",
-        "margin_bottom": "60px"
+        "title": "Why Bikes Beat Cars",
+        "content": "<p>Bicycles cause neither traffic nor pollution and offer complete freedom of movement. They're good for the soul, strengthen legs and lungs, and simply make you happy. Unlike cars, bikes connect you with your environment while providing an efficient, joyful way to travel.</p>",
+        "text_align": "center",
+        "bg_color": "#f8f9fa",
+        "title_color": "#ff4040",
+        "content_color": "#2c3e50",
+        "accent_color": "#ff4040"
       }
     },
     "benefits_section": {
-      "type": "about-servicebox",
+      "type": "why-benefits",
       "blocks": {
         "benefit_time_money": {
-          "type": "service",
+          "type": "benefit",
           "settings": {
-            "block_icon_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><polyline points=\"12,6 12,12 16,14\"></polyline></svg>",
-            "block_title": "Time & Money Savings",
-            "block_content": "Reach your destination quickly while avoiding traffic jams, parking searches, and expensive fines. Maintenance and insurance costs are minimal compared to cars or public transport."
+            "icon_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><polyline points=\"12,6 12,12 16,14\"></polyline></svg>",
+            "title": "Time & Money Savings",
+            "content": "Reach your destination quickly while avoiding traffic jams, parking searches, and expensive fines. Maintenance and insurance costs are minimal compared to cars or public transport."
           }
         },
         "benefit_health": {
-          "type": "service", 
+          "type": "benefit",
           "settings": {
-            "block_icon_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7z\"></path></svg>",
-            "block_title": "Health Benefits",
-            "block_content": "Daily movement in fresh air contributes to physical and mental well-being. E-bikes provide just the right support on challenging routes, letting you arrive fresh and energized."
+            "icon_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7z\"></path></svg>",
+            "title": "Health Benefits",
+            "content": "Daily movement in fresh air contributes to physical and mental well-being. E-bikes provide just the right support on challenging routes, letting you arrive fresh and energized."
           }
         },
         "benefit_environment": {
-          "type": "service",
+          "type": "benefit",
           "settings": {
-            "block_icon_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21.54 15.88A17.9 17.9 0 0 0 12 2.56a17.9 17.9 0 0 0-9.54 13.32 8 8 0 1 0 19.08 0z\"></path></svg>",
-            "block_title": "Environmental Impact",
-            "block_content": "E-bikes emit no harmful gases, reducing air and noise pollution significantly. Even disposal has far less environmental impact than cars – every bike means one less car on the road."
+            "icon_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21.54 15.88A17.9 17.9 0 0 0 12 2.56a17.9 17.9 0 0 0-9.54 13.32 8 8 0 1 0 19.08 0z\"></path></svg>",
+            "title": "Environmental Impact",
+            "content": "E-bikes emit no harmful gases, reducing air and noise pollution significantly. Even disposal has far less environmental impact than cars – every bike means one less car on the road."
           }
         }
       },
       "block_order": ["benefit_time_money", "benefit_health", "benefit_environment"],
       "settings": {
-        "enable_s_servicebox": true
+        "title": "The Advantages of E-Bikes",
+        "bg_color": "#ffffff",
+        "title_color": "#2c3e50",
+        "content_color": "#6c757d",
+        "card_bg": "#f8f9fa",
+        "accent_color": "#ff4040",
+        "icon_bg": "#ff4040",
+        "icon_color": "#ffffff"
       }
     },
-    "why_godspeed_section": {
-      "type": "section-info-v1",
+    "godspeed_section": {
+      "type": "why-godspeed",
       "settings": {
-        "title_info": "Why Choose GODSPEED?",
-        "color_title_info": "",
-        "content_info": "We offer the most beautiful and stylish e-bikes on the market. They're not just for hobbies or weekends – our bikes are designed for daily use in all conditions. Comfortable, elegant, and equipped with accessories like fenders and baskets, they're perfect for anyone who wants to travel sustainably and stylishly.<br><br>GODSPEED is Ticino's first e-bike shop specializing in everyday transportation: city bikes, cargo bikes for transport, and a selection of e-MTBs for adventure seekers. Perfect for commuters, parents, and sports enthusiasts – our bikes are for everyone seeking an alternative means of transport.",
-        "color_content_info": "",
-        "more_about": "Visit Our Stores",
-        "url_banner": "/pages/contact",
-        "margin_top": "60px",
-        "margin_bottom": "40px"
+        "title": "Why Choose GODSPEED?",
+        "content": "<p>We offer the most beautiful and stylish e-bikes on the market. They're not just for hobbies or weekends – our bikes are designed for daily use in all conditions. Comfortable, elegant, and equipped with accessories like fenders and baskets, they're perfect for anyone who wants to travel sustainably and stylishly.</p><p>GODSPEED is Ticino's first e-bike shop specializing in everyday transportation: city bikes, cargo bikes for transport, and a selection of e-MTBs for adventure seekers. Perfect for commuters, parents, and sports enthusiasts – our bikes are for everyone seeking an alternative means of transport.</p>",
+        "image": "",
+        "image_position": "right",
+        "cta_text": "Visit Our Stores",
+        "cta_url": "/pages/contact",
+        "secondary_cta_text": "Shop E-Bikes",
+        "secondary_cta_url": "/collections/e-bikes",
+        "bg_color": "#ffffff",
+        "title_color": "#2c3e50",
+        "content_color": "#6c757d",
+        "cta_color": "#ff4040",
+        "secondary_cta_color": "#6c757d"
       }
     },
     "revolution_section": {
-      "type": "section-info-v1",
+      "type": "why-comparison",
       "settings": {
-        "title_info": "The E-Bike Revolution",
-        "color_title_info": "#ff4040",
-        "content_info": "The e-bike is a revolutionary means of transport, especially in urban and suburban areas. Clean, efficient, and fast, it avoids traffic jams and offers mobility without fatigue. It's the ideal solution for city traffic and for everyone looking for a sustainable alternative to conventional transport.<br><br><strong>Every day is a new journey. An e-bike can be the beginning of a new life for you and the start of a new era for humanity.</strong>",
-        "color_content_info": "",
-        "more_about": "",
-        "url_banner": "",
-        "margin_top": "40px",
-        "margin_bottom": "40px"
+        "title": "The E-Bike Revolution",
+        "content": "<p>The e-bike is a revolutionary means of transport, especially in urban and suburban areas. Clean, efficient, and fast, it avoids traffic jams and offers mobility without fatigue. It's the ideal solution for city traffic and for everyone looking for a sustainable alternative to conventional transport.</p><p><strong>Every day is a new journey. An e-bike can be the beginning of a new life for you and the start of a new era for humanity.</strong></p>",
+        "text_align": "center",
+        "bg_color": "#f8f9fa",
+        "title_color": "#ff4040",
+        "content_color": "#2c3e50",
+        "accent_color": "#ff4040"
       }
     },
     "quote_section": {
-      "type": "section-info-v1",
+      "type": "why-quote",
       "settings": {
-        "title_info": "\"You're not stuck in traffic... YOU ARE the traffic\"",
-        "color_title_info": "#666666",
-        "content_info": "– Anonymous",
-        "color_content_info": "#999999",
-        "more_about": "",
-        "url_banner": "",
-        "margin_top": "20px",
-        "margin_bottom": "60px"
+        "quote_text": "You're not stuck in traffic... YOU ARE the traffic",
+        "quote_author": "Anonymous",
+        "bg_color": "#2c3e50",
+        "bg_gradient_start": "#2c3e50",
+        "bg_gradient_end": "#34495e",
+        "quote_color": "#ffffff",
+        "author_color": "#ecf0f1",
+        "accent_color": "#ff4040"
       }
     },
     "cta_section": {
-      "type": "section-banner-v1",
+      "type": "why-cta",
       "settings": {
-        "select_style": "style_2",
-        "banner_image": "shopify://shop_images/cta-bg.jpg", 
-        "banner_height": "small",
-        "title_banner": "Ready to Start Your E-Bike Journey?",
-        "color_title": "#ffffff",
-        "content_banner": "Experience the freedom of sustainable mobility. Visit our showrooms or book a test ride today.",
-        "color_content": "#ffffff",
-        "url_banner": "/collections/e-bikes",
-        "text_banner": "Book Test Ride",
-        "margin_top": "",
-        "margin_bottom": ""
+        "title": "Ready to Start Your E-Bike Journey?",
+        "subtitle": "Experience the freedom of sustainable mobility. Visit our showrooms or book a test ride today.",
+        "primary_cta_text": "Book Test Ride",
+        "primary_cta_url": "/collections/e-bikes",
+        "secondary_cta_text": "Visit Stores",
+        "secondary_cta_url": "/pages/contact",
+        "bg_image": "",
+        "bg_color": "#ff4040",
+        "bg_color_secondary": "#e74c3c",
+        "overlay_color": "rgba(0, 0, 0, 0.5)",
+        "title_color": "#ffffff",
+        "subtitle_color": "#f8f9fa",
+        "primary_btn_color": "#ffffff",
+        "primary_btn_text_color": "#ff4040",
+        "secondary_btn_color": "#ffffff",
+        "secondary_btn_text_hover": "#ff4040"
       }
     },
     "newsletter_section": {
@@ -152,10 +153,9 @@
   },
   "order": [
     "hero_section",
-    "philosophy_section", 
     "bike_vs_car_section",
     "benefits_section",
-    "why_godspeed_section",
+    "godspeed_section",
     "revolution_section",
     "quote_section",
     "cta_section",

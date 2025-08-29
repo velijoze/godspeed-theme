@@ -1,0 +1,223 @@
+{% comment %}
+  Why Hero Section
+  Philosophy hero section for Why page
+{% endcomment %}
+
+<div class="why-hero-section" style="
+  {% if section.settings.bg_image != blank %}
+    background-image: url('{{ section.settings.bg_image | img_url: 'master' }}');
+    background-size: cover;
+    background-position: center;
+  {% else %}
+    background: linear-gradient(135deg, {{ section.settings.bg_color | default: '#f8f9fa' }} 0%, {{ section.settings.bg_color_secondary | default: '#ffffff' }} 100%);
+  {% endif %}
+">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10 text-center">
+        <div class="why-hero-content">
+          {% if section.settings.title != blank %}
+            <h1 class="why-hero-title">{{ section.settings.title }}</h1>
+          {% endif %}
+          
+          {% if section.settings.subtitle != blank %}
+            <div class="why-hero-subtitle">{{ section.settings.subtitle }}</div>
+          {% endif %}
+          
+          {% if section.settings.cta_text != blank and section.settings.cta_url != blank %}
+            <div class="why-hero-cta">
+              <a href="{{ section.settings.cta_url }}" class="btn btn-primary btn-hero">
+                {{ section.settings.cta_text }}
+              </a>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.why-hero-section {
+  padding: 100px 0;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.why-hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+.why-hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.why-hero-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: {{ section.settings.title_color | default: '#ffffff' }};
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+  {% if settings.font_type == 'google_fonts' %}
+  font-family: {{ settings.fonts_name_1 }};
+  {% endif %}
+}
+
+.why-hero-subtitle {
+  font-size: 1.25rem;
+  color: {{ section.settings.subtitle_color | default: '#f8f9fa' }};
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.why-hero-cta {
+  margin-top: 2.5rem;
+}
+
+.btn-hero {
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  border: 2px solid {{ section.settings.cta_color | default: settings.color_main2 }};
+  background: {{ section.settings.cta_color | default: settings.color_main2 }};
+  color: #ffffff;
+}
+
+.btn-hero:hover {
+  background: transparent;
+  color: {{ section.settings.cta_color | default: settings.color_main2 }};
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 64, 64, 0.3);
+}
+
+@media (max-width: 768px) {
+  .why-hero-section {
+    padding: 80px 0;
+    min-height: 50vh;
+  }
+  
+  .why-hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .why-hero-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .btn-hero {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .why-hero-title {
+    font-size: 2rem;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Why Hero",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Hero Content"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Our Philosophy: Sustainable & Stylish Mobility"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "We believe in promoting the joy of moving sustainably and stylishly – with our e-bikes. GODSPEED supports alternative mobility that is healthy and environmentally friendly."
+    },
+    {
+      "type": "header",
+      "content": "Call to Action"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Button Text",
+      "default": "Explore E-Bikes"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "Button URL",
+      "default": "/collections/e-bikes"
+    },
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#f8f9fa"
+    },
+    {
+      "type": "color",
+      "id": "bg_color_secondary",
+      "label": "Background Color Secondary",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle Color",
+      "default": "#f8f9fa"
+    },
+    {
+      "type": "color",
+      "id": "cta_color",
+      "label": "Button Color",
+      "default": "#ff4040"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Why Hero"
+    }
+  ]
+}
+{% endschema %}

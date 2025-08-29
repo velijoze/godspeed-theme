@@ -18,14 +18,6 @@
       <!-- Four Address Locations -->
       {% if section.settings.enable_addresses %}
       <div class="addresses-section mb-5">
-        {% if section.settings.addresses_title != blank %}
-        <div class="text-center mb-4">
-          <h3>{{ section.settings.addresses_title }}</h3>
-          {% if section.settings.addresses_description != blank %}
-          <p>{{ section.settings.addresses_description }}</p>
-          {% endif %}
-        </div>
-        {% endif %}
         
         <div class="row">
           <!-- Address 1 -->
@@ -51,6 +43,12 @@
               <div class="address-info">
                 <i class="fa fa-envelope"></i>
                 <p>{{ section.settings.address1_email }}</p>
+              </div>
+              {% endif %}
+              {% if section.settings.address1_hours != blank %}
+              <div class="address-info">
+                <i class="fa fa-clock-o"></i>
+                <p>{{ section.settings.address1_hours }}</p>
               </div>
               {% endif %}
             </div>
@@ -82,6 +80,12 @@
                 <p>{{ section.settings.address2_email }}</p>
               </div>
               {% endif %}
+              {% if section.settings.address2_hours != blank %}
+              <div class="address-info">
+                <i class="fa fa-clock-o"></i>
+                <p>{{ section.settings.address2_hours }}</p>
+              </div>
+              {% endif %}
             </div>
           </div>
           {% endif %}
@@ -109,6 +113,12 @@
               <div class="address-info">
                 <i class="fa fa-envelope"></i>
                 <p>{{ section.settings.address3_email }}</p>
+              </div>
+              {% endif %}
+              {% if section.settings.address3_hours != blank %}
+              <div class="address-info">
+                <i class="fa fa-clock-o"></i>
+                <p>{{ section.settings.address3_hours }}</p>
               </div>
               {% endif %}
             </div>
@@ -140,6 +150,12 @@
                 <p>{{ section.settings.address4_email }}</p>
               </div>
               {% endif %}
+              {% if section.settings.address4_hours != blank %}
+              <div class="address-info">
+                <i class="fa fa-clock-o"></i>
+                <p>{{ section.settings.address4_hours }}</p>
+              </div>
+              {% endif %}
             </div>
           </div>
           {% endif %}
@@ -148,39 +164,7 @@
       {% endif %}
 
       <div class="row">
-        {% if section.settings.enable_find_left %}
-        <div class="col-lg-6 col-md-6">
-          <div class="box_getin box_find">
-            {% if section.settings.title_find_left != blank%}
-            <h5>{{section.settings.title_find_left}}</h5>
-            {% endif %}
-            {% if section.settings.description_find_left != blank%}
-            <p>{{section.settings.description_find_left}}</p>
-            {% endif %}
-            <div class="info_find">
-              {% if section.blocks.size > 0 %}
-                  {% for block in section.blocks %}
-                      {% if block.type == "findget" %}
-                        {% if block.settings.block_texticon != blank%}
-                        <div class="icon-box-wrapper">
-                          <div class="icon-box-icon"> 
-							<span class="icon-svg">{{block.settings.icon_office}}</span>
-                          </div>
-                          <div class="icon-box-content">
-                            <p class="icon-box-title">{{block.settings.block_textheading}}</p>
-                            <p class="icon-box-description">{{block.settings.block_texticon}}</p>
-                          </div>
-                        </div>
-                          {% endif %}
-
-                      {% endif %}
-                  {% endfor %}
-              {% endif %}
-            </div>
-          </div>
-        </div>
-        {% endif %}
-        <div class="col-lg-6 col-md-6">
+        <div class="col-lg-12">
           {% if section.settings.select_style_map == 'style_map' %}
             {% if section.settings.enable_map %}
             <div class="">
@@ -381,29 +365,11 @@
       "label": "Button Submit Mail",
       "default": "SEND "
     },
-    {
-      "type": "checkbox",
-      "id": "enable_find_left",
-      "label": "Enable find_left",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "title_find_left",
-      "label": "Title Find Left",
-      "default": "Find Our Office"
-    },
 	{
       "type": "checkbox",
       "id": "enable_get_find",
       "label": "Enable",
       "default": true
-    },
-    {
-      "type": "html",
-      "id": "description_find_left",
-      "label": "Description Find Left",
-      "default": "Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras mattis consectetur purus sit amet fermentum. Sed posuere est at lobortis."
     },
     {
       "type": "header",
@@ -414,17 +380,6 @@
       "id": "enable_addresses",
       "label": "Enable Four Address Section",
       "default": true
-    },
-    {
-      "type": "text",
-      "id": "addresses_title",
-      "label": "Addresses Section Title",
-      "default": "Our Locations"
-    },
-    {
-      "type": "textarea",
-      "id": "addresses_description",
-      "label": "Addresses Section Description"
     },
     {
       "type": "header",
@@ -461,6 +416,12 @@
       "default": "lugano@godspeed.ch"
     },
     {
+      "type": "textarea",
+      "id": "address1_hours",
+      "label": "Address 1 Hours",
+      "default": "Mon-Fri: 9:00-18:00\nSat: 9:00-17:00\nSun: Closed"
+    },
+    {
       "type": "header",
       "content": "Address Location 2"
     },
@@ -490,6 +451,12 @@
       "type": "text",
       "id": "address2_email",
       "label": "Address 2 Email"
+    },
+    {
+      "type": "textarea",
+      "id": "address2_hours",
+      "label": "Address 2 Hours",
+      "default": "Mon-Fri: 9:00-18:00\nSat: 9:00-17:00\nSun: Closed"
     },
     {
       "type": "header",
@@ -523,6 +490,12 @@
       "label": "Address 3 Email"
     },
     {
+      "type": "textarea",
+      "id": "address3_hours",
+      "label": "Address 3 Hours",
+      "default": "Mon-Fri: 9:00-18:00\nSat: 9:00-17:00\nSun: Closed"
+    },
+    {
       "type": "header",
       "content": "Address Location 4"
     },
@@ -552,32 +525,15 @@
       "type": "text",
       "id": "address4_email",
       "label": "Address 4 Email"
+    },
+    {
+      "type": "textarea",
+      "id": "address4_hours",
+      "label": "Address 4 Hours",
+      "default": "Mon-Fri: 9:00-18:00\nSat: 9:00-17:00\nSun: Closed"
     }
   ],
   "blocks": [
-    {
-      "type": "findget",
-      "name": "Find - Get",
-      "settings": [
-        {
-          "type": "textarea",
-          "id": "icon_office",
-          "label": "Icon SVG",
-          "info": "[Get icon in here](https://www.flaticon.com/)"
-        },
-		{
-          "type": "text",
-          "id": "block_textheading",
-          "label": "Heading Office"
-        },
-        {
-          "type": "text",
-          "id": "block_texticon",
-          "label": "Description Office",
-          "default": "Call us on (+0123) 456 789"
-        }
-      ]
-    }
   ],
   "presets": [
     

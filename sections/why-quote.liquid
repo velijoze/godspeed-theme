@@ -1,0 +1,244 @@
+{% comment %}
+  Why Quote Section
+  Inspirational quote display section
+{% endcomment %}
+
+<div class="why-quote-section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="quote-container">
+          {% if section.settings.quote_text != blank %}
+            <blockquote class="quote-text">
+              <span class="quote-mark quote-mark-open">"</span>
+              {{ section.settings.quote_text }}
+              <span class="quote-mark quote-mark-close">"</span>
+            </blockquote>
+          {% endif %}
+          
+          {% if section.settings.quote_author != blank %}
+            <div class="quote-author">
+              {{ section.settings.quote_author }}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.why-quote-section {
+  padding: {{ section.settings.padding_top | default: 100 }}px 0 {{ section.settings.padding_bottom | default: 100 }}px 0;
+  background: {{ section.settings.bg_color | default: '#2c3e50' }};
+  position: relative;
+  overflow: hidden;
+}
+
+.why-quote-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, {{ section.settings.bg_gradient_start | default: '#2c3e50' }} 0%, {{ section.settings.bg_gradient_end | default: '#34495e' }} 100%);
+  z-index: 1;
+}
+
+.quote-container {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.quote-text {
+  font-size: 2.2rem;
+  font-weight: 300;
+  color: {{ section.settings.quote_color | default: '#ffffff' }};
+  line-height: 1.4;
+  margin: 0 0 1.5rem 0;
+  font-style: italic;
+  position: relative;
+  {% if settings.font_type == 'google_fonts' %}
+  font-family: {{ settings.fonts_name_1 }};
+  {% endif %}
+}
+
+.quote-mark {
+  font-size: 4rem;
+  font-weight: 700;
+  color: {{ section.settings.accent_color | default: settings.color_main2 }};
+  font-style: normal;
+  line-height: 1;
+  position: relative;
+  top: 0.2em;
+}
+
+.quote-mark-open {
+  margin-right: 0.1em;
+}
+
+.quote-mark-close {
+  margin-left: 0.1em;
+}
+
+.quote-author {
+  font-size: 1.1rem;
+  color: {{ section.settings.author_color | default: '#ecf0f1' }};
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+}
+
+.quote-author::before {
+  content: '—';
+  margin-right: 0.5rem;
+  color: {{ section.settings.accent_color | default: settings.color_main2 }};
+}
+
+/* Decorative elements */
+.why-quote-section::after {
+  content: '';
+  position: absolute;
+  top: 20%;
+  right: -5%;
+  width: 200px;
+  height: 200px;
+  background: {{ section.settings.accent_color | default: settings.color_main2 }};
+  opacity: 0.1;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+@media (max-width: 992px) {
+  .quote-text {
+    font-size: 1.8rem;
+  }
+  
+  .quote-mark {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .why-quote-section {
+    padding: 60px 0;
+  }
+  
+  .quote-text {
+    font-size: 1.5rem;
+    line-height: 1.5;
+  }
+  
+  .quote-mark {
+    font-size: 2.5rem;
+  }
+  
+  .quote-author {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .quote-text {
+    font-size: 1.3rem;
+  }
+  
+  .quote-mark {
+    font-size: 2rem;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Why Quote",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Quote Content"
+    },
+    {
+      "type": "textarea",
+      "id": "quote_text",
+      "label": "Quote Text",
+      "default": "You're not stuck in traffic... YOU ARE the traffic"
+    },
+    {
+      "type": "text",
+      "id": "quote_author",
+      "label": "Quote Author",
+      "default": "Anonymous"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#2c3e50"
+    },
+    {
+      "type": "color",
+      "id": "bg_gradient_start",
+      "label": "Background Gradient Start",
+      "default": "#2c3e50"
+    },
+    {
+      "type": "color",
+      "id": "bg_gradient_end",
+      "label": "Background Gradient End",
+      "default": "#34495e"
+    },
+    {
+      "type": "color",
+      "id": "quote_color",
+      "label": "Quote Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "author_color",
+      "label": "Author Color",
+      "default": "#ecf0f1"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color (Quote Marks)",
+      "default": "#ff4040"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top Padding",
+      "min": 0,
+      "max": 150,
+      "step": 10,
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom Padding",
+      "min": 0,
+      "max": 150,
+      "step": 10,
+      "default": 100
+    }
+  ],
+  "presets": [
+    {
+      "name": "Why Quote"
+    }
+  ]
+}
+{% endschema %}
