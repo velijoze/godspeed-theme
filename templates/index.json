@@ -133,6 +133,19 @@
         "margin_bottom": ""
       }
     },
+    "section_product_v1_NQJG9z": {
+      "type": "section-product-v1",
+      "name": "PRODUCT V1",
+      "settings": {
+        "title_heading": "Hot Deals",
+        "color_title": "#222222",
+        "sub-title1": "Don't Miss Today's Featured Deals",
+        "select_collection": "under-3000-chf",
+        "products_limit": 4,
+        "margin_top": "",
+        "margin_bottom": ""
+      }
+    },
     "section_service_v2_qfprta": {
       "type": "section-service-v2",
       "blocks": {
@@ -171,19 +184,7 @@
       ],
       "name": "SERVICE V2",
       "settings": {
-        "margin_top": "",
-        "margin_bottom": ""
-      }
-    },
-    "section_product_v1_NQJG9z": {
-      "type": "section-product-v1",
-      "name": "PRODUCT V1",
-      "settings": {
-        "title_heading": "Hot Deals",
-        "color_title": "#222222",
-        "sub-title1": "Don't Miss Today's Featured Deals",
-        "select_collection": "under-3000-chf",
-        "products_limit": 4,
+        "bg_img": "shopify://shop_images/biking-lugano-with-kids.jpg",
         "margin_top": "",
         "margin_bottom": ""
       }
@@ -255,8 +256,8 @@
     "section_product_v6_hHBLXm",
     "section_service_v1_AEYTQP",
     "section_blog_v2_KdMAdt",
-    "section_service_v2_qfprta",
     "section_product_v1_NQJG9z",
+    "section_service_v2_qfprta",
     "section_product_v2_tdBRie",
     "section_product_v5_jeNMfa"
   ]
