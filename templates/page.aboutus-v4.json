@@ -187,8 +187,8 @@
           "type": "teams",
           "settings": {
             "people_teams_image": "shopify://shop_images/assaf.jpg",
-            "block_people_teams": "Sebastian Reave",
-            "block_position_teams": "Art Director",
+            "block_people_teams": "Assaf",
+            "block_position_teams": "Service Manager",
             "link_people_teams": "/collections/all"
           }
         },
