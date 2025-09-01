@@ -23,7 +23,7 @@
 
 <style>
 .why-comparison-section {
-  padding: {{ section.settings.padding_top | default: 80 }}px 0 {{ section.settings.padding_bottom | default: 80 }}px 0;
+  padding: {{ section.settings.padding_top | default: 50 }}px 0 {{ section.settings.padding_bottom | default: 50 }}px 0;
   background: {{ section.settings.bg_color | default: '#f8f9fa' }};
   position: relative;
 }
@@ -35,21 +35,22 @@
 }
 
 .comparison-title {
-  font-size: 2.5rem;
-  font-weight: 700;
+  font-size: 2rem;
   color: {{ section.settings.title_color | default: settings.color_main2 }};
   margin-bottom: 1.5rem;
   line-height: 1.3;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{ settings.fonts_name_1 }};
-  {% endif %}
+  font-family: {{ settings.heading_font.family }}, {{ settings.heading_font.fallback_families }};
+  font-weight: {{ settings.heading_font.weight }};
+  font-style: {{ settings.heading_font.style }};
 }
 
 .comparison-text {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: {{ section.settings.content_color | default: '#2c3e50' }};
   line-height: 1.7;
-  font-weight: 400;
+  font-family: {{ settings.body_font.family }}, {{ settings.body_font.fallback_families }};
+  font-weight: {{ settings.body_font.weight }};
+  font-style: {{ settings.body_font.style }};
 }
 
 .comparison-text p {
@@ -99,7 +100,7 @@
 
 @media (max-width: 768px) {
   .why-comparison-section {
-    padding: 60px 0;
+    padding: 30px 0;
   }
   
   .comparison-title {
@@ -202,7 +203,7 @@
       "min": 0,
       "max": 150,
       "step": 10,
-      "default": 80
+      "default": 50
     },
     {
       "type": "range",
@@ -211,7 +212,7 @@
       "min": 0,
       "max": 150,
       "step": 10,
-      "default": 80
+      "default": 50
     }
   ],
   "presets": [

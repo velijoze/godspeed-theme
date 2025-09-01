@@ -39,8 +39,8 @@
 
 <style>
 .why-hero-section {
-  padding: 100px 0;
-  min-height: 60vh;
+  padding: 60px 0;
+  min-height: 40vh;
   display: flex;
   align-items: center;
   position: relative;
@@ -63,24 +63,26 @@
 }
 
 .why-hero-title {
-  font-size: 3.5rem;
-  font-weight: 700;
+  font-size: 2.8rem;
   color: {{ section.settings.title_color | default: '#ffffff' }};
   margin-bottom: 1.5rem;
   line-height: 1.2;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{ settings.fonts_name_1 }};
-  {% endif %}
+  font-family: {{ settings.heading_font.family }}, {{ settings.heading_font.fallback_families }};
+  font-weight: {{ settings.heading_font.weight }};
+  font-style: {{ settings.heading_font.style }};
 }
 
 .why-hero-subtitle {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   color: {{ section.settings.subtitle_color | default: '#f8f9fa' }};
   margin-bottom: 2rem;
   line-height: 1.6;
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
+  font-family: {{ settings.body_font.family }}, {{ settings.body_font.fallback_families }};
+  font-weight: {{ settings.body_font.weight }};
+  font-style: {{ settings.body_font.style }};
 }
 
 .why-hero-cta {
@@ -109,8 +111,8 @@
 
 @media (max-width: 768px) {
   .why-hero-section {
-    padding: 80px 0;
-    min-height: 50vh;
+    padding: 40px 0;
+    min-height: 30vh;
   }
   
   .why-hero-title {
@@ -167,8 +169,7 @@
     {
       "type": "url",
       "id": "cta_url",
-      "label": "Button URL",
-      "default": "/collections/e-bikes"
+      "label": "Button URL"
     },
     {
       "type": "header",
