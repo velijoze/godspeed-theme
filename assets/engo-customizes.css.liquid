@@ -1,51 +1,4 @@
-@font-face {
-  font-family: SofiaPro;
-  src: url(//cdn.shopify.com/s/files/1/0579/5568/0414/t/2/assets/SofiaProExtraLight.ttf?v=1824831525125167646);
-  font-weight: 200;
-  font-style: normal
-}
-
-@font-face {
-  font-family: SofiaPro;
-  src: url(//cdn.shopify.com/s/files/1/0579/5568/0414/t/2/assets/SofiaProSemiBold.ttf?v=360732952696279712);
-  font-weight: 600;
-  font-style: normal
-}
-
-@font-face {
-  font-family: SofiaPro;
-  src: url(//cdn.shopify.com/s/files/1/0579/5568/0414/t/2/assets/SofiaProUltraLight.ttf?v=5342256046293733637);
-  font-weight: 100;
-  font-style: normal
-}
-
-@font-face {
-  font-family: SofiaPro;
-  src: url(//cdn.shopify.com/s/files/1/0579/5568/0414/t/2/assets/SofiaProBold.woff?v=5273568404519162350);
-  font-weight: 700;
-  font-style: normal
-}
-
-@font-face {
-  font-family: SofiaPro;
-  src: url(//cdn.shopify.com/s/files/1/0579/5568/0414/t/2/assets/SofiaProLight.woff?v=8448721272341005834);
-  font-weight: 300;
-  font-style: normal
-}
-
-@font-face {
-  font-family: SofiaPro;
-  src: url(//cdn.shopify.com/s/files/1/0579/5568/0414/t/2/assets/SofiaProMedium.woff?v=17396487302719409473);
-  font-weight: 500;
-  font-style: normal
-}
-
-@font-face {
-  font-family: SofiaPro;
-  src: url(//cdn.shopify.com/s/files/1/0579/5568/0414/t/2/assets/SofiaProRegular.woff?v=17685565277813688865);
-  font-weight: 400;
-  font-style: normal
-}
+/* Removed legacy SofiaPro @font-face; fonts now come from Shopify font_picker */
 
 .engoc-flex-wrap {
   display: -webkit-box;
@@ -857,10 +810,8 @@ a:hover {
 }
 
 body {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 500;
 }
@@ -914,10 +865,8 @@ a:focus,a:hover {
   font-size: 40px;
   color: #fff;
   text-align: center;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 600;
   font-style: normal;
@@ -1011,10 +960,8 @@ a:focus,a:hover {
 }
 
 .aboutus-pages .about-instagram .instagram_v2 .block-title .title_insta {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   color: #333;
   margin: 0;
@@ -1165,10 +1112,8 @@ a:focus,a:hover {
 .aboutus-pages .about-introduce .intro_detail .info-intro .title_intro {
   font-size: 40px;
   color: {{settings.primary_color}};
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 500;
   line-height: 43px;
@@ -1189,10 +1134,8 @@ a:focus,a:hover {
 .aboutus-pages .about-introduce .intro_detail .info-intro .des_intro {
   font-size: 12px;
   color: #969696;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 500;
   font-style: normal;
@@ -1218,10 +1161,8 @@ a:focus,a:hover {
   line-height: 1.6;
   font-size: 15px;
   color: #969696;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 400
 }
@@ -1690,10 +1631,8 @@ a:focus,a:hover {
 
 .page_aboutus_v1 .slide span {
   font-size: 16px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 600;
   display: inline-block;
@@ -1855,10 +1794,8 @@ a:focus,a:hover {
 }
 
 .page_aboutus_v1 .feature .box-content p {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 15px;
   letter-spacing: 3px;
@@ -2238,10 +2175,8 @@ a:focus,a:hover {
   font-weight: 500;
   text-decoration: none;
   color: {{settings.color_main}};
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   display: inline-block
 }
@@ -2666,10 +2601,8 @@ a:focus,a:hover {
   color: {{settings.color_main}};
   line-height: 1.6;
   text-align: center;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 400;
   font-style: normal;
@@ -2868,10 +2801,8 @@ a:focus,a:hover {
   font-size: 14px;
   color: #999;
   font-weight: 400;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
 }
 
@@ -2892,10 +2823,8 @@ a:focus,a:hover {
   font-size: 14px;
   color: #999;
   font-weight: 400;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
 }
 
@@ -2932,10 +2861,8 @@ a:focus,a:hover {
   font-size: 24px;
   color: {{settings.color_main}};
   text-align: left;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 500;
   letter-spacing: .2em;
@@ -2943,10 +2870,8 @@ a:focus,a:hover {
 }
 
 .contact-page .address-shop .shop-address {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 14px;
   color: #a8a8a8;
@@ -2962,20 +2887,16 @@ a:focus,a:hover {
   font-size: 18px;
   color: {{settings.color_main}};
   text-align: left;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 500;
   font-style: normal
 }
 
 .contact-page .info-shop .content {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 14px;
   color: #a8a8a8;
@@ -3003,10 +2924,8 @@ p.price-product{
 }
 
 .product-item-v1 .info-product .title-product a {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 16px;
   font-weight: 500;
@@ -3019,10 +2938,8 @@ p.price-product{
 }
 
 .product-item-v1 .info-product .price-product .price-old {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 15px;
   font-weight: 400;
@@ -3030,10 +2947,8 @@ p.price-product{
 }
 
 .product-item-v1 .info-product .price-product .price {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 16px;
   font-weight: 600;
@@ -3050,10 +2965,8 @@ p.price-product{
 }
 
 .product-item-v1 .img-product .label-new {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   height: 25px;
   display: inline-block;
@@ -3077,10 +2990,8 @@ p.price-product{
   right: 10px;
   color: #fff;
   font-size: 12px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 500;
   letter-spacing: 1px;
@@ -3138,10 +3049,8 @@ p.price-product{
 .product-item-v1 .img-product .countdown-timer li {
   display: inline-block;
   font-size: 14px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 400;
   width: 60px;
@@ -3170,10 +3079,8 @@ p.price-product{
   display: block;
   font-weight: 400;
   font-size: 16px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   text-algin: center;
 }
@@ -3348,10 +3255,8 @@ p.price-product{
 }
 
 .product-item-v2 .info-product .title-product a {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 14px;
   font-weight: 500;
@@ -3367,10 +3272,8 @@ p.price-product{
 }
 
 .product-item-v2 .price-product .price-old {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 15px;
   font-weight: 400;
@@ -3378,10 +3281,8 @@ p.price-product{
 }
 
 .product-item-v2 .price-product .price {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 16px;
   font-weight: 500;
@@ -3393,10 +3294,8 @@ p.price-product{
 }
 
 .product-item-v2 .img-product .label-new {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   height: 25px;
   display: inline-block;
@@ -3420,10 +3319,8 @@ p.price-product{
   right: 10px;
   color: #fff;
   font-size: 12px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 500;
   letter-spacing: 1px;
@@ -3435,10 +3332,8 @@ p.price-product{
 .product-item-v2 .img-product .sold-out {
   position: absolute;
   padding: 5px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 500;
   display: inline-block;
@@ -3642,10 +3537,8 @@ p.price-product{
 }
 
 .product-item-v3 .price-product .price-old {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 15px;
   font-weight: 400;
@@ -3653,10 +3546,8 @@ p.price-product{
 }
 
 .product-item-v3 .price-product .price {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 16px;
   font-weight: 500;
@@ -3668,10 +3559,8 @@ p.price-product{
 }
 
 .product-item-v3 .info-product .title-product a {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 16px;
   font-weight: 500;
@@ -3687,10 +3576,8 @@ p.price-product{
 }
 
 .product-item-v3 .img-product .label-new {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   height: 25px;
   display: inline-block;
@@ -3714,10 +3601,8 @@ p.price-product{
   right: 10px;
   color: #fff;
   font-size: 12px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 500;
   letter-spacing: 1px;
@@ -3729,10 +3614,8 @@ p.price-product{
 .product-item-v3 .img-product .sold-out {
   position: absolute;
   padding: 5px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 500;
   display: inline-block;
@@ -3886,10 +3769,8 @@ p.price-product{
 }
 
 .product-item-v4 .img-product .label-new {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   height: 25px;
   display: inline-block;
@@ -3913,10 +3794,8 @@ p.price-product{
   right: 10px;
   color: #fff;
   font-size: 12px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 500;
   letter-spacing: 1px;
@@ -3928,10 +3807,8 @@ p.price-product{
 .product-item-v4 .img-product .sold-out {
   position: absolute;
   padding: 5px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 500;
   display: inline-block;
@@ -4086,10 +3963,8 @@ p.price-product{
 }
 
 .product-item-v4 .price-product .price-old {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 15px;
   font-weight: 400;
@@ -4097,10 +3972,8 @@ p.price-product{
 }
 
 .product-item-v4 .price-product .price {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 16px;
   font-weight: 500;
@@ -4179,10 +4052,8 @@ p.price-product{
 }
 
 .product-item-v5 .price-product .price-old {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 15px;
   font-weight: 400;
@@ -4190,10 +4061,8 @@ p.price-product{
 }
 
 .product-item-v5 .price-product .price {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 16px;
   font-weight: 500;
@@ -4205,10 +4074,8 @@ p.price-product{
 }
 
 .product-item-v5 .info-product .title-product a {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 14px;
   font-weight: 500;
@@ -4220,10 +4087,8 @@ p.price-product{
 }
 
 .product-item-v5 .img-product .label-new {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   height: 25px;
   display: inline-block;
@@ -4247,10 +4112,8 @@ p.price-product{
   right: 10px;
   color: #fff;
   font-size: 12px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 500;
   letter-spacing: 1px;
@@ -4262,10 +4125,8 @@ p.price-product{
 .product-item-v5 .img-product .sold-out {
   position: absolute;
   padding: 5px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 500;
   display: inline-block;
@@ -4356,10 +4217,8 @@ p.price-product{
 
 .product-item-v5 .add-to-cart a,.product-item-v5 .add-to-cart button {
   color: {{settings.color_main}};
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 12px;
   font-weight: 500;
@@ -4447,10 +4306,8 @@ p.price-product{
 .product-item-v5 .img-product .countdown-timer li {
   display: inline-block;
   font-size: 14px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 400;
   width: 60px;
@@ -4479,10 +4336,8 @@ p.price-product{
   display: block;
   font-weight: 400;
   font-size: 16px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   text-algin: center
 }
@@ -4514,10 +4369,8 @@ p.price-product{
 }
 
 .product-item-v6 .info-product .title-product a {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 14px;
   font-weight: 500;
@@ -4533,10 +4386,8 @@ p.price-product{
 }
 
 .product-item-v6 .price-product .price-old {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 15px;
   font-weight: 400;
@@ -4544,10 +4395,8 @@ p.price-product{
 }
 
 .product-item-v6 .price-product .price {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 16px;
   font-weight: 500;
@@ -4560,10 +4409,8 @@ p.price-product{
 }
 
 .product-item-v6 .img-product .label-new {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   height: 25px;
   display: inline-block;
@@ -4587,10 +4434,8 @@ p.price-product{
   right: 10px;
   color: #fff;
   font-size: 12px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 500;
   letter-spacing: 1px;
@@ -4602,10 +4447,8 @@ p.price-product{
 .product-item-v6 .img-product .sold-out {
   position: absolute;
   padding: 5px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 500;
   display: inline-block;
@@ -4838,10 +4681,8 @@ p.price-product{
 .product-item-v6 .img-product .countdown-timer li {
   display: inline-block;
   font-size: 14px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 400;
   width: 60px;
@@ -4869,10 +4710,8 @@ p.price-product{
   display: block;
   font-weight: 400;
   font-size: 16px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   text-algin: center
 }
@@ -4907,10 +4746,8 @@ p.price-product{
 }
 
 .product-item-v7 .price-product .price-old {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 15px;
   font-weight: 400;
@@ -4918,10 +4755,8 @@ p.price-product{
 }
 
 .product-item-v7 .price-product .price {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 16px;
   font-weight: 500;
@@ -4933,10 +4768,8 @@ p.price-product{
 }
 
 .product-item-v7 .img-product .label-new {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   height: 25px;
   display: inline-block;
@@ -4960,10 +4793,8 @@ p.price-product{
   right: 10px;
   color: #fff;
   font-size: 12px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 500;
   letter-spacing: 1px;
@@ -4975,10 +4806,8 @@ p.price-product{
 .product-item-v7 .img-product .sold-out {
   position: absolute;
   padding: 5px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 500;
   display: inline-block;
@@ -5220,10 +5049,8 @@ p.price-product{
 .product-item-v7 .img-product .countdown-timer li {
   display: inline-block;
   font-size: 14px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 400;
   width: 60px;
@@ -5251,10 +5078,8 @@ p.price-product{
   display: block;
   font-weight: 400;
   font-size: 16px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   text-algin: center
 }
@@ -5287,10 +5112,8 @@ p.price-product{
 }
 
 .product-item-v8 .price-product .price-old {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 15px;
   font-weight: 400;
@@ -5298,10 +5121,8 @@ p.price-product{
 }
 
 .product-item-v8 .price-product .price {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 16px;
   font-weight: 500;
@@ -5313,10 +5134,8 @@ p.price-product{
 }
 
 .product-item-v8 .img-product .label-new {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   height: 25px;
   display: inline-block;
@@ -5340,10 +5159,8 @@ p.price-product{
   right: 10px;
   color: #fff;
   font-size: 12px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 500;
   letter-spacing: 1px;
@@ -5355,10 +5172,8 @@ p.price-product{
 .product-item-v8 .img-product .sold-out {
   position: absolute;
   padding: 5px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 500;
   display: inline-block;
@@ -5567,10 +5382,8 @@ p.price-product{
 .product-item-v8 .img-product .countdown-timer li {
   display: inline-block;
   font-size: 14px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 400;
   width: 60px;
@@ -5598,10 +5411,8 @@ p.price-product{
   display: block;
   font-weight: 400;
   font-size: 16px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   text-algin: center
 }
@@ -5633,10 +5444,8 @@ p.price-product{
 }
 
 .product-item-v9 .info-product .title-product a {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 14px;
   font-weight: 500;
@@ -5652,10 +5461,8 @@ p.price-product{
 }
 
 .product-item-v9 .price-product .price-old {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 15px;
   font-weight: 400;
@@ -5663,10 +5470,8 @@ p.price-product{
 }
 
 .product-item-v9 .price-product .price {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 16px;
   font-weight: 600;
@@ -5679,10 +5484,8 @@ p.price-product{
 }
 
 .product-item-v9 .img-product .label-new {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   height: 25px;
   display: inline-block;
@@ -5706,10 +5509,8 @@ p.price-product{
   right: 10px;
   color: #fff;
   font-size: 12px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 500;
   letter-spacing: 1px;
@@ -5937,10 +5738,8 @@ p.price-product{
 }
 
 .product-item-v10 .price-product .price-old {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 15px;
   font-weight: 400;
@@ -5948,10 +5747,8 @@ p.price-product{
 }
 
 .product-item-v10 .price-product .price {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 16px;
   font-weight: 500;
@@ -5963,10 +5760,8 @@ p.price-product{
 }
 
 .product-item-v10 .info-product .title-product a {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 14px;
   font-weight: 500;
@@ -5978,10 +5773,8 @@ p.price-product{
 }
 
 .product-item-v10 .img-product .label-new {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   height: 25px;
   display: inline-block;
@@ -6005,10 +5798,8 @@ p.price-product{
   right: 10px;
   color: #fff;
   font-size: 12px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 500;
   letter-spacing: 1px;
@@ -6020,10 +5811,8 @@ p.price-product{
 .product-item-v10 .img-product .sold-out {
   position: absolute;
   padding: 5px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 500;
   display: inline-block;
@@ -6174,10 +5963,8 @@ p.price-product{
 .product-item-v10 .img-product .countdown-timer li {
   display: inline-block;
   font-size: 14px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 400;
   width: 60px;
@@ -6206,10 +5993,8 @@ p.price-product{
   display: block;
   font-weight: 400;
   font-size: 16px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   text-algin: center
 }
@@ -6237,10 +6022,8 @@ p.price-product{
   min-width: 172px;
   min-height: 50px;
   border: 2px solid {{settings.color_main}};
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   color: {{settings.color_main}};
   font-weight: 600;
@@ -6315,10 +6098,8 @@ p.price-product{
 .product-list-view .product-item-list .product .img-product .sold-out {
   position: absolute;
   padding: 5px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 500;
   display: inline-block;
@@ -6405,10 +6186,8 @@ p.price-product{
 }
 
 .product-list-view .product-item-list .product .info-product .title-product a {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 22px;
   font-weight: 500;
@@ -6424,10 +6203,8 @@ p.price-product{
 }
 
 .product-list-view .product-item-list .product .info-product .price-product .price-old {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 18px;
   font-weight: 400;
@@ -6436,10 +6213,8 @@ p.price-product{
 }
 
 .product-list-view .product-item-list .product .info-product .price-product .price {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 18px!important;
   font-weight: 500;
@@ -6448,10 +6223,8 @@ p.price-product{
 
 .product-list-view .product-item-list .product .info-product .des-product {
   display: block;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 15px;
   font-weight: 400;
@@ -6486,10 +6259,8 @@ p.price-product{
 }
 
 .prod_largeimg .detail-share-social .share-product-title label {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 11px;
   font-weight: 600;
@@ -6590,10 +6361,8 @@ p.price-product{
 
 .prod_largeimg .content-page-detail .gallery-control .btn-360 .text_360 {
   padding-left: 10px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   color: {{settings.color_main2}};
   font-size: 13px;
@@ -6652,10 +6421,8 @@ p.price-product{
 
 .prod_largeimg .content-page-detail .gallery-control .btn-video .text_video {
   padding-left: 10px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   color: {{settings.color_main2}};
   font-size: 13px;
@@ -6758,10 +6525,8 @@ p.price-product{
 }
 
 .prod_largeimg .content-page-detail .detail-info .product-title {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 24px;
   font-weight: 500;
@@ -6809,10 +6574,8 @@ p.price-product{
 
 .prod_largeimg .content-page-detail .detail-info .btn-action .shop-button {
   width: calc(100% - 90px);
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   transition: all .3s ease;
   padding: 0 39px;
@@ -6841,10 +6604,8 @@ p.price-product{
 
 .prod_largeimg .content-page-detail .detail-info .btn-action .shop-button-amazon {
   margin-bottom: 25px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   transition: all .3s ease;
   padding: 0 40px;
@@ -6867,10 +6628,8 @@ p.price-product{
 }
 
 .prod_largeimg .content-page-detail .detail-info .btn-action .shop-button-soldout {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   transition: all .3s ease;
   padding: 0 40px;
@@ -6951,10 +6710,8 @@ p.price-product{
 }
 
 .prod_largeimg .content-page-detail .detail-info .pd_summary {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 14px;
   color: #a8a8a8;
@@ -7018,10 +6775,8 @@ p.price-product{
 }
 
 .prod_largeimg .content-page-detail .detail-info .product-meta-info .product-category-info label {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 15px;
   font-weight: 400;
@@ -7031,10 +6786,8 @@ p.price-product{
 }
 
 .prod_largeimg .content-page-detail .detail-info .product-meta-info .product-category-info a {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 15px;
   font-weight: 400;
@@ -7053,10 +6806,8 @@ p.price-product{
 }
 
 .prod_largeimg .content-page-detail .detail-info .product-meta-info .product-sku label {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 14px;
   font-weight: 400;
@@ -7068,10 +6819,8 @@ p.price-product{
 }
 
 .prod_largeimg .content-page-detail .detail-info .product-meta-info .product-sku span {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 14px;
   font-weight: 400;
@@ -7266,10 +7015,8 @@ p.price-product{
 }
 
 .tab-pd-details .tab_prod li a {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 16px;
   font-weight: 500;
@@ -7295,10 +7042,8 @@ p.price-product{
 }
 
 .tab-pd-details .product-desc p {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 15px;
   font-weight: 400;
@@ -7311,10 +7056,8 @@ p.price-product{
 }
 
 .tab-pd-details .product-desc .info2 h3 {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 32px;
   font-weight: 300;
@@ -7322,10 +7065,8 @@ p.price-product{
 }
 
 .tab-pd-details .product-desc .info2 p {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 14px;
   font-weight: 400;
@@ -7400,10 +7141,8 @@ p.price-product{
 }
 
 .tab-pd-details .tab-addition .title_content .more_info {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 11px;
   font-weight: 600;
@@ -7414,10 +7153,8 @@ p.price-product{
 }
 
 .tab-pd-details .tab-addition .title_content h3 {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 25px;
   font-weight: 500;
@@ -7439,10 +7176,8 @@ p.price-product{
 }
 
 .tab-pd-details .tab-addition .content1 .info_1 {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 16px;
   font-weight: 400;
@@ -7451,10 +7186,8 @@ p.price-product{
 }
 
 .tab-pd-details .tab-addition .content1 ul li {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 16px;
   font-weight: 500;
@@ -7464,20 +7197,16 @@ p.price-product{
 
 .tab-pd-details .tab-addition .content2 .info2 h3 {
   font-size: 18px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 500;
   color: {{settings.color_main}}
 }
 
 .tab-pd-details .tab-addition .content2 .info2 ul li a {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 16px;
   font-weight: 500;
@@ -7490,10 +7219,8 @@ p.price-product{
 }
 
 .tab-pd-details .tab-addition .content2 .info2 ul li {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 16px;
   font-weight: 500;
@@ -7585,10 +7312,8 @@ p.price-product{
 }
 
 .related-product .relatedProd-title {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 14px;
   font-weight: 600;
@@ -7629,10 +7354,8 @@ p.price-product{
 }
 
 .prod_extended .detail-share-social .share-product-title label,.product_sidebar .detail-share-social .share-product-title label {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 11px;
   font-weight: 600;
@@ -7768,10 +7491,8 @@ p.price-product{
 
 .prod_extended .content-page-detail .gallery-control .btn-360 .text_360,.product_sidebar .content-page-detail .gallery-control .btn-360 .text_360 {
   padding-left: 10px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   color: {{settings.color_main2}};
   font-size: 13px;
@@ -7830,10 +7551,8 @@ p.price-product{
 
 .prod_extended .content-page-detail .gallery-control .btn-video .text_video,.product_sidebar .content-page-detail .gallery-control .btn-video .text_video {
   padding-left: 10px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   color: {{settings.color_main2}};
   font-size: 13px;
@@ -7874,10 +7593,8 @@ p.price-product{
 }
 
 .prod_extended .content-page-detail .detail-info .product-title,.product_sidebar .content-page-detail .detail-info .product-title {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 24px;
   font-weight: 500;
@@ -7925,10 +7642,8 @@ p.price-product{
 
 .prod_extended .content-page-detail .detail-info .btn-action .shop-button,.product_sidebar .content-page-detail .detail-info .btn-action .shop-button {
   width: calc(100% - 90px);
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   transition: all .3s ease;
   padding: 0 39px;
@@ -7957,10 +7672,8 @@ p.price-product{
 
 .prod_extended .content-page-detail .detail-info .btn-action .shop-button-amazon,.product_sidebar .content-page-detail .detail-info .btn-action .shop-button-amazon {
   margin-bottom: 25px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   transition: all .3s ease;
   padding: 0 40px;
@@ -7983,10 +7696,8 @@ p.price-product{
 }
 
 .prod_extended .content-page-detail .detail-info .btn-action .shop-button-soldout,.product_sidebar .content-page-detail .detail-info .btn-action .shop-button-soldout {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   transition: all .3s ease;
   padding: 0 40px;
@@ -8074,10 +7785,8 @@ p.price-product{
 }
 
 .prod_extended .content-page-detail .detail-info .pd_summary,.product_sidebar .content-page-detail .detail-info .pd_summary {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 15px;
   color: #969696;
@@ -8141,10 +7850,8 @@ p.price-product{
 }
 
 .prod_extended .content-page-detail .detail-info .product-meta-info .product-category-info label,.product_sidebar .content-page-detail .detail-info .product-meta-info .product-category-info label {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 15px;
   font-weight: 400;
@@ -8154,10 +7861,8 @@ p.price-product{
 }
 
 .prod_extended .content-page-detail .detail-info .product-meta-info .product-category-info a,.product_sidebar .content-page-detail .detail-info .product-meta-info .product-category-info a {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 15px;
   font-weight: 400;
@@ -8176,10 +7881,8 @@ p.price-product{
 }
 
 .prod_extended .content-page-detail .detail-info .product-meta-info .product-sku label,.product_sidebar .content-page-detail .detail-info .product-meta-info .product-sku label {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 14px;
   font-weight: 400;
@@ -8191,10 +7894,8 @@ p.price-product{
 }
 
 .prod_extended .content-page-detail .detail-info .product-meta-info .product-sku span,.product_sidebar .content-page-detail .detail-info .product-meta-info .product-sku span {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 14px;
   font-weight: 400;
@@ -8222,10 +7923,8 @@ p.price-product{
 }
 
 .prod_extended .content-page-detail .detail-info .detail-share-social .share-product-title label,.product_sidebar .content-page-detail .detail-info .detail-share-social .share-product-title label {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 11px;
   font-weight: 600;
@@ -8308,10 +8007,8 @@ p.price-product{
   font-weight: 500;
   color: {{settings.color_main}};
   font-size: 18px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   position: relative;
   padding-bottom: 18px;
@@ -8333,10 +8030,8 @@ p.price-product{
   color: #979797;
   font-size: 14px;
   line-height: 28px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
 }
 
@@ -8560,10 +8255,8 @@ p.price-product{
 }
 
 .product_sidebar .content-page-detail .sidebar_info .widget_title {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 14px;
   font-weight: 500;
@@ -8595,10 +8288,8 @@ p.price-product{
 }
 
 .product_sidebar .content-page-detail .sidebar_info .prod_sidebar .product_info .title-product a {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 16px;
   font-weight: 500;
@@ -8610,10 +8301,8 @@ p.price-product{
 }
 
 .product_sidebar .content-page-detail .sidebar_info .prod_sidebar .product_info .price-product .price-old {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 12px;
   font-weight: 500;
@@ -8621,10 +8310,8 @@ p.price-product{
 }
 
 .product_sidebar .content-page-detail .sidebar_info .prod_sidebar .product_info .price-product .price {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 14px;
   font-weight: 600;
@@ -8656,10 +8343,8 @@ p.price-product{
 }
 
 .prod_sticky .detail-share-social .share-product-title label {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 11px;
   font-weight: 600;
@@ -8951,10 +8636,8 @@ p.price-product{
 
 .prod_sticky .content-page-detail .gallery-control .btn-360 .text_360 {
   padding-left: 10px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   color: {{settings.color_main2}};
   font-size: 13px;
@@ -9013,10 +8696,8 @@ p.price-product{
 
 .prod_sticky .content-page-detail .gallery-control .btn-video .text_video {
   padding-left: 10px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   color: {{settings.color_main2}};
   font-size: 13px;
@@ -9043,10 +8724,8 @@ p.price-product{
 }
 
 .prod_sticky .content-page-detail .detail-info .product-title {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 24px;
   font-weight: 500;
@@ -9094,10 +8773,8 @@ p.price-product{
 
 .prod_sticky .content-page-detail .detail-info .btn-action .shop-button {
   width: calc(100% - 90px);
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   transition: all .3s ease;
   padding: 0 39px;
@@ -9125,10 +8802,8 @@ p.price-product{
 
 .prod_sticky .content-page-detail .detail-info .btn-action .shop-button-amazon {
   margin-bottom: 25px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   transition: all .3s ease;
   padding: 0 40px;
@@ -9151,10 +8826,8 @@ p.price-product{
 }
 
 .prod_sticky .content-page-detail .detail-info .btn-action .shop-button-soldout {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   transition: all .3s ease;
   padding: 0 40px;
@@ -9235,10 +8908,8 @@ p.price-product{
 }
 
 .prod_sticky .content-page-detail .detail-info .pd_summary {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 14px;
   color: #a8a8a8;
@@ -9302,10 +8973,8 @@ p.price-product{
 }
 
 .prod_sticky .content-page-detail .detail-info .product-meta-info .product-category-info label {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 14px;
   font-weight: 400;
@@ -9315,10 +8984,8 @@ p.price-product{
 }
 
 .prod_sticky .content-page-detail .detail-info .product-meta-info .product-category-info a {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 14px;
   font-weight: 400;
@@ -9337,10 +9004,8 @@ p.price-product{
 }
 
 .prod_sticky .content-page-detail .detail-info .product-meta-info .product-sku label {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 14px;
   font-weight: 400;
@@ -9352,10 +9017,8 @@ p.price-product{
 }
 
 .prod_sticky .content-page-detail .detail-info .product-meta-info .product-sku span {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 14px;
   font-weight: 400;
@@ -9383,10 +9046,8 @@ p.price-product{
 }
 
 .prod_sticky .content-page-detail .detail-info .detail-share-social .share-product-title label {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 11px;
   font-weight: 600;
@@ -9468,20 +9129,16 @@ p.price-product{
   letter-spacing: .2em;
   font-size: 14px;
   text-transform: uppercase;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
 }
 
 .prod_sticky .content-page-detail .content_box .content_text .text {
   color: #a8a8a8;
   font-size: 14px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
 }
 
@@ -9667,10 +9324,8 @@ p.price-product{
 }
 
 .breadcrumb_collection .bg-breadcrumb .title-page h2 {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 40px;
   font-weight: 500;
@@ -9683,10 +9338,8 @@ p.price-product{
 }
 
 .breadcrumb_collection .bg-breadcrumb .bread-crumb a {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 16px;
   font-weight: 400;
@@ -9702,10 +9355,8 @@ p.price-product{
 }
 
 .breadcrumb_collection .bg-breadcrumb .bread-crumb strong {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 16px;
   font-weight: 500;
@@ -9823,10 +9474,8 @@ p.price-product{
   font-size: 60px;
   font-weight: 500;
   letter-spacing: 1px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
 }
 .wrap-bread-crumb.breadcrumb_cart {
@@ -9840,10 +9489,8 @@ p.price-product{
 }
 
 .wrap-bread-crumb .bread-crumb a {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 14px;
   font-weight: 500;
@@ -9861,10 +9508,8 @@ p.price-product{
 }
 
 .wrap-bread-crumb .bread-crumb strong {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 14px;
   font-weight: 500;
@@ -10009,10 +9654,8 @@ p.price-product{
 }
 
 .breadcrumb_collection2 .bg-breadcrumb .title-page h2 {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 48px;
   font-weight: 400;
@@ -10063,10 +9706,8 @@ p.price-product{
 }
 
 .breadcrumb_collection3 .bg-breadcrumb .title-page h2 {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 60px;
   font-weight: 500;
@@ -10108,10 +9749,8 @@ p.price-product{
 }
 
 .breadcrumb_collection4 .bg-breadcrumb .title-page h2 {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   color: #fff;
   font-size: 100px;
@@ -10208,10 +9847,8 @@ p.price-product{
   position: absolute;
   right: 48px;
   top: 30px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 10px;
   font-weight: 600;
@@ -10243,10 +9880,8 @@ p.price-product{
 }
 
 .collection-page-fullwidth .filter-to-left .filter_sidebar .widget-title h2,.collection-page-sidebar .filter-to-left .filter_sidebar .widget-title h2 {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 15px;
   font-weight: 500;
@@ -10313,10 +9948,8 @@ p.price-product{
 .collection-page-fullwidth .filter-to-left .filter_sidebar .filter-category .widget-content .list-category-toggle li a,.collection-page-sidebar .filter-to-left .filter_sidebar .filter-category .widget-content .list-category-toggle li a {
   line-height: 34px;
   display: inline-block;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 15px;
   font-weight: 400;
@@ -10409,10 +10042,8 @@ p.price-product{
   transition: all .3s ease;
   font-size: 14px;
   font-weight: 600;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
 }
 
@@ -10444,10 +10075,8 @@ p.price-product{
 
 .collection-page-fullwidth .filter-to-left .filter_sidebar .filter-price .list-price li a,.collection-page-sidebar .filter-to-left .filter_sidebar .filter-price .list-price li a {
   position:relative;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 14px;
   font-weight: 400;
@@ -10514,10 +10143,8 @@ p.price-product{
   font-size: 14px;
   font-weight: 500;
   padding: 0 22px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
 }
 
@@ -10547,10 +10174,8 @@ p.price-product{
 }
 
 .collection-page-fullwidth .filter-to-left .filter_sidebar .filter-brand .list-brand li a,.collection-page-sidebar .filter-to-left .filter_sidebar .filter-brand .list-brand li a {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 16px;
   font-weight: 400;
@@ -10634,10 +10259,8 @@ p.price-product{
 .collection-page-fullwidth .content-page .banner_full .banner_info .info .big_title,.collection-page-sidebar .content-page .banner_full .banner_info .info .big_title {
   font-size: 40px;
   font-weight: 500;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   letter-spacing: 2px
 }
@@ -10646,10 +10269,8 @@ p.price-product{
   margin-top: 5px;
   font-size: 16px;
   font-weight: 500;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   letter-spacing: .1em
 }
@@ -10665,10 +10286,8 @@ p.price-product{
   font-weight: 500;
   background: {{settings.color_main}};
   letter-spacing: 2px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   border: 2px solid {{settings.color_main}};
   text-transform: uppercase;
@@ -10802,10 +10421,8 @@ p.price-product{
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: .1em;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
 }
 
@@ -10872,10 +10489,8 @@ p.price-product{
   font-size: 24px;
   font-weight: 500;
   color: {{settings.color_main}};
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
 }
 
@@ -10888,10 +10503,8 @@ p.price-product{
   font-size: 14px;
   font-weight: 600;
   color: {{settings.color_main}};
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
 }
 
@@ -10916,10 +10529,8 @@ p.price-product{
   font-size: 24px;
   font-weight: 500;
   color: {{settings.color_main}};
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
 }
 
@@ -11040,10 +10651,8 @@ ul.slick-dots li.slick-active button:before{
 
 .collection-page-fullwidth .content-page .shop_control .filter_sortby .filter p,.collection-page-sidebar .content-page .shop_control .filter_sortby .filter p {
   font-size: 15px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   text-transform: capitalize;
   font-weight: 500;
@@ -11077,10 +10686,8 @@ ul.slick-dots li.slick-active button:before{
 .collection-page-fullwidth .content-page .shop_control .filter_sortby .sort-pagi-bar .sort-by .select-box .orderby,.collection-page-sidebar .content-page .shop_control .filter_sortby .sort-pagi-bar .sort-by .select-box .orderby {
   border: 1px solid {{settings.color_main}};
   color: {{settings.color_main}};
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 15px;
   font-weight: 500
@@ -11102,10 +10709,8 @@ ul.slick-dots li.slick-active button:before{
 .collection-page-fullwidth .content-page .shop_control .list-collection li a,.collection-page-sidebar .content-page .shop_control .list-collection li a {
   border-bottom: 1px solid transparent;
   font-size: 18px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 600;
   position: relative;
@@ -11151,10 +10756,8 @@ ul.slick-dots li.slick-active button:before{
   color: {{settings.color_main}};
   border: 1px solid {{settings.color_main}};
   font-size: 15px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 500;
   height: 42px;
@@ -11496,10 +11099,8 @@ ul.slick-dots li.slick-active button:before{
 
 
 .filter_sidebar_general .widget-title h2 {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 15px;
   letter-spacing:2px;
@@ -11563,10 +11164,8 @@ ul.slick-dots li.slick-active button:before{
 .filter_sidebar_general .filter-category .widget-content .list-category-toggle li a {
   line-height: 36px;
   display: inline-block;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 15px;
   font-weight: 400;
@@ -11595,10 +11194,8 @@ ul.slick-dots li.slick-active button:before{
 .filter_sidebar_general .filter-category .widget-content .list-category-toggle .menu_lv2 .item_menu_lv2 a {
   line-height: 36px;
   display: inline-block;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 14px;
   font-weight: 400;
@@ -11684,10 +11281,8 @@ ul.slick-dots li.slick-active button:before{
   transition: all .3s ease;
   font-size: 14px;
   font-weight: 500;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
 }
 
@@ -11720,10 +11315,8 @@ ul.slick-dots li.slick-active button:before{
 
 .filter_sidebar_general .filter-price .list-price li a {
   position:relative;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 14px;
   font-weight: 400;
@@ -11784,10 +11377,8 @@ ul.slick-dots li.slick-active button:before{
   transition: all .3s ease;
   font-size: 14px;
   font-weight: 500;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
 }
 
@@ -11817,10 +11408,8 @@ ul.slick-dots li.slick-active button:before{
 }
 
 .filter_sidebar_general .filter-brand .list-brand li a {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 16px;
   font-weight: 400;
@@ -11875,10 +11464,8 @@ ul.slick-dots li.slick-active button:before{
   }
 }
 .filter_ver2 .filter_sidebar2 .widget-title h2 {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 15px;
   text-transform: uppercase;
@@ -11941,10 +11528,8 @@ ul.slick-dots li.slick-active button:before{
 }
 
 .filter_ver2 .filter_sidebar2 .filter-category .widget-content .list-category-toggle li a {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 15px;
   font-weight: 400;
@@ -11973,10 +11558,8 @@ ul.slick-dots li.slick-active button:before{
 
 .filter_ver2 .filter_sidebar2 .filter-category .widget-content .list-category-toggle .menu_lv2 .item_menu_lv2 a {
   display: inline-block;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 15px;
   font-weight: 400;
@@ -12086,10 +11669,8 @@ ul.slick-dots li.slick-active button:before{
   transition: all .3s ease;
   font-size: 14px;
   font-weight: 500;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   width: 40px;
 }
@@ -12127,10 +11708,8 @@ ul.slick-dots li.slick-active button:before{
 }
 .filter_ver2 .filter_sidebar2 .filter-price .list-price li a{
   position:relative;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   padding-left:25px;
   line-height:initial;
@@ -12189,10 +11768,8 @@ ul.slick-dots li.slick-active button:before{
   font-size: 15px;
   font-weight: 400;
   border: 1px solid;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
 }
 
@@ -12215,10 +11792,8 @@ ul.slick-dots li.slick-active button:before{
 }
 
 .filter_ver2 .filter_sidebar2 .filter-brand .list-brand li a {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 14px;
   font-weight: 400;
@@ -12535,10 +12110,8 @@ ul.slick-dots li.slick-active button:before{
   transition: all .3s ease;
   font-size: 14px;
   font-weight: 500;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
 }
 
@@ -12573,10 +12146,8 @@ ul.slick-dots li.slick-active button:before{
 }
 
 .filter-accodition .content_collapse .list-price li a {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 14px;
   font-weight: 500;
@@ -12637,10 +12208,8 @@ ul.slick-dots li.slick-active button:before{
 .blog-page .content-blog-page .blog-list-view .blog_grid .post-thumb .single-post-date .date {
   font-size: 20px;
   font-weight: 500;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   position: relative
 }
@@ -12658,10 +12227,8 @@ ul.slick-dots li.slick-active button:before{
 .blog-page .content-blog-page .blog-list-view .blog_grid .post-thumb .single-post-date .month {
   font-size: 14px;
   font-weight: 500;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   text-transform: uppercase
 }
@@ -12669,10 +12236,8 @@ ul.slick-dots li.slick-active button:before{
 .blog-page .content-blog-page .blog-list-view .blog_grid .post-info .blog-title {
   font-size: 11px;
   text-transform: uppercase;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   letter-spacing: 2px;
   font-weight: 500;
@@ -12698,10 +12263,8 @@ ul.slick-dots li.slick-active button:before{
 
 .blog-page .content-blog-page .blog-list-view .blog_grid .post-info .post-title a {
   font-size: 22px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 500;
   color: #333;
@@ -12737,10 +12300,8 @@ ul.slick-dots li.slick-active button:before{
 
 .blog-page .content-blog-page .blog-list-view .blog_grid .post-info .desc {
   font-size: 14px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 400;
   color: #a8a8a8;
@@ -12749,10 +12310,8 @@ ul.slick-dots li.slick-active button:before{
 
 .blog-page .content-blog-page .blog-list-view .blog_grid .post-info .btn_readmore {
   font-size: 14px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 500;
   color: {{settings.color_main}};
@@ -12823,10 +12382,8 @@ ul.slick-dots li.slick-active button:before{
 .blog-page .content-blog-page .blog-list-view .blog_standar .post-info .single-post-date .date {
   font-size: 20px;
   font-weight: 500;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   position: relative;
   color: #fff
@@ -12846,10 +12403,8 @@ ul.slick-dots li.slick-active button:before{
   font-size: 14px;
   font-weight: 500;
   color: #fff;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   text-transform: uppercase
 }
@@ -12863,10 +12418,8 @@ ul.slick-dots li.slick-active button:before{
 .blog-page .content-blog-page .blog-list-view .blog_standar .post-info .title_info .blog-title {
   font-size: 12px;
   text-transform: uppercase;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   letter-spacing: 2px;
   font-weight: 500;
@@ -12880,10 +12433,8 @@ ul.slick-dots li.slick-active button:before{
 
 .blog-page .content-blog-page .blog-list-view .blog_standar .post-info .title_info .post-title a {
   font-size: 24px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 500;
   color: {{settings.primary_color}};
@@ -12918,10 +12469,8 @@ ul.slick-dots li.slick-active button:before{
 
 .blog-page .content-blog-page .blog-list-view .blog_standar .post-info .des_article {
   font-size: 14px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 400;
   color: #a8a8a8;
@@ -12931,10 +12480,8 @@ ul.slick-dots li.slick-active button:before{
 }
 
 .blog-page .content-blog-page .blog-list-view .blog_standar .post-info .author {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 12px;
   text-transform: uppercase;
@@ -12946,10 +12493,8 @@ ul.slick-dots li.slick-active button:before{
 }
 
 .blog-page .content-blog-page .blog-list-view .blog_standar .post-info .author a {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 12px;
   text-transform: uppercase;
@@ -12972,10 +12517,8 @@ ul.slick-dots li.slick-active button:before{
 }
 
 .blog-page .content-blog-page .blog-list-view .blog_standar .post-info .comment_count {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 12px;
   text-transform: uppercase;
@@ -12986,10 +12529,8 @@ ul.slick-dots li.slick-active button:before{
 
 .blog-page .content-blog-page .blog-list-view .blog_standar .post-info .btn_readmore {
   font-size: 14px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 600;
   color: {{settings.color_main}};
@@ -13065,10 +12606,8 @@ ul.slick-dots li.slick-active button:before{
 .blog-page .content-blog-page .blog-list-view .blog_classic .post-info .title_info .blog-title {
   font-size: 11px;
   text-transform: uppercase;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   letter-spacing: .2em;
   font-weight: 500;
@@ -13082,10 +12621,8 @@ ul.slick-dots li.slick-active button:before{
 
 .blog-page .content-blog-page .blog-list-view .blog_classic .post-info .title_info .post-title a {
   font-size: 24px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 500;
   color: {{settings.primary_color}};
@@ -13120,10 +12657,8 @@ ul.slick-dots li.slick-active button:before{
 
 .blog-page .content-blog-page .blog-list-view .blog_classic .post-info .des_article {
   font-size: 15px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 400;
   color: #a8a8a8;
@@ -13133,10 +12668,8 @@ ul.slick-dots li.slick-active button:before{
 }
 
 .blog-page .content-blog-page .blog-list-view .blog_classic .post-info .author {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 12px;
   text-transform: uppercase;
@@ -13147,10 +12680,8 @@ ul.slick-dots li.slick-active button:before{
 }
 
 .blog-page .content-blog-page .blog-list-view .blog_classic .post-info .author a {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 12px;
   text-transform: uppercase;
@@ -13175,10 +12706,8 @@ ul.slick-dots li.slick-active button:before{
 }
 
 .blog-page .content-blog-page .blog-list-view .blog_classic .post-info .date {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 12px;
   text-transform: uppercase;
@@ -13188,10 +12717,8 @@ ul.slick-dots li.slick-active button:before{
 }
 
 .blog-page .content-blog-page .blog-list-view .blog_classic .post-info .date a {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 12px;
   text-transform: uppercase;
@@ -13215,10 +12742,8 @@ ul.slick-dots li.slick-active button:before{
 }
 
 .blog-page .content-blog-page .blog-list-view .blog_classic .post-info .comment_count {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 12px;
   text-transform: uppercase;
@@ -13229,10 +12754,8 @@ ul.slick-dots li.slick-active button:before{
 
 .blog-page .content-blog-page .blog-list-view .blog_classic .post-info .btn_readmore {
   font-size: 14px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 600;
   color: {{settings.color_main}};
@@ -13328,10 +12851,8 @@ ul.slick-dots li.slick-active button:before{
 }
 
 .blog-page .blog_sidebar .blog_sidebar_cate .widget-title {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 22px;
   font-weight: 500;
@@ -13366,10 +12887,8 @@ ul.slick-dots li.slick-active button:before{
   position:relative;
   padding-left: 16px;
   display: block;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 16px;
   font-weight: 500;
@@ -13413,10 +12932,8 @@ ul.slick-dots li.slick-active button:before{
 }
 
 .blog-page .blog_sidebar .blog_sidebar_recent .widget-title {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 22px;
   font-weight: 500;
@@ -13456,10 +12973,8 @@ ul.slick-dots li.slick-active button:before{
 }
 
 .blog-page .blog_sidebar .blog_sidebar_recent .list-posts .item-post .post-info .date-post {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 16px;
   color: #a7acb5;
@@ -13469,10 +12984,8 @@ ul.slick-dots li.slick-active button:before{
 }
 
 .blog-page .blog_sidebar .blog_sidebar_recent .list-posts .item-post .post-info .post-title {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 16px;
   color: #aaa;
@@ -13482,10 +12995,8 @@ ul.slick-dots li.slick-active button:before{
 }
 
 .blog-page .blog_sidebar .blog_sidebar_recent .list-posts .item-post .post-info .comment-count {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 12px;
   color: #aaa;
@@ -13499,10 +13010,8 @@ ul.slick-dots li.slick-active button:before{
 }
 
 .blog-page .blog_sidebar .widget-tags .widget-title {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 22px;
   font-weight: 500;
@@ -13544,10 +13053,8 @@ ul.slick-dots li.slick-active button:before{
   font-size: 16px;
   font-weight: 400;
   padding: 5px 30px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
 }
 
@@ -13562,10 +13069,8 @@ ul.slick-dots li.slick-active button:before{
 }
 
 .blog-page .blog_sidebar .widget-search .widget-title {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 15px;
   font-weight: 500;
@@ -13593,10 +13098,8 @@ ul.slick-dots li.slick-active button:before{
 
 .blog-page .blog_sidebar .widget-search .wg-search-form input[type=text]::placeholder {
   font-size: 14px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 500;
   color: #979797
@@ -13718,10 +13221,8 @@ span.nav-subtitle {
 .article-page .content-single-blog .post-details .article_title {
   font-size: 36px;
   font-weight: 500;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   text-align: center;
   text-transform: unset;
@@ -13743,10 +13244,8 @@ span.nav-subtitle {
 }
 
 .article-page .content-single-blog .post-details .cmt-author .author {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 12px;
   text-transform: uppercase;
@@ -13758,10 +13257,8 @@ span.nav-subtitle {
 }
 
 .article-page .content-single-blog .post-details .cmt-author .author a {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 13px;
   text-transform: uppercase;
@@ -13790,10 +13287,8 @@ span.nav-subtitle {
 }
 
 .article-page .content-single-blog .post-details .cmt-author .comment_count {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 13px;
   text-transform: capitalize;
@@ -13813,10 +13308,8 @@ span.nav-subtitle {
 }
 
 .article-page .content-single-blog .post-details .cmt-author .date-post {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 13px;
   font-weight: 400;
@@ -13836,10 +13329,8 @@ span.nav-subtitle {
   font-size: 14px;
   color: #a8a8a8;
   font-weight: 400;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   line-height: 28px
 }
@@ -13849,10 +13340,8 @@ span.nav-subtitle {
   font-size: 16px;
   color: {{settings.color_main}};
   font-weight: 500;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-style: inherit;
   line-height: 29px;
@@ -14042,10 +13531,8 @@ span.nav-subtitle {
 .article-page .content-single-blog .single-related-post .blog_grid .post-thumb .single-post-date .date {
   font-size: 15px;
   font-weight: 500;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   position: relative
 }
@@ -14065,10 +13552,8 @@ span.nav-subtitle {
 .article-page .content-single-blog .single-related-post .blog_grid .post-thumb .single-post-date .month {
   font-size: 12px;
   font-weight: 500;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   text-transform: uppercase
 }
@@ -14076,10 +13561,8 @@ span.nav-subtitle {
 .article-page .content-single-blog .single-related-post .blog_grid .post-info .blog-title {
   font-size: 12px;
   text-transform: uppercase;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   letter-spacing: 2px;
   font-weight: 500;
@@ -14105,10 +13588,8 @@ span.nav-subtitle {
 
 .article-page .content-single-blog .single-related-post .blog_grid .post-info .post-title a {
   font-size: 22px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 500;
   color: #333;
@@ -14144,10 +13625,8 @@ span.nav-subtitle {
 
 .article-page .content-single-blog .single-related-post .blog_grid .post-info .btn_readmore {
   font-size: 14px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 600;
   color: {{settings.color_main}};
@@ -14190,10 +13669,8 @@ span.nav-subtitle {
 }
 
 .article-page .article_sidebar .blog_sidebar_cate .widget-title {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 22px;
   font-weight: 500;
@@ -14228,10 +13705,8 @@ span.nav-subtitle {
   position:relative;
   padding-left: 16px;
   display: block;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 16px;
   font-weight: 500;
@@ -14275,10 +13750,8 @@ span.nav-subtitle {
 }
 
 .article-page .article_sidebar .blog_sidebar_recent .widget-title {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 22px;
   font-weight: 500;
@@ -14319,10 +13792,8 @@ span.nav-subtitle {
 }
 
 .article-page .article_sidebar .blog_sidebar_recent .list-posts .item-post .post-info .date-post {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 16px;
   color: #a7acb5;
@@ -14332,10 +13803,8 @@ span.nav-subtitle {
 }
 
 .article-page .article_sidebar .blog_sidebar_recent .list-posts .item-post .post-info .post-title {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 16px;
   font-weight: 500;
@@ -14344,10 +13813,8 @@ span.nav-subtitle {
 }
 
 .article-page .article_sidebar .blog_sidebar_recent .list-posts .item-post .post-info .comment-count {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 12px;
   color: #aaa;
@@ -14361,10 +13828,8 @@ span.nav-subtitle {
 }
 
 .article-page .article_sidebar .widget-tags .widget-title {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 22px;
   font-weight: 500;
@@ -14406,10 +13871,8 @@ span.nav-subtitle {
   font-size: 16px;
   font-weight: 400;
   padding: 5px 30px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
 }
 
@@ -14424,10 +13887,8 @@ span.nav-subtitle {
 }
 
 .article-page .article_sidebar .widget-search .widget-title {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 15px;
   font-weight: 500;
@@ -14455,10 +13916,8 @@ span.nav-subtitle {
 
 .article-page .article_sidebar .widget-search .wg-search-form input[type=text]::placeholder {
   font-size: 14px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 500;
   color: #979797
@@ -14500,10 +13959,8 @@ span.nav-subtitle {
   font-size: 26px;
   text-transform: capitalize;
   font-weight: 500;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   margin-bottom:35px;
 }
@@ -14521,19 +13978,15 @@ span.nav-subtitle {
   border-radius: 0;
   padding: 11px 23px;
   font-size: 14px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
 }
 
 .article-page .reply-comment .contact-form .contact-name input::placeholder {
   font-size: 14px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   color: #999
 }
@@ -14551,19 +14004,15 @@ span.nav-subtitle {
   border-radius: 0;
   padding: 11px 23px;
   font-size: 14px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
 }
 
 .article-page .reply-comment .contact-form .contact-email input::placeholder {
   font-size: 14px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   color: #999
 }
@@ -14580,20 +14029,16 @@ span.nav-subtitle {
   border-radius: 0;
   padding-left: 23px;
   font-size: 14px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   padding-top: 18px
 }
 
 .article-page .reply-comment .contact-form .contact-message textarea::placeholder {
   font-size: 14px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   color: #999
 }
@@ -14609,10 +14054,8 @@ span.nav-subtitle {
   text-transform: uppercase;
   letter-spacing: .2em;
   font-size: 14px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   color: #fff;
   font-weight: 600;
@@ -14627,10 +14070,8 @@ span.nav-subtitle {
 
 .article-page .blog-comment-detail .title_cmt_details {
   font-size: 22px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   color: {{settings.color_main}};
   font-weight: 500;
@@ -14655,10 +14096,8 @@ span.nav-subtitle {
 
 .article-page .blog-comment-detail .comment-details .comment-info .author-name {
   font-size: 12px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 600;
   color: {{settings.color_main}};
@@ -14678,10 +14117,8 @@ span.nav-subtitle {
 
 .article-page .blog-comment-detail .comment-details .comment-info .date-post {
   font-size: 14px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   color: #b0b0b0;
   padding-top: 5px
@@ -14690,10 +14127,8 @@ span.nav-subtitle {
 .article-page .blog-comment-detail .comment-details .comment-info .desc {
   padding-top: 10px;
   font-size: 14px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   color: #999;
   line-height: 28px
@@ -14823,10 +14258,8 @@ span.nav-subtitle {
   font-size: 30px;
   margin-top:0;
   font-weight: 500;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   color: {{settings.color_main}};
   margin-top: 30px
@@ -14835,10 +14268,8 @@ span.nav-subtitle {
 .list-category .info_col .total_item {
   font-size: 16px;
   font-weight: 400;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   color: {{settings.color_main}}
 }
@@ -14898,10 +14329,8 @@ span.nav-subtitle {
   letter-spacing: .2em;
   text-transform: uppercase;
   color: {{settings.color_main}};
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   padding: 15px 20px;
   border-left: 1px solid #dee2e6
@@ -14916,10 +14345,8 @@ span.nav-subtitle {
 }
 
 .page-cart .content-cart-page .shop_table .cart_item .product-name-thumb,.page-cart .content-cart-page .shop_table .cart_item .product-price,.page-cart .content-cart-page .shop_table .cart_item .product-subtotal {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 14px;
   color: #a8a8a8;
@@ -15057,10 +14484,8 @@ span.nav-subtitle {
   letter-spacing: .2em;
   text-transform: uppercase;
   margin-bottom: 0;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   padding: 17px 20px 17px 0
 }
@@ -15070,10 +14495,8 @@ span.nav-subtitle {
 }
 
 .page-cart .content-cart-page .cart_totals .cart-check .total-checkout .cart-label {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   padding: 17px 0;
   font-size: 16px;
@@ -15083,10 +14506,8 @@ span.nav-subtitle {
 }
 
 .page-cart .content-cart-page .cart_totals .cart-check .total-checkout .cart-amount {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   padding: 17px 0;
   font-size: 16px;
@@ -15121,10 +14542,8 @@ span.nav-subtitle {
   font-weight: 400;
   color: {{settings.color_main}};
   text-transform: capitalize;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   margin-top: 30px
 }
@@ -15141,10 +14560,8 @@ span.nav-subtitle {
 }
 
 .product-quickview .popup-quickview .product-info-main .product-item .product-name a {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 22px;
   font-weight: 600;
@@ -15183,10 +14600,8 @@ span.nav-subtitle {
 }
 
 .product-quickview .popup-quickview .product-info-main .product-item .details .swatch .header {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   color: {{settings.color_main}};
   margin: 0;
@@ -15268,10 +14683,8 @@ span.nav-subtitle {
 
 .product-quickview .popup-quickview .product-info-main .product-item .details .product-actions .btn-addtocart .shop-button {
   margin-left: 10px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   transition: all .3s ease;
   padding: 0 39px;
@@ -15302,10 +14715,8 @@ span.nav-subtitle {
 }
 
 .engo-popup .content .product-info .product-name {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   padding-bottom: 0;
   font-size: 16px;
@@ -15339,10 +14750,8 @@ span.nav-subtitle {
 .engo-popup .content .more_info .actions .shop-button {
   margin: 0 auto;
   margin-bottom: 20px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   transition: all .3s ease;
   width: 270px;
@@ -15387,10 +14796,8 @@ span.nav-subtitle {
 .engo-popup .content .more_info .actions .checkout-button {
   margin: 0 auto;
   margin-bottom: 20px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   transition: all .3s ease;
   width: 270px;
@@ -15500,10 +14907,8 @@ span.nav-subtitle {
   letter-spacing: .2em;
   text-transform: uppercase;
   color: {{settings.color_main}};
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   padding: 15px 20px;
   border-left: 1px solid #dee2e6
@@ -15514,10 +14919,8 @@ span.nav-subtitle {
 }
 
 .page-wishlist .table-product .table .prod_title a {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 14px;
   color: #a8a8a8;
@@ -15530,10 +14933,8 @@ span.nav-subtitle {
 }
 
 .page-wishlist .table-product .table .prod_price del,.page-wishlist .table-product .table .prod_price ins {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 14px;
   color: #a8a8a8;
@@ -15543,10 +14944,8 @@ span.nav-subtitle {
 }
 
 .page-wishlist .table-product .table .prod_btn .shop-button {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   transition: all .3s ease;
   width: 200px;
@@ -15591,10 +14990,8 @@ span.nav-subtitle {
 }
 
 .page-wishlist .continue-shop .shop-button {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   transition: all .3s ease;
   width: 200px;
@@ -15743,10 +15140,8 @@ input,select,textarea {
 
 .coming_soon .top_coming_soon span {
   font-size: 16px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 600;
   display: inline-block;
@@ -15784,10 +15179,8 @@ input,select,textarea {
 }
 
 .coming_soon .time ul li p {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 50px;
   font-weight: 700;
@@ -15796,10 +15189,8 @@ input,select,textarea {
 }
 
 .coming_soon .time ul li span {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 14px;
   font-weight: 500;
@@ -15848,10 +15239,8 @@ input,select,textarea {
   background-color: #fff;
   border: none;
   text-transform: uppercase;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 16px;
   font-weight: 500;
@@ -16374,10 +15763,8 @@ input,select,textarea {
     letter-spacing: .2em;
     text-transform: uppercase;
     color: {{settings.color_main}};
-    {% if settings.font_type == 'google_fonts' %}
-    font-family: {{settings.fonts_name_1}};
-    {% else %}
-    font-family: SofiaPro;
+    font-family: var(--font-body);
+    font-family: var(--font-body);
     {% endif %}
     padding: 15px 20px;
     border-left: 1px solid #dee2e6
@@ -16968,10 +16355,8 @@ input,select,textarea {
     letter-spacing: .2em;
     text-transform: uppercase;
     color: {{settings.color_main}};
-    {% if settings.font_type == 'google_fonts' %}
-    font-family: {{settings.fonts_name_1}};
-    {% else %}
-    font-family: SofiaPro;
+    font-family: var(--font-body);
+    font-family: var(--font-body);
     {% endif %}
     padding: 15px 20px;
     border-left: 1px solid #dee2e6
@@ -17964,10 +17349,8 @@ input,select,textarea {
 }
 
 body {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   position: relative;
   transition: all .3s ease;
@@ -18411,10 +17794,8 @@ body.cartover {
 }
 
 .search-full-destop .search-eveland .result_prod .prod_sidebar .product_info .title-product a {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 14px;
   font-weight: 400;
@@ -18432,10 +17813,8 @@ body.cartover {
 }
 
 .search-full-destop .search-eveland .result_prod .prod_sidebar .product_info .price-product .price-old {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 11px;
   font-weight: 300;
@@ -18444,10 +17823,8 @@ body.cartover {
 }
 
 .search-full-destop .search-eveland .result_prod .prod_sidebar .product_info .price-product .price {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 14px;
   font-weight: 600;
@@ -19789,10 +19166,8 @@ body.cartover {
 
 .login_regester h1,.login_regester h2.title24.title-form-account {
   font-size: 18px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   text-transform: uppercase;
   font-weight: 600;
@@ -19804,10 +19179,8 @@ body.cartover {
 }
 
 .login_regester .form-control {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   border: none;
   border-bottom: 1px solid #ccc;
@@ -19819,10 +19192,8 @@ body.cartover {
 }
 
 .login_regester label {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 16px;
   font-weight: 500
@@ -19831,10 +19202,8 @@ body.cartover {
 .login_regester input::placeholder {
   font-size: 13px;
   color: #ccc;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
 }
 
@@ -20235,10 +19604,8 @@ body.cartover {
   font-size: 10px;
   padding: 7px 8px;
   letter-spacing: .1em;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 600;
   height: 35px;
@@ -20280,10 +19647,8 @@ body.cartover {
   display: block;
   padding: 0 8px;
   letter-spacing: .1em;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 600;
   height: 35px;
@@ -20583,10 +19948,8 @@ body.cartover {
   display: block;
   position: relative;
   font-size: 17px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   color: {{settings.color_main}};
   font-weight: 500;
@@ -20797,10 +20160,8 @@ a.link_active{
   font-size: 18px;
   font-weight: 500;
   color: {{settings.color_main}};
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   display: inline-block;
   position: relative;
@@ -20835,10 +20196,8 @@ a.link_active{
 }
 
 .title_heading {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 20px;
   font-weight: 500;
@@ -20863,10 +20222,8 @@ a.link_active{
 }
 
 .sub_heading {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 17px;
   font-weight: 500;
@@ -20990,10 +20347,8 @@ a.link_active{
 }
 
 .section-slideshow-v1 .info-sideh1 .box-content .box-title .titlebig {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 80px;
   font-weight: 600;
@@ -21005,10 +20360,8 @@ a.link_active{
 }
 
 .section-slideshow-v1 .info-sideh1 .box-content .box-title1 .title-small {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 16px;
   font-weight: 500;
@@ -21027,10 +20380,8 @@ a.link_active{
 }
 
 .section-slideshow-v1 .info-sideh1 .box-content .box-title2 .title-small {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 20px;
   font-weight: 500;
@@ -21048,10 +20399,8 @@ a.link_active{
 .section-slideshow-v1 .info-sideh1 .box-content .button-main2 {
   margin-top: 30px;
   font-weight: 500;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
 }
 
@@ -21069,10 +20418,8 @@ a.link_active{
 }
 
 .section-slideshow-v1 .info-sideh1 .box-content-center .box-title .titlebig {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 80px;
   font-weight: 600;
@@ -21084,10 +20431,8 @@ a.link_active{
 }
 
 .section-slideshow-v1 .info-sideh1 .box-content-center .box-title1 .title-small {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 16px;
   font-weight: 500;
@@ -21106,10 +20451,8 @@ a.link_active{
 }
 
 .section-slideshow-v1 .info-sideh1 .box-content-center .box-title2 .title-small {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 20px;
   font-weight: 500;
@@ -21143,10 +20486,8 @@ a.link_active{
 }
 
 .section-slideshow-v1 .info-sideh1 .box-content-right .box-title .titlebig {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 90px;
   font-weight: 300;
@@ -21171,10 +20512,8 @@ a.link_active{
 }
 
 .section-slideshow-v1 .info-sideh1 .box-content-right .box-title1 .title-small {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 16px;
   font-weight: 500;
@@ -21223,10 +20562,8 @@ a.link_active{
 }
 
 .section-slideshow-v1 .info-sideh1 .box-content-right .box-title2 .title-small {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 20px;
   font-weight: 500;
@@ -21853,10 +21190,8 @@ a.link_active{
   text-transform: uppercase;
   color: {{settings.color_main}};
   transition: color .25s,border-color .25s,background-color .25s,opacity .25s,width .25s ease 0s;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
 }
 
@@ -21874,10 +21209,8 @@ a.link_active{
   font-weight:600;
   color: {{settings.color_main}};
   letter-spacing: .2em;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   margin: 0 0 20px 0;
   position: relative;
@@ -22226,10 +21559,8 @@ a.link_active{
   text-transform: uppercase;
   color: {{settings.color_main}};
   transition: color .25s,border-color .25s,background-color .25s,opacity .25s,width .25s ease 0s;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
 }
 
@@ -22667,10 +21998,8 @@ a.link_active{
 .count-down .countdown-timer li {
   display: inline-block;
   font-size: 12px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 500;
   width: 65px;
@@ -22698,10 +22027,8 @@ a.link_active{
   display: block;
   font-weight: 400;
   font-size: 24px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   text-algin: center;
   height:65px;
@@ -23066,10 +22393,8 @@ a.link_active{
 }
 
 .popup_random_prod .prod_sidebar .product_info .info_right .product-title {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 15px;
   font-weight: 500;
@@ -24319,10 +23644,8 @@ a.link_active{
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 1px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
 }
 
@@ -24829,10 +24152,8 @@ a.link_active{
   display: block;
   padding: 0 8px;
   letter-spacing: 1px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 600;
   height: 35px;
@@ -24922,10 +24243,8 @@ a.link_active{
   font-size: 16px;
   font-weight: 600;
   color: {{settings.color_main}};
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   display: inline-block;
   position: relative;
@@ -24966,10 +24285,8 @@ a.link_active{
 }
 
 .products_menu .prod_sidebar_menu .product_info .title-product a {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 14px;
   font-weight: 400;
@@ -24981,10 +24298,8 @@ a.link_active{
 }
 
 .products_menu .prod_sidebar_menu .product_info .price-product .price-old {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 12px;
   font-weight: 600;
@@ -24992,10 +24307,8 @@ a.link_active{
 }
 
 .products_menu .prod_sidebar_menu .product_info .price-product .price {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 14px;
   font-weight: 600;
@@ -25256,10 +24569,8 @@ a.link_active{
 
 .collection-sorting .dropdown .dropdown-toggle {
   color: #969696;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 14px;
   font-weight: 500;
@@ -25700,10 +25011,8 @@ a.link_active{
 .section-product-v5 .box-info-center .info-bottom .button-banner {
   display: inline-block;
   padding: 15px 30px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   transition: all .3s;
   font-size: 14px;
@@ -25773,10 +25082,8 @@ a.link_active{
 }
 
 .section-product-v6 .button-all-site {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 14px;
   line-height: 1;
@@ -25800,10 +25107,8 @@ a.link_active{
 
 .section-countdown-v1 .info-deal .title-deal {
   font-size: 16px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   text-shadow: 1px 1px 1px {{settings.color_main}}
 }
@@ -25822,10 +25127,8 @@ a.link_active{
 
 .section-countdown-v1 .info-deal .deal-to {
   font-size: 36px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   text-shadow: 1px 1px 1px {{settings.color_main}}
 }
@@ -25868,10 +25171,8 @@ a.link_active{
   justify-content: center;
   align-items: center;
   font-size: 16px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 400;
   list-style-type: none;
@@ -25918,19 +25219,15 @@ a.link_active{
 }
 
 .section-countdown-v1 .countdown-timer li span {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   color: {{settings.color_main}};
   display: inline-block;
   font-weight: 600;
   font-size: 50px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   text-algin: center
 }
@@ -25948,10 +25245,8 @@ a.link_active{
 }
 
 .section-countdown-v1 .countdown-timer li span b {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 600;
   padding-top: 7px
@@ -25959,10 +25254,8 @@ a.link_active{
 
 .section-countdown-v1 .button {
   margin-top: 60px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   position: relative;
   display: inline-block;
@@ -26057,10 +25350,8 @@ a.link_active{
 }
 
 .section-banner-v1 .box-banner .info-banner h3 {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 500;
   font-size: 20px;
@@ -26114,10 +25405,8 @@ a.link_active{
   top: 50%;
   transform: translate(-50%,-50%) scale(0);
   display: inline-block;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 500;
   font-size: 14px;
@@ -26207,10 +25496,8 @@ a.link_active{
 .section-banner-v2 .banner-box .banner-info .title {
   margin-top: 0;
   font-weight: 600;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   text-transform: unset
 }
@@ -26254,10 +25541,8 @@ a.link_active{
 
 .section-banner-v2 .banner-box .banner-info .sub-title {
   font-weight: 400;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
 }
 
@@ -26395,19 +25680,15 @@ a.link_active{
 @media (min-width: 1600px) {
   .section-banner-v3 .banner-item .content .sub-title {
     font-size:40px;
-    {% if settings.font_type == 'google_fonts' %}
-    font-family: {{settings.fonts_name_1}};
-    {% else %}
-    font-family: SofiaPro;
+    font-family: var(--font-body);
+    font-family: var(--font-body);
     {% endif %}
   }
 }
 
 .section-banner-v3 .banner-item .content .title-banner {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 600;
   margin-bottom: 18px;
@@ -26446,10 +25727,8 @@ a.link_active{
 
 .section-banner-v3 .banner-item .content a {
   display: inline-block;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 600;
   font-size: 16px
@@ -26530,10 +25809,8 @@ a.link_active{
 }
 
 .section-banner-v4 .banner-v4 .banner-item .banner-info .banner-content .title-detail {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 400
 }
@@ -26558,10 +25835,8 @@ a.link_active{
 
 .section-banner-v4 .banner-v4 .banner-item .banner-info .banner-content a {
   display: inline-block;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 500;
   transition: all .3s;
@@ -26696,10 +25971,8 @@ a.link_active{
 }
 
 .section-banner-v4 .banner-v4 .sub-banner-item .banner-down .content .title-banner {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 600;
   text-transform: uppercase
@@ -26730,10 +26003,8 @@ a.link_active{
 }
 
 .section-banner-v4 .banner-v4 .sub-banner-item .banner-down .content .title-detail2 {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 400
 }
@@ -26764,10 +26035,8 @@ a.link_active{
 
 .section-banner-v4 .banner-v4 .sub-banner-item .banner-down .content a {
   display: inline-block;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 500;
   transition: all .3s;
@@ -26896,10 +26165,8 @@ a.link_active{
 
 .section-banner-v5 .box-img1 .banner-content .title-banner {
   margin-bottom: 15px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 500
 }
@@ -27021,10 +26288,8 @@ a.link_active{
 }
 
 .section-banner-v6 .banner-box .banner-info .title {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
 
   font-size: 50px;
@@ -27062,10 +26327,8 @@ a.link_active{
 }
 
 .section-banner-v7 .content-banner .title-banner {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 500
 }
@@ -27129,10 +26392,8 @@ a.link_active{
   background-color: #000;
   color: #fff;
   text-transform: uppercase;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   letter-spacing: .2em;
   position: relative;
@@ -27203,10 +26464,8 @@ a.link_active{
 }
 
 .section-banner-v8 .banner-item .banner-content .title-top {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 400
 }
@@ -27230,10 +26489,8 @@ a.link_active{
 }
 
 .section-banner-v8 .banner-item .banner-content .title-banner {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 600
 }
@@ -27273,10 +26530,8 @@ a.link_active{
 
 .section-banner-v8 .banner-item .banner-content .btn-banner {
   display: inline-block;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 14px;
   padding: 14px 40px;
@@ -27359,10 +26614,8 @@ a.link_active{
 .section-banner-v9 .item-banner .content-banner .title-banner .title {
   display: inline-block;
   padding: 0 20px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   text-transform: uppercase;
   font-weight: 600
@@ -27423,10 +26676,8 @@ a.link_active{
 
 .section-banner-v9 .item-banner .content-banner .box-button .button-banner {
   display: inline-flex;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 600;
   text-transform: uppercase;
@@ -27591,10 +26842,8 @@ a.link_active{
 
 .section-banner-v10 .content-banner.style-1 .title,
 .section-banner-v10 .content-banner.style-4 .title{
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 14px;
   color: #333333;
@@ -27665,10 +26914,8 @@ a.link_active{
 }
 
 .section-banner-v11 .item-banner .content-banner h3 .title-banner {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 500;
   font-size: 22px
@@ -27784,10 +27031,8 @@ a.link_active{
 
 .section-newsletter-v1 .title_newletter h3 {
   font-size: 42px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 600;
   letter-spacing: 2px
@@ -28163,19 +27408,15 @@ a.link_active{
   letter-spacing: 1px;
   text-transform: uppercase;
   color: {{settings.color_main}};
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   margin-bottom: 5px
 }
 
 .section-service-v1 .itemtservice .box-service .info .content {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   color: #a9a9a9;
   font-size: 16px;
@@ -28221,10 +27462,8 @@ a.link_active{
   max-width: 60px;
   font-size: 65px;
   color: {{settings.color_main2}};
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 600;
   line-height: 1
@@ -28239,20 +27478,16 @@ a.link_active{
   font-size: 15px;
   font-weight: 800;
   color: {{settings.color_main}};
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   text-transform: uppercase;
   margin-bottom: 5px
 }
 
 .section-service-v2 .itemtservice .box-service .info .content {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 14px;
   color: #868686;
@@ -28381,10 +27616,8 @@ a.link_active{
   font-size: 65px;
   font-weight: 500;
   line-height: 1;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
 }
 
@@ -28420,10 +27653,8 @@ a.link_active{
 
 .section-slideshow-v2 .itemv-slide-h2 .info_slide .box-info .box-content p {
   margin-top: 30px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 20px
 }
@@ -28440,10 +27671,8 @@ a.link_active{
   padding: 15px 30px;
   font-size: 15px;
   line-height: 1;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   transition: .4s
 }
@@ -28627,10 +27856,8 @@ a.link_active{
 }
 
 .section-slideshow-v3 .itemv-slide-h3 .content .title-slideshow {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 700;
   text-transform: uppercase
@@ -28672,10 +27899,8 @@ a.link_active{
 
 .section-slideshow-v3 .itemv-slide-h3 .content .box-button a {
   display: inline-flex;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   line-height: 1;
   font-weight: 600;
@@ -28895,10 +28120,8 @@ a.link_active{
 }
 
 .section-slideshow-v4 .slide-item .slider-content .slider-title {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 600;
   line-height: 1;
@@ -28944,10 +28167,8 @@ a.link_active{
 }
 
 .section-slideshow-v4 .slide-item .slider-content .sub-title {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 400;
   transform: translateY(100%);
@@ -29010,10 +28231,8 @@ a.link_active{
 
 .section-slideshow-v4 .slide-item .slider-content .box-button a {
   display: inline-block;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 500;
   line-height: 1;
@@ -29281,10 +28500,8 @@ a.link_active{
 .section-slideshow-v5 .item-slide .box-content .content h3 {
   font-size: 25px;
   font-weight: 500;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   letter-spacing: 6px;
   text-transform: uppercase
@@ -29307,10 +28524,8 @@ a.link_active{
   font-style: italic;
   font-size: 16px;
   font-weight: 500;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
 }
 
@@ -29415,10 +28630,8 @@ a.link_active{
 }
 
 .section-testimonial-v1 .testimonial-inner .testimonial-info .author-info h3 {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 14px;
   font-weight: 700;
@@ -29429,10 +28642,8 @@ a.link_active{
 }
 
 .section-testimonial-v1 .testimonial-inner .testimonial-info .author-info p {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 14px;
   font-weight: 400;
@@ -29450,10 +28661,8 @@ a.link_active{
 }
 
 .section-testimonial-v1 .testimonial-inner .testimonial-info .content {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 16px;
   color: {{settings.color_main}};
@@ -29558,10 +28767,8 @@ a.link_active{
 }
 
 .section-testimonial-v2 .testimonial-inner .testimonial-info {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 16px;
   color: #fff;
@@ -29606,10 +28813,8 @@ a.link_active{
 }
 
 .section-testimonial-v2 .testimonial-inner .testimonial-author .author-info h3 {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   letter-spacing: 1px;
   font-size: 14px;
@@ -29618,10 +28823,8 @@ a.link_active{
 }
 
 .section-testimonial-v2 .testimonial-inner .testimonial-author .author-info p {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 14px;
   font-weight: 400;
@@ -29667,10 +28870,8 @@ a.link_active{
 
 .section-collection-v1 .item .category-info .box-info a {
   display: inline-block;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 600
 }
@@ -29860,10 +29061,8 @@ a.link_active{
 
 .section-collection-v2 .item .category-info .box-info {
   display: inline-block;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 600;
   font-size: 22px;
@@ -30007,10 +29206,8 @@ a.link_active{
 }
 
 .section-collection-v3 .item .title-collection {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 600;
   font-size: 28px;
@@ -30025,10 +29222,8 @@ a.link_active{
 }
 
 .section-collection-v3 .item .content-box {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   color: #888
 }
@@ -30123,10 +29318,8 @@ a.link_active{
   color: {{settings.color_main}};
   font-weight: 500;
   transition: all .3s ease;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
 }
 
@@ -30135,10 +29328,8 @@ a.link_active{
 }
 
 .section-blog-v1 .content-section-blog-v1 .info_blog .content {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 16px;
   line-height:28px;
@@ -30595,10 +29786,8 @@ a.link_active{
 .section-blog-v3 .blog-content .blog-item .post .article-title a {
   font-size: 25px;
   color: {{settings.color_main}};
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 500;
   margin-bottom: 20px
@@ -30620,10 +29809,8 @@ a.link_active{
   display: block;
   line-height: 28px;
   color: #909090;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   padding-right: 55px
 }
@@ -30642,10 +29829,8 @@ a.link_active{
 }
 
 .section-blog-v3 .blog-content .blog-item .post .btn-readmore {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   display: inline-block;
   font-weight: 400;
@@ -30758,10 +29943,8 @@ a.link_active{
   font-size: 14px;
   font-weight: 500;
   color: #fff;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   margin-top: 10px;
   text-transform: uppercase;
@@ -31011,10 +30194,8 @@ a.link_active{
   font-size: 14px;
   font-weight: 600;
   color: #fff;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   margin-top: 10px;
   text-transform: uppercase;
@@ -31370,10 +30551,8 @@ form.cart.clearfix{
   text-transform: uppercase;
   letter-spacing: 3.2px;
   margin: 0;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-weight: 500;
   line-height: 1.2;
@@ -31411,10 +30590,8 @@ form.cart.clearfix{
   list-style:none;
 }
 .tab-content ul li{
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
+  font-family: var(--font-body);
+  font-family: var(--font-body);
   {% endif %}
   font-size: 15px;
   font-weight: 400;

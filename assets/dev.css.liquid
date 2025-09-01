@@ -1,3 +1,13 @@
+/* Typography overrides: use modern Shopify font_picker variables */
+body { font-family: var(--font-body) !important; }
+h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading) !important; }
+/* Common nav/menu containers */
+.main-nav, .site-nav, .nav, .menu, .navigation, .header-menu, .menu-title { font-family: var(--font-nav) !important; }
+/* Form controls */
+button, input, select, textarea { font-family: var(--font-body) !important; }
+/* Links and buttons */
+a, .btn, .button, [class*="btn-"], [class*="button-"] { font-family: var(--font-body) !important; }
+
 .img-product-hover{
   bottom: 0;
   left: 0;
@@ -160,7 +170,7 @@ img{
   bottom: 0;
   background: transparent;
   padding: 0;
-  font-family: sofia_prosemibold,sans-serif;
+  font-family: var(--font-body);
   letter-spacing: .2em;
   color: inherit;
   height: 50px;
@@ -340,11 +350,7 @@ img{
   text-align: center;
 }
 .content-view_more .btn-view_more {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
-  {% endif %}
+  font-family: var(--font-body);
   font-weight: 500;
   display: inline-block;
   font-size: 14px;
@@ -365,11 +371,7 @@ img{
   font-size: 12px;
   font-weight: 500;
   color: {{settings.color_main}};
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
-  {% endif %}
+  font-family: var(--font-body);
   display: inline-block;
   position: relative;
   overflow: hidden;

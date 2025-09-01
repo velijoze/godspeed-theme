@@ -29,7 +29,7 @@
 
 <style>
 .why-quote-section {
-  padding: {{ section.settings.padding_top | default: 100 }}px 0 {{ section.settings.padding_bottom | default: 100 }}px 0;
+  padding: {{ section.settings.padding_top | default: 60 }}px 0 {{ section.settings.padding_bottom | default: 60 }}px 0;
   background: {{ section.settings.bg_color | default: '#2c3e50' }};
   position: relative;
   overflow: hidden;
@@ -53,20 +53,18 @@
 }
 
 .quote-text {
-  font-size: 2.2rem;
+  font-size: 1.8rem;
   font-weight: 300;
   color: {{ section.settings.quote_color | default: '#ffffff' }};
   line-height: 1.4;
   margin: 0 0 1.5rem 0;
   font-style: italic;
   position: relative;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{ settings.fonts_name_1 }};
-  {% endif %}
+  font-family: var(--font-heading);
 }
 
 .quote-mark {
-  font-size: 4rem;
+  font-size: 3.2rem;
   font-weight: 700;
   color: {{ section.settings.accent_color | default: settings.color_main2 }};
   font-style: normal;

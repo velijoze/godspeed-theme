@@ -575,11 +575,7 @@
 }
 
 .address-title {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
-  {% endif %}
+  font-family: var(--font-heading);
   font-size: 1.4rem;
   font-weight: 600;
   color: {{settings.color_main2}};
@@ -603,11 +599,7 @@
 }
 
 .address-info p {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
-  {% endif %}
+  font-family: var(--font-body);
   margin: 0;
   font-size: 0.95rem;
   line-height: 1.4;

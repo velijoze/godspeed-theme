@@ -309,11 +309,7 @@
 }
 
 .section-title {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
-  {% endif %}
+  font-family: var(--font-heading);
   font-size: 2rem;
   font-weight: 600;
   color: #333;
@@ -322,11 +318,7 @@
 }
 
 .section-description {
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
-  {% endif %}
+  font-family: var(--font-body);
   font-size: 1rem;
   color: #666;
   max-width: 600px;

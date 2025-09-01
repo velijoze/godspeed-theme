@@ -49,7 +49,7 @@
 
 <style>
 .why-godspeed-section {
-  padding: {{ section.settings.padding_top | default: 100 }}px 0 {{ section.settings.padding_bottom | default: 100 }}px 0;
+  padding: {{ section.settings.padding_top | default: 60 }}px 0 {{ section.settings.padding_bottom | default: 60 }}px 0;
   background: {{ section.settings.bg_color | default: '#ffffff' }};
 }
 
@@ -60,18 +60,16 @@
 }
 
 .godspeed-title {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 700;
   color: {{ section.settings.title_color | default: '#2c3e50' }};
   margin-bottom: 1.5rem;
   line-height: 1.3;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{ settings.fonts_name_1 }};
-  {% endif %}
+  font-family: var(--font-heading);
 }
 
 .godspeed-text {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: {{ section.settings.content_color | default: '#6c757d' }};
   line-height: 1.7;
   margin-bottom: 2rem;
@@ -91,7 +89,7 @@
 
 .btn-godspeed {
   padding: 1rem 2rem;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -160,7 +158,7 @@
 
 @media (max-width: 992px) {
   .godspeed-title {
-    font-size: 2rem;
+    font-size: 1.7rem;
   }
   
   .godspeed-content {
@@ -193,7 +191,7 @@
   }
   
   .godspeed-title {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
   }
   
   .godspeed-text {
@@ -266,8 +264,7 @@
     {
       "type": "url",
       "id": "cta_url",
-      "label": "Primary Button URL",
-      "default": "/pages/contact"
+      "label": "Primary Button URL"
     },
     {
       "type": "text",
@@ -278,8 +275,7 @@
     {
       "type": "url",
       "id": "secondary_cta_url",
-      "label": "Secondary Button URL",
-      "default": "/collections/e-bikes"
+      "label": "Secondary Button URL"
     },
     {
       "type": "header",

@@ -192,9 +192,7 @@
   font-size: 1.5rem;
   font-weight: 600;
   color: #2c3e50;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% endif %}
+  font-family: var(--font-heading);
 }
 
 .test-ride-close {
@@ -251,9 +249,7 @@
   font-size: 1.2rem;
   font-weight: 600;
   color: #2c3e50;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% endif %}
+  font-family: var(--font-heading);
 }
 
 .product-price {
@@ -283,9 +279,7 @@
   margin-bottom: 0.5rem;
   font-weight: 600;
   color: #2c3e50;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% endif %}
+  font-family: var(--font-body);
 }
 
 .form-control {

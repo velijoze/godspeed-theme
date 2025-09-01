@@ -53,9 +53,9 @@
 
 <style>
 .why-cta-section {
-  padding: {{ section.settings.padding_top | default: 120 }}px 0 {{ section.settings.padding_bottom | default: 120 }}px 0;
+  padding: {{ section.settings.padding_top | default: 80 }}px 0 {{ section.settings.padding_bottom | default: 80 }}px 0;
   position: relative;
-  min-height: 60vh;
+  min-height: 40vh;
   display: flex;
   align-items: center;
 }
@@ -76,18 +76,16 @@
 }
 
 .cta-title {
-  font-size: 3rem;
+  font-size: 2.4rem;
   font-weight: 700;
   color: {{ section.settings.title_color | default: '#ffffff' }};
   margin-bottom: 1.5rem;
   line-height: 1.2;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{ settings.fonts_name_1 }};
-  {% endif %}
+  font-family: var(--font-heading);
 }
 
 .cta-subtitle {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   color: {{ section.settings.subtitle_color | default: '#f8f9fa' }};
   margin-bottom: 3rem;
   line-height: 1.6;
@@ -176,8 +174,8 @@
 
 @media (max-width: 768px) {
   .why-cta-section {
-    padding: 80px 0;
-    min-height: 50vh;
+    padding: 50px 0;
+    min-height: 30vh;
   }
   
   .cta-title {
@@ -247,8 +245,7 @@
     {
       "type": "url",
       "id": "primary_cta_url",
-      "label": "Primary Button URL",
-      "default": "/collections/e-bikes"
+      "label": "Primary Button URL"
     },
     {
       "type": "textarea",
@@ -269,8 +266,7 @@
     {
       "type": "url",
       "id": "secondary_cta_url",
-      "label": "Secondary Button URL",
-      "default": "/pages/contact"
+      "label": "Secondary Button URL"
     },
     {
       "type": "textarea",

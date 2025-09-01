@@ -28,11 +28,7 @@
 #header .menu ul .nav-item .nav-link {
   text-decoration: none;
   font-size: 12px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
-  {% endif %}
+  font-family: var(--font-nav);
   font-weight: 700;
   text-transform: unset;
   padding:0;
@@ -139,11 +135,7 @@
 #header .menu ul .nav-item .list-woman .list-clothing ul li a {
   text-decoration: none;
   font-size: 15px!important;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
-  {% endif %}
+  font-family: var(--font-body);
   color: {{settings.primary_color}};
   font-weight: 500;
   text-transform: unset;
@@ -184,11 +176,7 @@
 #header .menu ul .nav-item .list-woman.shop .menu_lv2 {
   text-decoration: none;
   font-size: 12px;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
-  {% endif %}
+  font-family: var(--font-nav);
   color: {{settings.primary_color}};
   font-weight: 500;
   text-transform: unset;
@@ -226,11 +214,7 @@
 #header .menu ul .nav-item .list-woman.shop .menu_lv3 {
   text-decoration: none;
   font-size: 15px!important;
-  {% if settings.font_type == 'google_fonts' %}
-  font-family: {{settings.fonts_name_1}};
-  {% else %}
-  font-family: SofiaPro;
-  {% endif %}
+  font-family: var(--font-body);
   color: {{settings.hdv_color_linklv2}};
   font-weight: 400;
   line-height: 24px;

@@ -13,7 +13,4 @@
   {% endif %}
 </style>
 
-{%- comment -%} Load fallback font if no custom fonts selected {%- endcomment -%}
-{% unless settings.heading_font and settings.body_font and settings.navigation_font %}
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-{% endunless %}
+{%- comment -%} Fallback link removed — we rely solely on font_picker {%- endcomment -%}
