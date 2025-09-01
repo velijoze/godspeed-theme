@@ -432,33 +432,25 @@
     ]
   },
   {
-    "name": "Fonts",
+    "name": "Typography",
     "settings": [
       {
-        "type": "radio",
-        "id": "font_type",
-        "label": "Select font type:",
-        "options": [
-          {
-            "value": "normal_fonts",
-            "label": "Normal Fonts"
-          },
-          {
-            "value": "google_fonts",
-            "label": "Google Fonts [Where do I find Google Fonts?](http://www.google.com/fonts)"
-          }
-        ],
-        "default": "google_fonts"
+        "type": "font_picker",
+        "id": "heading_font",
+        "label": "Headings font",
+        "default": "helvetica_n4"
       },
       {
-        "type": "header",
-        "content": "Google Font"
+        "type": "font_picker",
+        "id": "body_font",
+        "label": "Body font",
+        "default": "helvetica_n4"
       },
       {
-        "type": "text",
-        "id": "fonts_name_1",
-        "label": "Google Fonts Name",
-        "default": "Jost"
+        "type": "font_picker",
+        "id": "navigation_font",
+        "label": "Navigation font",
+        "default": "helvetica_n4"
       }
     ]
   },
