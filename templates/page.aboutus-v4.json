@@ -1,1 +1,260 @@
-{"sections":{"banner_about_v4":{"type":"banner-about-v4","settings":{"bg_breadcrumb":"shopify:\/\/shop_images\/5S5A5532.jpg","heading_title":"Our Story","sub_title":"Great Bikes. No Hassle. Just Savings."}},"about_introduce_v4":{"type":"about-introduce-v4","settings":{"enable_intro":true,"image_intro":"shopify:\/\/shop_images\/T0A8412_f2a99a8d-af2a-495d-a32e-fa08aa25f3ef.jpg","title_intro":"Passion for Riding, Built Into Every Bike","des_intro":"At Godspeed, we believe bikes should be more than transport. They’re freedom, performance, and sustainability—all in one ride. Every model we offer is tested, tuned, and backed by experts who ride every day, just like you.","content_intro":"More than a shop—we’re a community of riders helping you find the right bike and keep it rolling."}},"about_servicebox_v4":{"type":"about-servicebox-v4","blocks":{"d88b0474-cd63-43d8-8b24-9f015e053a2e":{"type":"service","settings":{"block_icon_svg":"","block_title":"The leading global and Swiss bike brands, carefully chosen to cover every style of riding—urban, mountain, road, and e-bike."}},"b5ad3f1b-c041-4abf-8612-5aebe84da87b":{"type":"service","settings":{"block_icon_svg":"","block_title":"We ride what we sell. Every bike is assembled, tested, and double-checked to deliver the smoothest ride possible."}},"002f75b6-d61f-4b29-b8a1-41579b68fdea":{"type":"service","settings":{"block_icon_svg":"","block_title":"Bikes aren’t just products—they’re experiences. We bring cycling culture to life through events, workshops, and community rides."}}},"block_order":["d88b0474-cd63-43d8-8b24-9f015e053a2e","b5ad3f1b-c041-4abf-8612-5aebe84da87b","002f75b6-d61f-4b29-b8a1-41579b68fdea"],"settings":{"enable_s_servicebox":true}},"rich_text_v4":{"type":"rich-text-4","settings":{"section_title":"From Commute to Adventure","section_sub":"Whatever your style—commuter, adventurer, racer, or weekend rider—Godspeed has the bike that fits your life. We combine the best brands, expert service, and flexible financing so you can focus on enjoying the ride.","section_url":"shopify:\/\/collections"}},"logos_list":{"type":"logos-list","blocks":{"c9530309-159c-4039-a093-1a33f00d7d7c":{"type":"logo","settings":{"image":"shopify:\/\/shop_images\/CUBE_Logo.png","url_image":""}},"dc10d6db-b436-4ab5-86be-7d7233757423":{"type":"logo","settings":{"image":"shopify:\/\/shop_images\/Brompton_Bicycle_logo_svg.png","url_image":""}},"4a117d56-ca2f-4778-9cb6-58be5656a01f":{"type":"logo","settings":{"image":"shopify:\/\/shop_images\/benno_logo2018.gif","url_image":""}},"7f79b23f-0bc1-40e3-9136-1395bcfbd4c1":{"type":"logo","settings":{"image":"shopify:\/\/shop_images\/RM_Logo_black.jpg","url_image":""}},"1c0fb8f1-bd35-4e01-914a-cc5f39f7d5b0":{"type":"logo","settings":{"image":"shopify:\/\/shop_images\/Bosch-logotype-b-n.png","url_image":""}},"1497d0f2-1f8e-4035-a606-58d35cc53e9a":{"type":"logo","settings":{"image":"shopify:\/\/shop_images\/orbea-logo.png","url_image":""}},"logo_x93RFf":{"type":"logo","settings":{"image":"shopify:\/\/shop_images\/mondraker_1200x627_67625aa8-57cc-4c62-a485-cc3ef45083d8.png","url_image":""}}},"block_order":["c9530309-159c-4039-a093-1a33f00d7d7c","dc10d6db-b436-4ab5-86be-7d7233757423","4a117d56-ca2f-4778-9cb6-58be5656a01f","7f79b23f-0bc1-40e3-9136-1395bcfbd4c1","1c0fb8f1-bd35-4e01-914a-cc5f39f7d5b0","1497d0f2-1f8e-4035-a606-58d35cc53e9a","logo_x93RFf"],"settings":{}},"newsletter_about_v4":{"type":"newsletter_about_v4","settings":{"title_newletter":"SIGN UP <br>FOR NEWSLETTER","color_title":"","content_newletter":"Subscribe to the weekly newsletter for all the latest updates","color_content":"","margin_top":"","margin_bottom":""}},"about_template_v2_eP8jpj":{"type":"about-template-v2","blocks":{"teams_DDihwb":{"type":"teams","settings":{"people_teams_image":"shopify:\/\/shop_images\/enrique.jpg","block_people_teams":"Enrique","block_position_teams":"Chief","link_people_teams":"\/collections\/all"}},"teams_AfpkdR":{"type":"teams","settings":{"people_teams_image":"shopify:\/\/shop_images\/pier_0272bd0e-bfa4-4a1f-a823-ec8e94d14342.jpg","block_people_teams":"Paul Green","block_position_teams":"Graphic Design","link_people_teams":"\/collections\/all"}},"teams_mYUAqi":{"type":"teams","settings":{"people_teams_image":"shopify:\/\/shop_images\/saverio_eed5f6ed-be70-4f1e-bb47-529b0c9a8acb.jpg","block_people_teams":"Jack Sanchez","block_position_teams":"Main Developer","link_people_teams":"\/collections\/all"}},"teams_tR3mqP":{"type":"teams","settings":{"people_teams_image":"shopify:\/\/shop_images\/samuele_a25bae8d-dbfc-4eaa-a4fa-f2c45b9000e3.jpg","block_people_teams":"Sebastian Reave","block_position_teams":"Art Director","link_people_teams":"\/collections\/all"}},"teams_KNaj4z":{"type":"teams","settings":{"people_teams_image":"shopify:\/\/shop_images\/assaf.jpg","block_people_teams":"Sebastian Reave","block_position_teams":"Art Director","link_people_teams":"\/collections\/all"}},"teams_L4b6pJ":{"type":"teams","settings":{"people_teams_image":"shopify:\/\/shop_images\/giorgio_eedb1e11-87e7-4f22-97d1-e8cdc0bedae0.jpg","block_people_teams":"Sebastian Reave","block_position_teams":"Art Director","link_people_teams":"\/collections\/all"}},"teams_ejqUhk":{"type":"teams","settings":{"people_teams_image":"shopify:\/\/shop_images\/marchino_310a5109-be97-4f6e-bf4b-c61eb91dd69a.jpg","block_people_teams":"Sebastian Reave","block_position_teams":"Art Director","link_people_teams":"\/collections\/all"}}},"block_order":["teams_DDihwb","teams_AfpkdR","teams_mYUAqi","teams_tR3mqP","teams_KNaj4z","teams_L4b6pJ","teams_ejqUhk"],"name":"People In Teams","settings":{"enable_slide":false,"enable_about_top":true,"title_abouttop":"Your Destination for Urban E-Bikes and Sustainable Transport.","description_abouttop":"Since 2017, Godspeed has acted on the conviction that urban mobility needs smarter alternatives—e-bikes represent a new paradigm: active, ecological, efficient. Our family-run shops across Ticino and in Zürich bring together carefully selected top global and Swiss brands, expert in-house mechanics, and a dedication to both online and offline excellence. We prioritize customer satisfaction, transparent pricing, and sustainable mobility—offering 0 % financing and next‑day delivery whenever possible. Every bike we sell has been tested and ridden by our team, ensuring quality you can trust.","button_about_top":"","link_abouttop":"shopify:\/\/collections\/all","enable_video":false,"url_section_video":"","enable_teams":true,"title_teams":"Meet Our Team","description_teams":"Godspeed is powered by people who ride, repair, and live cycling every day. Our mechanics, sales staff, and support team bring expertise and passion into everything they do—whether it’s helping you choose the right bike, keeping it tuned, or guiding you through the latest in e-mobility. What unites us is a commitment to honest advice, quality service, and the belief that cycling makes everyday life better.","enable_store":true,"title_store":"Our stores","description_store":"From Lugano to Zürich, every Godspeed location is designed as more than a shop. Each store combines curated product selection with a professional workshop, so you can test, buy, and maintain your bike in one place. Our spaces reflect our values: transparent, customer-focused, and built to support riders of all levels. Wherever you visit us, you’ll find the same dedication to service and the same passion for cycling.","image_store1":"shopify:\/\/shop_images\/Lugano_1.jpg","urlimage_store1":"shopify:\/\/collections\/all","image_store2":"shopify:\/\/shop_images\/manybikes-locarno_1.jpg","urlimage_store2":"shopify:\/\/collections\/all","image_store3":"shopify:\/\/shop_images\/belli.jpg","urlimage_store3":"shopify:\/\/collections\/all","enable_address":true}}},"order":["banner_about_v4","about_introduce_v4","about_servicebox_v4","rich_text_v4","logos_list","newsletter_about_v4","about_template_v2_eP8jpj"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner_about_v4": {
+      "type": "banner-about-v4",
+      "settings": {
+        "bg_breadcrumb": "shopify://shop_images/5S5A5532.jpg",
+        "heading_title": "Our Story",
+        "sub_title": "Great Bikes. No Hassle. Just Savings."
+      }
+    },
+    "about_introduce_v4": {
+      "type": "about-introduce-v4",
+      "settings": {
+        "enable_intro": true,
+        "image_intro": "shopify://shop_images/T0A8412_f2a99a8d-af2a-495d-a32e-fa08aa25f3ef.jpg",
+        "title_intro": "Passion for Riding, Built Into Every Bike",
+        "des_intro": "At Godspeed, we believe bikes should be more than transport. They’re freedom, performance, and sustainability—all in one ride. Every model we offer is tested, tuned, and backed by experts who ride every day, just like you.",
+        "content_intro": "More than a shop—we’re a community of riders helping you find the right bike and keep it rolling."
+      }
+    },
+    "about_servicebox_v4": {
+      "type": "about-servicebox-v4",
+      "blocks": {
+        "d88b0474-cd63-43d8-8b24-9f015e053a2e": {
+          "type": "service",
+          "settings": {
+            "block_icon_svg": "",
+            "block_title": "The leading global and Swiss bike brands, carefully chosen to cover every style of riding—urban, mountain, road, and e-bike."
+          }
+        },
+        "b5ad3f1b-c041-4abf-8612-5aebe84da87b": {
+          "type": "service",
+          "settings": {
+            "block_icon_svg": "",
+            "block_title": "We ride what we sell. Every bike is assembled, tested, and double-checked to deliver the smoothest ride possible."
+          }
+        },
+        "002f75b6-d61f-4b29-b8a1-41579b68fdea": {
+          "type": "service",
+          "settings": {
+            "block_icon_svg": "",
+            "block_title": "Bikes aren’t just products—they’re experiences. We bring cycling culture to life through events, workshops, and community rides."
+          }
+        }
+      },
+      "block_order": [
+        "d88b0474-cd63-43d8-8b24-9f015e053a2e",
+        "b5ad3f1b-c041-4abf-8612-5aebe84da87b",
+        "002f75b6-d61f-4b29-b8a1-41579b68fdea"
+      ],
+      "settings": {
+        "enable_s_servicebox": true
+      }
+    },
+    "rich_text_v4": {
+      "type": "rich-text-4",
+      "settings": {
+        "section_title": "From Commute to Adventure",
+        "section_sub": "Whatever your style—commuter, adventurer, racer, or weekend rider—Godspeed has the bike that fits your life. We combine the best brands, expert service, and flexible financing so you can focus on enjoying the ride.",
+        "section_url": "shopify://collections"
+      }
+    },
+    "logos_list": {
+      "type": "logos-list",
+      "blocks": {
+        "c9530309-159c-4039-a093-1a33f00d7d7c": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/CUBE_Logo.png",
+            "url_image": ""
+          }
+        },
+        "dc10d6db-b436-4ab5-86be-7d7233757423": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/Brompton_Bicycle_logo_svg.png",
+            "url_image": ""
+          }
+        },
+        "4a117d56-ca2f-4778-9cb6-58be5656a01f": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/benno_logo2018.gif",
+            "url_image": ""
+          }
+        },
+        "7f79b23f-0bc1-40e3-9136-1395bcfbd4c1": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/RM_Logo_black.jpg",
+            "url_image": ""
+          }
+        },
+        "1c0fb8f1-bd35-4e01-914a-cc5f39f7d5b0": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/Bosch-logotype-b-n.png",
+            "url_image": ""
+          }
+        },
+        "1497d0f2-1f8e-4035-a606-58d35cc53e9a": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/orbea-logo.png",
+            "url_image": ""
+          }
+        },
+        "logo_x93RFf": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/mondraker_1200x627_67625aa8-57cc-4c62-a485-cc3ef45083d8.png",
+            "url_image": ""
+          }
+        }
+      },
+      "block_order": [
+        "c9530309-159c-4039-a093-1a33f00d7d7c",
+        "dc10d6db-b436-4ab5-86be-7d7233757423",
+        "4a117d56-ca2f-4778-9cb6-58be5656a01f",
+        "7f79b23f-0bc1-40e3-9136-1395bcfbd4c1",
+        "1c0fb8f1-bd35-4e01-914a-cc5f39f7d5b0",
+        "1497d0f2-1f8e-4035-a606-58d35cc53e9a",
+        "logo_x93RFf"
+      ],
+      "settings": {}
+    },
+    "newsletter_about_v4": {
+      "type": "newsletter_about_v4",
+      "settings": {
+        "title_newletter": "SIGN UP <br>FOR NEWSLETTER",
+        "color_title": "",
+        "content_newletter": "Subscribe to the weekly newsletter for all the latest updates",
+        "color_content": "",
+        "margin_top": "",
+        "margin_bottom": ""
+      }
+    },
+    "about_template_v2_eP8jpj": {
+      "type": "about-template-v2",
+      "blocks": {
+        "teams_DDihwb": {
+          "type": "teams",
+          "settings": {
+            "people_teams_image": "shopify://shop_images/enrique.jpg",
+            "block_people_teams": "Enrique",
+            "block_position_teams": "Chief",
+            "link_people_teams": "/collections/all"
+          }
+        },
+        "teams_AfpkdR": {
+          "type": "teams",
+          "settings": {
+            "people_teams_image": "shopify://shop_images/pier_0272bd0e-bfa4-4a1f-a823-ec8e94d14342.jpg",
+            "block_people_teams": "Pier",
+            "block_position_teams": "Bike Expert, Store Coordinator",
+            "link_people_teams": "/collections/all"
+          }
+        },
+        "teams_mYUAqi": {
+          "type": "teams",
+          "settings": {
+            "people_teams_image": "shopify://shop_images/saverio_eed5f6ed-be70-4f1e-bb47-529b0c9a8acb.jpg",
+            "block_people_teams": "Saverio",
+            "block_position_teams": "Fitness and endurance expert, Locarno.",
+            "link_people_teams": "/collections/all"
+          }
+        },
+        "teams_tR3mqP": {
+          "type": "teams",
+          "settings": {
+            "people_teams_image": "shopify://shop_images/samuele_a25bae8d-dbfc-4eaa-a4fa-f2c45b9000e3.jpg",
+            "block_people_teams": "Samuele",
+            "block_position_teams": "Bellinzona store Manager, Certified Mechanic",
+            "link_people_teams": "/collections/all"
+          }
+        },
+        "teams_KNaj4z": {
+          "type": "teams",
+          "settings": {
+            "people_teams_image": "shopify://shop_images/assaf.jpg",
+            "block_people_teams": "Assaf",
+            "block_position_teams": "Service Manager",
+            "link_people_teams": "/collections/all"
+          }
+        },
+        "teams_L4b6pJ": {
+          "type": "teams",
+          "settings": {
+            "people_teams_image": "shopify://shop_images/giorgio_eedb1e11-87e7-4f22-97d1-e8cdc0bedae0.jpg",
+            "block_people_teams": "Giorgio",
+            "block_position_teams": "Bike Assembly/Warehouse",
+            "link_people_teams": "/collections/all"
+          }
+        },
+        "teams_ejqUhk": {
+          "type": "teams",
+          "settings": {
+            "people_teams_image": "shopify://shop_images/marchino_310a5109-be97-4f6e-bf4b-c61eb91dd69a.jpg",
+            "block_people_teams": "Marchino",
+            "block_position_teams": "Senior Mechanic",
+            "link_people_teams": "/collections/all"
+          }
+        }
+      },
+      "block_order": [
+        "teams_DDihwb",
+        "teams_AfpkdR",
+        "teams_mYUAqi",
+        "teams_tR3mqP",
+        "teams_KNaj4z",
+        "teams_L4b6pJ",
+        "teams_ejqUhk"
+      ],
+      "name": "People In Teams",
+      "settings": {
+        "enable_slide": false,
+        "enable_about_top": true,
+        "title_abouttop": "Your Destination for Urban E-Bikes and Sustainable Transport.",
+        "description_abouttop": "Since 2017, Godspeed has acted on the conviction that urban mobility needs smarter alternatives—e-bikes represent a new paradigm: active, ecological, efficient. Our family-run shops across Ticino and in Zürich bring together carefully selected top global and Swiss brands, expert in-house mechanics, and a dedication to both online and offline excellence. We prioritize customer satisfaction, transparent pricing, and sustainable mobility—offering 0 % financing and next‑day delivery whenever possible. Every bike we sell has been tested and ridden by our team, ensuring quality you can trust.",
+        "button_about_top": "",
+        "link_abouttop": "shopify://collections/all",
+        "enable_video": false,
+        "url_section_video": "",
+        "enable_teams": true,
+        "title_teams": "Meet Our Team",
+        "description_teams": "Godspeed is powered by people who ride, repair, and live cycling every day. Our mechanics, sales staff, and support team bring expertise and passion into everything they do—whether it’s helping you choose the right bike, keeping it tuned, or guiding you through the latest in e-mobility. What unites us is a commitment to honest advice, quality service, and the belief that cycling makes everyday life better.",
+        "enable_store": true,
+        "title_store": "Our stores",
+        "description_store": "From Lugano to Zürich, every Godspeed location is designed as more than a shop. Each store combines curated product selection with a professional workshop, so you can test, buy, and maintain your bike in one place. Our spaces reflect our values: transparent, customer-focused, and built to support riders of all levels. Wherever you visit us, you’ll find the same dedication to service and the same passion for cycling.",
+        "image_store1": "shopify://shop_images/Lugano_1.jpg",
+        "urlimage_store1": "shopify://collections/all",
+        "image_store2": "shopify://shop_images/manybikes-locarno_1.jpg",
+        "urlimage_store2": "shopify://collections/all",
+        "image_store3": "shopify://shop_images/belli.jpg",
+        "urlimage_store3": "shopify://collections/all",
+        "image_store4": "shopify://shop_images/gs-zh-popup.jpg",
+        "urlimage_store4": "shopify://collections/all",
+        "enable_address": true
+      }
+    }
+  },
+  "order": [
+    "banner_about_v4",
+    "about_introduce_v4",
+    "about_servicebox_v4",
+    "rich_text_v4",
+    "logos_list",
+    "newsletter_about_v4",
+    "about_template_v2_eP8jpj"
+  ]
+}
