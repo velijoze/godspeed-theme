@@ -437,17 +437,20 @@
       {
         "type": "font_picker",
         "id": "heading_font",
-        "label": "Headings font"
+        "label": "Headings font",
+        "default": "system-ui"
       },
       {
         "type": "font_picker",
         "id": "body_font",
-        "label": "Body font"
+        "label": "Body font",
+        "default": "system-ui"
       },
       {
         "type": "font_picker",
         "id": "navigation_font",
-        "label": "Navigation font"
+        "label": "Navigation font",
+        "default": "system-ui"
       }
     ]
   },
