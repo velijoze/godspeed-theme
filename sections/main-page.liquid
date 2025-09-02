@@ -21,8 +21,12 @@
     <div class="hero-overlay" style="background: {{ section.settings.hero_overlay_color }}; opacity: {{ section.settings.hero_overlay_opacity | divided_by: 100.0 }};"></div>
   </div>
   <div class="hero-content pos-{{ section.settings.hero_h_align }} posv-{{ section.settings.hero_v_align }}" style="padding: {{ section.settings.hero_pad_y }}px {{ section.settings.hero_pad_x }}px;">
+    {% if section.settings.show_hero_text %}
     <div class="inner" style="max-width: {{ section.settings.hero_content_max }}px; color: {{ section.settings.hero_text_color }};">
-      <h1 class="page-title">{{ section.settings.hero_heading | default: page.title }}</h1>
+      {% assign heading_text = section.settings.hero_heading | default: page.title %}
+      {% if heading_text != blank %}
+        <h1 class="page-title">{{ heading_text }}</h1>
+      {% endif %}
       {% if section.settings.show_last_updated and page.updated_at %}
         <div class="page-meta">{{ section.settings.last_updated_label | default: 'Last updated' }} {{ page.updated_at | date: "%b %e, %Y" }}</div>
       {% endif %}
@@ -30,6 +34,7 @@
         <div class="page-excerpt">{{ section.settings.hero_subtitle }}</div>
       {% endif %}
     </div>
+    {% endif %}
   </div>
 </section>
 {% else %}
@@ -70,6 +75,7 @@
     { "type": "image_picker", "id": "hero_image_mobile", "label": "Hero image (mobile)" },
     { "type": "text", "id": "hero_alt", "label": "Hero alt text" },
     { "type": "text", "id": "hero_heading", "label": "Hero heading (defaults to page title)" },
+    { "type": "checkbox", "id": "show_hero_text", "label": "Show hero text", "default": true },
     { "type": "textarea", "id": "hero_subtitle", "label": "Hero subtitle" },
     { "type": "checkbox", "id": "hero_full_height", "label": "Full viewport height", "default": false },
     { "type": "select", "id": "hero_h_align", "label": "Horizontal alignment", "default": "center", "options": [
