@@ -10,13 +10,13 @@
 </section>
 
 {% if section.settings.enable_hero %}
-<section class="page-hero">
+<section class="page-hero{% if section.settings.hero_full_height %} fullheight{% endif %}">
   <div class="hero-media">
     {% if section.settings.hero_image_desktop %}
-      <img class="hero-img desktop" src="{{ section.settings.hero_image_desktop | img_url: '1940x' }}" alt="{{ section.settings.hero_alt | escape }}">
+      <img class="hero-img desktop" src="{{ section.settings.hero_image_desktop | img_url: '2048x' }}" alt="{{ section.settings.hero_alt | escape }}">
     {% endif %}
     {% if section.settings.hero_image_mobile %}
-      <img class="hero-img mobile" src="{{ section.settings.hero_image_mobile | img_url: '900x' }}" alt="{{ section.settings.hero_alt | escape }}">
+      <img class="hero-img mobile" src="{{ section.settings.hero_image_mobile | img_url: '1080x' }}" alt="{{ section.settings.hero_alt | escape }}">
     {% endif %}
     <div class="hero-overlay" style="background: {{ section.settings.hero_overlay_color }}; opacity: {{ section.settings.hero_overlay_opacity | divided_by: 100.0 }};"></div>
   </div>
@@ -71,6 +71,7 @@
     { "type": "text", "id": "hero_alt", "label": "Hero alt text" },
     { "type": "text", "id": "hero_heading", "label": "Hero heading (defaults to page title)" },
     { "type": "textarea", "id": "hero_subtitle", "label": "Hero subtitle" },
+    { "type": "checkbox", "id": "hero_full_height", "label": "Full viewport height", "default": false },
     { "type": "select", "id": "hero_h_align", "label": "Horizontal alignment", "default": "center", "options": [
       {"value":"left","label":"Left"},{"value":"center","label":"Center"},{"value":"right","label":"Right"}
     ]},
@@ -104,6 +105,7 @@
 
 .page-hero { position: relative; overflow: hidden; }
 .page-hero .hero-media { position: relative; height: clamp(360px, 55vh, 640px); }
+.page-hero.fullheight .hero-media { height: 100vh; min-height: 600px; }
 .page-hero .hero-img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: none; }
 .page-hero .hero-img.desktop { display: block; }
 .page-hero .hero-img.mobile { display: none; }
