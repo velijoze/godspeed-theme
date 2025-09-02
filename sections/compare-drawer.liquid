@@ -1,0 +1,50 @@
+<div id="gs-compare-drawer" class="gs-compare-drawer">
+  <div class="gs-compare-items"></div>
+  <button class="gs-compare-btn" disabled>
+    <i class="fa fa-balance-scale"></i> Compare
+  </button>
+</div>
+
+<div id="gs-compare-modal" class="gs-compare-modal" style="display:none;">
+  <div class="gs-compare-modal-content">
+    <button class="gs-modal-close" aria-label="Close">×</button>
+    <h3>Bike Comparison</h3>
+    <div class="gs-compare-table-wrap">
+      <table class="gs-compare-table">
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<style>
+  .gs-compare-drawer{position:fixed;bottom:20px;left:20px;background:#fff;border:1px solid #e9ecef;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.1);padding:10px;z-index:9998;max-width:420px}
+  .gs-compare-items{display:flex;gap:10px;align-items:center;min-height:60px}
+  .gs-compare-item{display:flex;align-items:center;gap:8px;background:#f8f9fa;border-radius:8px;padding:6px 8px}
+  .gs-compare-item img{width:40px;height:40px;object-fit:cover;border-radius:6px}
+  .gs-compare-meta{display:flex;flex-direction:column}
+  .gs-compare-title{font-size:12px;font-weight:600;max-width:200px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .gs-compare-price{font-size:12px;color:#6c757d}
+  .gs-compare-remove{border:none;background:#fff;color:#dc3545;border-radius:50%;width:22px;height:22px;cursor:pointer}
+  .gs-compare-btn{margin-top:8px;width:100%;background: {{ settings.color_main2 | default: '#ff4040' }};color:#fff;border:none;border-radius:8px;padding:8px 12px;cursor:pointer}
+  .gs-compare-btn:disabled{opacity:.6;cursor:not-allowed}
+  .gs-compare-empty{font-size:12px;color:#6c757d}
+  .gs-compare-modal{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px}
+  .gs-compare-modal-content{background:#fff;border-radius:12px;max-width:900px;width:100%;padding:20px;position:relative}
+  .gs-modal-close{position:absolute;top:10px;right:10px;border:none;background:#f8f9fa;border-radius:50%;width:28px;height:28px;cursor:pointer}
+  .gs-compare-table{width:100%;border-collapse:collapse}
+  .gs-compare-table th,.gs-compare-table td{border-bottom:1px solid #eee;padding:10px;text-align:left}
+  .gs-compare-table th{width:160px;color:#6c757d}
+  @media (max-width:768px){.gs-compare-drawer{left:10px;right:10px;max-width:none}}
+</style>
+
+<script src="{{ 'compare.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Compare Drawer",
+  "settings": [],
+  "presets": [{ "name": "Compare Drawer" }]
+}
+{% endschema %}
+

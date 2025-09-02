@@ -501,6 +501,58 @@ document.addEventListener('DOMContentLoaded', function() {
     // Scroll to bottom
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
   }
+
+  // Handle user query: built-in responses → actions → site search fallback
+  async function handleQuery(q) {
+    const query = (q || '').trim();
+    if (!query) return;
+    addMessage('user', query);
+
+    const lc = query.toLowerCase();
+    // Known intents (exact or contains)
+    const keys = Object.keys(responses).filter(k => k !== 'default');
+    const match = keys.find(k => lc.includes(k));
+    if (match) {
+      // Side-effects for certain actions
+      if (match.includes('test ride')) {
+        // Open test ride modal if available
+        if (window.openTestRideModal) {
+          try { window.openTestRideModal({ title: document.title, image: '', price: '', id: '', handle: '' }); } catch(_){}
+        }
+      }
+      setTimeout(() => addMessage('ai', responses[match]), 300);
+      return;
+    }
+
+    // Fallback: search site content (products, pages, articles)
+    addMessage('ai', 'Let me check our catalog and pages for you…');
+    try {
+      const url = `/search/suggest.json?q=${encodeURIComponent(query)}&resources[type]=product,page,article&resources[limit]=5`;
+      const resp = await fetch(url, { headers: { 'Accept': 'application/json' } });
+      if (resp.ok) {
+        const data = await resp.json();
+        const res = data?.resources?.results || {};
+        const items = [];
+        (res.products || []).forEach(p => items.push({ type: 'Product', title: p.title, url: p.url }));
+        (res.pages || []).forEach(p => items.push({ type: 'Page', title: p.title, url: p.url }));
+        (res.articles || []).forEach(a => items.push({ type: 'Article', title: a.title, url: a.url }));
+        if (items.length) {
+          const list = items.slice(0, 5).map(i => `• ${i.type}: <a href="${i.url}">${i.title}</a>`).join('<br>');
+          addMessage('ai', `Here’s what I found:<br>${list}`);
+        } else {
+          addMessage('ai', responses['default']);
+        }
+      } else {
+        addMessage('ai', responses['default']);
+      }
+    } catch (e) {
+      addMessage('ai', responses['default']);
+    }
+  }
+
+  // Send handlers
+  sendBtn.addEventListener('click', () => handleQuery(input.value));
+  input.addEventListener('keydown', function(e){ if (e.key === 'Enter') { e.preventDefault(); handleQuery(input.value); }});
   
   // Send message function
   function sendMessage() {

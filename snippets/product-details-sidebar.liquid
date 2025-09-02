@@ -412,11 +412,12 @@
 
               <div class="info_right">
                 <h2 class="product-title ">{{product.title}}</h2>
-                <div class="product-price ">                      
-                    {% capture price %}{{ product.price | money }}{% endcapture %}
-                    {% if on_sale %}<del class="enj-product-price-compare">{{ product.compare_at_price | money }}</del> {% endif %}
-                    <ins class="enj-product-price engoj_price_main">{{ price }}</ins>
-                </div>
+                      <div class="product-price ">                      
+                        {% capture price %}{{ product.price | money }}{% endcapture %}
+                        {% if on_sale %}<del class="enj-product-price-compare">{{ product.compare_at_price | money }}</del> {% endif %}
+                        <ins class="enj-product-price engoj_price_main">{{ price }}</ins>
+                      </div>
+                      {% render 'add-to-compare-button', product: product %}
                 {% if section.settings.show_rating %}
                 <div class="wrap-rating">
                   <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>

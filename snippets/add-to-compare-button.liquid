@@ -1,0 +1,9 @@
+<button class="btn btn-outline" style="margin-top:8px" onclick="GSCompare.addFromButton(this)"
+  data-handle="{{ product.handle }}"
+  data-url="{{ product.url }}"
+  data-title="{{ product.title | escape }}"
+  data-image="{{ product.featured_image | img_url: '200x' }}"
+  data-price="{{ product.price | money }}">
+  <i class="fa fa-balance-scale"></i> {{ 'Compare' }}
+</button>
+
