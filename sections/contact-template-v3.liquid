@@ -86,6 +86,9 @@
           {% if section.settings.enable_address1 %}
           <div class="col-xl-3 col-lg-6 col-md-6 mb-4">
             <div class="address-card">
+              {% if section.settings.address1_image != blank %}
+              <img class="address-image" src="{{ section.settings.address1_image | img_url: '555x300' }}" alt="{{ section.settings.address1_title | escape }}">
+              {% endif %}
               {% if section.settings.address1_title != blank %}
               <h5 class="address-title">{{ section.settings.address1_title }}</h5>
               {% endif %}
@@ -121,6 +124,9 @@
           {% if section.settings.enable_address2 %}
           <div class="col-xl-3 col-lg-6 col-md-6 mb-4">
             <div class="address-card">
+              {% if section.settings.address2_image != blank %}
+              <img class="address-image" src="{{ section.settings.address2_image | img_url: '555x300' }}" alt="{{ section.settings.address2_title | escape }}">
+              {% endif %}
               {% if section.settings.address2_title != blank %}
               <h5 class="address-title">{{ section.settings.address2_title }}</h5>
               {% endif %}
@@ -156,6 +162,9 @@
           {% if section.settings.enable_address3 %}
           <div class="col-xl-3 col-lg-6 col-md-6 mb-4">
             <div class="address-card">
+              {% if section.settings.address3_image != blank %}
+              <img class="address-image" src="{{ section.settings.address3_image | img_url: '555x300' }}" alt="{{ section.settings.address3_title | escape }}">
+              {% endif %}
               {% if section.settings.address3_title != blank %}
               <h5 class="address-title">{{ section.settings.address3_title }}</h5>
               {% endif %}
@@ -191,6 +200,9 @@
           {% if section.settings.enable_address4 %}
           <div class="col-xl-3 col-lg-6 col-md-6 mb-4">
             <div class="address-card">
+              {% if section.settings.address4_image != blank %}
+              <img class="address-image" src="{{ section.settings.address4_image | img_url: '555x300' }}" alt="{{ section.settings.address4_title | escape }}">
+              {% endif %}
               {% if section.settings.address4_title != blank %}
               <h5 class="address-title">{{ section.settings.address4_title }}</h5>
               {% endif %}
@@ -301,6 +313,7 @@
 .page_aboutus_v1.page_contact.page_contact2 .get_find { margin-top: 0 !important; padding-top: 0 !important; }
 .page_aboutus_v1.page_contact.page_contact2 .contact-google-map { margin-top: 0 !important; }
 .page_aboutus_v1.page_contact.page_contact2 .get_find .row:first-child { margin-top: 0 !important; }
+.address-card .address-image { width:100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; display:block; }
 </style>
 
 {% schema %}
@@ -433,6 +446,7 @@
       "type": "header",
       "content": "Address Location 1"
     },
+    { "type": "image_picker", "id": "address1_image", "label": "Address 1 Image" },
     {
       "type": "checkbox",
       "id": "enable_address1",
@@ -473,6 +487,7 @@
       "type": "header",
       "content": "Address Location 2"
     },
+    { "type": "image_picker", "id": "address2_image", "label": "Address 2 Image" },
     {
       "type": "checkbox",
       "id": "enable_address2",
@@ -510,6 +525,7 @@
       "type": "header",
       "content": "Address Location 3"
     },
+    { "type": "image_picker", "id": "address3_image", "label": "Address 3 Image" },
     {
       "type": "checkbox",
       "id": "enable_address3",
@@ -547,6 +563,7 @@
       "type": "header",
       "content": "Address Location 4"
     },
+    { "type": "image_picker", "id": "address4_image", "label": "Address 4 Image" },
     {
       "type": "checkbox",
       "id": "enable_address4",
