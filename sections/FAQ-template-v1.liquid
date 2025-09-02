@@ -460,6 +460,25 @@
 {% endschema %}
 
 {% stylesheet %}
+/* Modern FAQ styling */
+.page_FQA .asked { padding: 40px 0; }
+.page_FQA .top_asked .page-title { font-size: 32px; font-weight: 700; margin-bottom: 8px; }
+.page_FQA .page-excerpt { color: #6c757d; max-width: 800px; margin: 0 auto; }
+
+.page_FQA .box_content_question { background: #fff; border: 1px solid #e9ecef; border-radius: 10px; margin-bottom: 12px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,.04); }
+.page_FQA .title_question { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 18px; color: #2c3e50; text-decoration: none; font-weight: 600; }
+.page_FQA .title_question:hover { background: #f8f9fa; }
+.page_FQA .engoc-faq-icon-plus, .page_FQA .engoc-faq-icon-minus { color: {{ settings.color_main2 }}; }
+.page_FQA .engoc-faq-icon-minus { display: none; }
+.page_FQA .engoc-toggle-icon .engoc-faq-icon-plus { display: none; }
+.page_FQA .engoc-toggle-icon .engoc-faq-icon-minus { display: inline-block; }
+.page_FQA .card-body { padding: 16px 18px; color: #4a5568; border-top: 1px solid #e9ecef; }
+
+/* Two-column feel on desktop while preserving markup */
+@media (min-width: 992px) {
+  .page_FQA .content_askeds { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 24px; }
+  .page_FQA .content_askeds > .col-lg-12 { grid-column: auto; }
+}
 {% endstylesheet %}
 
 {% javascript %}
