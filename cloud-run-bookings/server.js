@@ -41,6 +41,29 @@ function getAuthClient(oauth) {
   return oAuth2Client;
 }
 
+function getCalendar(auth){
+  return google.calendar({version: 'v3', auth});
+}
+
+async function isSlotAvailable(auth, calendarId, startDateTime, endDateTime){
+  const calendar = getCalendar(auth);
+  try {
+    const fb = await calendar.freebusy.query({
+      requestBody: {
+        timeMin: startDateTime.toISOString(),
+        timeMax: endDateTime.toISOString(),
+        items: [{id: calendarId}]
+      }
+    });
+    const busy = fb.data.calendars?.[calendarId]?.busy || [];
+    return busy.length === 0;
+  } catch (e) {
+    // If freebusy fails, be safe and consider slot unavailable to avoid double bookings
+    console.error('FreeBusy check failed:', e.message);
+    return false;
+  }
+}
+
 async function sendInternalNotification(auth, bookingType, bookingData) {
   try {
     const gmail = google.gmail({version: 'v1', auth});
@@ -112,7 +135,7 @@ app.post('/bookings/test', async (req, res) => {
   try {
     const {oauth, calendars} = loadSecrets();
     const auth = getAuthClient(oauth);
-    const calendar = google.calendar({version: 'v3', auth});
+    const calendar = getCalendar(auth);
 
     const now = new Date();
     const end = new Date(now.getTime() + 30 * 60000);
@@ -178,6 +201,16 @@ app.post('/bookings/test-ride', async (req, res) => {
     const startDateTime = new Date(`${test_ride_date}T${test_ride_time}:00`);
     const endDateTime = new Date(startDateTime.getTime() + 60 * 60 * 1000); // 1 hour default
 
+    // Prevent double booking by checking FreeBusy
+    const free = await isSlotAvailable(auth, calendarId, startDateTime, endDateTime);
+    if(!free){
+      return res.status(409).json({
+        success: false,
+        error: 'slot_unavailable',
+        message: 'Selected time is already booked at this location. Please choose another slot.'
+      });
+    }
+
     const event = {
       summary: `Test Ride: ${customer_name}`,
       description: `Test Ride Booking\n\nCustomer: ${customer_name}\nEmail: ${customer_email}\nPhone: ${customer_phone}\nExperience: ${experience_level}\nDuration: ${ride_length}\nProduct: ${product_title || 'N/A'}\nSpecial Requests: ${special_requests || 'None'}`,
@@ -223,7 +256,7 @@ app.post('/bookings/service', async (req, res) => {
   try {
     const {oauth, calendars} = loadSecrets();
     const auth = getAuthClient(oauth);
-    const calendar = google.calendar({version: 'v3', auth});
+    const calendar = getCalendar(auth);
 
     const {
       service_location,
@@ -255,6 +288,16 @@ app.post('/bookings/service', async (req, res) => {
     // Create calendar event
     const startDateTime = new Date(`${workshop_date}T${workshop_time}:00`);
     const endDateTime = new Date(startDateTime.getTime() + 60 * 60 * 1000); // 1 hour default
+
+    // Prevent double booking by checking FreeBusy
+    const free = await isSlotAvailable(auth, calendarId, startDateTime, endDateTime);
+    if(!free){
+      return res.status(409).json({
+        success: false,
+        error: 'slot_unavailable',
+        message: 'Selected time is already booked at this location. Please choose another slot.'
+      });
+    }
 
     const event = {
       summary: `Service: ${workshop_type} - ${customer_name}`,
