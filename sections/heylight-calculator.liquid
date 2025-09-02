@@ -317,9 +317,13 @@
   .calculator-sidebar.no-sticky { position: static; }
 
   .benefits-req-row { margin-top: 8px; }
-  .benefits-req-row .calculator-sidebar { height: 100%; }
+  .benefits-req-row > [class*="col-"] { display:flex; }
+  .benefits-req-row .calculator-sidebar { height: 100%; display:flex; flex-direction:column; width:100%; }
   .benefits-req-row .calculator-sidebar .benefit-item,
   .benefits-req-row .calculator-sidebar .how-steps .step { margin-bottom: 12px; }
+  @media (min-width: 992px){
+    .benefits-req-row > [class*="col-"] + [class*="col-"] .calculator-sidebar { border-left: 1px solid #e9ecef; padding-left: 24px; }
+  }
   
   .sidebar-title-{{ section.id }} {
     color: {{ section.settings.color_title | default: '#333' }};
