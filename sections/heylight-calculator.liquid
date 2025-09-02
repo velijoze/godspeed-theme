@@ -50,35 +50,9 @@
                         </div>
                       </div>
                       
-                      <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
-                          <div class="form-group">
-                            <label for="residency-status-{{ section.id }}" class="form-label">Residency Status</label>
-                            <select id="residency-status-{{ section.id }}" name="residency_status" class="form-control">
-                              <option value="">Select residency status</option>
-                              <option value="swiss_citizen">Swiss Citizen</option>
-                              <option value="swiss_resident">Swiss Resident</option>
-                              <option value="eu_resident">EU Resident</option>
-                              <option value="other">Other</option>
-                            </select>
-                          </div>
-                        </div>
-                        
-                        <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
-                          <div class="form-group">
-                            <label for="employment-status-{{ section.id }}" class="form-label">Employment Status</label>
-                            <select id="employment-status-{{ section.id }}" name="employment_status" class="form-control">
-                              <option value="">Select employment status</option>
-                              <option value="employed">Full-time Employed</option>
-                              <option value="part_time">Part-time Employed</option>
-                              <option value="self_employed">Self-employed</option>
-                              <option value="student">Student</option>
-                              <option value="retired">Retired</option>
-                              <option value="unemployed">Unemployed</option>
-                            </select>
-                          </div>
-                        </div>
-                      </div>
+                      <!-- Residency or employment inputs are intentionally omitted.
+                           The calculator provides payment estimates only and does not
+                           collect personal/eligibility attributes. -->
                     </div>
                     
                     <div class="form-actions text-center">
@@ -599,15 +573,13 @@ document.addEventListener('DOMContentLoaded', function() {
 function calculateHeylightPayments(data) {
   const amount = parseFloat(data.purchase_amount);
   const paymentOption = data.payment_option;
-  const residencyStatus = data.residency_status;
-  const employmentStatus = data.employment_status;
-  
-  // Extract payment terms
+
+  // Extract payment terms (e.g., 'bnpl_12' → 12)
   const terms = parseInt(paymentOption.split('_')[1]);
-  
-  // Heylight actual rates and terms based on your financing page
+
+  // Calculator estimates only — no eligibility logic here
   let monthlyPayment, totalInterest, totalAmount, interestRate;
-  
+
   if (paymentOption.includes('bnpl')) {
     // 0% Interest BNPL options (3, 12, 24 months)
     monthlyPayment = amount / terms;
@@ -615,35 +587,14 @@ function calculateHeylightPayments(data) {
     totalAmount = amount;
     interestRate = 0;
   } else if (paymentOption.includes('financing')) {
-    // Financing options using 10.95% reference rate for all terms
-    interestRate = 10.95; // Reference rate from your 36-month example
-    
+    // Financing options using 10.95% reference rate for all terms (example)
+    interestRate = 10.95;
     const monthlyRate = interestRate / 100 / 12;
     monthlyPayment = amount * (monthlyRate * Math.pow(1 + monthlyRate, terms)) / (Math.pow(1 + monthlyRate, terms) - 1);
     totalAmount = monthlyPayment * terms;
     totalInterest = totalAmount - amount;
   }
-  
-  // Determine approval likelihood based on Swiss requirements
-  let approvalLikelihood = 'High';
-  
-  if (residencyStatus === 'other') {
-    approvalLikelihood = 'Low';
-  } else if (residencyStatus === 'eu_resident') {
-    approvalLikelihood = 'Medium';
-  }
-  
-  if (employmentStatus === 'unemployed') {
-    approvalLikelihood = 'Low';
-  } else if (employmentStatus === 'student' || employmentStatus === 'part_time') {
-    if (approvalLikelihood === 'High') approvalLikelihood = 'Medium';
-  }
-  
-  // For amounts over CHF 5000, slightly lower approval chance
-  if (amount > 5000 && approvalLikelihood === 'High') {
-    approvalLikelihood = 'Medium';
-  }
-  
+
   return {
     paymentOption,
     terms,
@@ -651,7 +602,6 @@ function calculateHeylightPayments(data) {
     totalAmount: totalAmount.toFixed(2),
     totalInterest: totalInterest.toFixed(2),
     interestRate: interestRate.toFixed(2),
-    approvalLikelihood,
     amount: amount.toFixed(2)
   };
 }
@@ -668,19 +618,10 @@ function displayPaymentResults(result, sectionId) {
     financing_36: 'Extended Financing - 36 Months'
   };
   
-  const badgeColors = {
-    'High': '#28a745',
-    'Medium': '#ffc107',
-    'Low': '#dc3545'
-  };
-  
   paymentOptionsDiv.innerHTML = `
     <div class="payment-option-card">
       <div class="option-header">
         <h4 class="option-title">${optionNames[result.paymentOption]}</h4>
-        <div class="option-badge" style="background: ${badgeColors[result.approvalLikelihood]}">
-          ${result.approvalLikelihood} Approval Chance
-        </div>
       </div>
       
       <div class="payment-details">

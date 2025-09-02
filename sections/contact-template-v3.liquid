@@ -163,37 +163,82 @@
       </div>
       {% endif %}
 
+      {% comment %} Decide which map to render. If any coordinates are present, force multi-pin Google Map. {% endcomment %}
+      {% assign use_map = section.settings.select_style_map %}
+      {% if section.settings.address1_latitude and section.settings.address1_longitude %}{% assign use_map = 'style_map' %}{% endif %}
+      {% if section.settings.address2_latitude and section.settings.address2_longitude %}{% assign use_map = 'style_map' %}{% endif %}
+      {% if section.settings.address3_latitude and section.settings.address3_longitude %}{% assign use_map = 'style_map' %}{% endif %}
+      {% if section.settings.address4_latitude and section.settings.address4_longitude %}{% assign use_map = 'style_map' %}{% endif %}
+      {% if use_map == blank %}{% assign use_map = 'style_map' %}{% endif %}
+
       <div class="row">
         <div class="col-lg-12">
-          {% if section.settings.select_style_map == 'style_map' %}
+          {% if use_map == 'style_map' %}
             {% if section.settings.enable_map %}
-            <div class="">
-              <div class="">
-                <div class="">
-                  <div class="contact-google-map">
-                    <div id="map" class="map-custom"></div>
-                    <script>
-                      function initMap() {
-                        var myLatLng = {lat: {{settings.gmap_latitude}}, lng: {{settings.gmap_longitude}}};
+            <div class="contact-google-map">
+              <div id="map" class="map-custom" style="height: 420px"></div>
+              <script>
+                function initMap() {
+                  // Default center: Switzerland
+                  var defaultCenter = { lat: 46.8182, lng: 8.2275 };
+                  var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 7,
+                    center: defaultCenter,
+                    mapTypeControl: false,
+                    streetViewControl: false
+                  });
 
-                        var map = new google.maps.Map(document.getElementById('map'), {
-                          zoom: 12,
-                          center: myLatLng
-                        });
+                  var markers = [];
+                  // Collect markers from section settings (up to 4 locations)
+                  {% if section.settings.address1_latitude and section.settings.address1_longitude %}
+                  markers.push({
+                    position: { lat: {{ section.settings.address1_latitude }}, lng: {{ section.settings.address1_longitude }} },
+                    title: {{ section.settings.address1_title | json }}
+                  });
+                  {% endif %}
+                  {% if section.settings.address2_latitude and section.settings.address2_longitude %}
+                  markers.push({
+                    position: { lat: {{ section.settings.address2_latitude }}, lng: {{ section.settings.address2_longitude }} },
+                    title: {{ section.settings.address2_title | json }}
+                  });
+                  {% endif %}
+                  {% if section.settings.address3_latitude and section.settings.address3_longitude %}
+                  markers.push({
+                    position: { lat: {{ section.settings.address3_latitude }}, lng: {{ section.settings.address3_longitude }} },
+                    title: {{ section.settings.address3_title | json }}
+                  });
+                  {% endif %}
+                  {% if section.settings.address4_latitude and section.settings.address4_longitude %}
+                  markers.push({
+                    position: { lat: {{ section.settings.address4_latitude }}, lng: {{ section.settings.address4_longitude }} },
+                    title: {{ section.settings.address4_title | json }}
+                  });
+                  {% endif %}
 
-                        var marker = new google.maps.Marker({
-                          position: myLatLng,
-                          map: map,
-                        });
-                      }
-                    </script>
-                    <script src="https://maps.googleapis.com/maps/api/js?key={{settings.gmap_key}}&callback=initMap" async defer></script>
-                  </div>
-                </div>
-              </div>
+                  // If no per-address coordinates provided, fall back to theme coords
+                  {% if settings.gmap_latitude and settings.gmap_longitude %}
+                  if (markers.length === 0) {
+                    markers.push({ position: { lat: {{ settings.gmap_latitude }}, lng: {{ settings.gmap_longitude }} }, title: {{ shop.name | json }} });
+                  }
+                  {% endif %}
+
+                  var bounds = new google.maps.LatLngBounds();
+                  markers.forEach(function(m){
+                    var mk = new google.maps.Marker({ position: m.position, map: map, title: m.title });
+                    bounds.extend(m.position);
+                  });
+                  if (markers.length > 1) {
+                    map.fitBounds(bounds);
+                  } else if (markers.length === 1) {
+                    map.setCenter(markers[0].position);
+                    map.setZoom(12);
+                  }
+                }
+              </script>
+              <script src="https://maps.googleapis.com/maps/api/js?key={{settings.gmap_key}}&callback=initMap" async defer></script>
             </div>
             {% endif %}
-          {% elsif section.settings.select_style_map == 'style_image' %}
+          {% elsif use_map == 'style_image' %}
           	{% if section.settings.enable_map %}	
             <a class="image_map d-block" target="_blank" href="{{section.settings.link_map}}">
               <img src="{% if section.settings.image_map != blank %} {{section.settings.image_map | img_url : 'master'}} {% else %}//via.placeholder.com/690x750 {% endif %}">
@@ -244,7 +289,7 @@
                    <input type="Email" class="form-control" id="mail" placeholder="{{section.settings.placeholder_input_mail}}" name="contact[email]" required>
                 </div>
                  <div class="col-lg-12 col-md-12">
-                   <textarea class="border_bottomform" rows="4" cols="100" placeholder="{{section.settings.placeholder_input_message}}" name="contact[Message]" required>
+                   <textarea class="border_bottomform" rows="4" cols="100" placeholder="{{section.settings.placeholder_input_message}}" name="contact[body]" required>
                    </textarea>
                 </div>
               </div>
@@ -286,7 +331,7 @@
       "label": "Enable",
       "default": true
     },
-	{
+    {
       "type": "select",
       "id": "select_style_map",
       "label": "Select Style Map",
@@ -312,6 +357,15 @@
       "id": "link_map",
       "label": "Link Map"
     },
+    { "type": "header", "content": "Map Coordinates (optional)" },
+    { "type": "text", "id": "address1_latitude", "label": "Address 1 Latitude", "default": "46.0037" },
+    { "type": "text", "id": "address1_longitude", "label": "Address 1 Longitude", "default": "8.9511" },
+    { "type": "text", "id": "address2_latitude", "label": "Address 2 Latitude", "default": "46.1951" },
+    { "type": "text", "id": "address2_longitude", "label": "Address 2 Longitude", "default": "9.0222" },
+    { "type": "text", "id": "address3_latitude", "label": "Address 3 Latitude", "default": "46.1699" },
+    { "type": "text", "id": "address3_longitude", "label": "Address 3 Longitude", "default": "8.7879" },
+    { "type": "text", "id": "address4_latitude", "label": "Address 4 Latitude", "default": "47.3769" },
+    { "type": "text", "id": "address4_longitude", "label": "Address 4 Longitude", "default": "8.5417" },
     {
       "type": "header",
       "content": "Contact from"

@@ -329,9 +329,6 @@
                       <button type="submit" class="shop-button enj-add-to-cart-btn engoj-btn-addtocart">
                         {{settings.pia_addcart_name}}
                       </button>
-                      
-                      <!-- Test Ride Button -->
-                      {% render 'test-ride-button', product: product %}
                     </div>
                     <!-- End add to cart & quantity -->
                     {% form 'product', product %}
@@ -343,6 +340,9 @@
                     {% endif %}
 
                   </form>
+
+                  <!-- Test Ride Button (fully outside product form for isolation) -->
+                  {% render 'test-ride-button', product: product %}
 
                   {% if settings.ena_random_visit %}
                   <p class="visitor">Real time <span id="realtime_visit"></span> Visitor right now</p>

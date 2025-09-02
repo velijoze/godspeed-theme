@@ -284,11 +284,47 @@
 
 .form-control {
   width: 100%;
-  padding: 0.75rem;
+  padding: 12px 14px;
   border: 2px solid #e9ecef;
   border-radius: 8px;
   font-size: 1rem;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  font-family: var(--font-body);
+  text-align: left;
+  text-align-last: left;
+  line-height: 1.2;
+  min-height: 44px;
+  display: block;
+}
+
+.test-ride-modal select.form-control,
+.test-ride-modal .form-control option {
+  font-family: var(--font-body);
+}
+
+/* Ensure consistent vertical centering across inputs/selects */
+.test-ride-modal input.form-control {
+  height: 44px;
+  line-height: 1.2;
+}
+
+.test-ride-modal select.form-control {
+  height: 44px;
+  line-height: 1.2;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.test-ride-modal textarea.form-control {
+  min-height: 100px;
+  height: auto;
+  line-height: 1.4;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.form-control::placeholder {
+  color: #9aa3ab;
 }
 
 .form-control:focus {

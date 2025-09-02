@@ -267,10 +267,6 @@
                     </div>
                     <!-- End add to cart & quantity -->
                     
-                    <!-- Test Ride Button -->
-                    {% render 'test-ride-button', product: product %}
-                    <!-- End Test Ride Button -->
-                    
                     {% form 'product', product %}
                     {{ form | payment_button }}
                     {% endform %}
@@ -280,6 +276,9 @@
                     {% endif %}
 
                   </form>
+
+                  <!-- Test Ride Button (fully outside product form for isolation) -->
+                  {% render 'test-ride-button', product: product %}
 
                   {% if settings.ena_random_visit %}
                   <p class="visitor">Real time <span id="realtime_visit"></span> Visitor right now</p>

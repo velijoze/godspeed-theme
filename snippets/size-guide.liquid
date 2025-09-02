@@ -16,8 +16,47 @@
     <div class="layout_size_guide">
       <div class="relative">
         <div class="size_guide">
-          {% if settings.addcontent_sizeguide != blank %}
-              {{ settings.addcontent_sizeguide }}
+          {% comment %} Prefer a bike-focused size guide. Fallback to theme setting if needed. {% endcomment %}
+          {% assign is_bike = false %}
+          {% if product %}
+            {% if product.type contains 'Bike' or product.type contains 'E-Bike' or product.type contains 'Ebike' %}
+              {% assign is_bike = true %}
+            {% endif %}
+            {% for c in product.collections %}
+              {% if c.handle contains 'bike' or c.handle contains 'e-bike' or c.handle contains 'bikes' %}
+                {% assign is_bike = true %}
+                {% break %}
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+
+          {% if is_bike %}
+          <div class="tab-sizeguide">
+            <div class="container">
+              <h2 class="heading_title">Bike Size Guide</h2>
+              <div class="table-responsive">
+                <table class="sizeguide_table" width="100%">
+                  <tbody>
+                    <tr>
+                      <td><strong>Rider height (cm)</strong></td>
+                      <td><strong>Suggested frame (cm)</strong></td>
+                      <td><strong>Label</strong></td>
+                    </tr>
+                    <tr><td>150–160</td><td>44–46</td><td>S</td></tr>
+                    <tr><td>160–170</td><td>47–49</td><td>M</td></tr>
+                    <tr><td>170–180</td><td>50–52</td><td>L</td></tr>
+                    <tr><td>180–190</td><td>53–56</td><td>XL</td></tr>
+                    <tr><td>190–200</td><td>57–60</td><td>XXL</td></tr>
+                  </tbody>
+                </table>
+                <p style="margin-top:12px">
+                  Tip: inseam (cm) × 0.66 ≈ frame (cm). Geometry varies by brand/model — book a test ride for final fit.
+                </p>
+              </div>
+            </div>
+          </div>
+          {% elsif settings.addcontent_sizeguide != blank %}
+            {{ settings.addcontent_sizeguide }}
           {% endif %}        
         </div>
         

@@ -13,14 +13,14 @@
   {% endif %}
   {% if section.settings.enable_asked %}
   <div class="asked">
-    <div class="container container-v2">
+    <div class="container">
       <div class="row">
-        <div class="col-lg-12 top_asked">
+        <div class="col-lg-12 top_asked text-center">
           {% if section.settings.title_asked !=blank %}
-          <h3 >{{section.settings.title_asked}}</h3>
+          <h1 class="page-title">{{section.settings.title_asked}}</h1>
           {% endif %}
           {% if section.settings.description_asked != blank %}
-          <p class="mb-0">{{section.settings.description_asked}}</p>
+          <p class="mb-0 page-excerpt">{{section.settings.description_asked}}</p>
           {% endif %}
         </div>
       </div>
@@ -31,7 +31,7 @@
           {% if block.type == "faq_left" %}       
           <div class="box_content_question">
             {% if block.settings.block_title_question != blank %}
-            <a class="title_question jstitleqs engoc-faq-heading" data-toggle="collapse" href="#faq_block_left_{{forloop.index}}" role="button" aria-expanded="true" aria-controls="collapseExample">
+            <a class="title_question jstitleqs engoc-faq-heading" data-toggle="collapse" href="#faq_block_left_{{forloop.index}}" role="button" aria-expanded="false" aria-controls="collapseExample">
               <i class="fa fa-plus mr-2 engoc-faq-icon-plus"></i>
               <i class="fa fa-minus mr-2 engoc-faq-icon-minus"></i>
               {{block.settings.block_title_question}}
@@ -76,7 +76,7 @@
           {% if block.type == "faq_right" %}       
           <div class="box_content_question">
             {% if block.settings.block_title_question2 != blank %}
-            <a class="title_question jstitleqs engoc-faq-heading" data-toggle="collapse" href="#faq_block_right_{{forloop.index}}" role="button" aria-expanded="true" aria-controls="collapseExample">
+            <a class="title_question jstitleqs engoc-faq-heading" data-toggle="collapse" href="#faq_block_right_{{forloop.index}}" role="button" aria-expanded="false" aria-controls="collapseExample">
               <i class="fa fa-plus mr-2 engoc-faq-icon-plus"></i>
               <i class="fa fa-minus mr-2 engoc-faq-icon-minus"></i>
               {{block.settings.block_title_question2}}
@@ -131,24 +131,30 @@
           <p> {{section.settings.section_description}}</p>
           {% endif %}          
         </div>         
-        <div class="col-lg-8 text-center box-email">          
+        <div class="col-lg-8 text-center box-email">
           {% if settings.newsletter_form_action != blank %}
-          {% assign form_action = settings.newsletter_form_action %}
-          {% else %}
-          {% assign form_action = '#' %}
-          {% endif %}          
-          <form class="needs-validation" action="{{form_action}}" method="post">
-            <div class="input-group mb-2 ">                            
-              <input type="email" name="EMAIL" class="form-control" id="mail" placeholder="{{section.settings.newsletter_placeholder_input}}">
-              <div class="input-group-prepend">
-                <div class="input-group-text"><i class="{{section.settings.iconmail}}"></i></div>
+            {% assign form_action = settings.newsletter_form_action %}
+            <form class="needs-validation" action="{{form_action}}" method="post">
+              <div class="input-group mb-2">
+                <input type="email" name="EMAIL" class="form-control" id="mail" placeholder="{{section.settings.newsletter_placeholder_input}}" required>
+                <div class="input-group-prepend"><div class="input-group-text"><i class="{{section.settings.iconmail}}"></i></div></div>
               </div>
-            </div>
-            {% if section.settings.button_name != blank %}            
-            <button class="btn btn-primary w-100" type="submit">{{section.settings.button_name}}</button>
-            {% endif %}
-          </form>
-
+              {% if section.settings.button_name != blank %}
+              <button class="btn btn-primary w-100" type="submit">{{section.settings.button_name}}</button>
+              {% endif %}
+            </form>
+          {% else %}
+            {% form 'customer', id: 'FaqNewsletter', class: 'needs-validation' %}
+              <input type="hidden" name="contact[tags]" value="newsletter">
+              <div class="input-group mb-2">
+                <input type="email" name="contact[email]" class="form-control" id="mail" placeholder="{{section.settings.newsletter_placeholder_input}}" required>
+                <div class="input-group-prepend"><div class="input-group-text"><i class="{{section.settings.iconmail}}"></i></div></div>
+              </div>
+              {% if section.settings.button_name != blank %}
+              <button class="btn btn-primary w-100" type="submit">{{section.settings.button_name}}</button>
+              {% endif %}
+            {% endform %}
+          {% endif %}
         </div>
       </div>      
     </div>

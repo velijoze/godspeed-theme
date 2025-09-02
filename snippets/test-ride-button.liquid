@@ -14,44 +14,43 @@
 
 {% if product.available and is_bike %}
 <div class="test-ride-button-wrapper">
-  <button class="btn-test-ride" onclick="openTestRideModal({
+  <button type="button" class="test-ride-button btn-test-ride" onclick="openTestRideModal({
     id: {{ product.id }},
     handle: '{{ product.handle }}',
     title: '{{ product.title | escape }}',
     price: '{{ product.price | money }}',
     image: '{{ product.featured_image | img_url: 'medium' }}'
   })">
-    <svg class="test-ride-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-      <path d="M12 12L13.5 15.5L17 14L13.5 15.5L12 19L10.5 15.5L7 14L10.5 15.5L12 12Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-    </svg>
     Book Test Ride
   </button>
 </div>
 
 <style>
 .test-ride-button-wrapper {
-  margin: 1rem 0;
+  margin: 10px 0 0 0;
 }
 
 .btn-test-ride {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
+  justify-content: center;
+  padding: 0 16px;
   background: {{ settings.color_main2 }};
   color: #fff;
   border: 2px solid {{ settings.color_main2 }};
-  border-radius: 50px;
+  border-radius: 6px;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 14px;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
   cursor: pointer;
   transition: all 0.3s ease;
   text-decoration: none;
   position: relative;
   overflow: hidden;
+  height: 44px;
+  line-height: 42px;
+  font-family: var(--font-body) !important;
 }
 
 .btn-test-ride::before {
@@ -72,8 +71,8 @@
 .btn-test-ride:hover {
   background: {{ settings.color_main2 | color_darken: 10 }};
   border-color: {{ settings.color_main2 | color_darken: 10 }};
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(46, 125, 50, 0.25);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(46, 125, 50, 0.25);
 }
 
 .btn-test-ride:active {
@@ -88,9 +87,9 @@
 
 @media (max-width: 768px) {
   .btn-test-ride {
-    width: 100%;
-    justify-content: center;
-    padding: 1rem 1.5rem;
+  width: 100%;
+  justify-content: center;
+  padding: 0 16px;
   }
 }
 </style>

@@ -12,7 +12,7 @@
     "main": {
       "type": "main-page",
       "settings": {
-        "enable_hero": false,
+        "enable_hero": true,
         "hero_image_desktop": "shopify://shop_images/heylight-financing-banner.webp",
         "hero_image_mobile": "shopify://shop_images/heylight-financing-banner.webp",
         "hero_alt": "",

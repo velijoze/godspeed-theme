@@ -24,14 +24,24 @@
           </div>
 
           <div class="col-xl-5 col-md-12">
-            <div class="newletter_email">          
-              <form class="needs-validation form-inline" action="{{form_action}}" method="post">
-                <div class="form-group">                           
-                  <input type="email" name="EMAIL" class="form-control" placeholder="{{ 'general.newsletter_form.newsletter_email' | t }}" required >                 
-                </div>
-                <button class="btn" type="submit">Submit</button>
-              </form>
-            </div> 
+            <div class="newletter_email">
+              {% if settings.newsletter_form_action != blank %}
+                <form class="needs-validation form-inline" action="{{form_action}}" method="post">
+                  <div class="form-group">
+                    <input type="email" name="EMAIL" class="form-control" placeholder="{{ 'general.newsletter_form.newsletter_email' | t }}" required>
+                  </div>
+                  <button class="btn" type="submit">Submit</button>
+                </form>
+              {% else %}
+                {% form 'customer', id: 'NewsletterV3', class: 'needs-validation form-inline' %}
+                  <input type="hidden" name="contact[tags]" value="newsletter">
+                  <div class="form-group">
+                    <input type="email" name="contact[email]" class="form-control" placeholder="{{ 'general.newsletter_form.newsletter_email' | t }}" required>
+                  </div>
+                  <button class="btn" type="submit">Submit</button>
+                {% endform %}
+              {% endif %}
+            </div>
           </div>
         </div>
       </div>
