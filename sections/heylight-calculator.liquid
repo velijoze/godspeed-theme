@@ -66,47 +66,6 @@
                   </form>
                 </div>
               </div>
-              
-              <div class="col-lg-4 col-md-12">
-                <div class="calculator-sidebar">
-                  <div class="sidebar-section mb-4">
-                    <h4 class="sidebar-title sidebar-title-{{ section.id }} mb-3">Heylight Benefits</h4>
-                    <div class="benefits-list">
-                      <div class="benefit-item mb-3">
-                        <div class="benefit-icon">✓</div>
-                        <div class="benefit-text">
-                          <h5 class="benefit-title">0% Interest Available</h5>
-                          <p class="benefit-desc">Qualified purchases up to 24 months</p>
-                        </div>
-                      </div>
-                      
-                      <div class="benefit-item mb-3">
-                        <div class="benefit-icon">✓</div>
-                        <div class="benefit-text">
-                          <h5 class="benefit-title">Instant Approval</h5>
-                          <p class="benefit-desc">Under 5 minutes with smartphone verification</p>
-                        </div>
-                      </div>
-                      
-                      <div class="benefit-item mb-3">
-                        <div class="benefit-icon">✓</div>
-                        <div class="benefit-text">
-                          <h5 class="benefit-title">Take Home Today</h5>
-                          <p class="benefit-desc">No paperwork, ride immediately</p>
-                        </div>
-                      </div>
-                      
-                      <div class="benefit-item">
-                        <div class="benefit-icon">✓</div>
-                        <div class="benefit-text">
-                          <h5 class="benefit-title">Swiss Trusted</h5>
-                          <p class="benefit-desc">Regulated Swiss financial services provider</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
 
             <!-- Benefits and Requirements laid out horizontally under the calculator -->
@@ -242,7 +201,7 @@
   
   .calculator-wrapper {
     background: #f8f9fa;
-    padding: 2rem;
+    padding: 2rem 2rem 1.25rem 2rem;
     border-radius: 16px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.1);
   }
@@ -357,7 +316,10 @@
   }
   .calculator-sidebar.no-sticky { position: static; }
 
-  .benefits-req-row { margin-top: 10px; }
+  .benefits-req-row { margin-top: 8px; }
+  .benefits-req-row .calculator-sidebar { height: 100%; }
+  .benefits-req-row .calculator-sidebar .benefit-item,
+  .benefits-req-row .calculator-sidebar .how-steps .step { margin-bottom: 12px; }
   
   .sidebar-title-{{ section.id }} {
     color: {{ section.settings.color_title | default: '#333' }};
