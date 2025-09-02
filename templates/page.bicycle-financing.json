@@ -59,10 +59,23 @@
         "margin_top": 40,
         "margin_bottom": 40
       }
+    },
+    "heylight_calc": {
+      "type": "heylight-calculator",
+      "settings": {
+        "calculator_title": "Heylight Payment Calculator",
+        "calculator_subtitle": "Estimate your monthly payments and approval chance in seconds.",
+        "apply_url": "",
+        "color_title": "#333333",
+        "color_subtitle": "#6c757d",
+        "margin_top": 20,
+        "margin_bottom": 40
+      }
     }
   },
   "order": [
     "main",
-    "bicycle_financing"
+    "bicycle_financing",
+    "heylight_calc"
   ]
 }

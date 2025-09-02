@@ -70,6 +70,7 @@
 }
 
 .financing-title {
+  font-family: var(--font-heading);
   font-size: 2.5rem;
   font-weight: 700;
   color: #2c3e50;
@@ -77,6 +78,7 @@
 }
 
 .financing-subtitle {
+  font-family: var(--font-heading);
   font-size: 1.5rem;
   font-weight: 600;
   color: #34495e;
@@ -84,6 +86,7 @@
 }
 
 .financing-intro {
+  font-family: var(--font-body);
   font-size: 1.1rem;
   color: #7f8c8d;
   max-width: 800px;
@@ -100,7 +103,7 @@
 }
 
 .option-title {
-  color: #27ae60;
+  color: {{ settings.color_main2 }};
   font-size: 1.3rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
@@ -173,8 +176,8 @@
 }
 
 .btn-primary {
-  background-color: #27ae60;
-  border-color: #27ae60;
+  background-color: {{ settings.color_main2 }};
+  border-color: {{ settings.color_main2 }};
   padding: 0.75rem 2rem;
   font-weight: 600;
   border-radius: 25px;
@@ -183,8 +186,8 @@
 }
 
 .btn-primary:hover {
-  background-color: #229954;
-  border-color: #229954;
+  background-color: {{ settings.color_main2 | color_darken: 10 }};
+  border-color: {{ settings.color_main2 | color_darken: 10 }};
   text-decoration: none;
 }
 
