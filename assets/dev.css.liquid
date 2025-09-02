@@ -21,6 +21,32 @@ a, .btn, .button, [class*="btn-"], [class*="button-"] { font-family: var(--font-
   color: #fff;
 }
 
+/* Management polish: product, collection, cart */
+/* Product titles and prices */
+.product-title, .grid-product__title, .product-details .product-title {
+  font-family: var(--font-heading) !important;
+  font-weight: 600;
+  line-height: 1.25;
+  margin-bottom: 6px;
+}
+.product-price, .price, .enj-product-price, .engo_price_main {
+  font-family: var(--font-body) !important;
+  font-size: 1rem;
+  line-height: 1.2;
+}
+.enj-product-price-compare, .price--compare { opacity: 0.7; text-decoration: line-through; margin-left: 6px; }
+
+/* Collection cards spacing */
+.grid-uniform .grid__item, .product-grid .grid__item, .collection .product-item {
+  padding: 12px !important;
+}
+.collection .product-item .product-bottom { padding-top: 8px; }
+
+/* Cart table spacing */
+.page-cart table { border-collapse: collapse; width: 100%; }
+.page-cart th, .page-cart td { padding: 12px 10px; border-bottom: 1px solid #eee; }
+.page-cart .cart__row:last-child td { border-bottom: none; }
+
 /* Cart: make checkout/payment buttons more compact */
 .page-cart .checkout-button.button {
   font-size: 14px;

@@ -81,6 +81,18 @@
     ]
   },
   {
+    "name": "Godspeed Backend",
+    "settings": [
+      {
+        "type": "text",
+        "id": "gs_api_base_url",
+        "label": "API Base URL (Cloud Run)",
+        "default": "https://bookings-api-802427545823.europe-west6.run.app",
+        "info": "Base URL for Bookings + Vendor Sync backend. No trailing slash."
+      }
+    ]
+  },
+  {
     "name": "Promo Topbar",
     "settings": [
       {

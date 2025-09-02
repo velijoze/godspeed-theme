@@ -5,9 +5,10 @@
 
 class AdminActionsHandler {
   constructor() {
+    const base = (window.GS_API_BASE || '').replace(/\/$/, '');
     this.apiEndpoints = {
-      bookings: 'https://bookings-api-802427545823.europe-west6.run.app',
-      vendors: 'https://bookings-api-802427545823.europe-west6.run.app'
+      bookings: base,
+      vendors: base
     };
     this.initialized = false;
   }

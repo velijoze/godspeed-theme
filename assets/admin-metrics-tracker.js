@@ -7,9 +7,10 @@ class MetricsTracker {
   constructor() {
     this.metricsCache = {};
     this.refreshInterval = 30000; // 30 seconds
+    const base = (window.GS_API_BASE || '').replace(/\/$/, '');
     this.apiEndpoints = {
-      bookings: 'https://bookings-api-802427545823.europe-west6.run.app',
-      vendors: 'https://vendor-connectors-802427545823.europe-west6.run.app'
+      bookings: base,
+      vendors: base
     };
   }
 

@@ -8,7 +8,7 @@ class IntegrationMonitor {
     this.criticalSystems = {
       workshop_booking: {
         name: 'Workshop Booking System',
-        endpoint: 'https://bookings-api-802427545823.europe-west6.run.app/bookings/service',
+        endpoint: ((window.GS_API_BASE || '').replace(/\/$/, '')) + '/bookings/service',
         status: 'unknown',
         lastCheck: null,
         errorCount: 0

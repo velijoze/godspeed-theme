@@ -142,6 +142,10 @@
       hide_sidebar_toggle: "{{ 'general.sidebar_toggle.hide_sidebar_toggle' | t }}"
     };
 
+    // Godspeed backend API base from theme settings
+    window.GS_API_BASE = "{{ settings.gs_api_base_url | default: 'https://bookings-api-802427545823.europe-west6.run.app' }}";
+    if (window.GS_API_BASE) { window.GS_API_BASE = window.GS_API_BASE.replace(/\/$/, ''); }
+
   </script>
   
   {%- comment -%} Shopify API scripts loaded after variables {%- endcomment -%}

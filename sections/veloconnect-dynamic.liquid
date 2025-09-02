@@ -624,7 +624,7 @@ function populateCredentialFields(supplier, credentials) {
 async function saveSupplierCredentials(supplier) {
   const credentials = {};
   const mode = document.querySelector('input[name="cube-mode"]:checked')?.value;
-  const backendBase = 'https://bookings-api-802427545823.europe-west6.run.app';
+  const backendBase = (window.GS_API_BASE||'');
   const baseUrlMap = {
     cube: 'https://Veloconnect.cube.eu/Veloconnect',
     abus: 'https://partner-de.abus.com/Veloconnect',
@@ -692,7 +692,7 @@ async function saveSupplierCredentials(supplier) {
 async function testSupplierConnection(supplier) {
   showNotification(`Testing ${supplier} connection...`, 'info');
   try {
-    const backendBase = 'https://bookings-api-802427545823.europe-west6.run.app';
+    const backendBase = (window.GS_API_BASE||'');
     const vendorId = localStorage.getItem(`godspeed_vendor_${supplier}_id`);
     if (!vendorId) throw new Error('Vendor not configured');
     const response = await fetch(`${backendBase}/api/veloconnect/health?vendorId=${encodeURIComponent(vendorId)}`);

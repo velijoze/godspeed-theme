@@ -1139,7 +1139,7 @@ async function previewSync() {
   window.fieldsToSync = fieldsToSync;
   const filters = collectFilters();
   try {
-    const resp = await fetch('https://bookings-api-802427545823.europe-west6.run.app/api/cube/sync', {
+    const resp = await fetch((window.GS_API_BASE||'') + '/api/cube/sync', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ mode: 'preview', fields: fieldsToSync, filters, options: {} })
@@ -1795,7 +1795,7 @@ async function approveSync() {
   try {
     const fieldsToSync = window.fieldsToSync || ['inventory','pricing'];
     const filters = collectFilters();
-    const resp = await fetch('https://bookings-api-802427545823.europe-west6.run.app/api/cube/sync', {
+    const resp = await fetch((window.GS_API_BASE||'') + '/api/cube/sync', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ mode: 'apply', fields: fieldsToSync, filters, options: {} })
@@ -1819,7 +1819,7 @@ async function manualSync() {
     try {
       const fieldsToSync = Array.from(document.querySelectorAll('.field-options input:checked')).map(cb => cb.value);
       const filters = collectFilters();
-      const resp = await fetch('https://bookings-api-802427545823.europe-west6.run.app/api/cube/sync', {
+      const resp = await fetch((window.GS_API_BASE||'') + '/api/cube/sync', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ mode: 'apply', fields: fieldsToSync, filters, options: {} })

@@ -457,7 +457,7 @@ document.addEventListener('DOMContentLoaded', function() {
       bookingData.booking_timestamp = new Date().toISOString();
       
       // Submit to Cloud Run Bookings API
-      const response = await fetch('https://bookings-api-802427545823.europe-west6.run.app/bookings/test-ride', {
+      const response = await fetch((window.GS_API_BASE||'') + '/bookings/test-ride', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
