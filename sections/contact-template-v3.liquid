@@ -1,3 +1,4 @@
+{% if section.settings.show_breadcrumb_header %}
 <div class="wrap-bread-crumb breadcrumb_collection3">
   <div class="text-center bg-breadcrumb" style="background-image : url({% if section.settings.bg_breadcrumb != blank  %}{{section.settings.bg_breadcrumb | img_url : 'master'}} {% else %}//via.placeholder.com/1920x510 {% endif %})">
     <div class="title-page">
@@ -7,7 +8,9 @@
     </div>
     {% include 'breadcrumb' %}
   </div>
+ </div>
 </div>
+{% endif %}
 <section class="page_aboutus_v1 page_contact page_contact2">
   
   <!-- End Google Map -->
@@ -297,6 +300,7 @@
 {
   "name": "Contact Us",
   "settings": [
+    { "type": "checkbox", "id": "show_breadcrumb_header", "label": "Show breadcrumb header", "default": false },
 	{
       "type": "image_picker",
       "id": "bg_breadcrumb",

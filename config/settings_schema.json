@@ -5584,6 +5584,52 @@
         "label": "Content"
       },
       {
+        "type": "header",
+        "content": "Delivery & Returns (Structured)"
+      },
+      {
+        "type": "text",
+        "id": "delivery_title_text",
+        "label": "Delivery title",
+        "default": "Delivery"
+      },
+      {
+        "type": "html",
+        "id": "delivery_body_html",
+        "label": "Delivery body (HTML)",
+        "default": "<ul><li>All orders shipped with Swiss Post (tracking provided).</li><li>Free in‑store pickup available.</li><li>Delivery times vary by location and product availability.</li></ul>"
+      },
+      {
+        "type": "text",
+        "id": "returns_title_text",
+        "label": "Returns title",
+        "default": "Returns"
+      },
+      {
+        "type": "html",
+        "id": "returns_body_html",
+        "label": "Returns body (HTML)",
+        "default": "<ul><li>Items may be returned within 14 days in as‑new condition.</li><li>Refunds are issued to the original payment method.</li><li>Customer is responsible for return shipping unless the item is faulty.</li></ul>"
+      },
+      {
+        "type": "text",
+        "id": "help_title_text",
+        "label": "Help title",
+        "default": "Help"
+      },
+      {
+        "type": "text",
+        "id": "help_email_text",
+        "label": "Help email",
+        "default": "info@godspeed.ch"
+      },
+      {
+        "type": "text",
+        "id": "help_phone_text",
+        "label": "Help phone",
+        "default": "+41 91 224 53 43"
+      },
+      {
         "type": "checkbox",
         "id": "show_question",
         "label": "Show Ask a Question",

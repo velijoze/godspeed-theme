@@ -62,8 +62,18 @@
         
         <div class="delivery_return">
           {% if settings.addcontent_delivery != blank %}
-              {{ settings.addcontent_delivery }}
-          {% endif %}        
+            {{ settings.addcontent_delivery }}
+          {% else %}
+            <div class="delivery-wrap">
+              <h4 class="title">{{ settings.delivery_title_text | default: 'Delivery' }}</h4>
+              {{ settings.delivery_body_html }}
+              <h4 class="title">{{ settings.returns_title_text | default: 'Returns' }}</h4>
+              {{ settings.returns_body_html }}
+              <h4 class="title">{{ settings.help_title_text | default: 'Help' }}</h4>
+              <p>Email: <a href="mailto:{{ settings.help_email_text | default: 'info@godspeed.ch' }}">{{ settings.help_email_text | default: 'info@godspeed.ch' }}</a></p>
+              {% if settings.help_phone_text %}<p>Phone: {{ settings.help_phone_text }}</p>{% endif %}
+            </div>
+          {% endif %}
         </div>
         
         {% if settings.show_question %}
