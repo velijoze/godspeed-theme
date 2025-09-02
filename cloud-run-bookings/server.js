@@ -456,6 +456,139 @@ app.post('/api/veloconnect/sync', async (req, res) => {
   }
 });
 
+// ------------------------------
+// Generative Chat (RAG) - Preview implementation
+// ------------------------------
+
+function getLLMConfig(){
+  return {
+    provider: (process.env.LLM_PROVIDER || 'openai').toLowerCase(),
+    apiKey: process.env.LLM_API_KEY || '',
+    model: process.env.LLM_MODEL || 'gpt-4o-mini',
+    embedModel: process.env.EMBED_MODEL || 'text-embedding-3-small'
+  };
+}
+
+async function embedTextOpenAI(text){
+  const cfg = getLLMConfig();
+  if (!cfg.apiKey) throw new Error('LLM not configured');
+  const resp = await fetch('https://api.openai.com/v1/embeddings', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${cfg.apiKey}` },
+    body: JSON.stringify({ input: text, model: cfg.embedModel })
+  });
+  if (!resp.ok) throw new Error('Embedding error');
+  const data = await resp.json();
+  return data.data[0].embedding;
+}
+
+async function llmAnswerOpenAI(prompt){
+  const cfg = getLLMConfig();
+  if (!cfg.apiKey) throw new Error('LLM not configured');
+  const resp = await fetch('https://api.openai.com/v1/chat/completions', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${cfg.apiKey}` },
+    body: JSON.stringify({
+      model: cfg.model,
+      messages: prompt,
+      temperature: 0.3
+    })
+  });
+  if (!resp.ok) throw new Error('LLM error');
+  const data = await resp.json();
+  return data.choices?.[0]?.message?.content || '';
+}
+
+function cosine(a, b){
+  let dot=0, na=0, nb=0;
+  for(let i=0;i<Math.min(a.length,b.length);i++){ dot += a[i]*b[i]; na += a[i]*a[i]; nb += b[i]*b[i]; }
+  return dot/(Math.sqrt(na)*Math.sqrt(nb) + 1e-8);
+}
+
+async function fetchShopifyContent(limit=50){
+  const items = [];
+  try {
+    // Products (Admin GraphQL)
+    const data = await shopifyGraphQL(
+      `query($n:Int!){ products(first:$n){ edges{ node{ handle title vendor productType tags onlineStoreUrl descriptionHtml } } } }`,
+      { n: limit }
+    );
+    (data.products?.edges||[]).forEach(e=>{
+      const n=e.node; items.push({ type:'product', title:n.title, url:n.onlineStoreUrl || (`https://${getShopifyConfig().shop}/products/`+n.handle), text:n.descriptionHtml?.replace(/<[^>]+>/g,' ')||'', meta:{vendor:n.vendor,type:n.productType,tags:n.tags?.join(', ')} });
+    });
+  } catch(_) {}
+  // Pages & Articles could be added similarly; keep minimal for phase 1
+  return items;
+}
+
+function chunkText(text, size=800, overlap=150){
+  const out=[]; const t=text.trim();
+  for(let i=0;i<t.length;i+= (size - overlap)) out.push(t.slice(i, i+size));
+  return out.filter(s=>s.length>50);
+}
+
+app.post('/api/chat/index/start', async (req, res)=>{
+  const started = Date.now();
+  const jobRef = await firestore.collection('chat_jobs').add({ type:'rag_index', status:'started', startedAt:new Date() });
+  try{
+    const content = await fetchShopifyContent(50);
+    let count=0;
+    for (const c of content){
+      const chunks = chunkText(`${c.title}. ${c.text}`);
+      for (const ch of chunks){
+        const emb = await embedTextOpenAI(ch);
+        await firestore.collection('chat_chunks').add({ embedding: emb, text: ch, metadata: { title:c.title, url:c.url, type:c.type } });
+        count++;
+      }
+    }
+    await jobRef.set({ status:'completed', ok:true, count, durationMs: Date.now()-started }, { merge:true });
+    res.json({ ok:true, count });
+  }catch(e){
+    await jobRef.set({ status:'failed', ok:false, error: e.message }, { merge:true });
+    res.status(500).json({ ok:false, error:e.message });
+  }
+});
+
+app.get('/api/chat/index/status', async (req, res)=>{
+  try{
+    const snap = await firestore.collection('chat_jobs').where('type','==','rag_index').orderBy('startedAt','desc').limit(1).get();
+    if (snap.empty) return res.json({ ok:true, status:'none' });
+    const doc = snap.docs[0];
+    res.json({ ok:true, job: { id:doc.id, ...doc.data() } });
+  }catch(e){ res.status(500).json({ ok:false, error:e.message }); }
+});
+
+app.post('/api/chat/ask', async (req, res)=>{
+  const { query, topK=6 } = req.body || {};
+  if (!query || typeof query !== 'string') return res.status(400).json({ ok:false, error:'missing query' });
+  try{
+    const qEmb = await embedTextOpenAI(query);
+    const snap = await firestore.collection('chat_chunks').limit(500).get();
+    const scored = [];
+    snap.forEach(doc=>{
+      const d=doc.data();
+      const s = cosine(qEmb, d.embedding||[]);
+      scored.push({ score:s, text:d.text, metadata:d.metadata });
+    });
+    scored.sort((a,b)=>b.score-a.score);
+    const top = scored.slice(0, topK);
+    const context = top.map((t,i)=>`[${i+1}] ${t.metadata.title}\n${t.text}`).join('\n\n');
+    const system = { role:'system', content: 'You are a helpful assistant for a Swiss e-bike store. Answer concisely using the provided context. Include a short list of sources.' };
+    const user = { role:'user', content: `Question: ${query}\n\nContext:\n${context}` };
+    const answer = await llmAnswerOpenAI([system, user]);
+    // citations
+    const seen = new Set();
+    const citations = [];
+    top.forEach(t=>{
+      const key = t.metadata.url;
+      if (!seen.has(key) && citations.length<3){ citations.push({ title: t.metadata.title, url: t.metadata.url }); seen.add(key); }
+    });
+    res.json({ ok:true, answer, citations });
+  }catch(e){
+    res.status(500).json({ ok:false, error:e.message });
+  }
+});
+
 // Jobs list endpoints
 app.get('/api/jobs', async (req, res) => {
   try {

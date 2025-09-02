@@ -654,5 +654,22 @@
       "title": "Cosa Dicono i Nostri Clienti",
       "cta_button": "Prenota il Tuo Servizio"
     }
+  },
+  "compare": {
+    "add": "Aggiungi al confronto",
+    "open": "Confronta",
+    "drawer_empty": "Nessun prodotto selezionato",
+    "table": {
+      "title": "Titolo",
+      "price": "Prezzo",
+      "vendor": "Marca",
+      "type": "Tipo",
+      "tags": "Tag",
+      "options": "Opzioni",
+      "weight": "Peso"
+    }
+  },
+  "chat": {
+    "sources": "Fonti"
   }
 }

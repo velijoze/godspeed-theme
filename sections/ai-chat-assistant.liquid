@@ -508,6 +508,29 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!query) return;
     addMessage('user', query);
 
+    // If backend chat is enabled, try RAG answer first
+    try {
+      if (window.GS_CHAT_ENABLED && window.GS_API_BASE) {
+        const resp = await fetch((window.GS_API_BASE||'') + '/api/chat/ask', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query: query, locale: Shopify && Shopify.locale ? Shopify.locale : undefined })
+        });
+        if (resp.ok) {
+          const data = await resp.json();
+          let html = data.answer || '';
+          if (data.citations && data.citations.length) {
+            const cites = data.citations.map(c => `<a href="${c.url}">${c.title}</a>`).join(' • ');
+            html += `<div class="chat-citations" style="margin-top:8px;color:#6c757d;font-size:12px">Sources: ${cites}</div>`;
+          }
+          addMessage('ai', html);
+          return;
+        }
+      }
+    } catch (e) {
+      // fall through to local intents/search
+    }
+
     const lc = query.toLowerCase();
     // Known intents (exact or contains)
     const keys = Object.keys(responses).filter(k => k !== 'default');

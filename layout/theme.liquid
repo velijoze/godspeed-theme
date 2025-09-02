@@ -137,6 +137,10 @@
       unavailable: "{{ 'products.product.unavailable' | t }}"
     };
 
+    // Godspeed chat feature flags from theme settings
+    window.GS_CHAT_ENABLED = {{ settings.gs_chat_enabled | json }};
+    window.GS_CHAT_MODEL = {{ settings.gs_chat_model | json }};
+
     window.sidebar_toggle = {
       show_sidebar_toggle: "{{ 'general.sidebar_toggle.show_sidebar_toggle' | t }}",
       hide_sidebar_toggle: "{{ 'general.sidebar_toggle.hide_sidebar_toggle' | t }}"

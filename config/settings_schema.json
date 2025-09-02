@@ -81,6 +81,23 @@
     ]
   },
   {
+    "name": "Godspeed Chat",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "gs_chat_enabled",
+        "label": "Enable Generative Chat (RAG)",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "gs_chat_model",
+        "label": "Chat Model (optional)",
+        "default": "gpt-4o-mini"
+      }
+    ]
+  },
+  {
     "name": "Godspeed Backend",
     "settings": [
       {

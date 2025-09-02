@@ -535,5 +535,22 @@
       "title": "What Our Customers Say",
       "cta_button": "Schedule Your Service"
     }
+  },
+  "compare": {
+    "add": "Add to Compare",
+    "open": "Compare",
+    "drawer_empty": "No products selected",
+    "table": {
+      "title": "Title",
+      "price": "Price",
+      "vendor": "Vendor",
+      "type": "Type",
+      "tags": "Tags",
+      "options": "Options",
+      "weight": "Weight"
+    }
+  },
+  "chat": {
+    "sources": "Sources"
   }
 }

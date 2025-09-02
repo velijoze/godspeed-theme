@@ -364,5 +364,22 @@
   },
   "date_formats": {
     "month_day_year": "%B %d, %Y"
+  },
+  "compare": {
+    "add": "Zur Vergleichsliste",
+    "open": "Vergleichen",
+    "drawer_empty": "Keine Produkte ausgewählt",
+    "table": {
+      "title": "Titel",
+      "price": "Preis",
+      "vendor": "Hersteller",
+      "type": "Typ",
+      "tags": "Tags",
+      "options": "Optionen",
+      "weight": "Gewicht"
+    }
+  },
+  "chat": {
+    "sources": "Quellen"
   }
 }
