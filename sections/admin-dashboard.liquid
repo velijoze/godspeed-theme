@@ -2660,6 +2660,148 @@ function showExportModal() {
   document.body.appendChild(modal);
 }
 
+// -------- QR CODE MANAGEMENT --------
+function hexToRgbParam(hex){
+  if(!hex) return '0-0-0';
+  hex = hex.replace('#','');
+  if(hex.length===3){ hex = hex.split('').map(c=>c+c).join(''); }
+  const r = parseInt(hex.substring(0,2),16);
+  const g = parseInt(hex.substring(2,4),16);
+  const b = parseInt(hex.substring(4,6),16);
+  return `${r}-${g}-${b}`;
+}
+
+function generateQRCode(){
+  const input = document.getElementById('qr-product-url');
+  const lbl = document.getElementById('qr-label').value.trim();
+  const fg = hexToRgbParam(document.getElementById('qr-fg-color')?.value || '#000000');
+  const bg = hexToRgbParam(document.getElementById('qr-bg-color')?.value || '#ffffff');
+  let val = (input.value || '').trim();
+  if(!val){ alert('Enter a product URL or handle'); return; }
+  if(!/^https?:\/\//i.test(val)){
+    // Treat as handle
+    val = '{{ shop.url }}' + (val.startsWith('/products/') ? val : '/products/' + val.replace(/^\//,''));
+  }
+  const size = '300x300';
+  const urlPng = `https://api.qrserver.com/v1/create-qr-code/?size=${size}&data=${encodeURIComponent(val)}&color=${fg}&bgcolor=${bg}`;
+  const urlSvg = `https://api.qrserver.com/v1/create-qr-code/?size=${size}&data=${encodeURIComponent(val)}&format=svg&color=${fg}&bgcolor=${bg}`;
+  const preview = document.getElementById('qr-preview');
+  preview.innerHTML = `<div style="text-align:center"><img id="qr-preview-img" src="${urlPng}" alt="QR" /><div style="margin-top:6px;font-size:12px;color:#667">${lbl || ''}</div><div style="font-size:11px;color:#999">${val}</div></div>`;
+  const actions = document.getElementById('qr-actions'); actions.style.display = 'block';
+  preview.dataset.png = urlPng; preview.dataset.svg = urlSvg; preview.dataset.url = val; preview.dataset.label = lbl;
+}
+
+function downloadQRCode(){
+  const preview = document.getElementById('qr-preview');
+  const link = document.createElement('a');
+  const url = preview?.dataset?.png; if(!url) return;
+  link.href = url; link.download = (preview.dataset.label || 'qr') + '.png'; link.click();
+}
+function downloadQRCodeSVG(){
+  const preview = document.getElementById('qr-preview');
+  const link = document.createElement('a');
+  const url = preview?.dataset?.svg; if(!url) return;
+  link.href = url; link.download = (preview.dataset.label || 'qr') + '.svg'; link.click();
+}
+
+async function searchProducts(){
+  const q = (document.getElementById('product-search-input').value || '').trim();
+  if(!q){ alert('Enter search text'); return; }
+  try{
+    const resp = await fetch(`/search/suggest.json?q=${encodeURIComponent(q)}&resources[type]=product&resources[limit]=8`);
+    const data = await resp.json();
+    const products = (data && data.resources && data.resources.results && data.resources.results.products) || [];
+    const list = document.getElementById('existing-qr-codes');
+    list.innerHTML = '';
+    products.forEach((p,i)=>{
+      const handle = p.handle || '';
+      const url = `{{ shop.url }}/products/${handle}`;
+      const id = `qr-search-${i}`;
+      list.insertAdjacentHTML('beforeend', `
+        <div class="qr-code-item">
+          <div class="qr-info">
+            <div class="qr-product">${p.title || handle}</div>
+            <div class="qr-url">${url}</div>
+            <div class="qr-created">Search result</div>
+          </div>
+          <div class="qr-thumbnail"><canvas width="60" height="60" id="${id}"></canvas></div>
+          <div class="qr-actions">
+            <button class="btn btn-sm btn-outline" onclick="document.getElementById('qr-product-url').value='${url}'; generateQRCode()">Use</button>
+          </div>
+        </div>`);
+      // quick thumbnail by setting background image
+      const img = new Image();
+      img.onload = ()=>{ const c=document.getElementById(id); if(!c) return; const ctx=c.getContext('2d'); ctx.drawImage(img,0,0,60,60); };
+      img.src = `https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=${encodeURIComponent(url)}`;
+    });
+  }catch(e){ console.error(e); alert('Search failed'); }
+}
+
+// -------- VeloConnect & Cube Connect wiring (client-side config storage) --------
+function getStore(key, def){ try{ return JSON.parse(localStorage.getItem(key)) || def; }catch(e){ return def; } }
+function setStore(key, val){ localStorage.setItem(key, JSON.stringify(val)); }
+
+function configureVeloConnect(){
+  const modal = document.createElement('div');
+  modal.className = 'export-modal';
+  modal.innerHTML = `
+    <div class="export-modal-content">
+      <div class="export-header">
+        <h3>Configure VeloConnect Vendors</h3>
+        <button class="close-btn" onclick="this.closest('.export-modal').remove()">×</button>
+      </div>
+      <div class="export-options">
+        <div class="export-checkboxes">
+          <label>Vendor Name <input type="text" id="vc-vendor-name" class="form-control" placeholder="e.g., ABUS"></label>
+          <label>Base URL <input type="text" id="vc-base-url" class="form-control" placeholder="https://api.vendor.com/veloconnect"></label>
+          <label>Username <input type="text" id="vc-username" class="form-control" placeholder="username"></label>
+          <label>Password / API Key <input type="text" id="vc-password" class="form-control" placeholder="password or token"></label>
+        </div>
+        <div class="export-actions" style="margin-top:12px;">
+          <button class="btn btn-primary" onclick="saveVeloVendor()">Save Vendor</button>
+        </div>
+        <div id="vc-vendors-list" style="margin-top:16px;"></div>
+      </div>
+    </div>`;
+  document.body.appendChild(modal);
+  renderVeloVendors();
+}
+
+function renderVeloVendors(){
+  const box = document.getElementById('vc-vendors-list'); if(!box){ return; }
+  const vendors = getStore('veloconnect_vendors', []);
+  box.innerHTML = vendors.length ? '<h4>Configured Vendors</h4>' : '<em>No vendors configured yet.</em>';
+  vendors.forEach((v,i)=>{
+    const safe = (s)=> (s||'').replace(/</g,'&lt;');
+    box.insertAdjacentHTML('beforeend', `<div class="qr-code-item"><div class="qr-info"><div class="qr-product">${safe(v.name)}</div><div class="qr-url">${safe(v.baseUrl)}</div></div><div class="qr-actions"><button class="btn btn-sm btn-outline" onclick="testVeloVendor(${i})">Test</button><button class="btn btn-sm btn-outline" onclick="removeVeloVendor(${i})">Remove</button></div></div>`);
+  });
+}
+
+function saveVeloVendor(){
+  const name = document.getElementById('vc-vendor-name').value.trim();
+  const baseUrl = document.getElementById('vc-base-url').value.trim();
+  const username = document.getElementById('vc-username').value.trim();
+  const password = document.getElementById('vc-password').value.trim();
+  if(!name || !baseUrl){ alert('Name and Base URL are required'); return; }
+  const vendors = getStore('veloconnect_vendors', []);
+  vendors.push({name, baseUrl, username, password, created: Date.now()});
+  setStore('veloconnect_vendors', vendors); renderVeloVendors();
+  showNotification('Vendor saved', 'success');
+}
+async function testVeloVendor(i){
+  const vendors = getStore('veloconnect_vendors', []); const v = vendors[i]; if(!v) return;
+  try{ const r = await fetch(v.baseUrl.replace(/\/$/,'') + '/health'); showNotification('Vendor ' + v.name + ': ' + (r.ok?'Online':'Error'), r.ok?'success':'danger'); }catch(e){ showNotification('Vendor '+v.name+': error','danger'); }
+}
+function removeVeloVendor(i){ const vendors = getStore('veloconnect_vendors', []); vendors.splice(i,1); setStore('veloconnect_vendors', vendors); renderVeloVendors(); }
+
+// Cube Connect simple config + test hooks
+function syncCubeProducts(){
+  const cfg = getStore('cube_connect', {});
+  if(!cfg.baseUrl){ alert('Set Cube Connect base URL in localStorage key cube_connect.baseUrl or extend UI.'); return; }
+  fetch(cfg.baseUrl.replace(/\/$/,'') + '/sync', {method:'POST'}).then(r=>showNotification('Cube sync: ' + (r.ok?'started':'error'), r.ok?'success':'danger')).catch(()=>showNotification('Cube sync error','danger'));
+}
+
+
 function executeExport() {
   showNotification('Starting data export...', 'info');
   
