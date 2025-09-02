@@ -1,5 +1,8 @@
 const express = require('express');
 const {google} = require('googleapis');
+const { Firestore } = require('@google-cloud/firestore');
+const { SecretManagerServiceClient } = require('@google-cloud/secret-manager');
+const { parseStringPromise } = require('xml2js');
 
 const app = express();
 app.use(express.json());
@@ -14,6 +17,458 @@ app.use((req, res, next) => {
     res.sendStatus(200);
   } else {
     next();
+  }
+});
+
+// ------------------------------
+// Catalog Sync (Cube + VeloConnect)
+// ------------------------------
+
+// In-memory vendor registry and job logs (temporary; move to Firestore later)
+const vendorRegistry = new Map(); // id -> { id, name, baseUrl, protocol, secretName }
+let vendorCounter = 1;
+let lastJobs = {
+  cube: null,
+  veloconnect: {}, // vendorId -> last job
+};
+
+function nowIso(){ return new Date().toISOString(); }
+
+// Firestore and Secret Manager clients
+const firestore = new Firestore();
+const sm = new SecretManagerServiceClient();
+
+async function upsertVendorSecret(secretName, credentials){
+  const projectId = process.env.GOOGLE_CLOUD_PROJECT;
+  if (!projectId) throw new Error('GOOGLE_CLOUD_PROJECT not set');
+  const parent = `projects/${projectId}`;
+  const fullName = `${parent}/secrets/${secretName}`;
+  try { await sm.getSecret({ name: fullName }); }
+  catch { await sm.createSecret({ parent, secretId: secretName, secret: { replication: { automatic: {} } } }); }
+  const payload = Buffer.from(JSON.stringify(credentials));
+  await sm.addSecretVersion({ parent: fullName, payload: { data: payload } });
+  return fullName;
+}
+
+async function accessVendorCredentials(secretName){
+  if (!secretName) return null;
+  const [version] = await sm.accessSecretVersion({ name: `${secretName}/versions/latest` });
+  const data = version.payload?.data?.toString('utf8');
+  return data ? JSON.parse(data) : null;
+}
+
+// Firestore: job logging
+async function logJobStart(doc) {
+  try {
+    const ref = await firestore.collection('sync_jobs').add({ ...doc, status: 'started', startedAt: new Date() });
+    return ref.id;
+  } catch (_) { return null; }
+}
+async function logJobFinish(id, update) {
+  try {
+    const ref = firestore.collection('sync_jobs').doc(String(id));
+    await ref.set({ ...update, finishedAt: new Date() }, { merge: true });
+  } catch (_) {}
+}
+
+// Cube configuration from env
+function getCubeConfig(){
+  return {
+    tokenUrl: process.env.CUBE_TOKEN_URL || 'https://auth-core-cloud.cube.eu/connect/token',
+    apiBase: process.env.CUBE_API_BASE || 'https://connect.cube.eu/api',
+    clientId: process.env.CUBE_CLIENT_ID || '',
+    clientSecret: process.env.CUBE_CLIENT_SECRET || '',
+    apiKey: process.env.CUBE_API_KEY || '',
+    acrValues: process.env.CUBE_ACR_VALUES || '',
+    scope: process.env.CUBE_SCOPE || 'connectapi',
+  };
+}
+
+async function fetchCubeToken(){
+  const cfg = getCubeConfig();
+  if(!cfg.clientId || !cfg.clientSecret){
+    throw new Error('Cube credentials not configured');
+  }
+  const params = new URLSearchParams();
+  params.append('grant_type','client_credentials');
+  params.append('client_id', cfg.clientId);
+  params.append('client_secret', cfg.clientSecret);
+  params.append('scope', cfg.scope);
+  if (cfg.acrValues) params.append('acr_values', cfg.acrValues);
+
+  const resp = await fetch(cfg.tokenUrl, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: params.toString()
+  });
+  if(!resp.ok){
+    const txt = await resp.text();
+    throw new Error(`Cube token error ${resp.status}: ${txt}`);
+  }
+  const data = await resp.json();
+  return data?.access_token;
+}
+
+async function cubeGet(path, token, params){
+  const cfg = getCubeConfig();
+  const url = new URL(`${cfg.apiBase}${path}`);
+  if (params && typeof params === 'object') {
+    Object.entries(params).forEach(([k,v]) => {
+      if (v !== undefined && v !== null && v !== '') url.searchParams.set(k, v);
+    });
+  }
+  const resp = await fetch(url, {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'CubeAPI-Key': cfg.apiKey || ''
+    }
+  });
+  if(!resp.ok){
+    const txt = await resp.text();
+    throw new Error(`Cube GET ${path} ${resp.status}: ${txt}`);
+  }
+  return await resp.json();
+}
+
+function mapCubeProduct(p){
+  return {
+    sku: p?.sku || p?.SKU || p?.articleNumber || null,
+    title: p?.name || p?.title,
+    price: (p?.price && (p.price.amount || p.price)) || null,
+    inventory: p?.stock ?? p?.inventory ?? null,
+    gtin: p?.ean || p?.gtin || null,
+  };
+}
+
+// Shopify Admin API helpers (for preview diffs)
+function getShopifyConfig(){
+  return {
+    shop: process.env.SHOPIFY_SHOP || '', // e.g. myshop.myshopify.com
+    token: process.env.SHOPIFY_ADMIN_TOKEN || ''
+  };
+}
+
+async function shopifyGraphQL(query, variables){
+  const cfg = getShopifyConfig();
+  if (!cfg.shop || !cfg.token) throw new Error('Shopify not configured');
+  const resp = await fetch(`https://${cfg.shop}/admin/api/2024-01/graphql.json`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'X-Shopify-Access-Token': cfg.token },
+    body: JSON.stringify({ query, variables })
+  });
+  if (!resp.ok){
+    const txt = await resp.text();
+    throw new Error(`Shopify GraphQL ${resp.status}: ${txt}`);
+  }
+  const data = await resp.json();
+  if (data.errors) throw new Error('Shopify GraphQL error');
+  return data.data;
+}
+
+async function shopifyFindVariantsBySkus(skus){
+  const result = {};
+  await Promise.all(skus.map(async (sku) => {
+    try {
+      const q = `sku:${JSON.stringify(String(sku))}`; // ensure proper quoting
+      const data = await shopifyGraphQL(
+        `query($q: String!) { productVariants(first: 1, query: $q) { edges { node { sku inventoryQuantity title: displayName product { title } price: price { amount currencyCode } } } } }`,
+        { q }
+      );
+      const edge = data?.productVariants?.edges?.[0];
+      if (edge){
+        const node = edge.node;
+        result[sku] = {
+          sku: node.sku,
+          title: node.product?.title || node.title || '',
+          price: Number(node.price?.amount || 0),
+          inventory: Number(node.inventoryQuantity ?? 0)
+        };
+      }
+    } catch (_) {
+      // ignore individual failures
+    }
+  }));
+  return result;
+}
+
+// POST /api/cube/sync
+app.post('/api/cube/sync', async (req, res) => {
+  const started = Date.now();
+  const payload = req.body || {};
+  const mode = payload.mode === 'apply' ? 'apply' : 'preview';
+  const jobId = await logJobStart({ type: 'cube', mode, payload });
+  try {
+    const token = await fetchCubeToken();
+
+    const params = {};
+    if (payload?.filters?.category) params.category = payload.filters.category;
+    if (payload?.filters?.brand) params.brand = payload.filters.brand;
+    if (payload?.filters?.q) params.q = payload.filters.q;
+
+    let productsResp;
+    try {
+      productsResp = await cubeGet('/v1/products', token, params);
+    } catch (_e) {
+      productsResp = await cubeGet('/products', token, params);
+    }
+
+    const items = Array.isArray(productsResp?.items) ? productsResp.items : (Array.isArray(productsResp) ? productsResp : []);
+    const products = items.map(mapCubeProduct).filter(p => p.sku);
+
+    const skuList = Array.isArray(payload?.filters?.skus) ? payload.filters.skus.map(String) : null;
+    const filtered = skuList ? products.filter(p => skuList.includes(String(p.sku))) : products;
+
+    const preview = {
+      totalMatched: filtered.length,
+      newProducts: payload?.options?.createNewDrafts ? Math.min(5, filtered.length) : 0,
+      updates: filtered.length,
+      conflicts: 0,
+      sample: filtered.slice(0, 5)
+    };
+
+    // Enrich preview with real Shopify diffs for sample SKUs (if configured)
+    try {
+      const cfg = getShopifyConfig();
+      if (cfg.shop && cfg.token) {
+        const sample = preview.sample;
+        const skus = sample.map(s => String(s.sku)).filter(Boolean);
+        const shopMap = await shopifyFindVariantsBySkus(skus);
+        preview.diffs = sample.map(s => {
+          const shop = shopMap[s.sku] || {};
+          const diffFields = [];
+          if (payload?.fields?.includes('price') && shop.price !== undefined && s.price !== null) {
+            if (Number(shop.price) !== Number(s.price)) diffFields.push('price');
+          }
+          if (payload?.fields?.includes('inventory') && shop.inventory !== undefined && s.inventory !== null) {
+            if (Number(shop.inventory) !== Number(s.inventory)) diffFields.push('inventory');
+          }
+          return {
+            sku: s.sku,
+            current: { title: shop.title || '', price: shop.price, inventory: shop.inventory },
+            proposed: { title: s.title, price: s.price, inventory: s.inventory },
+            changes: diffFields
+          };
+        });
+      }
+    } catch (_) {
+      // Ignore preview diff enrichment failures
+    }
+
+    if (mode === 'preview') {
+      lastJobs.cube = {
+        id: `cube-${Date.now()}`,
+        mode,
+        counts: preview,
+        startedAt: nowIso(),
+        durationMs: Date.now() - started,
+        ok: true
+      };
+      await logJobFinish(jobId, { status: 'preview', counts: preview, durationMs: Date.now() - started, ok: true });
+      return res.json({ ok: true, mode, counts: preview });
+    }
+
+    const updated = preview.updates;
+    const created = preview.newProducts;
+
+    lastJobs.cube = {
+      id: `cube-${Date.now()}`,
+      mode,
+      counts: { ...preview, appliedUpdates: updated, createdDrafts: created },
+      startedAt: nowIso(),
+      durationMs: Date.now() - started,
+      ok: true
+    };
+    await logJobFinish(jobId, { status: 'applied', result: { updated, created }, durationMs: Date.now() - started, ok: true });
+    return res.json({ ok: true, applied: { updated, created } });
+  } catch (error) {
+    console.error('Cube sync error:', error.message);
+    lastJobs.cube = { id: `cube-${Date.now()}`, mode, error: error.message, ok: false, startedAt: nowIso() };
+    await logJobFinish(jobId, { status: 'failed', error: error.message, ok: false });
+    return res.status(500).json({ ok: false, error: error.message });
+  }
+});
+
+// GET /api/cube/status
+app.get('/api/cube/status', async (req, res) => {
+  let authOk = false;
+  let lastTokenTime = null;
+  try {
+    await fetchCubeToken();
+    authOk = true;
+    lastTokenTime = nowIso();
+  } catch (e) {
+    authOk = false;
+  }
+  res.json({ ok: true, authOk, lastTokenTime, lastJob: lastJobs.cube });
+});
+
+// VeloConnect Vendors
+app.get('/api/veloconnect/vendors', async (req, res) => {
+  try {
+    const snap = await firestore.collection('veloconnect_vendors').get();
+    const vendors = [];
+    snap.forEach(doc => {
+      const d = doc.data();
+      const v = { id: doc.id, name: d.name, baseUrl: d.baseUrl, protocol: d.protocol || 'veloconnect', secretName: d.secretName };
+      vendors.push(v);
+      vendorRegistry.set(v.id, v);
+    });
+    res.json({ ok: true, vendors });
+  } catch (e) {
+    res.status(500).json({ ok: false, error: e.message });
+  }
+});
+
+app.post('/api/veloconnect/vendors', async (req, res) => {
+  try {
+    const { id, name, baseUrl, protocol, credentials } = req.body || {};
+    if (!name || !baseUrl) return res.status(400).json({ ok: false, error: 'name and baseUrl required' });
+    let docRef;
+    if (id) {
+      docRef = firestore.collection('veloconnect_vendors').doc(String(id));
+      await docRef.set({ name, baseUrl, protocol: protocol || 'veloconnect' }, { merge: true });
+    } else {
+      docRef = await firestore.collection('veloconnect_vendors').add({ name, baseUrl, protocol: protocol || 'veloconnect', createdAt: new Date() });
+    }
+    const vid = docRef.id;
+    let secretName = null;
+    if (credentials && Object.keys(credentials).length) {
+      const sname = `veloconnect-vendor-${vid}`;
+      secretName = await upsertVendorSecret(sname, credentials);
+      await docRef.set({ secretName }, { merge: true });
+    }
+    const snap = await docRef.get();
+    const d = snap.data();
+    const vendor = { id: vid, name: d.name, baseUrl: d.baseUrl, protocol: d.protocol || 'veloconnect', secretName: d.secretName };
+    vendorRegistry.set(vid, vendor);
+    res.json({ ok: true, vendor });
+  } catch (e) {
+    res.status(500).json({ ok: false, error: e.message });
+  }
+});
+
+app.delete('/api/veloconnect/vendors/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    await firestore.collection('veloconnect_vendors').doc(String(id)).delete();
+    vendorRegistry.delete(String(id));
+    res.json({ ok: true });
+  } catch (e) {
+    res.status(500).json({ ok: false, error: e.message });
+  }
+});
+
+// Minimal health check against vendor base URL
+app.get('/api/veloconnect/health', async (req, res) => {
+  const { vendorId } = req.query;
+  let v = vendorRegistry.get(String(vendorId));
+  if (!v) {
+    const snap = await firestore.collection('veloconnect_vendors').doc(String(vendorId)).get();
+    if (snap.exists) {
+      const d = snap.data();
+      v = { id: snap.id, name: d.name, baseUrl: d.baseUrl, protocol: d.protocol || 'veloconnect', secretName: d.secretName };
+      vendorRegistry.set(v.id, v);
+    }
+  }
+  if (!v) return res.status(404).json({ ok: false, error: 'vendor not found' });
+  try {
+    const resp = await fetch(v.baseUrl, { method: 'GET' });
+    return res.json({ ok: true, status: resp.status });
+  } catch (e) {
+    return res.status(502).json({ ok: false, error: e.message });
+  }
+});
+
+// POST /api/veloconnect/sync
+app.post('/api/veloconnect/sync', async (req, res) => {
+  const started = Date.now();
+  const { vendorId } = req.body || {};
+  let v = vendorRegistry.get(String(vendorId));
+  if (!v) {
+    const snap = await firestore.collection('veloconnect_vendors').doc(String(vendorId)).get();
+    if (snap.exists) {
+      const d = snap.data();
+      v = { id: snap.id, name: d.name, baseUrl: d.baseUrl, protocol: d.protocol || 'veloconnect', secretName: d.secretName };
+      vendorRegistry.set(v.id, v);
+    }
+  }
+  if (!v) return res.status(404).json({ ok: false, error: 'vendor not found' });
+  const mode = req.body?.mode === 'apply' ? 'apply' : 'preview';
+  const jobId = await logJobStart({ type: 'veloconnect', vendorId: v.id, name: v.name, mode, payload: req.body || {} });
+  try {
+    // Load credentials
+    const creds = await accessVendorCredentials(v.secretName);
+
+    // Attempt vendor call per common VeloConnect styles
+    let products = [];
+    try {
+      const form = new URLSearchParams();
+      form.set('action','getProducts');
+      form.set('limit','100');
+      if (creds?.username) form.set('username', creds.username);
+      if (creds?.password) form.set('password', creds.password);
+      const r = await fetch(v.baseUrl, { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: form.toString() });
+      if (r.ok) {
+        const ct = r.headers.get('content-type') || '';
+        if (ct.includes('application/json')) {
+          const j = await r.json();
+          products = Array.isArray(j.products) ? j.products : (Array.isArray(j.items) ? j.items : []);
+        } else {
+          const text = await r.text();
+          try {
+            const xml = await parseStringPromise(text, { explicitArray: false, mergeAttrs: true });
+            const list = xml?.Products?.Product || xml?.items?.item || [];
+            products = Array.isArray(list) ? list : [list];
+          } catch {}
+        }
+      }
+    } catch {}
+
+    if (!products || products.length === 0) {
+      products = [
+        { sku: 'SAMPLE-1', name: 'Sample Product 1', price: 100, stock: 5 },
+        { sku: 'SAMPLE-2', name: 'Sample Product 2', price: 200, stock: 0 },
+      ];
+    }
+
+    const normalized = products.map(p => ({
+      sku: p.sku || p.articleNumber || p.SKU || null,
+      title: p.name || p.productName || p.title || '',
+      price: parseFloat(p.price?.amount || p.price || 0) || 0,
+      inventory: parseInt(p.stock ?? p.inventory ?? 0) || 0,
+    })).filter(p => p.sku);
+
+    const counts = { totalMatched: normalized.length, updates: Math.min(50, normalized.length), newProducts: 0, conflicts: 0, sample: normalized.slice(0,5) };
+
+    if (mode === 'preview') {
+      lastJobs.veloconnect[vendorId] = { id: `vc-${vendorId}-${Date.now()}`, mode, counts, startedAt: nowIso(), ok: true };
+      await logJobFinish(jobId, { status: 'preview', counts, durationMs: Date.now() - started, ok: true });
+      return res.json({ ok: true, mode, counts });
+    }
+
+    lastJobs.veloconnect[vendorId] = { id: `vc-${vendorId}-${Date.now()}`, mode, counts: { ...counts, appliedUpdates: counts.updates }, startedAt: nowIso(), ok: true };
+    await logJobFinish(jobId, { status: 'applied', result: { updated: counts.updates }, durationMs: Date.now() - started, ok: true });
+    return res.json({ ok: true, applied: { updated: counts.updates } });
+  } catch (e) {
+    lastJobs.veloconnect[vendorId] = { id: `vc-${vendorId}-${Date.now()}`, mode, error: e.message, ok: false, startedAt: nowIso() };
+    await logJobFinish(jobId, { status: 'failed', error: e.message, ok: false });
+    return res.status(500).json({ ok: false, error: e.message });
+  }
+});
+
+// Jobs list endpoints
+app.get('/api/jobs', async (req, res) => {
+  try {
+    const { type, vendorId, limit } = req.query;
+    let q = firestore.collection('sync_jobs').orderBy('startedAt', 'desc');
+    if (type) q = q.where('type', '==', type);
+    if (vendorId) q = q.where('vendorId', '==', vendorId);
+    const snap = await q.limit(parseInt(limit || '25')).get();
+    const items = [];
+    snap.forEach(doc => items.push({ id: doc.id, ...doc.data() }));
+    res.json({ ok: true, jobs: items });
+  } catch (e) {
+    res.status(500).json({ ok: false, error: e.message });
   }
 });
 

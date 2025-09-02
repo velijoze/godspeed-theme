@@ -322,6 +322,13 @@
 </div>
 
 <style>
+  :root {
+    --gs-accent: {{ settings.color_main2 | default: '#ff4040' }};
+    --gs-primary: {{ settings.color_main | default: '#333333' }};
+    --gs-muted: #6c757d;
+    --gs-bg: {{ settings.bg_color_body | default: '#f8f9fa' }};
+    --gs-border: #e9ecef;
+  }
   .cube-sync-manager-section {
     padding: 40px 0;
     background: #f8f9fa;
@@ -459,7 +466,7 @@
   .btn-apply-filters, .btn-preview-sync, .btn-manual-sync, .btn-save-schedule {
     width: 100%;
     padding: 12px 20px;
-    background: #333;
+    background: var(--gs-primary);
     color: white;
     border: none;
     border-radius: 8px;
@@ -478,6 +485,10 @@
     background: #555;
     transform: translateY(-1px);
   }
+  .btn-preview-sync { background: var(--gs-accent); }
+  .btn-preview-sync:hover { background: #e43a3a; }
+  .btn-manual-sync { background: #28a745; }
+  .btn-manual-sync:hover { background: #218838; }
 
   .sync-preview {
     background: #f8f9fa;
@@ -1122,29 +1133,31 @@ function applyProductFilters() {
   }
 }
 
-function previewSync() {
+async function previewSync() {
   showNotification('Generating sync preview...', 'info');
-  
-  const syncMode = document.querySelector('input[name="sync-mode"]:checked').value;
   const fieldsToSync = Array.from(document.querySelectorAll('.field-options input:checked')).map(cb => cb.value);
-  const conflictResolution = document.querySelector('input[name="conflict-resolution"]:checked').value;
-  
-  console.log('Preview with fields to sync:', fieldsToSync);
-  
-  // Store fields to sync globally for use in preview generation
   window.fieldsToSync = fieldsToSync;
-  
-  // Simulate preview generation
-  setTimeout(() => {
-    const preview = {
-      newProducts: Math.floor(Math.random() * 8) + 3,
-      updates: Math.floor(Math.random() * 12) + 5,
-      conflicts: Math.floor(Math.random() * 3),
-      fieldsToSync: fieldsToSync
-    };
-    
-    showSyncPreview(preview);
-  }, 2000);
+  const filters = collectFilters();
+  try {
+    const resp = await fetch('https://bookings-api-802427545823.europe-west6.run.app/api/cube/sync', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ mode: 'preview', fields: fieldsToSync, filters, options: {} })
+    });
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    const data = await resp.json();
+    const counts = data.counts || { totalMatched: 0, newProducts: 0, updates: 0, conflicts: 0, sample: [] };
+    showSyncPreview({
+      newProducts: counts.newProducts || 0,
+      updates: counts.updates || (counts.totalMatched || 0),
+      conflicts: counts.conflicts || 0,
+      sample: counts.sample || [],
+      fieldsToSync
+    });
+  } catch (e) {
+    console.error('Preview error', e);
+    showNotification('Failed to load preview', 'error');
+  }
 }
 
 function showSyncPreview(preview) {
@@ -1155,8 +1168,37 @@ function showSyncPreview(preview) {
   document.getElementById('preview-updates').textContent = preview.updates;
   document.getElementById('preview-conflicts').textContent = preview.conflicts;
   
-  // Generate detailed product data
-  const detailedData = generateDetailedPreviewData(preview);
+  // Generate detailed product data (map backend sample to updates list)
+  let detailedData;
+  if (Array.isArray(preview.diffs) && preview.diffs.length) {
+    detailedData = {
+      newProducts: [],
+      updates: preview.diffs.map((d, i) => ({
+        id: `upd-${i}`,
+        type: 'update',
+        sku: d.sku,
+        fieldsToUpdate: window.fieldsToSync || ['pricing','inventory'],
+        shopify: { name: d.current.title || 'Product', price: Number(d.current.price ?? 0), stock: Number(d.current.inventory ?? 0), category: '', description: '', images: 0 },
+        cube: { name: d.proposed.title || 'Product', price: Number(d.proposed.price ?? 0), stock: Number(d.proposed.inventory ?? 0), category: '', description: '', images: 0 }
+      })),
+      conflicts: []
+    };
+  } else if (Array.isArray(preview.sample) && preview.sample.length) {
+    detailedData = {
+      newProducts: [],
+      updates: preview.sample.map((p, i) => ({
+        id: `upd-${i}`,
+        type: 'update',
+        sku: p.sku || `SKU-${i}`,
+        fieldsToUpdate: window.fieldsToSync || ['pricing','inventory'],
+        shopify: { name: p.title || 'Product', price: Number(p.price || 0), stock: Number(p.inventory ?? 0), category: '', description: '', images: 0 },
+        cube: { name: p.title || 'Product', price: Number(p.price || 0), stock: Number(p.inventory ?? 0), category: '', description: '', images: 0 }
+      })),
+      conflicts: []
+    };
+  } else {
+    detailedData = generateDetailedPreviewData(preview);
+  }
   
   // Populate detailed tabs
   populateProductsList('new-products-list', detailedData.newProducts, 'new');
@@ -1748,63 +1790,57 @@ function cancelPreview() {
   showNotification('Preview cancelled', 'info');
 }
 
-function approveSync() {
-  showNotification('Starting approved sync...', 'info');
-  
-  // Hide preview
+async function approveSync() {
+  showNotification('Applying approved changes...', 'info');
+  try {
+    const fieldsToSync = window.fieldsToSync || ['inventory','pricing'];
+    const filters = collectFilters();
+    const resp = await fetch('https://bookings-api-802427545823.europe-west6.run.app/api/cube/sync', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ mode: 'apply', fields: fieldsToSync, filters, options: {} })
+    });
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    const data = await resp.json();
+    showNotification('Sync applied successfully', 'success');
+  } catch (e) {
+    console.error('Apply error', e);
+    showNotification('Failed to apply sync', 'error');
+  }
   document.getElementById('sync-preview').style.display = 'none';
-  
-  // Execute sync
-  executeSync();
 }
 
-function manualSync() {
+async function manualSync() {
   const syncMode = document.querySelector('input[name="sync-mode"]:checked').value;
   
   if (syncMode === 'preview') {
     previewSync();
   } else {
-    executeSync();
+    try {
+      const fieldsToSync = Array.from(document.querySelectorAll('.field-options input:checked')).map(cb => cb.value);
+      const filters = collectFilters();
+      const resp = await fetch('https://bookings-api-802427545823.europe-west6.run.app/api/cube/sync', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ mode: 'apply', fields: fieldsToSync, filters, options: {} })
+      });
+      if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+      const data = await resp.json();
+      showNotification('Sync applied successfully', 'success');
+    } catch (e) {
+      console.error('Manual sync error', e);
+      showNotification('Sync failed', 'error');
+    }
   }
 }
 
-function executeSync() {
-  showNotification('Executing sync operation...', 'info');
-  
-  // Simulate sync process
-  const startTime = Date.now();
-  
-  setTimeout(() => {
-    const syncResult = {
-      success: true,
-      newProducts: Math.floor(Math.random() * 15) + 5,
-      updatedProducts: Math.floor(Math.random() * 25) + 10,
-      errors: Math.floor(Math.random() * 2)
-    };
-    
-    // Update sync history
-    const historyEntry = {
-      timestamp: Date.now(),
-      type: 'Manual Sync',
-      result: syncResult
-    };
-    
-    addSyncHistoryEntry(historyEntry);
-    
-    // Update last sync time
-    localStorage.setItem('cube_last_sync', startTime.toString());
-    document.getElementById('last-sync-time').textContent = new Date(startTime).toLocaleString();
-    
-    // Update synced products count
-    const currentSynced = parseInt(document.getElementById('synced-products').textContent) || 0;
-    document.getElementById('synced-products').textContent = currentSynced + syncResult.newProducts;
-    
-    if (syncResult.success) {
-      showNotification(`Sync completed! ${syncResult.newProducts} new, ${syncResult.updatedProducts} updated`, 'success');
-    } else {
-      showNotification('Sync completed with errors - check history for details', 'warning');
-    }
-  }, 5000);
+function executeSync() {}
+
+function collectFilters() {
+  const priceMin = parseInt(document.getElementById('price-min').value || '0');
+  const priceMax = parseInt(document.getElementById('price-max').value || '0');
+  const availability = document.querySelector('input[name="availability"]:checked')?.value || 'all';
+  return { priceMin, priceMax, availability };
 }
 
 function saveSchedule() {

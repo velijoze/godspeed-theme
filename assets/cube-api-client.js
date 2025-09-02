@@ -1,6 +1,8 @@
 /**
- * Cube API Client
- * Supports both direct Cube Connect API and VeloConnect integration
+ * Cube API Client (Deprecated for mutations)
+ * This client remains for UI preview prototypes only. All authenticated
+ * calls and Shopify mutations are now handled server-side via Cloud Run.
+ * Do not place secrets or Admin tokens in theme code.
  */
 
 class CubeAPIClient {
@@ -354,7 +356,7 @@ class CubeAPIClient {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'X-Shopify-Access-Token': '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'
+            // Route via backend in production; token should not be in theme
           },
           body: JSON.stringify({ product: shopifyProduct })
         });

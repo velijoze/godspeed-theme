@@ -25,6 +25,9 @@
                 <button class="nav-pill" data-section="monitoring">
                   <i class="fa fa-line-chart"></i> Monitoring
                 </button>
+                <button class="nav-pill" data-section="jobs">
+                  <i class="fa fa-tasks"></i> Jobs
+                </button>
               </div>
             </div>
 
@@ -538,6 +541,48 @@
               </div>
             </div>
 
+            <!-- Jobs Section -->
+            <div class="admin-section" id="jobs-section">
+              <div class="section-header">
+                <h3>Sync Jobs</h3>
+                <p class="section-description">Recent preview/apply jobs with status</p>
+              </div>
+              <div class="admin-card">
+                <div class="card-header">
+                  <h4>Recent Jobs</h4>
+                  <div class="jobs-filters">
+                    <select id="jobs-type-filter">
+                      <option value="">All Types</option>
+                      <option value="cube">Cube</option>
+                      <option value="veloconnect">VeloConnect</option>
+                    </select>
+                    <input id="jobs-vendor-filter" type="text" class="form-control" placeholder="Vendor ID (optional)" style="max-width:220px">
+                    <button class="btn btn-outline" onclick="loadJobs()">
+                      <i class="fa fa-refresh"></i> Refresh
+                    </button>
+                  </div>
+                </div>
+                <div class="jobs-table-wrapper">
+                  <table class="jobs-table">
+                    <thead>
+                      <tr>
+                        <th>Started</th>
+                        <th>Type</th>
+                        <th>Vendor</th>
+                        <th>Mode</th>
+                        <th>Status</th>
+                        <th>Result</th>
+                        <th>Duration</th>
+                      </tr>
+                    </thead>
+                    <tbody id="jobs-table-body">
+                      <tr><td colspan="7">Loading…</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
             <!-- Configuration Modal Container -->
             <div id="config-modal-container">
             <!-- Tool Configuration -->
@@ -982,6 +1027,20 @@ Always be helpful, friendly, and knowledgeable about e-bikes, cycling, and Swiss
 </div>
 
 <style>
+  :root {
+    --gs-accent: {{ settings.color_main2 | default: '#ff4040' }};
+    --gs-primary: {{ settings.color_main | default: '#333333' }};
+    --gs-muted: #6c757d;
+    --gs-bg: {{ settings.bg_color_body | default: '#f8f9fa' }};
+    --gs-border: #e9ecef;
+  }
+  :root {
+    --gs-accent: #ff4040;
+    --gs-primary: #333333;
+    --gs-muted: #6c757d;
+    --gs-bg: #f8f9fa;
+    --gs-border: #e9ecef;
+  }
   .section-admin-dashboard {
     padding: 80px 0;
     background: #fff;
@@ -1590,10 +1649,10 @@ Always be helpful, friendly, and knowledgeable about e-bikes, cycling, and Swiss
   .nav-pills {
     display: flex;
     gap: 8px;
-    background: #f8f9fa;
+    background: var(--gs-bg);
     padding: 8px;
     border-radius: 12px;
-    border: 1px solid #dee2e6;
+    border: 1px solid var(--gs-border);
   }
 
   .nav-pill {
@@ -1603,7 +1662,7 @@ Always be helpful, friendly, and knowledgeable about e-bikes, cycling, and Swiss
     border-radius: 8px;
     font-size: 14px;
     font-weight: 500;
-    color: #6c757d;
+    color: var(--gs-muted);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -1613,16 +1672,10 @@ Always be helpful, friendly, and knowledgeable about e-bikes, cycling, and Swiss
     justify-content: center;
   }
 
-  .nav-pill:hover {
-    background: rgba(255, 64, 64, 0.1);
-    color: #ff4040;
-  }
+  .nav-pill:hover { background: rgba(255, 64, 64, 0.08); color: var(--gs-accent); }
+  .nav-pill:focus-visible { outline: 2px solid var(--gs-accent); outline-offset: 2px; }
 
-  .nav-pill.active {
-    background: #ff4040;
-    color: white;
-    box-shadow: 0 2px 4px rgba(255, 64, 64, 0.2);
-  }
+  .nav-pill.active { background: var(--gs-accent); color: white; box-shadow: 0 2px 4px rgba(255, 64, 64, 0.2); }
 
   .nav-pill i {
     font-size: 16px;
@@ -1639,7 +1692,7 @@ Always be helpful, friendly, and knowledgeable about e-bikes, cycling, and Swiss
   /* Data Sync Status Styles */
   .sync-status-container {
     background: #fff;
-    border: 1px solid #e8ecef;
+    border: 1px solid var(--gs-border);
     border-radius: 12px;
     padding: 24px;
     margin-bottom: 24px;
@@ -2284,6 +2337,14 @@ Always be helpful, friendly, and knowledgeable about e-bikes, cycling, and Swiss
   .btn-preview:hover { background: #5a32a3; }
   .btn-approve:hover { background: #218838; }
 
+  /* Jobs table */
+  .jobs-filters { display: flex; gap: 10px; align-items: center; }
+  .jobs-table-wrapper { overflow-x: auto; }
+  .jobs-table { width: 100%; border-collapse: collapse; }
+  .jobs-table th, .jobs-table td { padding: 10px 12px; border-bottom: 1px solid var(--gs-border); text-align: left; }
+  .jobs-table thead th { background: var(--gs-bg); font-weight: 600; color: var(--gs-primary); }
+  .jobs-table tbody tr:hover { background: #fcfcfc; }
+
   /* Responsive adjustments */
   @media (max-width: 768px) {
     .sync-header {
@@ -2335,6 +2396,7 @@ document.addEventListener('DOMContentLoaded', function() {
       // Add active class to clicked pill and corresponding section
       this.classList.add('active');
       document.getElementById(`${targetSection}-section`).classList.add('active');
+      if (targetSection === 'jobs') { loadJobs(); }
     });
   });
   
@@ -2358,10 +2420,50 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Initialize metrics
   updateMetrics();
+  // Preload jobs quietly
+  setTimeout(loadJobs, 500);
   
   // Update metrics every 30 seconds
   setInterval(updateMetrics, 30000);
 });
+
+// Jobs loader
+async function loadJobs() {
+  try {
+    const type = document.getElementById('jobs-type-filter')?.value || '';
+    const vendorId = document.getElementById('jobs-vendor-filter')?.value || '';
+    const qs = new URLSearchParams();
+    if (type) qs.set('type', type);
+    if (vendorId) qs.set('vendorId', vendorId);
+    const resp = await fetch(`https://bookings-api-802427545823.europe-west6.run.app/api/jobs?${qs.toString()}`);
+    const data = await resp.json();
+    const jobs = data.jobs || [];
+    const tbody = document.getElementById('jobs-table-body');
+    if (!jobs.length) {
+      tbody.innerHTML = '<tr><td colspan="7">No jobs yet</td></tr>';
+      return;
+    }
+    tbody.innerHTML = jobs.map(j => {
+      const started = j.startedAt? (j.startedAt._seconds ? new Date(j.startedAt._seconds*1000) : new Date(j.startedAt)) : new Date();
+      const dur = j.durationMs ? `${Math.round(j.durationMs)} ms` : '';
+      const result = j.counts ? (j.counts.appliedUpdates || j.counts.updates || 0)+' updates' : (j.result ? (j.result.updated||0)+' updates' : '');
+      const vendorCell = j.vendorId ? j.vendorId : (j.name || '');
+      const statusBadge = j.ok === false ? 'error' : (j.status||'');
+      return `<tr>
+        <td>${started.toLocaleString()}</td>
+        <td>${j.type || ''}</td>
+        <td>${vendorCell}</td>
+        <td>${j.mode || ''}</td>
+        <td>${statusBadge}</td>
+        <td>${result}</td>
+        <td>${dur}</td>
+      </tr>`;
+    }).join('');
+  } catch (e) {
+    const tbody = document.getElementById('jobs-table-body');
+    if (tbody) tbody.innerHTML = `<tr><td colspan="7">Failed to load jobs</td></tr>`;
+  }
+}
 
 // Update system metrics with REAL data
 async function updateMetrics() {
@@ -3524,112 +3626,43 @@ async function syncSupplierData(supplier) {
   
   try {
     if (supplier === 'cube') {
-      // Check if Cube is configured for direct API or VeloConnect
-      const credentials = await window.GodspeedCredentials?.getCredentials('cube');
-      if (!credentials) {
-        throw new Error('Cube credentials not configured');
+      const response = await fetch('https://bookings-api-802427545823.europe-west6.run.app/api/cube/sync', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          mode: 'apply',
+          fields: ['inventory','price'],
+          filters: {},
+          options: { createNewDrafts: false, archiveMissing: false }
+        })
+      });
+      if (!response.ok) {
+        throw new Error(`Cube sync failed: ${response.status}`);
       }
-      
-      let products;
-      
-      if (credentials.mode === 'direct') {
-        // Use direct Cube Connect API
-        const cubeClient = new CubeAPIClient();
-        const initialized = await cubeClient.initialize();
-        
-        if (!initialized) {
-          throw new Error('Cube Direct API credentials not configured');
-        }
-        
-        products = await cubeClient.getProducts({ limit: 100 });
-        
-        if (products && products.length > 0) {
-          updateSyncStatus(supplier, 'synced', 'Just now');
-          updateProductCount(supplier, products.length);
-          showNotification(`CUBE synchronized successfully via Direct API! ${products.length} products fetched.`, 'success');
-          syncBtn.innerHTML = originalHTML;
-        } else {
-          throw new Error('No products returned from Cube Direct API');
-        }
-        
-      } else if (credentials.mode === 'veloconnect') {
-        // Use Cube through VeloConnect
-        const endpoint = 'https://Veloconnect.cube.eu/Veloconnect';
-        
-        const response = await fetch(`${endpoint}/products`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-          },
-          body: new URLSearchParams({
-            username: credentials.username,
-            password: credentials.password,
-            action: 'getProducts',
-            limit: '100'
-          })
-        });
-        
-        if (!response.ok) {
-          throw new Error(`Cube VeloConnect API error: ${response.status}`);
-        }
-        
-        const data = await response.json();
-        
-        // Normalize Cube VeloConnect data
-        products = data.products?.map(p => ({
-          sku: p.articleNumber || p.sku,
-          name: p.productName || p.name,
-          price: parseFloat(p.price) || 0,
-          stock: parseInt(p.stock) || 0,
-          updated_at: p.lastModified
-        })) || [];
-        
-        if (products.length > 0) {
-          updateSyncStatus(supplier, 'synced', 'Just now');
-          updateProductCount(supplier, products.length);
-          showNotification(`CUBE synchronized successfully via VeloConnect! ${products.length} products fetched.`, 'success');
-          syncBtn.innerHTML = originalHTML;
-        } else {
-          throw new Error('No products returned from Cube VeloConnect API');
-        }
-      } else {
-        throw new Error('Cube connection mode not specified. Configure as "direct" or "veloconnect"');
-      }
+      const data = await response.json();
+      const updated = data?.applied?.updated || 0;
+      const created = data?.applied?.created || 0;
+      updateSyncStatus(supplier, 'synced', 'Just now');
+      updateProductCount(supplier, updated + created);
+      showNotification(`CUBE synchronized: ${updated} updated, ${created} created`, 'success');
+      syncBtn.innerHTML = originalHTML;
     } else {
-      // Use real VeloConnect API for other suppliers
-      const supplierEndpoints = {
-        abus: 'https://partner-de.abus.com/Veloconnect',
-        amsler: 'https://avcws.amslershop.ch/default.ashx',
-        'chris-sports': 'http://chrissports.velocom.de/',
-        komenda: 'http://komenda.velocom.de/',
-        magura: 'http://magura.velocom.de/',
-        maxxis: 'https://velo.maxxisstore.de/',
-        orbea: 'https://api.orbea.veloconnect.io/',
-        sks: 'http://sks.velocom.de/veloconnect',
-        'tour-de-suisse': 'http://shop.tds-rad.ch/vc/'
-      };
-      
-      const endpoint = supplierEndpoints[supplier];
-      if (!endpoint) {
-        throw new Error(`No API endpoint configured for ${supplier}`);
-      }
-      
-      const credentials = await window.GodspeedCredentials?.getCredentials(supplier);
-      if (!credentials) {
-        throw new Error('Credentials not configured');
-      }
-      
-      // Make real API call to supplier endpoint
-      const products = await fetchSupplierProducts(supplier, endpoint, credentials);
-      
-      if (products && products.length > 0) {
-        updateSyncStatus(supplier, 'synced', 'Just now');
-        updateProductCount(supplier, products.length);
-        showNotification(`${supplier.toUpperCase()} synchronized successfully! ${products.length} products fetched.`, 'success');
-        syncBtn.innerHTML = originalHTML;
-      } else {
-        throw new Error(`No products returned from ${supplier} API`);
-      }
+      // Call backend VeloConnect sync for other suppliers
+      const backendBase = 'https://bookings-api-802427545823.europe-west6.run.app';
+      const vendorId = localStorage.getItem(`godspeed_vendor_${supplier}_id`);
+      if (!vendorId) throw new Error('Vendor not configured');
+      const resp = await fetch(`${backendBase}/api/veloconnect/sync`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ vendorId, mode: 'apply', fields: ['inventory','price'], filters: {}, options: {} })
+      });
+      if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+      const data = await resp.json();
+      const updated = data?.applied?.updated || 0;
+      updateSyncStatus(supplier, 'synced', 'Just now');
+      updateProductCount(supplier, updated);
+      showNotification(`${supplier.toUpperCase()} synchronized successfully! ${updated} updates applied.`, 'success');
+      syncBtn.innerHTML = originalHTML;
     }
     
   } catch (error) {
@@ -4065,12 +4098,36 @@ function exportSyncPreview() {
   showNotification('Sync preview exported to CSV file', 'success');
 }
 
-function previewSyncChanges() {
-  showNotification('Preview functionality would show detailed changes...', 'info');
+async function previewSyncChanges() {
+  try {
+    const resp = await fetch('https://bookings-api-802427545823.europe-west6.run.app/api/cube/sync', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ mode: 'preview', fields: ['inventory','price'], filters: {}, options: {} })
+    });
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    const data = await resp.json();
+    const counts = data.counts || {};
+    const list = (counts.sample || []).map(p => `<li>SKU ${p.sku} — ${p.title || ''} (price: ${p.price || '-'}, stock: ${p.inventory ?? '-'})</li>`).join('');
+    const content = document.querySelector('.sync-preview-content');
+    content.innerHTML = `
+      <div class="summary">Matched: ${counts.totalMatched || 0}, New: ${counts.newProducts || 0}, Updates: ${counts.updates || 0}</div>
+      <ul class="sample-list">${list || '<li>No sample available</li>'}</ul>
+    `;
+    showNotification('Preview loaded', 'success');
+  } catch (e) {
+    showNotification('Failed to load preview', 'error');
+  }
 }
 
-function approveSyncChanges() {
-  showNotification('Sync approved - changes would be applied to Shopify', 'success');
+async function approveSyncChanges() {
+  try {
+    const resp = await fetch('https://bookings-api-802427545823.europe-west6.run.app/api/cube/sync', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ mode: 'apply', fields: ['inventory','price'], filters: {}, options: {} })
+    });
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    showNotification('Sync applied', 'success');
+  } catch (e) {
+    showNotification('Sync failed', 'error');
+  }
   closeSyncPreview();
 }
 

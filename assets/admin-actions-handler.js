@@ -7,7 +7,7 @@ class AdminActionsHandler {
   constructor() {
     this.apiEndpoints = {
       bookings: 'https://bookings-api-802427545823.europe-west6.run.app',
-      vendors: 'https://vendor-connectors-802427545823.europe-west6.run.app'
+      vendors: 'https://bookings-api-802427545823.europe-west6.run.app'
     };
     this.initialized = false;
   }
@@ -84,7 +84,7 @@ class AdminActionsHandler {
     
     const apis = [
       { name: 'Booking API', url: `${this.apiEndpoints.bookings}/health` },
-      { name: 'Vendor Connectors', url: `${this.apiEndpoints.vendors}/health` },
+      { name: 'Sync Backend', url: `${this.apiEndpoints.vendors}/health` },
       { name: 'Shopify Admin API', url: '/admin/api/2024-01/shop.json' },
       { name: 'Cube Direct API', url: 'https://connect.cube.eu/api/v1/status' }
     ];
@@ -284,6 +284,23 @@ class AdminActionsHandler {
         message: error.message
       });
     });
+
+    // Fetch backend sync jobs
+    try {
+      const resp = await fetch(`${this.apiEndpoints.vendors}/api/jobs?limit=25`);
+      if (resp.ok) {
+        const data = await resp.json();
+        (data.jobs || []).forEach(job => {
+          const ts = job.startedAt? (new Date(job.startedAt._seconds ? job.startedAt._seconds * 1000 : job.startedAt)).getTime() : Date.now();
+          logs.push({
+            timestamp: ts,
+            level: job.ok === false ? 'error' : (job.status === 'preview' ? 'info' : 'success'),
+            source: job.type || 'sync',
+            message: `${job.type || 'sync'} ${job.status} ${job.vendorId ? '('+job.vendorId+')' : ''}`
+          });
+        });
+      }
+    } catch (_) {}
     
     // Sort by timestamp
     logs.sort((a, b) => b.timestamp - a.timestamp);
@@ -469,33 +486,33 @@ class AdminActionsHandler {
   // Sync Cube products (real sync)
   async syncCubeProducts() {
     this.showNotification('Starting Cube product synchronization...', 'info');
-    
     try {
-      // Initialize Cube API if not already
-      if (!window.CubeAPI) {
-        this.showNotification('Cube API not initialized', 'error');
-        return;
+      const payload = {
+        mode: 'apply',
+        fields: ['inventory','price'],
+        filters: {},
+        options: { createNewDrafts: false, archiveMissing: false }
+      };
+      const resp = await fetch(`${this.apiEndpoints.bookings}/api/cube/sync`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      if (!resp.ok) {
+        const txt = await resp.text();
+        throw new Error(`HTTP ${resp.status}: ${txt}`);
       }
-      
-      await window.CubeAPI.initialize();
-      const result = await window.CubeAPI.syncToShopify();
-      
-      if (result.success) {
-        this.showNotification(result.message, 'success');
-        
-        // Update supplier status
-        localStorage.setItem('godspeed_supplier_cube_status', JSON.stringify({
-          connected: true,
-          lastSync: Date.now(),
-          products: result.synced
-        }));
-        
-        // Refresh metrics
-        window.MetricsTracker?.collectAllMetrics();
-      } else {
-        this.showNotification('Sync failed: ' + result.message, 'error');
-      }
-      
+      const data = await resp.json();
+      const updated = data?.applied?.updated || 0;
+      const created = data?.applied?.created || 0;
+      this.showNotification(`Cube sync applied: ${updated} updated, ${created} created`, 'success');
+
+      localStorage.setItem('godspeed_supplier_cube_status', JSON.stringify({
+        connected: true,
+        lastSync: Date.now(),
+        products: updated + created
+      }));
+      window.MetricsTracker?.collectAllMetrics();
     } catch (error) {
       console.error('Cube sync error:', error);
       this.showNotification('Cube synchronization failed: ' + error.message, 'error');

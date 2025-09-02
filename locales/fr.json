@@ -33,6 +33,40 @@
       "submit": "Recherche"
     }
   },
+  "booking": {
+    "label": {
+      "location": "Lieu",
+      "date": "Date",
+      "time": "Heure",
+      "service": "Type de service",
+      "participants": "Vélos",
+      "experience": "Expérience",
+      "length": "Durée de la sortie",
+      "name": "Nom complet",
+      "email": "E‑mail",
+      "phone": "Téléphone",
+      "notes": "Notes (optionnel)"
+    },
+    "placeholder": {
+      "location": "Sélectionner un lieu",
+      "experience": "Sélectionner le niveau d’expérience"
+    },
+    "action": {
+      "submit": "Envoyer la réservation"
+    },
+    "status": {
+      "submitting": "Envoi…",
+      "success": "Merci ! Nous avons bien reçu votre demande. Vous recevrez bientôt un e‑mail de confirmation.",
+      "error": "Désolé, une erreur s’est produite. Veuillez réessayer ou nous contacter.",
+      "unavailable": "L’horaire choisi est déjà réservé. Suggestions: "
+    },
+    "test_ride": {
+      "title": "Réserver un essai",
+      "button": "Réserver un essai",
+      "cancel": "Annuler",
+      "booking": "Réservation…"
+    }
+  },
   "blogs": {
     "article": {
       "author_on_date_html": "Publié par {{ author }} le {{ date }}",

@@ -33,6 +33,40 @@
       "submit": "Cerca"
     }
   },
+  "booking": {
+    "label": {
+      "location": "Posizione",
+      "date": "Data",
+      "time": "Orario",
+      "service": "Tipo di servizio",
+      "participants": "Bici",
+      "experience": "Esperienza di guida",
+      "length": "Durata del giro",
+      "name": "Nome completo",
+      "email": "Email",
+      "phone": "Telefono",
+      "notes": "Note (opzionale)"
+    },
+    "placeholder": {
+      "location": "Seleziona posizione",
+      "experience": "Seleziona livello di esperienza"
+    },
+    "action": {
+      "submit": "Invia prenotazione"
+    },
+    "status": {
+      "submitting": "Invio…",
+      "success": "Grazie! Abbiamo ricevuto la tua richiesta. Riceverai a breve un’e‑mail di conferma.",
+      "error": "Spiacenti, si è verificato un errore. Riprova o contattaci.",
+      "unavailable": "L’orario selezionato è già occupato. Suggerimenti: "
+    },
+    "test_ride": {
+      "title": "Prenota Test Ride",
+      "button": "Prenota Test Ride",
+      "cancel": "Annulla",
+      "booking": "Prenotazione…"
+    }
+  },
   "blogs": {
     "article": {
       "author_on_date_html": "Pubblicato da {{ author }} il {{ date }}",
