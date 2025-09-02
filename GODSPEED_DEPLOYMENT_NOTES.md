@@ -13,6 +13,8 @@ This document captures the changes delivered, required environment configuration
   - VeloConnect Manager (save credentials + base URL, test, sync)
   - Jobs tab for recent runs
 - Storefront polish: unified fonts/colors and spacing with theme variables
+- Generative Chat (RAG): optional backend `/api/chat/*` endpoints to index content and answer with sources; theme flag to enable
+- Storefront Compare: lightweight product comparison (drawer + modal) using theme variables
 - Platform: Node 20+ and removal of client‑side Admin token usage
 
 ## One‑Time Setup
@@ -38,6 +40,12 @@ This document captures the changes delivered, required environment configuration
 - Theme Editor → Godspeed Backend → API Base URL (no trailing slash)
 - The theme injects `window.GS_API_BASE` automatically and all Admin/storefront calls use it
 
+4) Theme settings for Generative Chat
+
+- Theme Editor → Godspeed Chat
+  - `gs_chat_enabled` (default false) — toggle the RAG chat on/off
+  - `gs_chat_model` (optional) — model override, default `gpt-4o-mini`
+
 ## Endpoints
 
 - Cube
@@ -50,6 +58,11 @@ This document captures the changes delivered, required environment configuration
 - Jobs
   - GET /api/jobs?type=cube|veloconnect&vendorId=&limit=25
 
+- Chat (RAG)
+  - POST /api/chat/index/start — builds an embedding index for products (and later pages/articles)
+  - GET /api/chat/index/status — returns last index job
+  - POST /api/chat/ask — `{ query, locale? }` → `{ answer, citations: [{title,url}] }`
+
 ## Data Model
 
 - Firestore
@@ -57,6 +70,7 @@ This document captures the changes delivered, required environment configuration
   - sync_jobs: { type, vendorId?, name?, mode, payload, status, counts?, result?, durationMs?, ok, startedAt, finishedAt }
 - Secret Manager
   - One secret per vendor: `veloconnect-vendor-<vendorId>`; JSON credentials
+  - Optional: `LLM_API_KEY` secret for chat provider (recommended). Cloud Run env should read from Secret Manager.
 
 ## What Changed (Files)
 
@@ -75,6 +89,14 @@ This document captures the changes delivered, required environment configuration
   - layout/theme.liquid — injects window.GS_API_BASE and font variables
   - assets/dev.css.liquid — typography/spacing polish (product/collection/cart)
   - sections/ai-chat-assistant.liquid — body font + theme colors (no hardcoded fonts)
+  - Generative Chat (RAG)
+    - cloud-run-bookings/server.js — `/api/chat/*` endpoints with Firestore chunk store and OpenAI provider
+    - config/settings_schema.json — Godspeed Chat flags; layout injects `GS_CHAT_ENABLED`/`GS_CHAT_MODEL`
+    - sections/ai-chat-assistant.liquid — calls `/api/chat/ask` when enabled; otherwise falls back
+  - Compare Feature (Storefront)
+    - assets/compare.js — compare manager (localStorage) + modal table
+    - sections/compare-drawer.liquid — drawer + modal; add this section globally in Theme Editor
+    - snippets/add-to-compare-button.liquid — button included on product pages
 - Theme settings
   - config/settings_schema.json — added Godspeed Backend → `gs_api_base_url`
 
@@ -84,11 +106,25 @@ This document captures the changes delivered, required environment configuration
 - Run Cube preview/apply in Admin → Cube Sync Manager (Preview shows counts + diffs when Shopify env set)
 - Review recent jobs under Admin → Jobs
 
+- Generative Chat (RAG)
+  - Set Cloud Run env: `LLM_PROVIDER=openai`, `LLM_API_KEY=<secret>`, optional `LLM_MODEL`, `EMBED_MODEL`
+  - Theme Editor → Godspeed Chat → enable
+  - Index: POST `/api/chat/index/start` once (and periodically as catalog changes)
+  - Verify: POST `/api/chat/ask` or use the chat widget; expect short answers with 1–3 sources
+
+- Compare
+  - Add section “Compare Drawer” in Theme Editor so the tray appears site‑wide
+  - Product pages already include “Add to Compare” buttons via snippets
+
 ## Extending
 
 - Vendor adapters: implement vendor‑specific request/response mapping in `/api/veloconnect/sync` as you receive specs; leave Admin unchanged
 - Preview detail: enhance diffs by adding more Shopify fields (title/body/specs/images) when needed
 - Theme variables: if you want 100% customizer control over muted/border neutrals, add two color settings and swap remaining hexes
+
+- Chat providers: add Anthropic/Google support and selection via `LLM_PROVIDER`
+- Retrieval: swap Firestore brute force for Pinecone or Vertex Matching Engine for large catalogs
+- Content scope: include Shopify Pages and Blog Articles in indexing
 
 ## Verification Checklist
 
@@ -97,6 +133,9 @@ This document captures the changes delivered, required environment configuration
 - Cube preview/apply works; Jobs tab lists the run
 - Vendor save/test/sync works; credentials appear in Secret Manager
 - Storefront booking/Test Ride forms submit to your configured API base
+- Chat RAG:
+  - `/api/chat/index/start` completes; `/api/chat/index/status` shows last job
+  - Chat answers questions with cited product/page sources when enabled
 
 ## Notes
 
