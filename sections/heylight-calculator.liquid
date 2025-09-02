@@ -20,7 +20,7 @@
           
           <div class="calculator-wrapper">
             <div class="row">
-              <div class="col-lg-8 col-md-12 mb-4">
+              <div class="col-lg-12 col-md-12 mb-4">
                 <div class="calculator-form-wrapper">
                   <form class="heylight-calculator-form" id="heylight-calculator-form-{{ section.id }}">
                     <div class="form-section mb-4">
@@ -105,17 +105,55 @@
                       </div>
                     </div>
                   </div>
-                  
-                  <div class="sidebar-section">
-                    <h4 class="sidebar-title sidebar-title-{{ section.id }} mb-3">Requirements</h4>
-                    <ul class="requirements-list">
-                      <li>Swiss residency required</li>
-                      <li>Must be 18+ years old</li>
-                      <li>Valid Swiss credit/debit card</li>
-                      <li>Smartphone for verification</li>
-                      <li>Regular income source</li>
-                    </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Benefits and Requirements laid out horizontally under the calculator -->
+            <div class="row benefits-req-row">
+              <div class="col-lg-6 col-md-12 mb-4">
+                <div class="calculator-sidebar no-sticky">
+                  <h4 class="sidebar-title sidebar-title-{{ section.id }} mb-3">Heylight Benefits</h4>
+                  <div class="benefit-item">
+                    <div class="benefit-icon">✓</div>
+                    <div>
+                      <div class="benefit-title">0% Interest Available</div>
+                      <p class="benefit-desc">Qualified purchases up to 24 months</p>
+                    </div>
                   </div>
+                  <div class="benefit-item">
+                    <div class="benefit-icon">✓</div>
+                    <div>
+                      <div class="benefit-title">Instant Approval</div>
+                      <p class="benefit-desc">Under 5 minutes with smartphone verification</p>
+                    </div>
+                  </div>
+                  <div class="benefit-item">
+                    <div class="benefit-icon">✓</div>
+                    <div>
+                      <div class="benefit-title">Take Home Today</div>
+                      <p class="benefit-desc">No paperwork, ride immediately</p>
+                    </div>
+                  </div>
+                  <div class="benefit-item">
+                    <div class="benefit-icon">✓</div>
+                    <div>
+                      <div class="benefit-title">Swiss Trusted</div>
+                      <p class="benefit-desc">Regulated Swiss financial services provider</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-12 mb-4">
+                <div class="calculator-sidebar no-sticky">
+                  <h4 class="sidebar-title sidebar-title-{{ section.id }} mb-3">Requirements</h4>
+                  <ul class="requirements-list">
+                    <li>Swiss residency required</li>
+                    <li>Must be 18+ years old</li>
+                    <li>Valid Swiss credit/debit card</li>
+                    <li>Smartphone for verification</li>
+                    <li>Regular income source</li>
+                  </ul>
                 </div>
               </div>
             </div>
@@ -281,9 +319,10 @@
     padding: 1.5rem;
     border-radius: 12px;
     height: fit-content;
-    position: sticky;
-    top: 2rem;
   }
+  .calculator-sidebar.no-sticky { position: static; }
+
+  .benefits-req-row { margin-top: 10px; }
   
   .sidebar-title-{{ section.id }} {
     color: {{ section.settings.color_title | default: '#333' }};
