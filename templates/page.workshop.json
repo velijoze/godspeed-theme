@@ -17,7 +17,7 @@
         "hero_title": "Workshop & Service Center",
         "hero_subtitle": "Expert Bicycle Care at Switzerland's Premier E-Bike Service Center. Keep your e-bike and bicycle running smoothly with professional maintenance and repairs from our certified technicians.",
         "hero_button_text": "Schedule Your Service",
-        "hero_button_link": "shopify://pages/workshop",
+        "hero_button_link": "/pages/workshop-booking#service",
         "show_scroll_indicator": true,
         "color_title": "#f8f9fa",
         "color_subtitle": "#f8f9fa",

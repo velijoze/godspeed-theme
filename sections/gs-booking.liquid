@@ -17,9 +17,9 @@
       <form class="booking-form" id="booking-form-{{ section.id }}">
         <div class="row">
           <div class="col col-6">
-            <label class="form-label" for="location-{{ section.id }}">{{ section.settings.label_location }}</label>
+            <label class="form-label" for="location-{{ section.id }}">{% if section.settings.label_location != blank %}{{ section.settings.label_location }}{% else %}{{ 'booking.label.location' | t }}{% endif %}</label>
             <select class="form-control" id="location-{{ section.id }}" name="location" required>
-              <option value="">{{ section.settings.placeholder_location }}</option>
+              <option value="">{% if section.settings.placeholder_location != blank %}{{ section.settings.placeholder_location }}{% else %}{{ 'booking.placeholder.location' | t }}{% endif %}</option>
               <option>Lugano</option>
               <option>Bellinzona</option>
               <option>Locarno</option>
@@ -27,11 +27,11 @@
             </select>
           </div>
           <div class="col col-3">
-            <label class="form-label" for="date-{{ section.id }}">{{ section.settings.label_date }}</label>
+            <label class="form-label" for="date-{{ section.id }}">{% if section.settings.label_date != blank %}{{ section.settings.label_date }}{% else %}{{ 'booking.label.date' | t }}{% endif %}</label>
             <input class="form-control" id="date-{{ section.id }}" type="date" name="date" required>
           </div>
           <div class="col col-3">
-            <label class="form-label" for="time-{{ section.id }}">{{ section.settings.label_time }}</label>
+            <label class="form-label" for="time-{{ section.id }}">{% if section.settings.label_time != blank %}{{ section.settings.label_time }}{% else %}{{ 'booking.label.time' | t }}{% endif %}</label>
             <input class="form-control" id="time-{{ section.id }}" type="time" name="time" required>
           </div>
         </div>
@@ -39,7 +39,7 @@
         {% if section.settings.mode == 'service' %}
         <div class="row">
           <div class="col col-6">
-            <label class="form-label" for="service-{{ section.id }}">{{ section.settings.label_service }}</label>
+            <label class="form-label" for="service-{{ section.id }}">{% if section.settings.label_service != blank %}{{ section.settings.label_service }}{% else %}{{ 'booking.label.service' | t }}{% endif %}</label>
             <select class="form-control" id="service-{{ section.id }}" name="service">
               <option value="">{{ section.settings.placeholder_service }}</option>
               <option>Complete System Analysis</option>
@@ -50,23 +50,23 @@
             </select>
           </div>
           <div class="col col-6">
-            <label class="form-label" for="participants-{{ section.id }}">{{ section.settings.label_participants }}</label>
+            <label class="form-label" for="participants-{{ section.id }}">{% if section.settings.label_participants != blank %}{{ section.settings.label_participants }}{% else %}{{ 'booking.label.participants' | t }}{% endif %}</label>
             <input class="form-control" id="participants-{{ section.id }}" type="number" min="1" value="1" name="participants">
           </div>
         </div>
         {% else %}
         <div class="row">
           <div class="col col-6">
-            <label class="form-label" for="experience-{{ section.id }}">{{ section.settings.label_experience }}</label>
+            <label class="form-label" for="experience-{{ section.id }}">{% if section.settings.label_experience != blank %}{{ section.settings.label_experience }}{% else %}{{ 'booking.label.experience' | t }}{% endif %}</label>
             <select class="form-control" id="experience-{{ section.id }}" name="experience">
-              <option value="">{{ section.settings.placeholder_experience }}</option>
+              <option value="">{% if section.settings.placeholder_experience != blank %}{{ section.settings.placeholder_experience }}{% else %}{{ 'booking.placeholder.experience' | t }}{% endif %}</option>
               <option>Beginner</option>
               <option>Intermediate</option>
               <option>Advanced</option>
             </select>
           </div>
           <div class="col col-6">
-            <label class="form-label" for="length-{{ section.id }}">{{ section.settings.label_length }}</label>
+            <label class="form-label" for="length-{{ section.id }}">{% if section.settings.label_length != blank %}{{ section.settings.label_length }}{% else %}{{ 'booking.label.length' | t }}{% endif %}</label>
             <select class="form-control" id="length-{{ section.id }}" name="length">
               <option value="30 min">30 min</option>
               <option value="60 min" selected>60 min</option>
@@ -77,28 +77,28 @@
 
         <div class="row">
           <div class="col col-4">
-            <label class="form-label" for="name-{{ section.id }}">{{ section.settings.label_name }}</label>
+            <label class="form-label" for="name-{{ section.id }}">{% if section.settings.label_name != blank %}{{ section.settings.label_name }}{% else %}{{ 'booking.label.name' | t }}{% endif %}</label>
             <input class="form-control" id="name-{{ section.id }}" name="name" type="text" required>
           </div>
           <div class="col col-4">
-            <label class="form-label" for="email-{{ section.id }}">{{ section.settings.label_email }}</label>
+            <label class="form-label" for="email-{{ section.id }}">{% if section.settings.label_email != blank %}{{ section.settings.label_email }}{% else %}{{ 'booking.label.email' | t }}{% endif %}</label>
             <input class="form-control" id="email-{{ section.id }}" name="email" type="email" required>
           </div>
           <div class="col col-4">
-            <label class="form-label" for="phone-{{ section.id }}">{{ section.settings.label_phone }}</label>
+            <label class="form-label" for="phone-{{ section.id }}">{% if section.settings.label_phone != blank %}{{ section.settings.label_phone }}{% else %}{{ 'booking.label.phone' | t }}{% endif %}</label>
             <input class="form-control" id="phone-{{ section.id }}" name="phone" type="tel" required>
           </div>
         </div>
 
         <div class="row">
           <div class="col col-12">
-            <label class="form-label" for="notes-{{ section.id }}">{{ section.settings.label_notes }}</label>
+            <label class="form-label" for="notes-{{ section.id }}">{% if section.settings.label_notes != blank %}{{ section.settings.label_notes }}{% else %}{{ 'booking.label.notes' | t }}{% endif %}</label>
             <textarea class="form-control" id="notes-{{ section.id }}" rows="3" name="notes"></textarea>
           </div>
         </div>
 
         <div class="actions">
-          <button type="submit" class="btn-submit">{{ section.settings.btn_submit }}</button>
+          <button type="submit" class="btn-submit">{% if section.settings.btn_submit != blank %}{{ section.settings.btn_submit }}{% else %}{{ 'booking.action.submit' | t }}{% endif %}</button>
           <span class="status" id="status-{{ section.id }}" aria-live="polite"></span>
         </div>
       </form>
@@ -133,7 +133,7 @@
     form.addEventListener('submit', async function(e){
       e.preventDefault();
       const statusEl = document.getElementById('status-' + sec);
-      statusEl.textContent = '{{ section.settings.msg_submitting }}';
+      statusEl.textContent = '{% if section.settings.msg_submitting != blank %}{{ section.settings.msg_submitting }}{% else %}{{ 'booking.status.submitting' | t }}{% endif %}';
 
       const mode = '{{ section.settings.mode }}';
       const base = '{{ section.settings.api_base | strip }}'.replace(/\/$/, '');
@@ -167,14 +167,19 @@
         const resp = await fetch(endpoint, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
         const data = await resp.json();
         if(resp.ok && data && (data.success || data.ok)){
-          statusEl.textContent = '{{ section.settings.msg_success }}';
+          statusEl.textContent = '{% if section.settings.msg_success != blank %}{{ section.settings.msg_success }}{% else %}{{ 'booking.status.success' | t }}{% endif %}';
           form.reset();
         } else {
-          throw new Error((data && data.error) || 'Unknown error');
+          if(data && data.error === 'slot_unavailable' && data.suggestions && data.suggestions.length){
+            const sug = data.suggestions.map(s => `${s.date} ${s.time}`).join(', ');
+            statusEl.textContent = '{{ 'booking.status.unavailable' | t }} ' + sug;
+          } else {
+            throw new Error((data && data.error) || 'Unknown error');
+          }
         }
       } catch(err){
         console.error(err);
-        statusEl.textContent = '{{ section.settings.msg_error }}';
+        statusEl.textContent = '{% if section.settings.msg_error != blank %}{{ section.settings.msg_error }}{% else %}{{ 'booking.status.error' | t }}{% endif %}';
       }
     });
   })();
@@ -211,4 +216,3 @@
   "presets": [{"name":"GS - Booking"}]
 }
 {% endschema %}
-

@@ -63,6 +63,40 @@
       "title": "Contact"
     }
   },
+  "booking": {
+    "label": {
+      "location": "Location",
+      "date": "Date",
+      "time": "Time",
+      "service": "Service Type",
+      "participants": "Bikes",
+      "experience": "Riding Experience",
+      "length": "Ride Length",
+      "name": "Full Name",
+      "email": "Email",
+      "phone": "Phone",
+      "notes": "Notes (optional)"
+    },
+    "placeholder": {
+      "location": "Select location",
+      "experience": "Select experience level"
+    },
+    "action": {
+      "submit": "Submit Booking"
+    },
+    "status": {
+      "submitting": "Submitting…",
+      "success": "Thanks! We’ve received your request. You’ll get a confirmation email shortly.",
+      "error": "Sorry, something went wrong. Please try again or contact us.",
+      "unavailable": "Selected time is booked. Suggested times: "
+    },
+    "test_ride": {
+      "title": "Book Your Test Ride",
+      "button": "Book Test Ride",
+      "cancel": "Cancel",
+      "booking": "Booking…"
+    }
+  },
   "blogs": {
     "general": {
       "title": "Blog Page",

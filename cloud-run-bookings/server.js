@@ -64,6 +64,49 @@ async function isSlotAvailable(auth, calendarId, startDateTime, endDateTime){
   }
 }
 
+// Generate up to N suggested free one-hour slots within business hours over the next few days
+async function suggestFreeSlots(auth, calendarId, referenceStart, durationMinutes = 60, daysToScan = 5, maxSuggestions = 3){
+  const calendar = getCalendar(auth);
+  const suggestions = [];
+  const ms = durationMinutes * 60000;
+  const business = { startHour: 9, endHour: 17 }; // 09:00 - 17:00
+
+  for(let d=0; d<daysToScan && suggestions.length < maxSuggestions; d++){
+    const date = new Date(referenceStart);
+    date.setDate(referenceStart.getDate() + d);
+    date.setHours(0,0,0,0);
+
+    const dayStart = new Date(date); dayStart.setHours(business.startHour,0,0,0);
+    const dayEnd = new Date(date); dayEnd.setHours(business.endHour,0,0,0);
+
+    try {
+      const fb = await calendar.freebusy.query({
+        requestBody: { timeMin: dayStart.toISOString(), timeMax: dayEnd.toISOString(), items: [{id: calendarId}] }
+      });
+      const busy = (fb.data.calendars?.[calendarId]?.busy || []).map(b => ({
+        start: new Date(b.start), end: new Date(b.end)
+      }));
+
+      // Iterate hourly slots
+      for(let t=new Date(dayStart); t<dayEnd && suggestions.length < maxSuggestions; t = new Date(t.getTime()+ms)){
+        const slotStart = new Date(t);
+        const slotEnd = new Date(t.getTime()+ms);
+        if (slotEnd > dayEnd) break;
+        const overlaps = busy.some(b => !(slotEnd <= b.start || slotStart >= b.end));
+        if(!overlaps && slotStart >= referenceStart){
+          suggestions.push({
+            date: slotStart.toISOString().slice(0,10),
+            time: slotStart.toTimeString().slice(0,5)
+          });
+        }
+      }
+    } catch(e){
+      console.error('Suggestion FreeBusy failed:', e.message);
+    }
+  }
+  return suggestions;
+}
+
 async function sendInternalNotification(auth, bookingType, bookingData) {
   try {
     const gmail = google.gmail({version: 'v1', auth});
@@ -204,10 +247,12 @@ app.post('/bookings/test-ride', async (req, res) => {
     // Prevent double booking by checking FreeBusy
     const free = await isSlotAvailable(auth, calendarId, startDateTime, endDateTime);
     if(!free){
+      const suggestions = await suggestFreeSlots(auth, calendarId, startDateTime, 60, 5, 3);
       return res.status(409).json({
         success: false,
         error: 'slot_unavailable',
-        message: 'Selected time is already booked at this location. Please choose another slot.'
+        message: 'Selected time is already booked at this location. Please choose another slot.',
+        suggestions
       });
     }
 
@@ -292,10 +337,12 @@ app.post('/bookings/service', async (req, res) => {
     // Prevent double booking by checking FreeBusy
     const free = await isSlotAvailable(auth, calendarId, startDateTime, endDateTime);
     if(!free){
+      const suggestions = await suggestFreeSlots(auth, calendarId, startDateTime, 60, 5, 3);
       return res.status(409).json({
         success: false,
         error: 'slot_unavailable',
-        message: 'Selected time is already booked at this location. Please choose another slot.'
+        message: 'Selected time is already booked at this location. Please choose another slot.',
+        suggestions
       });
     }
 
