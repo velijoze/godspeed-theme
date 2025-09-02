@@ -21,6 +21,30 @@ a, .btn, .button, [class*="btn-"], [class*="button-"] { font-family: var(--font-
   color: #fff;
 }
 
+/* Cart: make checkout/payment buttons more compact */
+.page-cart .checkout-button.button {
+  font-size: 14px;
+  line-height: 1.2;
+  padding: 10px 16px;
+  border-radius: 999px;
+}
+.page-cart .wc-proceed-to-checkout { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+
+/* Dynamic payment buttons (if enabled) */
+.page-cart .shopify-payment-button, 
+.page-cart .additional-checkout-buttons, 
+.page-cart .cart__dynamic-checkout-buttons {
+  transform: scale(0.92);
+  transform-origin: left center;
+  margin-top: 6px;
+}
+@media (max-width: 768px) {
+  .page-cart .shopify-payment-button, 
+  .page-cart .additional-checkout-buttons, 
+  .page-cart .cart__dynamic-checkout-buttons { transform: scale(0.98); }
+  .page-cart .checkout-button.button { width: 100%; text-align: center; }
+}
+
 /* Our Stores grid alignment (About v2 > store) */
 .page_aboutus_v1.page_aboutus_v2 .store .thumnail_store .box_img_store { position: relative; margin-bottom: 30px; }
 .page_aboutus_v1.page_aboutus_v2 .store .box_img_store img { width: 100%; height: 340px; object-fit: cover; display: block; }
