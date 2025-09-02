@@ -15,6 +15,9 @@
     "default_currency": "CHF",
     "bg_color_body": "#ffffff",
     "bg_image_body": "",
+    "gs_chat_enabled": true,
+    "gs_chat_model": "gpt-4o-mini",
+    "gs_api_base_url": "https://bookings-api-802427545823.europe-west6.run.app",
     "enable_promo_topbar": true,
     "color_content_promo_topbar": "#fff",
     "content_promo_topbar": "Trusted by riders. Backed by experience.",
@@ -62,9 +65,6 @@
     "heading_font": "assistant_n4",
     "body_font": "assistant_n4",
     "navigation_font": "assistant_n4",
-    "gs_api_base_url": "https://bookings-api-802427545823.europe-west6.run.app",
-    "gs_chat_enabled": true,
-    "gs_chat_model": "gpt-4o-mini",
     "enable_sticky_mobile": false,
     "bgmenu_mobile": "#ffffff",
     "hd_icon_search_mb": "",
@@ -2979,8 +2979,6 @@
     "home_section_15": "",
     "home_section_16": "",
     "home_section_17": "",
-    
-    
     "slider_v1_enable_s1": true,
     "slider_v1_s1_content_1": "LOOKBOOK FASHION 2021",
     "slider_v1_s1_content_2": "Spring",
@@ -3018,7 +3016,6 @@
     "slider_v1_s6_content_3": "Sweaters ...",
     "slider_v1_s6_btn_name": "shop now",
     "slider_v1_s6_btn_url": "",
-    
     "cart_notes_enable": false,
     "cart_vendor_enable": false,
     "ajax_cart_method": "drawer",
