@@ -83,9 +83,9 @@
   }
   
   .section-workshop-hero .btn-{{ section.id }} {
-    background: {{ section.settings.bg_btn | default: '#007bff' }};
+    background: {{ section.settings.bg_btn | default: settings.color_main2 }};
     color: {{ section.settings.color_btn | default: '#fff' }};
-    border: 2px solid {{ section.settings.bg_btn | default: '#007bff' }};
+    border: 2px solid {{ section.settings.bg_btn | default: settings.color_main2 }};
     padding: 15px 40px;
     font-size: 16px;
     font-weight: 600;
@@ -98,8 +98,8 @@
   }
   
   .section-workshop-hero .btn-{{ section.id }}:hover {
-    background: {{ section.settings.hover_bg_btn | default: '#0056b3' }};
-    border-color: {{ section.settings.hover_bg_btn | default: '#0056b3' }};
+    background: {{ section.settings.hover_bg_btn | default: settings.color_main2 | color_darken: 10 }};
+    border-color: {{ section.settings.hover_bg_btn | default: settings.color_main2 | color_darken: 10 }};
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(0,0,0,0.15);
     color: {{ section.settings.hover_color_btn | default: '#fff' }};
@@ -272,4 +272,3 @@
   ]
 }
 {% endschema %}
-

@@ -1,0 +1,30 @@
+/*
+ * ------------------------------------------------------------
+ * Auto-generated booking page template
+ */
+{
+  "sections": {
+    "booking_test": {
+      "type": "gs-booking",
+      "settings": {
+        "mode": "test_ride",
+        "api_base": "https://bookings-api-802427545823.europe-west6.run.app",
+        "title": "Book a Test Ride",
+        "subtitle": "Try an e-bike at your preferred location and time.",
+        "btn_submit": "Book Test Ride"
+      }
+    },
+    "booking_service": {
+      "type": "gs-booking",
+      "settings": {
+        "mode": "service",
+        "api_base": "https://bookings-api-802427545823.europe-west6.run.app",
+        "title": "Book a Service Appointment",
+        "subtitle": "Routine maintenance or repair — we’ve got you.",
+        "btn_submit": "Book Service"
+      }
+    }
+  },
+  "order": ["booking_test", "booking_service"]
+}
+

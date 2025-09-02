@@ -1,0 +1,214 @@
+{%- comment -%}
+  GS Booking Section
+  - mode: 'service' or 'test_ride'
+  - posts to Cloud Run API (configurable base URL)
+  - uses theme fonts and accent
+{%- endcomment -%}
+
+{% assign anchor = section.settings.mode | default: 'service' %}
+<div id="{{ anchor }}" class="gs-booking gs-booking--{{ section.settings.mode }}" data-section-id="{{ section.id }}">
+  <div class="container">
+    <div class="booking-card">
+      <div class="header">
+        <h2 class="title">{{ section.settings.title }}</h2>
+        {% if section.settings.subtitle %}<p class="subtitle">{{ section.settings.subtitle }}</p>{% endif %}
+      </div>
+
+      <form class="booking-form" id="booking-form-{{ section.id }}">
+        <div class="row">
+          <div class="col col-6">
+            <label class="form-label" for="location-{{ section.id }}">{{ section.settings.label_location }}</label>
+            <select class="form-control" id="location-{{ section.id }}" name="location" required>
+              <option value="">{{ section.settings.placeholder_location }}</option>
+              <option>Lugano</option>
+              <option>Bellinzona</option>
+              <option>Locarno</option>
+              <option>Zurich</option>
+            </select>
+          </div>
+          <div class="col col-3">
+            <label class="form-label" for="date-{{ section.id }}">{{ section.settings.label_date }}</label>
+            <input class="form-control" id="date-{{ section.id }}" type="date" name="date" required>
+          </div>
+          <div class="col col-3">
+            <label class="form-label" for="time-{{ section.id }}">{{ section.settings.label_time }}</label>
+            <input class="form-control" id="time-{{ section.id }}" type="time" name="time" required>
+          </div>
+        </div>
+
+        {% if section.settings.mode == 'service' %}
+        <div class="row">
+          <div class="col col-6">
+            <label class="form-label" for="service-{{ section.id }}">{{ section.settings.label_service }}</label>
+            <select class="form-control" id="service-{{ section.id }}" name="service">
+              <option value="">{{ section.settings.placeholder_service }}</option>
+              <option>Complete System Analysis</option>
+              <option>General Maintenance</option>
+              <option>Brake Service</option>
+              <option>Drivetrain Tune</option>
+              <option>Battery Diagnostics</option>
+            </select>
+          </div>
+          <div class="col col-6">
+            <label class="form-label" for="participants-{{ section.id }}">{{ section.settings.label_participants }}</label>
+            <input class="form-control" id="participants-{{ section.id }}" type="number" min="1" value="1" name="participants">
+          </div>
+        </div>
+        {% else %}
+        <div class="row">
+          <div class="col col-6">
+            <label class="form-label" for="experience-{{ section.id }}">{{ section.settings.label_experience }}</label>
+            <select class="form-control" id="experience-{{ section.id }}" name="experience">
+              <option value="">{{ section.settings.placeholder_experience }}</option>
+              <option>Beginner</option>
+              <option>Intermediate</option>
+              <option>Advanced</option>
+            </select>
+          </div>
+          <div class="col col-6">
+            <label class="form-label" for="length-{{ section.id }}">{{ section.settings.label_length }}</label>
+            <select class="form-control" id="length-{{ section.id }}" name="length">
+              <option value="30 min">30 min</option>
+              <option value="60 min" selected>60 min</option>
+            </select>
+          </div>
+        </div>
+        {% endif %}
+
+        <div class="row">
+          <div class="col col-4">
+            <label class="form-label" for="name-{{ section.id }}">{{ section.settings.label_name }}</label>
+            <input class="form-control" id="name-{{ section.id }}" name="name" type="text" required>
+          </div>
+          <div class="col col-4">
+            <label class="form-label" for="email-{{ section.id }}">{{ section.settings.label_email }}</label>
+            <input class="form-control" id="email-{{ section.id }}" name="email" type="email" required>
+          </div>
+          <div class="col col-4">
+            <label class="form-label" for="phone-{{ section.id }}">{{ section.settings.label_phone }}</label>
+            <input class="form-control" id="phone-{{ section.id }}" name="phone" type="tel" required>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col col-12">
+            <label class="form-label" for="notes-{{ section.id }}">{{ section.settings.label_notes }}</label>
+            <textarea class="form-control" id="notes-{{ section.id }}" rows="3" name="notes"></textarea>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="btn-submit">{{ section.settings.btn_submit }}</button>
+          <span class="status" id="status-{{ section.id }}" aria-live="polite"></span>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<style>
+  .gs-booking { padding: 40px 0; }
+  .gs-booking .booking-card { background:#fff; border:1px solid rgba(0,0,0,.06); border-radius:16px; padding:24px; box-shadow:0 6px 20px rgba(0,0,0,.08); }
+  .gs-booking .title { font-family: var(--font-heading); font-size: clamp(22px,3vw,28px); margin:0 0 6px; color:#1f3123; }
+  .gs-booking .subtitle { color:#3b4b40; margin:0 0 18px; }
+  .gs-booking .row { display:flex; flex-wrap:wrap; gap:16px; }
+  .gs-booking .col { flex:1 1 0; min-width:200px; }
+  .gs-booking .col-12 { flex-basis:100%; }
+  .gs-booking .col-6 { flex-basis:calc(50% - 8px); }
+  .gs-booking .col-4 { flex-basis:calc(33.333% - 11px); }
+  @media (max-width: 768px){ .gs-booking .col-6,.gs-booking .col-4{ flex-basis:100%; } }
+  .gs-booking .form-label{ display:block; margin:0 0 6px; font-weight:600; color:#333; }
+  .gs-booking .form-control{ width:100%; padding:12px 16px; border:2px solid #e9ecef; border-radius:8px; font-size:16px; font-family: var(--font-body); }
+  .gs-booking .form-control:focus{ outline:none; border-color: {{ settings.color_main2 }}; box-shadow:0 0 0 3px rgba(46,125,50,.15); }
+  .gs-booking .btn-submit{ background: {{ settings.color_main2 }}; border:2px solid {{ settings.color_main2 }}; color:#fff; padding:12px 28px; border-radius:999px; font-weight:700; letter-spacing:.03em; }
+  .gs-booking .btn-submit:hover{ background: {{ settings.color_main2 | color_darken: 10 }}; border-color: {{ settings.color_main2 | color_darken: 10 }}; }
+  .gs-booking .status { margin-left:12px; font-size:14px; color:#4b5563; }
+</style>
+
+<script>
+  (function(){
+    const sec = '{{ section.id }}';
+    const form = document.getElementById('booking-form-' + sec);
+    if(!form) return;
+    form.addEventListener('submit', async function(e){
+      e.preventDefault();
+      const statusEl = document.getElementById('status-' + sec);
+      statusEl.textContent = '{{ section.settings.msg_submitting }}';
+
+      const mode = '{{ section.settings.mode }}';
+      const base = '{{ section.settings.api_base | strip }}'.replace(/\/$/, '');
+      const endpoint = base + (mode === 'service' ? '/bookings/service' : '/bookings/test-ride');
+
+      const payload = {};
+      const get = id => document.getElementById(id+'-'+sec);
+      const location = get('location').value;
+      const date = get('date').value;
+      const time = get('time').value;
+      const name = get('name').value; const email = get('email').value; const phone = get('phone').value;
+      const notes = get('notes').value;
+
+      if(mode === 'service') {
+        payload.service_location = location;
+        payload.workshop_type = get('service').value;
+        payload.workshop_date = date; payload.workshop_time = time;
+        payload.participants = get('participants').value || 1;
+        payload.special_requirements = notes;
+      } else {
+        payload.test_ride_location = location;
+        payload.test_ride_date = date; payload.test_ride_time = time;
+        payload.experience_level = get('experience').value;
+        payload.ride_length = get('length').value;
+        payload.special_requests = notes;
+        payload.product_title = '{{ section.settings.product_title | escape }}';
+      }
+      payload.customer_name = name; payload.customer_email = email; payload.customer_phone = phone;
+
+      try{
+        const resp = await fetch(endpoint, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
+        const data = await resp.json();
+        if(resp.ok && data && (data.success || data.ok)){
+          statusEl.textContent = '{{ section.settings.msg_success }}';
+          form.reset();
+        } else {
+          throw new Error((data && data.error) || 'Unknown error');
+        }
+      } catch(err){
+        console.error(err);
+        statusEl.textContent = '{{ section.settings.msg_error }}';
+      }
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "GS - Booking",
+  "settings": [
+    {"type":"select","id":"mode","label":"Mode","default":"service","options":[{"value":"service","label":"Service"},{"value":"test_ride","label":"Test Ride"}]},
+    {"type":"text","id":"api_base","label":"API Base URL","default":"https://bookings-api-802427545823.europe-west6.run.app"},
+    {"type":"text","id":"title","label":"Title","default":"Book Your Appointment"},
+    {"type":"textarea","id":"subtitle","label":"Subtitle","default":"Choose a location and time. We’ll confirm by email."},
+    {"type":"text","id":"label_location","label":"Label: Location","default":"Location"},
+    {"type":"text","id":"placeholder_location","label":"Placeholder: Location","default":"Select location"},
+    {"type":"text","id":"label_date","label":"Label: Date","default":"Date"},
+    {"type":"text","id":"label_time","label":"Label: Time","default":"Time"},
+    {"type":"text","id":"label_service","label":"Label: Service (service mode)","default":"Service Type"},
+    {"type":"text","id":"placeholder_service","label":"Placeholder: Service","default":"Select a service"},
+    {"type":"text","id":"label_participants","label":"Label: Participants (service mode)","default":"Bikes"},
+    {"type":"text","id":"label_experience","label":"Label: Experience (test ride)","default":"Riding Experience"},
+    {"type":"text","id":"placeholder_experience","label":"Placeholder: Experience","default":"Select experience level"},
+    {"type":"text","id":"label_length","label":"Label: Ride length (test ride)","default":"Ride Length"},
+    {"type":"text","id":"label_name","label":"Label: Name","default":"Full Name"},
+    {"type":"text","id":"label_email","label":"Label: Email","default":"Email"},
+    {"type":"text","id":"label_phone","label":"Label: Phone","default":"Phone"},
+    {"type":"text","id":"label_notes","label":"Label: Notes","default":"Notes (optional)"},
+    {"type":"text","id":"btn_submit","label":"Button: Submit","default":"Submit Booking"},
+    {"type":"textarea","id":"msg_submitting","label":"Message: Submitting","default":"Submitting…"},
+    {"type":"textarea","id":"msg_success","label":"Message: Success","default":"Thanks! We’ve received your request. You’ll get a confirmation email shortly."},
+    {"type":"textarea","id":"msg_error","label":"Message: Error","default":"Sorry, something went wrong. Please try again or contact us."},
+    {"type":"text","id":"product_title","label":"Product Title (for test ride)","default":""}
+  ],
+  "presets": [{"name":"GS - Booking"}]
+}
+{% endschema %}
+

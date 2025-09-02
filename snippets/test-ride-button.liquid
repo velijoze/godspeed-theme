@@ -39,9 +39,9 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1.5rem;
-  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-  color: white;
-  border: 2px solid #28a745;
+  background: {{ settings.color_main2 }};
+  color: #fff;
+  border: 2px solid {{ settings.color_main2 }};
   border-radius: 50px;
   font-weight: 600;
   font-size: 1rem;
@@ -70,10 +70,10 @@
 }
 
 .btn-test-ride:hover {
-  background: linear-gradient(135deg, #218838 0%, #1ea389 100%);
-  border-color: #218838;
+  background: {{ settings.color_main2 | color_darken: 10 }};
+  border-color: {{ settings.color_main2 | color_darken: 10 }};
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3);
+  box-shadow: 0 8px 25px rgba(46, 125, 50, 0.25);
 }
 
 .btn-test-ride:active {
