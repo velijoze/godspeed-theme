@@ -1,4 +1,3 @@
-
 {% if section.settings.spd_style == "pd_large_img" %}
 {% include 'product-details-large-image' %}
 
@@ -38,6 +37,8 @@
 
 
 {% endif %}
+
+{% include 'gs-test-ride', enabled: section.settings.enable_test_ride %}
 
 
 {% comment %}
@@ -406,6 +407,16 @@ addons can override it.
       }
       ],
       "default": "dis_svg"		
+    },
+    {
+      "type": "header",
+      "content": "Test Ride"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_test_ride",
+      "label": "Show 'Book a Test Ride' button for bikes/e-bikes",
+      "default": true
     }	
   ],
   "blocks": [
