@@ -1,12 +1,64 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
       "type": "main-page",
-      "settings": {}
+      "settings": {
+        "enable_hero": false,
+        "hero_image_desktop": "shopify://shop_images/heylight-financing-banner.webp",
+        "hero_image_mobile": "shopify://shop_images/heylight-financing-banner.webp",
+        "hero_alt": "",
+        "hero_heading": "",
+        "hero_subtitle": "",
+        "hero_h_align": "center",
+        "hero_v_align": "middle",
+        "hero_content_max": 720,
+        "hero_pad_x": 20,
+        "hero_pad_y": 40,
+        "hero_text_color": "#1c1c1c",
+        "hero_overlay_color": "#000000",
+        "hero_overlay_opacity": 10,
+        "show_last_updated": true,
+        "last_updated_label": "Last updated"
+      }
     },
     "bicycle_financing": {
       "type": "bicycle-financing",
-      "settings": {}
+      "settings": {
+        "page_title": "Bicycle Financing with HeyLight",
+        "page_subtitle": "Take Your E-Bike Home Today, Pay Over Time",
+        "intro_text": "Make your dream e-bike affordable with our flexible financing options through HeyLight - Switzerland's trusted payment solution.",
+        "bnpl_title": "0% Interest Financing Available",
+        "bnpl_subtitle": "Buy Now, Pay Later (BNPL)",
+        "bnpl_feature1": "0% interest for qualified purchases",
+        "bnpl_feature2": "3-24 month payment terms",
+        "bnpl_feature3": "No hidden fees",
+        "bnpl_feature4": "No paperwork required",
+        "bnpl_feature5": "Take your bike home immediately",
+        "extended_title": "Extended Financing",
+        "extended_feature1": "12-36 month terms available",
+        "extended_feature2": "Up to CHF 10,000 financing",
+        "extended_feature3": "Fixed monthly payments",
+        "extended_feature4": "Competitive interest rates",
+        "contact_title": "Questions About Financing?",
+        "contact_intro": "Our team is here to help you find the perfect financing solution for your e-bike purchase.",
+        "contact_options_title": "Contact Options:",
+        "contact_option1": "Visit any of our 4 store locations",
+        "contact_option2": "Call us during business hours",
+        "contact_option3": "Chat with us online",
+        "store_locations_url": "",
+        "store_locations_text": "View Store Locations",
+        "margin_top": 40,
+        "margin_bottom": 40
+      }
     }
   },
   "order": [
