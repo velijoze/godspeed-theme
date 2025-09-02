@@ -1,13 +1,7 @@
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+{%- comment -%} Removed legacy Google Fonts includes; use theme typography {%- endcomment -%}
 {% for block in section.blocks %}
 {% if block.type == "slideshow" %}
-  {% if block.settings.fonts_button !=blank %}
-  <link href="https://fonts.googleapis.com/css2?family={{block.settings.fonts_button}}:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-  {% endif %}
-  {% if block.settings.fonts_title_top !=blank %}
-  <link href="https://fonts.googleapis.com/css2?family={{block.settings.fonts_title_top}}:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-  {% endif %}
+  
 {% endif %}
 {% endfor %}
 
@@ -49,16 +43,10 @@
   {% for block in section.blocks %}
   {% if block.type == "slideshow" %}
   
-  .section-slideshow-v3 .itemv-slide-h3 .content .title-{{block.id}}{
-    {% if block.settings.fonts_title_top != blank %}
-     font-family: '{{block.settings.fonts_title_top}}';
-       {% endif %}
-  }    
+  .section-slideshow-v3 .itemv-slide-h3 .content .title-{{block.id}}{ font-family: var(--font-heading); }    
   .section-slideshow-v3 .itemv-slide-h3 .content .box-button .button-shop-{{section.id}}-{{block.id}} {
     border: 1px solid transparent;
-    {% if block.settings.fonts_button != blank %}
-    font-family: '{{block.settings.fonts_button}}';
-      {% endif %}
+    font-family: var(--font-body);
   }
   .section-slideshow-v3 .itemv-slide-h3 .content .btn-right-line-{{section.id}}-{{block.id}} {
     background : {{block.settings.bg_btn}};
@@ -167,11 +155,6 @@
           "default": 80
         },
 		{
-          "type": "text",
-          "id": "fonts_title_top",
-          "label": "Fonts Family"
-        },
-		{
           "type": "header",
           "content": "Button Slideshow"
 		},
@@ -196,11 +179,6 @@
           "unit": "px",
           "label": "Font Size",
           "default": 14
-        },
-		{
-          "type": "text",
-          "id": "fonts_button",
-          "label": "Fonts Family"
         },
         {
           "type": "color",
@@ -245,4 +223,3 @@
   ]
 }
 {% endschema %}
-

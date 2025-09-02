@@ -2976,10 +2976,8 @@
     "home_section_15": "",
     "home_section_16": "",
     "home_section_17": "",
-    "font_1": "google_fonts",
-    "font_2": "google_fonts",
-    "font_3": "google_fonts",
-    "font_4": "google_fonts",
+    
+    
     "slider_v1_enable_s1": true,
     "slider_v1_s1_content_1": "LOOKBOOK FASHION 2021",
     "slider_v1_s1_content_2": "Spring",
@@ -3017,11 +3015,7 @@
     "slider_v1_s6_content_3": "Sweaters ...",
     "slider_v1_s6_btn_name": "shop now",
     "slider_v1_s6_btn_url": "",
-    "body_font": "Arial",
-    "heading_font": "Karla",
-    "menu_font": "Karla",
-    "product_font": "Karla",
-    "button_font": "Karla",
+    
     "cart_notes_enable": false,
     "cart_vendor_enable": false,
     "ajax_cart_method": "drawer",

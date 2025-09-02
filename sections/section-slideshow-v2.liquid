@@ -1,15 +1,14 @@
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+{%- comment -%} Removed legacy Google Fonts includes; use theme typography {%- endcomment -%}
 {% for block in section.blocks %}
 {% if block.type == "slideshow" %}
   {% if block.settings.fonts_sub_1 !=blank %}
-      <link href="https://fonts.googleapis.com/css2?family={{block.settings.fonts_sub_1}}:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+      
   {% endif %}
   {% if block.settings.fonts_sub_2 !=blank %}
-      <link href="https://fonts.googleapis.com/css2?family={{block.settings.fonts_sub_2}}:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+      
   {% endif %}
   {% if block.settings.fonts_button !=blank %}
-  <link href="https://fonts.googleapis.com/css2?family={{block.settings.fonts_button}}:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  
   {% endif %}
 {% endif %}
 {% endfor %}
@@ -86,9 +85,7 @@
   .section-slideshow-v2 .itemv-slide-h2 .info_slide .box-info .box-content .button-shop-{{block.id}}{
     color:{{block.settings.color_block_button}}; 
     background-color : {{block.settings.bgcolor_block_button}};
-    {% if block.settings.fonts_button != blank %}
-    font-family: '{{block.settings.fonts_button}}';
-      {% endif %}
+    font-family: var(--font-body);
   }
   
   .section-slideshow-v2 .itemv-slide-h2 .info_slide .box-info .box-content .button-shop-{{block.id}}:hover{
@@ -98,16 +95,12 @@
   
   .section-slideshow-v2 .itemv-slide-h2 .info_slide .box-info .box-content .title-{{block.id}}{
     color:{{block.settings.color_block_title_top_1}};
-    {% if block.settings.fonts_sub_1 != blank %}
-    font-family: '{{block.settings.fonts_sub_1}}';
-      {% endif %}
+    font-family: var(--font-heading);
   }
   
   .section-slideshow-v2 .itemv-slide-h2 .info_slide .box-info .box-content .content-{{block.id}}{
     color:{{block.settings.color_block_content_1}};
-    {% if block.settings.fonts_sub_2 != blank %}
-    	font-family: '{{block.settings.fonts_sub_2}}';
-    {% endif %}
+    font-family: var(--font-body);
   }
   
   @media(min-width:1900px){
@@ -185,11 +178,6 @@
           "default": 65
         },
 		{
-          "type": "text",
-          "id": "fonts_sub_1",
-          "label": "Fonts Family"
-        },
-		{
           "type": "header",
           "content": "Subheading Sideshow"
 		},
@@ -216,11 +204,6 @@
           "default": 20
         },
 		{
-          "type": "text",
-          "id": "fonts_sub_2",
-          "label": "Fonts Family"
-        },
-		{
           "type": "header",
           "content": "Button slideshow"
 		},
@@ -245,11 +228,6 @@
           "unit": "px",
           "label": "Font Size",
           "default": 14
-        },
-		{
-          "type": "text",
-          "id": "fonts_button",
-          "label": "Fonts Family"
         },
 		{
            "type": "color",
