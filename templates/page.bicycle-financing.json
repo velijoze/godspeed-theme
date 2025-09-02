@@ -12,12 +12,15 @@
     "main": {
       "type": "main-page",
       "settings": {
-        "enable_hero": true,
-        "hero_image_desktop": "shopify://shop_images/heylight-financing-banner.webp",
+        "enable_hero": false,
         "hero_image_mobile": "shopify://shop_images/heylight-financing-banner.webp",
         "hero_alt": "",
         "hero_heading": "",
+        "show_hero_text": false,
         "hero_subtitle": "",
+        "hero_full_height": true,
+        "hero_fit_mode": "cover",
+        "hero_focus": "center",
         "hero_h_align": "center",
         "hero_v_align": "middle",
         "hero_content_max": 720,
