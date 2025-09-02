@@ -42,12 +42,12 @@
 </div>
 <style>
   .section-banner-v2 .banner-box .banner-info .button-shop-{{ section.id }} {
-    color: {{section.settings.color_btn}};
-    background: {{section.settings.bg_btn}};
+    color: {{ section.settings.color_btn | default: '#fff' }};
+    background: {{ section.settings.bg_btn | default: settings.color_main2 }};
   }
   .section-banner-v2 .banner-box .banner-info .button-shop-{{ section.id }}:hover {
-    color: {{section.settings.color_btn_hover}};
-    background: {{section.settings.bg_btn_hover}};
+    color: {{ section.settings.color_btn_hover | default: '#fff' }};
+    background: {{ section.settings.bg_btn_hover | default: settings.color_main2 | color_darken: 10 }};
   }
 </style>
 {% schema %}

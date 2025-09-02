@@ -92,9 +92,13 @@
 {% endif %}
 
 <style>
+  /* Load optional quote font if selected */
+  {% if section.settings.quote_font %}
+    {{ section.settings.quote_font | font_face: font_display: 'swap' }}
+  {% endif %}
   .section-workshop-testimonials {
     padding: 80px 0;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    background: linear-gradient(135deg, #f0f7f2 0%, #e6f4ea 100%);
   }
   
   .section-workshop-testimonials .title-{{ section.id }} {
@@ -150,6 +154,11 @@
     color: #555;
     margin: 0 0 1.5rem 0;
     font-style: italic;
+    {% if section.settings.quote_font %}
+      font-family: {{ section.settings.quote_font.family }}, {{ section.settings.quote_font.fallback_families }};
+    {% else %}
+      font-family: var(--font-body);
+    {% endif %}
   }
   
   .testimonial-author {
@@ -216,7 +225,7 @@
   }
   
   .btn-cta-{{ section.id }} {
-    background: {{ section.settings.color_title | default: '#333' }};
+    background: {{ settings.color_main2 }};
     color: #fff;
     padding: 15px 40px;
     border-radius: 50px;
@@ -227,12 +236,12 @@
     transition: all 0.3s ease;
     display: inline-block;
     text-decoration: none;
-    border: 2px solid {{ section.settings.color_title | default: '#333' }};
+    border: 2px solid {{ settings.color_main2 }};
   }
   
   .btn-cta-{{ section.id }}:hover {
-    background: #555;
-    border-color: #555;
+    background: {{ settings.color_main2 | color_darken: 10 }};
+    border-color: {{ settings.color_main2 | color_darken: 10 }};
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(0,0,0,0.15);
     color: #fff;
@@ -304,6 +313,11 @@
     {
       "type": "header",
       "content": "Colors"
+    },
+    {
+      "type": "font_picker",
+      "id": "quote_font",
+      "label": "Quote Font"
     },
     {
       "type": "color",
@@ -407,4 +421,3 @@
   ]
 }
 {% endschema %}
-

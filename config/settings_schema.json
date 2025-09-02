@@ -426,8 +426,8 @@
       {
         "type": "color",
         "id": "color_main2",
-        "label": "Color Main",
-        "default": "#FF871D"
+        "label": "Accent color",
+        "default": "#2E7D32"
       }
     ]
   },
