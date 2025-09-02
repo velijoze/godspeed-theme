@@ -10,7 +10,7 @@
 </section>
 
 {% if section.settings.enable_hero %}
-<section class="page-hero{% if section.settings.hero_full_height %} fullheight{% endif %}">
+<section class="page-hero{% if section.settings.hero_full_height %} fullheight{% endif %} fit-{{ section.settings.hero_fit_mode | default: 'cover' }} focus-{{ section.settings.hero_focus | default: 'center' }}">
   <div class="hero-media">
     {% if section.settings.hero_image_desktop %}
       <img class="hero-img desktop" src="{{ section.settings.hero_image_desktop | img_url: '2048x' }}" alt="{{ section.settings.hero_alt | escape }}">
@@ -78,6 +78,15 @@
     { "type": "checkbox", "id": "show_hero_text", "label": "Show hero text", "default": true },
     { "type": "textarea", "id": "hero_subtitle", "label": "Hero subtitle" },
     { "type": "checkbox", "id": "hero_full_height", "label": "Full viewport height", "default": false },
+    { "type": "select", "id": "hero_fit_mode", "label": "Image fit mode", "default": "cover", "options": [
+      {"value":"cover","label":"Cover (crop to fill)"},
+      {"value":"contain","label":"Contain (letterbox)"}
+    ]},
+    { "type": "select", "id": "hero_focus", "label": "Image focus point", "default": "center", "options": [
+      {"value":"top","label":"Top"},
+      {"value":"center","label":"Center"},
+      {"value":"bottom","label":"Bottom"}
+    ]},
     { "type": "select", "id": "hero_h_align", "label": "Horizontal alignment", "default": "center", "options": [
       {"value":"left","label":"Left"},{"value":"center","label":"Center"},{"value":"right","label":"Right"}
     ]},
@@ -112,7 +121,13 @@
 .page-hero { position: relative; overflow: hidden; }
 .page-hero .hero-media { position: relative; height: clamp(360px, 55vh, 640px); }
 .page-hero.fullheight .hero-media { height: 100vh; min-height: 600px; }
-.page-hero .hero-img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: none; }
+.page-hero .hero-img { width: 100%; height: 100%; display: none; }
+.page-hero.fit-cover .hero-img { object-fit: cover; }
+.page-hero.fit-contain .hero-img { object-fit: contain; }
+.page-hero.focus-top .hero-img { object-position: center top; }
+.page-hero.focus-center .hero-img { object-position: center center; }
+.page-hero.focus-bottom .hero-img { object-position: center bottom; }
+.page-hero.fit-contain .hero-media { background: #000; }
 .page-hero .hero-img.desktop { display: block; }
 .page-hero .hero-img.mobile { display: none; }
 .page-hero .hero-overlay { position: absolute; inset: 0; pointer-events: none; }
