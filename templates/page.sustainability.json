@@ -9,6 +9,45 @@
  */
 {
   "sections": {
+    "gs_hero_why_top": {
+      "type": "gs-hero-why",
+      "settings": {
+        "image_desktop": "",
+        "image_mobile": "",
+        "alt": "Sustainability at Godspeed",
+        "eyebrow": "OUR COMMITMENT: SUSTAINABILITY",
+        "heading": "Better mobility. Healthier cities. Greener future.",
+        "body": "We reduce waste, recycle responsibly, and help riders replace car trips with clean kilometres. Join us in building an eco-friendly cycling culture in Switzerland.",
+        "btn_label": "Learn More",
+        "btn_url": "/pages/about-us",
+        "h_align": "left",
+        "v_align": "middle",
+        "content_max": 560,
+        "pad_x": 40,
+        "pad_y": 40,
+        "pad_x_mb": 16,
+        "pad_y_mb": 24,
+        "text_color": "#1c1c1c",
+        "overlay_color": "#000000",
+        "overlay_opacity": 10,
+        "eyebrow_tracking": 0.26,
+        "eyebrow_uppercase": true
+      }
+    },
+    "gs_eco_stats": {
+      "type": "gs-eco-stats",
+      "settings": {
+        "title": "Sustainability in Numbers",
+        "subtitle": "What our riders and team have achieved so far.",
+        "columns": "3"
+      },
+      "blocks": {
+        "stat1": {"type":"stat","settings":{"icon":"leaf","value":"500+ tons","label":"CO2 saved","note":"estimated since 2020"}},
+        "stat2": {"type":"stat","settings":{"icon":"battery","value":"1,200+","label":"Batteries recycled","note":"through certified partners"}},
+        "stat3": {"type":"stat","settings":{"icon":"wrench","value":"3,500+","label":"Repairs instead of replacements","note":"workshop-first policy"}}
+      },
+      "block_order":["stat1","stat2","stat3"]
+    },
     "section_banner_v7_EiT8gx": {
       "type": "section-banner-v7",
       "name": "BANNER V7",
@@ -138,7 +177,9 @@
     }
   },
   "order": [
+    "gs_hero_why_top",
     "section_banner_v7_EiT8gx",
+    "gs_eco_stats",
     "sustainability"
   ]
 }

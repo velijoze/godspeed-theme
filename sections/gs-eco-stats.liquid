@@ -1,0 +1,101 @@
+{%- comment -%}
+  GS Eco Stats Section
+  - Displays up to 6 eco-focused stats with inline SVG icons
+  - Uses theme accent color and typography variables
+{%- endcomment -%}
+
+<div data-section-id="{{ section.id }}" data-section-type="gs-eco-stats" class="gs-eco-stats">
+  <div class="container">
+    {% if section.settings.title != blank %}
+      <h2 class="title text-center">{{ section.settings.title }}</h2>
+    {% endif %}
+    {% if section.settings.subtitle != blank %}
+      <p class="subtitle text-center">{{ section.settings.subtitle }}</p>
+    {% endif %}
+
+    <div class="stats-grid cols-{{ section.settings.columns }}">
+      {% for block in section.blocks %}
+        {% if block.type == 'stat' %}
+          <div class="stat" {{ block.shopify_attributes }}>
+            <div class="icon">
+              {% case block.settings.icon %}
+                {% when 'leaf' %}
+                  <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="{{ settings.color_main2 }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c9-9 13-14 18-18 0 0-6 0-10 4S7 15 7 15s-2 6-4 6z"/><path d="M3 21s3-7 10-10"/></svg>
+                {% when 'recycle' %}
+                  <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="{{ settings.color_main2 }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 3 6 9 1 9"/><polyline points="22 15 17 15 17 21"/><polyline points="8 22 12 17 16 22"/><path d="M21.8 8A10 10 0 0 0 13 2l2 3"/><path d="M2.2 16A10 10 0 0 0 11 22l-2-3"/></svg>
+                {% when 'battery' %}
+                  <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="{{ settings.color_main2 }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="18" height="10" rx="2" ry="2"/><line x1="22" y1="11" x2="22" y2="13"/><path d="M10 9l-2 3h3l-2 3"/></svg>
+                {% when 'co2' %}
+                  <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="{{ settings.color_main2 }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="12" r="3"/><circle cx="16" cy="12" r="3"/><path d="M5 12h3M16 12h3"/></svg>
+                {% when 'wrench' %}
+                  <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="{{ settings.color_main2 }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 1 0-5.4 5.4l8 8a2 2 0 0 0 2.8-2.8l-8-8z"/><path d="M8 9l3 3"/></svg>
+                {% else %}
+                  <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="{{ settings.color_main2 }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>
+              {% endcase %}
+            </div>
+            {% if block.settings.value != blank %}
+              <div class="value">{{ block.settings.value }}</div>
+            {% endif %}
+            {% if block.settings.label != blank %}
+              <div class="label">{{ block.settings.label }}</div>
+            {% endif %}
+            {% if block.settings.note != blank %}
+              <div class="note">{{ block.settings.note }}</div>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+  .gs-eco-stats { padding: 48px 0; }
+  .gs-eco-stats .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+  .gs-eco-stats .title { font-family: var(--font-heading); text-align:center; font-size: clamp(22px, 3vw, 30px); margin: 0 0 6px; color:#1f3123; }
+  .gs-eco-stats .subtitle { text-align:center; color:#3b4b40; margin: 0 0 28px; font-size: 16px; }
+  .gs-eco-stats .stats-grid { display: grid; gap: 16px; }
+  .gs-eco-stats .stats-grid.cols-3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
+  .gs-eco-stats .stats-grid.cols-4 { grid-template-columns: repeat(4, minmax(0,1fr)); }
+  .gs-eco-stats .stats-grid.cols-2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  @media (max-width: 900px){ .gs-eco-stats .stats-grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+  @media (max-width: 540px){ .gs-eco-stats .stats-grid { grid-template-columns: repeat(1, minmax(0,1fr)); } }
+  .gs-eco-stats .stat { background:#fff; border:1px solid rgba(46,125,50,.12); border-radius:12px; padding:18px; text-align:center; box-shadow:0 4px 14px rgba(0,0,0,.06); }
+  .gs-eco-stats .icon { margin-bottom: 8px; }
+  .gs-eco-stats .value { font-family: var(--font-heading); color:#274a2c; font-size: clamp(20px,2.4vw,26px); font-weight:700; }
+  .gs-eco-stats .label { color:#34463a; font-size: 14px; margin-top: 4px; font-weight:600; }
+  .gs-eco-stats .note { color:#5a6b60; font-size: 13px; margin-top: 2px; }
+</style>
+
+{% schema %}
+{
+  "name": "GS - Eco Stats",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Title", "default": "Sustainability in Numbers" },
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "Tangible impact from our riders, partners, and workshop." },
+    { "type": "select", "id": "columns", "label": "Columns", "default": "3", "options": [
+      {"value":"2","label":"2"},{"value":"3","label":"3"},{"value":"4","label":"4"}
+    ]}
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        { "type": "select", "id": "icon", "label": "Icon", "default": "leaf", "options": [
+          {"value":"leaf","label":"Leaf"},
+          {"value":"recycle","label":"Recycle"},
+          {"value":"battery","label":"Battery"},
+          {"value":"co2","label":"CO2"},
+          {"value":"wrench","label":"Repair"}
+        ]},
+        { "type": "text", "id": "value", "label": "Value", "default": "500+ tons" },
+        { "type": "text", "id": "label", "label": "Label", "default": "CO2 saved" },
+        { "type": "text", "id": "note", "label": "Note", "default": "estimated since 2020" }
+      ]
+    }
+  ],
+  "presets": [ { "name": "GS - Eco Stats" } ]
+}
+{% endschema %}
+
