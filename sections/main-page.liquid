@@ -9,11 +9,38 @@
   </div>
 </section>
 
+{% if section.settings.enable_hero %}
+<section class="page-hero">
+  <div class="hero-media">
+    {% if section.settings.hero_image_desktop %}
+      <img class="hero-img desktop" src="{{ section.settings.hero_image_desktop | img_url: '1940x' }}" alt="{{ section.settings.hero_alt | escape }}">
+    {% endif %}
+    {% if section.settings.hero_image_mobile %}
+      <img class="hero-img mobile" src="{{ section.settings.hero_image_mobile | img_url: '900x' }}" alt="{{ section.settings.hero_alt | escape }}">
+    {% endif %}
+    <div class="hero-overlay" style="background: {{ section.settings.hero_overlay_color }}; opacity: {{ section.settings.hero_overlay_opacity | divided_by: 100.0 }};"></div>
+  </div>
+  <div class="hero-content pos-{{ section.settings.hero_h_align }} posv-{{ section.settings.hero_v_align }}" style="padding: {{ section.settings.hero_pad_y }}px {{ section.settings.hero_pad_x }}px;">
+    <div class="inner" style="max-width: {{ section.settings.hero_content_max }}px; color: {{ section.settings.hero_text_color }};">
+      <h1 class="page-title">{{ section.settings.hero_heading | default: page.title }}</h1>
+      {% if section.settings.show_last_updated and page.updated_at %}
+        <div class="page-meta">{{ section.settings.last_updated_label | default: 'Last updated' }} {{ page.updated_at | date: "%b %e, %Y" }}</div>
+      {% endif %}
+      {% if section.settings.hero_subtitle != blank %}
+        <div class="page-excerpt">{{ section.settings.hero_subtitle }}</div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% else %}
 <section class="page-title-section">
   <div class="container">
     <div class="page-title-wrapper">
       <div class="text-center">
         <h1 class="page-title">{{page.title}}</h1>
+        {% if section.settings.show_last_updated and page.updated_at %}
+          <div class="page-meta">{{ section.settings.last_updated_label | default: 'Last updated' }} {{ page.updated_at | date: "%b %e, %Y" }}</div>
+        {% endif %}
         {% if page.excerpt != blank %}
         <div class="page-excerpt">{{page.excerpt}}</div>
         {% endif %}
@@ -21,6 +48,7 @@
     </div>
   </div>
 </section>
+{% endif %}
 
 <section class="page-content-section">
   <div class="container">
@@ -35,7 +63,30 @@
 {% schema %}
 {
   "name": "Main Page",
-  "settings": []
+  "settings": [
+    { "type": "header", "content": "Hero" },
+    { "type": "checkbox", "id": "enable_hero", "label": "Enable slim hero", "default": false },
+    { "type": "image_picker", "id": "hero_image_desktop", "label": "Hero image (desktop)" },
+    { "type": "image_picker", "id": "hero_image_mobile", "label": "Hero image (mobile)" },
+    { "type": "text", "id": "hero_alt", "label": "Hero alt text" },
+    { "type": "text", "id": "hero_heading", "label": "Hero heading (defaults to page title)" },
+    { "type": "textarea", "id": "hero_subtitle", "label": "Hero subtitle" },
+    { "type": "select", "id": "hero_h_align", "label": "Horizontal alignment", "default": "center", "options": [
+      {"value":"left","label":"Left"},{"value":"center","label":"Center"},{"value":"right","label":"Right"}
+    ]},
+    { "type": "select", "id": "hero_v_align", "label": "Vertical alignment", "default": "middle", "options": [
+      {"value":"top","label":"Top"},{"value":"middle","label":"Middle"},{"value":"bottom","label":"Bottom"}
+    ]},
+    { "type": "range", "id": "hero_content_max", "min": 320, "max": 900, "step": 10, "unit": "px", "label": "Max content width", "default": 720 },
+    { "type": "range", "id": "hero_pad_x", "min": 0, "max": 200, "step": 5, "unit": "px", "label": "Side padding (desktop)", "default": 20 },
+    { "type": "range", "id": "hero_pad_y", "min": 0, "max": 200, "step": 5, "unit": "px", "label": "Top/bottom padding (desktop)", "default": 40 },
+    { "type": "color", "id": "hero_text_color", "label": "Hero text color", "default": "#1c1c1c" },
+    { "type": "color", "id": "hero_overlay_color", "label": "Overlay color", "default": "#000000" },
+    { "type": "range", "id": "hero_overlay_opacity", "label": "Overlay opacity", "min": 0, "max": 70, "step": 5, "unit": "%", "default": 10 },
+    { "type": "header", "content": "Metadata" },
+    { "type": "checkbox", "id": "show_last_updated", "label": "Show last updated date", "default": true },
+    { "type": "text", "id": "last_updated_label", "label": "Last updated label", "default": "Last updated" }
+  ]
 }
 {% endschema %}
 
@@ -50,6 +101,23 @@
   background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
   border-bottom: 1px solid #e9ecef;
 }
+
+.page-hero { position: relative; overflow: hidden; }
+.page-hero .hero-media { position: relative; height: clamp(280px, 45vh, 520px); }
+.page-hero .hero-img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: none; }
+.page-hero .hero-img.desktop { display: block; }
+.page-hero .hero-img.mobile { display: none; }
+.page-hero .hero-overlay { position: absolute; inset: 0; pointer-events: none; }
+.page-hero .hero-content { position: absolute; inset: 0; display: flex; }
+.page-hero .hero-content.pos-left { justify-content: flex-start; }
+.page-hero .hero-content.pos-center { justify-content: center; }
+.page-hero .hero-content.pos-right { justify-content: flex-end; }
+.page-hero .hero-content.posv-top { align-items: flex-start; }
+.page-hero .hero-content.posv-middle { align-items: center; }
+.page-hero .hero-content.posv-bottom { align-items: flex-end; }
+.page-hero .page-title { font-family: var(--font-heading); margin: 0 0 6px 0; font-size: clamp(26px, 4vw, 44px); }
+.page-meta { font-size: 0.9rem; color: #667; margin-bottom: 6px; }
+@media (max-width: 991px){ .page-hero .hero-img.desktop { display:none } .page-hero .hero-img.mobile { display:block } }
 
 .page-title-wrapper {
   max-width: 800px;
@@ -275,4 +343,3 @@
   }
 }
 {% endstylesheet %}
-
