@@ -18,12 +18,15 @@
 
 <style>
   .section-banner-v7 .banner-v7 .content-banner .button-banner-{{ section.id }} {
-    color: {{section.settings.color_btn}};
-    background: {{section.settings.bg_btn}};
+    color: {{ section.settings.color_btn | default: '#fff' }};
+    background: {{ section.settings.bg_btn | default: settings.color_main2 }};
+    border: 2px solid {{ section.settings.bg_btn | default: settings.color_main2 }};
+    border-radius: 999px;
   }
-  .section-banner-v7 .banner-v7 .content-banner  .button-banner-{{ section.id }}:hover {
-    color: {{section.settings.color_btn_hover}};
-    background: {{section.settings.bg_btn_hover}};
+  .section-banner-v7 .banner-v7 .content-banner .button-banner-{{ section.id }}:hover {
+    color: {{ section.settings.color_btn_hover | default: '#fff' }};
+    background: {{ section.settings.bg_btn_hover | default: settings.color_main2 | color_darken: 10 }};
+    border-color: {{ section.settings.bg_btn_hover | default: settings.color_main2 | color_darken: 10 }};
   }
 </style>
 
