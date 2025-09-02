@@ -985,6 +985,7 @@ Always be helpful, friendly, and knowledgeable about e-bikes, cycling, and Swiss
   .section-admin-dashboard {
     padding: 80px 0;
     background: #fff;
+    font-family: var(--font-body);
   }
   
   .section-admin-dashboard .title-{{ section.id }} {
@@ -1054,23 +1055,8 @@ Always be helpful, friendly, and knowledgeable about e-bikes, cycling, and Swiss
     transition: all 0.3s ease;
   }
 
-  .btn-test {
-    background: #17a2b8;
-    color: white;
-  }
-
-  .btn-save {
-    background: #28a745;
-    color: white;
-  }
-
-  .btn-test:hover {
-    background: #138496;
-  }
-
-  .btn-save:hover {
-    background: #218838;
-  }
+  .btn-test, .btn-save { background: {{ settings.color_main2 }}; color: #fff; }
+  .btn-test:hover, .btn-save:hover { background: {{ settings.color_main2 | color_darken: 10 }}; }
 
   /* Session/Booking item styles */
   .session-item, .booking-item {
@@ -1322,7 +1308,7 @@ Always be helpful, friendly, and knowledgeable about e-bikes, cycling, and Swiss
   }
   
   .status-badge {
-    background: #28a745;
+    background: {{ settings.color_main2 }};
     color: white;
     padding: 0.25rem 0.75rem;
     border-radius: 20px;
