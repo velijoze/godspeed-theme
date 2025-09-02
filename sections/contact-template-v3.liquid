@@ -87,7 +87,7 @@
           <div class="col-xl-3 col-lg-6 col-md-6 mb-4">
             <div class="address-card">
               {% if section.settings.address1_image != blank %}
-              <img class="address-image" src="{{ section.settings.address1_image | img_url: '555x300' }}" alt="{{ section.settings.address1_title | escape }}">
+              {{ section.settings.address1_image | image_url: width: 1200 | image_tag: widths: [600, 900, 1200, 1600], sizes: "(min-width: 1200px) 25vw, (min-width: 992px) 33vw, 100vw", alt: section.settings.address1_title, class: 'address-image' }}
               {% endif %}
               {% if section.settings.address1_title != blank %}
               <h5 class="address-title">{{ section.settings.address1_title }}</h5>
@@ -125,7 +125,7 @@
           <div class="col-xl-3 col-lg-6 col-md-6 mb-4">
             <div class="address-card">
               {% if section.settings.address2_image != blank %}
-              <img class="address-image" src="{{ section.settings.address2_image | img_url: '555x300' }}" alt="{{ section.settings.address2_title | escape }}">
+              {{ section.settings.address2_image | image_url: width: 1200 | image_tag: widths: [600, 900, 1200, 1600], sizes: "(min-width: 1200px) 25vw, (min-width: 992px) 33vw, 100vw", alt: section.settings.address2_title, class: 'address-image' }}
               {% endif %}
               {% if section.settings.address2_title != blank %}
               <h5 class="address-title">{{ section.settings.address2_title }}</h5>
@@ -163,7 +163,7 @@
           <div class="col-xl-3 col-lg-6 col-md-6 mb-4">
             <div class="address-card">
               {% if section.settings.address3_image != blank %}
-              <img class="address-image" src="{{ section.settings.address3_image | img_url: '555x300' }}" alt="{{ section.settings.address3_title | escape }}">
+              {{ section.settings.address3_image | image_url: width: 1200 | image_tag: widths: [600, 900, 1200, 1600], sizes: "(min-width: 1200px) 25vw, (min-width: 992px) 33vw, 100vw", alt: section.settings.address3_title, class: 'address-image' }}
               {% endif %}
               {% if section.settings.address3_title != blank %}
               <h5 class="address-title">{{ section.settings.address3_title }}</h5>
@@ -201,7 +201,7 @@
           <div class="col-xl-3 col-lg-6 col-md-6 mb-4">
             <div class="address-card">
               {% if section.settings.address4_image != blank %}
-              <img class="address-image" src="{{ section.settings.address4_image | img_url: '555x300' }}" alt="{{ section.settings.address4_title | escape }}">
+              {{ section.settings.address4_image | image_url: width: 1200 | image_tag: widths: [600, 900, 1200, 1600], sizes: "(min-width: 1200px) 25vw, (min-width: 992px) 33vw, 100vw", alt: section.settings.address4_title, class: 'address-image' }}
               {% endif %}
               {% if section.settings.address4_title != blank %}
               <h5 class="address-title">{{ section.settings.address4_title }}</h5>
