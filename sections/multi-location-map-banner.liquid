@@ -1,0 +1,94 @@
+{% comment %}
+  Multi‑Location Map Banner (Google Maps)
+  - Add as a full‑width banner section anywhere (e.g., Contact page top)
+  - Configure up to 6 markers via blocks
+  - Falls back to theme Contact coordinates if no blocks configured
+{% endcomment %}
+
+<section class="multi-map-banner" style="{% if section.settings.margin_top != blank %}margin-top: {{ section.settings.margin_top }}px;{% endif %}{% if section.settings.margin_bottom != blank %} margin-bottom: {{ section.settings.margin_bottom }}px;{% endif %}">
+  <div class="container{% if section.settings.full_width %}-fluid{% endif %}">
+    <div class="map-wrapper" style="height: {{ section.settings.map_height }}px; border-radius: {{ section.settings.radius }}px; overflow: hidden;">
+      <div id="multiMap-{{ section.id }}" style="width:100%; height:100%"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+function initMultiMap{{ section.id | replace: '-', '' }}() {
+  var el = document.getElementById('multiMap-{{ section.id }}');
+  if (!el) return;
+  var center = { lat: {{ section.settings.center_lat | default: 46.8182 }}, lng: {{ section.settings.center_lng | default: 8.2275 }} };
+  var map = new google.maps.Map(el, {
+    zoom: {{ section.settings.zoom | default: 7 }},
+    center: center,
+    mapTypeControl: false,
+    streetViewControl: false
+  });
+
+  var markers = [];
+  {% if section.blocks.size > 0 %}
+    {% for block in section.blocks %}
+      {% if block.type == 'location' %}
+        markers.push({ position: { lat: {{ block.settings.lat }}, lng: {{ block.settings.lng }} }, title: {{ block.settings.title | json }} });
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+
+  {% comment %} Fallback to Contact v3 coordinates if no blocks configured {% endcomment %}
+  {% if section.blocks.size == 0 %}
+    {% if settings.gmap_latitude and settings.gmap_longitude %}
+      markers.push({ position: { lat: {{ settings.gmap_latitude }}, lng: {{ settings.gmap_longitude }} }, title: {{ shop.name | json }} });
+    {% endif %}
+    {% if sections['contact_template_v3'] and sections['contact_template_v3'].settings %}
+      {% assign cs = sections['contact_template_v3'].settings %}
+      {% if cs.address1_latitude and cs.address1_longitude %}markers.push({ position: { lat: {{ cs.address1_latitude }}, lng: {{ cs.address1_longitude }} }, title: {{ cs.address1_title | json }} });{% endif %}
+      {% if cs.address2_latitude and cs.address2_longitude %}markers.push({ position: { lat: {{ cs.address2_latitude }}, lng: {{ cs.address2_longitude }} }, title: {{ cs.address2_title | json }} });{% endif %}
+      {% if cs.address3_latitude and cs.address3_longitude %}markers.push({ position: { lat: {{ cs.address3_latitude }}, lng: {{ cs.address3_longitude }} }, title: {{ cs.address3_title | json }} });{% endif %}
+      {% if cs.address4_latitude and cs.address4_longitude %}markers.push({ position: { lat: {{ cs.address4_latitude }}, lng: {{ cs.address4_longitude }} }, title: {{ cs.address4_title | json }} });{% endif %}
+    {% endif %}
+  {% endif %}
+
+  var bounds = new google.maps.LatLngBounds();
+  markers.forEach(function(m){ new google.maps.Marker({ position: m.position, map: map, title: m.title }); bounds.extend(m.position); });
+  if (markers.length > 1) { map.fitBounds(bounds); }
+  else if (markers.length == 1) { map.setCenter(markers[0].position); map.setZoom(12); }
+}
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key={{ settings.gmap_key }}&callback=initMultiMap{{ section.id | replace: '-', '' }}" async defer></script>
+
+{% schema %}
+{
+  "name": "Multi‑Location Map Banner",
+  "settings": [
+    { "type": "checkbox", "id": "full_width", "label": "Full width", "default": true },
+    { "type": "range", "id": "map_height", "label": "Map height", "min": 200, "max": 800, "step": 20, "unit": "px", "default": 420 },
+    { "type": "range", "id": "radius", "label": "Border radius", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 0 },
+    { "type": "text", "id": "center_lat", "label": "Center latitude", "default": "46.8182" },
+    { "type": "text", "id": "center_lng", "label": "Center longitude", "default": "8.2275" },
+    { "type": "range", "id": "zoom", "label": "Default zoom", "min": 3, "max": 16, "step": 1, "default": 7 },
+    { "type": "text", "id": "margin_top", "label": "Margin top (px)" },
+    { "type": "text", "id": "margin_bottom", "label": "Margin bottom (px)" }
+  ],
+  "blocks": [
+    {
+      "type": "location",
+      "name": "Location",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Store" },
+        { "type": "text", "id": "lat", "label": "Latitude", "default": "46.8182" },
+        { "type": "text", "id": "lng", "label": "Longitude", "default": "8.2275" }
+      ]
+    }
+  ],
+  "presets": [ { "name": "Multi‑Location Map Banner", "category": "Banners" } ]
+}
+{% endschema %}
+
+{% stylesheet %}
+.multi-map-banner .map-wrapper { box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+

@@ -15,6 +15,65 @@
   {% if section.settings.enable_get_find %}
   <div class="get_find">
     <div class="container container-v1">
+      {% comment %} Map banner above addresses {% endcomment %}
+      {% assign use_map = section.settings.select_style_map %}
+      {% if section.settings.address1_latitude and section.settings.address1_longitude %}{% assign use_map = 'style_map' %}{% endif %}
+      {% if section.settings.address2_latitude and section.settings.address2_longitude %}{% assign use_map = 'style_map' %}{% endif %}
+      {% if section.settings.address3_latitude and section.settings.address3_longitude %}{% assign use_map = 'style_map' %}{% endif %}
+      {% if section.settings.address4_latitude and section.settings.address4_longitude %}{% assign use_map = 'style_map' %}{% endif %}
+      {% if use_map == blank %}{% assign use_map = 'style_map' %}{% endif %}
+
+      <div class="row mb-5">
+        <div class="col-lg-12">
+          {% if use_map == 'style_map' %}
+            {% if section.settings.enable_map %}
+            <div class="contact-google-map">
+              <div id="map" class="map-custom" style="height: 420px"></div>
+              <script>
+                function initMap() {
+                  var defaultCenter = { lat: 46.8182, lng: 8.2275 };
+                  var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 7,
+                    center: defaultCenter,
+                    mapTypeControl: false,
+                    streetViewControl: false
+                  });
+                  var markers = [];
+                  {% if section.settings.address1_latitude and section.settings.address1_longitude %}
+                  markers.push({ position: { lat: {{ section.settings.address1_latitude }}, lng: {{ section.settings.address1_longitude }} }, title: {{ section.settings.address1_title | json }} });
+                  {% endif %}
+                  {% if section.settings.address2_latitude and section.settings.address2_longitude %}
+                  markers.push({ position: { lat: {{ section.settings.address2_latitude }}, lng: {{ section.settings.address2_longitude }} }, title: {{ section.settings.address2_title | json }} });
+                  {% endif %}
+                  {% if section.settings.address3_latitude and section.settings.address3_longitude %}
+                  markers.push({ position: { lat: {{ section.settings.address3_latitude }}, lng: {{ section.settings.address3_longitude }} }, title: {{ section.settings.address3_title | json }} });
+                  {% endif %}
+                  {% if section.settings.address4_latitude and section.settings.address4_longitude %}
+                  markers.push({ position: { lat: {{ section.settings.address4_latitude }}, lng: {{ section.settings.address4_longitude }} }, title: {{ section.settings.address4_title | json }} });
+                  {% endif %}
+                  {% if settings.gmap_latitude and settings.gmap_longitude %}
+                  if (markers.length === 0) {
+                    markers.push({ position: { lat: {{ settings.gmap_latitude }}, lng: {{ settings.gmap_longitude }} }, title: {{ shop.name | json }} });
+                  }
+                  {% endif %}
+                  var bounds = new google.maps.LatLngBounds();
+                  markers.forEach(function(m){ new google.maps.Marker({ position: m.position, map: map, title: m.title }); bounds.extend(m.position); });
+                  if (markers.length > 1) { map.fitBounds(bounds); }
+                  else if (markers.length === 1) { map.setCenter(markers[0].position); map.setZoom(12); }
+                }
+              </script>
+              <script src="https://maps.googleapis.com/maps/api/js?key={{settings.gmap_key}}&callback=initMap" async defer></script>
+            </div>
+            {% endif %}
+          {% elsif use_map == 'style_image' %}
+            {% if section.settings.enable_map %}
+            <a class="image_map d-block" target="_blank" href="{{section.settings.link_map}}">
+              <img src="{% if section.settings.image_map != blank %} {{section.settings.image_map | img_url : 'master'}} {% else %}//via.placeholder.com/690x300 {% endif %}">
+            </a>
+            {% endif %}
+          {% endif %}
+        </div>
+      </div>
       <!-- Four Address Locations -->
       {% if section.settings.enable_addresses %}
       <div class="addresses-section mb-5">
@@ -171,83 +230,7 @@
       {% if section.settings.address4_latitude and section.settings.address4_longitude %}{% assign use_map = 'style_map' %}{% endif %}
       {% if use_map == blank %}{% assign use_map = 'style_map' %}{% endif %}
 
-      <div class="row">
-        <div class="col-lg-12">
-          {% if use_map == 'style_map' %}
-            {% if section.settings.enable_map %}
-            <div class="contact-google-map">
-              <div id="map" class="map-custom" style="height: 420px"></div>
-              <script>
-                function initMap() {
-                  // Default center: Switzerland
-                  var defaultCenter = { lat: 46.8182, lng: 8.2275 };
-                  var map = new google.maps.Map(document.getElementById('map'), {
-                    zoom: 7,
-                    center: defaultCenter,
-                    mapTypeControl: false,
-                    streetViewControl: false
-                  });
-
-                  var markers = [];
-                  // Collect markers from section settings (up to 4 locations)
-                  {% if section.settings.address1_latitude and section.settings.address1_longitude %}
-                  markers.push({
-                    position: { lat: {{ section.settings.address1_latitude }}, lng: {{ section.settings.address1_longitude }} },
-                    title: {{ section.settings.address1_title | json }}
-                  });
-                  {% endif %}
-                  {% if section.settings.address2_latitude and section.settings.address2_longitude %}
-                  markers.push({
-                    position: { lat: {{ section.settings.address2_latitude }}, lng: {{ section.settings.address2_longitude }} },
-                    title: {{ section.settings.address2_title | json }}
-                  });
-                  {% endif %}
-                  {% if section.settings.address3_latitude and section.settings.address3_longitude %}
-                  markers.push({
-                    position: { lat: {{ section.settings.address3_latitude }}, lng: {{ section.settings.address3_longitude }} },
-                    title: {{ section.settings.address3_title | json }}
-                  });
-                  {% endif %}
-                  {% if section.settings.address4_latitude and section.settings.address4_longitude %}
-                  markers.push({
-                    position: { lat: {{ section.settings.address4_latitude }}, lng: {{ section.settings.address4_longitude }} },
-                    title: {{ section.settings.address4_title | json }}
-                  });
-                  {% endif %}
-
-                  // If no per-address coordinates provided, fall back to theme coords
-                  {% if settings.gmap_latitude and settings.gmap_longitude %}
-                  if (markers.length === 0) {
-                    markers.push({ position: { lat: {{ settings.gmap_latitude }}, lng: {{ settings.gmap_longitude }} }, title: {{ shop.name | json }} });
-                  }
-                  {% endif %}
-
-                  var bounds = new google.maps.LatLngBounds();
-                  markers.forEach(function(m){
-                    var mk = new google.maps.Marker({ position: m.position, map: map, title: m.title });
-                    bounds.extend(m.position);
-                  });
-                  if (markers.length > 1) {
-                    map.fitBounds(bounds);
-                  } else if (markers.length === 1) {
-                    map.setCenter(markers[0].position);
-                    map.setZoom(12);
-                  }
-                }
-              </script>
-              <script src="https://maps.googleapis.com/maps/api/js?key={{settings.gmap_key}}&callback=initMap" async defer></script>
-            </div>
-            {% endif %}
-          {% elsif use_map == 'style_image' %}
-          	{% if section.settings.enable_map %}	
-            <a class="image_map d-block" target="_blank" href="{{section.settings.link_map}}">
-              <img src="{% if section.settings.image_map != blank %} {{section.settings.image_map | img_url : 'master'}} {% else %}//via.placeholder.com/690x750 {% endif %}">
-            </a>
-            {% endif %}
-          {% endif %}
-        </div>
-        
-      </div>
+      
       <div class="contact-form">
         <div class="row">
         	<div class="col-lg-12 col-md-12">
