@@ -9,6 +9,33 @@
  */
 {
   "sections": {
+    "multi_location_map_banner_JmWbEB": {
+      "type": "multi-location-map-banner",
+      "blocks": {
+        "location_yaWXTb": {
+          "type": "location",
+          "settings": {
+            "title": "Store",
+            "lat": "46.8182",
+            "lng": "8.2275"
+          }
+        }
+      },
+      "block_order": [
+        "location_yaWXTb"
+      ],
+      "name": "Multi‑Location Map Banner",
+      "settings": {
+        "full_width": true,
+        "map_height": 420,
+        "radius": 0,
+        "center_lat": "46.8182",
+        "center_lng": "8.2275",
+        "zoom": 7,
+        "margin_top": "",
+        "margin_bottom": ""
+      }
+    },
     "contact_template_v3": {
       "type": "contact-template-v3",
       "settings": {
@@ -77,6 +104,7 @@
     }
   },
   "order": [
+    "multi_location_map_banner_JmWbEB",
     "contact_template_v3",
     "newsletter_contact_v3"
   ]
