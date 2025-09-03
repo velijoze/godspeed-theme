@@ -63,6 +63,21 @@
         "margin_bottom": ""
       }
     },
+    "why_comparison_cf3qAH": {
+      "type": "why-comparison",
+      "name": "Why Comparison",
+      "settings": {
+        "title": "Why Bikes Beat Cars",
+        "content": "<p>Bicycles cause neither traffic nor pollution and offer complete freedom of movement. They're good for the soul, strengthen legs and lungs, and simply make you happy. Unlike cars, bikes connect you with your environment while providing an efficient, joyful way to travel.</p>",
+        "text_align": "center",
+        "bg_color": "#f8f9fa",
+        "title_color": "#ff4040",
+        "content_color": "#2c3e50",
+        "accent_color": "#ff4040",
+        "padding_top": 50,
+        "padding_bottom": 50
+      }
+    },
     "contact_template_v3": {
       "type": "contact-template-v3",
       "settings": {
@@ -132,6 +147,7 @@
   },
   "order": [
     "multi_location_map_banner_JmWbEB",
+    "why_comparison_cf3qAH",
     "contact_template_v3",
     "newsletter_contact_v3"
   ]
