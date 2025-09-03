@@ -1,0 +1,47 @@
+{
+  "sections": {
+    "hero": {
+      "type": "gs-hero-why",
+      "settings": {
+        "eyebrow": "OUR COMMITMENT: SUSTAINABILITY",
+        "heading": "Better mobility. Healthier cities. Greener future.",
+        "body": "We reduce waste, recycle responsibly, and help riders replace car trips with clean kilometres.",
+        "btn_label": "About Us",
+        "btn_url": "/pages/about-us",
+        "h_align": "left",
+        "v_align": "middle",
+        "content_max": 560
+      }
+    },
+    "mission": {
+      "type": "gs-title-text",
+      "settings": {
+        "kicker": "Our Environmental Mission",
+        "title": "Why sustainability matters at Godspeed",
+        "body": "<p>Every bicycle sold represents a step toward cleaner air, healthier communities, and a more sustainable transportation system.</p>",
+        "text_align": "center"
+      }
+    },
+    "impact": {
+      "type": "gs-image-text",
+      "settings": {
+        "image_position": "right",
+        "kicker": "Impact",
+        "title": "Sustainable transportation in action",
+        "body": "<ul><li>Reduced traffic congestion</li><li>Lower noise and air pollution</li><li>Healthier, more liveable cities</li></ul>"
+      }
+    },
+    "stats": { "type": "gs-eco-stats", "settings": { "title": "Sustainability in Numbers", "subtitle": "Tangible impact from our riders, partners, and workshop.", "columns": "3" } },
+    "cta": {
+      "type": "gs-title-text",
+      "settings": {
+        "kicker": "Join the movement",
+        "title": "Choose GODSPEED. Choose the future.",
+        "body": "<p>Every bike purchase is a vote for sustainability. Together, we can transform transportation in Switzerland.</p>",
+        "text_align": "center"
+      }
+    }
+  },
+  "order": ["hero", "mission", "impact", "stats", "cta"]
+}
+
