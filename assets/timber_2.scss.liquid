@@ -153,10 +153,10 @@ $zindexDrawer: 10;
 
 /*================ Typography ================*/
 
-$headerFontStack: "{{settings.heading_font}}", serif;
+$headerFontStack: var(--font-heading);
 $headerFontWeight: 700;
 
-$bodyFontStack: "{{settings.body_font}}", sans-serif;
+$bodyFontStack: var(--font-body);
 $baseFontSize: 14px; // Henseforth known as 1em
 
 @font-face {
@@ -1984,8 +1984,8 @@ label.error {
     letter-spacing: 0.04em;
 	position: relative;
 	.site-nav--has-dropdown &{padding-left: 10px; border: none; }
-	    font-size: 16px;
-	    font-family: "{{settings.menu_font}}";
+    font-size: 16px;
+    font-family: var(--font-nav);
 	    border-bottom: 2px solid transparent;
   		font-weight: bold;
 
