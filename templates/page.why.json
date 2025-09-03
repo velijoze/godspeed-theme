@@ -179,6 +179,53 @@
         "margin_top": "",
         "margin_bottom": ""
       }
+    },
+    "why_benefits_ncqbky": {
+      "type": "why-benefits",
+      "blocks": {
+        "benefit_G8EAxB": {
+          "type": "benefit",
+          "settings": {
+            "icon_svg": "<svg viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><polyline points=\"12,6 12,12 16,14\"></polyline></svg>",
+            "title": "Time & Money Savings",
+            "content": "Reach your destination quickly while avoiding traffic jams, parking searches, and expensive fines. Maintenance and insurance costs are minimal compared to cars or public transport."
+          }
+        },
+        "benefit_LnwffH": {
+          "type": "benefit",
+          "settings": {
+            "icon_svg": "<svg viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7z\"></path></svg>",
+            "title": "Health Benefits",
+            "content": "Daily movement in fresh air contributes to physical and mental well-being. E-bikes provide just the right support on challenging routes, letting you arrive fresh and energized."
+          }
+        },
+        "benefit_Y6atBx": {
+          "type": "benefit",
+          "settings": {
+            "icon_svg": "<svg viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M21.54 15.88A17.9 17.9 0 0 0 12 2.56a17.9 17.9 0 0 0-9.54 13.32 8 8 0 1 0 19.08 0z\"></path></svg>",
+            "title": "Environmental Impact",
+            "content": "E-bikes emit no harmful gases, reducing air and noise pollution significantly. Even disposal has far less environmental impact than cars – every bike means one less car on the road."
+          }
+        }
+      },
+      "block_order": [
+        "benefit_G8EAxB",
+        "benefit_LnwffH",
+        "benefit_Y6atBx"
+      ],
+      "name": "Why Benefits",
+      "settings": {
+        "title": "The Advantages of E-Bikes",
+        "bg_color": "#ffffff",
+        "title_color": "#2c3e50",
+        "content_color": "#6c757d",
+        "card_bg": "#f8f9fa",
+        "accent_color": "#ff4040",
+        "icon_bg": "#ff4040",
+        "icon_color": "#ffffff",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
     }
   },
   "order": [
@@ -187,6 +234,7 @@
     "benefits_section",
     "godspeed_section",
     "revolution_section",
+    "why_benefits_ncqbky",
     "quote_section",
     "cta_section",
     "newsletter_section"
