@@ -12,8 +12,8 @@
     "hero_section": {
       "type": "why-hero",
       "settings": {
-        "title": "Our Philosophy: Sustainable & Stylish Mobility",
-        "subtitle": "We believe in promoting the joy of moving sustainably and stylishly – with our e-bikes. GODSPEED supports alternative mobility that is healthy and environmentally friendly, offering e-bikes for every need.",
+        "title": "",
+        "subtitle": "",
         "cta_text": "Explore E-Bikes",
         "cta_url": "/collections/e-bikes",
         "bg_image": "shopify://shop_images/bike2work2.png",
