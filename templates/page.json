@@ -32,23 +32,9 @@
         "show_last_updated": false,
         "last_updated_label": "Last updated"
       }
-    },
-    "heylight_calculator_3dLcCd": {
-      "type": "heylight-calculator",
-      "name": "Heylight Payment Calculator",
-      "settings": {
-        "calculator_title": "Heylight Payment Calculator",
-        "calculator_subtitle": "Calculate your Heylight payment options. Get instant estimates for 0% interest BNPL and extended financing terms. Take your e-bike home today, pay over time.",
-        "apply_url": "",
-        "color_title": "#333",
-        "color_subtitle": "#6c757d",
-        "margin_top": 0,
-        "margin_bottom": 0
-      }
     }
   },
   "order": [
-    "main",
-    "heylight_calculator_3dLcCd"
+    "main"
   ]
 }
