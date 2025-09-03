@@ -11,10 +11,45 @@
   "sections": {
     "main": {
       "type": "main-page",
-      "settings": {}
+      "settings": {
+        "enable_hero": true,
+        "hero_image_desktop": "shopify://shop_images/manybikes-locarno_1.jpg",
+        "hero_alt": "",
+        "hero_heading": "",
+        "show_hero_text": false,
+        "hero_subtitle": "",
+        "hero_full_height": false,
+        "hero_fit_mode": "cover",
+        "hero_focus": "center",
+        "hero_h_align": "center",
+        "hero_v_align": "middle",
+        "hero_content_max": 720,
+        "hero_pad_x": 20,
+        "hero_pad_y": 40,
+        "hero_text_color": "#1c1c1c",
+        "hero_overlay_color": "#000000",
+        "hero_overlay_opacity": 10,
+        "show_last_updated": false,
+        "last_updated_label": "Last updated"
+      }
+    },
+    "multi_location_map_banner_ytiCTE": {
+      "type": "multi-location-map-banner",
+      "name": "Multi‑Location Map Banner",
+      "settings": {
+        "full_width": true,
+        "map_height": 420,
+        "radius": 0,
+        "center_lat": "46.8182",
+        "center_lng": "8.2275",
+        "zoom": 7,
+        "margin_top": "",
+        "margin_bottom": ""
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "multi_location_map_banner_ytiCTE"
   ]
 }
