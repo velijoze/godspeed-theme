@@ -143,6 +143,7 @@
           "type": "stat",
           "settings": {
             "icon": "co2",
+            "custom_svg": "",
             "value": "750+ tons",
             "label": "CO2 saved",
             "note": ""
@@ -152,6 +153,7 @@
           "type": "stat",
           "settings": {
             "icon": "recycle",
+            "custom_svg": "",
             "value": "85% of packaging recycled",
             "label": "through our shipping and workshop operations.",
             "note": ""
@@ -161,6 +163,7 @@
           "type": "stat",
           "settings": {
             "icon": "leaf",
+            "custom_svg": "",
             "value": "500,000+",
             "label": "car kilometers avoided",
             "note": ""
@@ -176,7 +179,9 @@
       "settings": {
         "title": "Pedaling Towards a Greener Ticino",
         "subtitle": "Tangible impact from our riders, partners, and workshop.",
-        "columns": "3"
+        "columns": "3",
+        "icon_color": "#2e7d32",
+        "icon_size": 36
       }
     },
     "why_godspeed_EihQn6": {
