@@ -12,7 +12,7 @@
     "main": {
       "type": "main-page",
       "settings": {
-        "enable_hero": true,
+        "enable_hero": false,
         "hero_image_desktop": "shopify://shop_images/manybikes-locarno_1.jpg",
         "hero_alt": "",
         "hero_heading": "",
@@ -33,23 +33,22 @@
         "last_updated_label": "Last updated"
       }
     },
-    "multi_location_map_banner_ytiCTE": {
-      "type": "multi-location-map-banner",
-      "name": "Multi‑Location Map Banner",
+    "heylight_calculator_3dLcCd": {
+      "type": "heylight-calculator",
+      "name": "Heylight Payment Calculator",
       "settings": {
-        "full_width": true,
-        "map_height": 420,
-        "radius": 0,
-        "center_lat": "46.8182",
-        "center_lng": "8.2275",
-        "zoom": 7,
-        "margin_top": "",
-        "margin_bottom": ""
+        "calculator_title": "Heylight Payment Calculator",
+        "calculator_subtitle": "Calculate your Heylight payment options. Get instant estimates for 0% interest BNPL and extended financing terms. Take your e-bike home today, pay over time.",
+        "apply_url": "",
+        "color_title": "#333",
+        "color_subtitle": "#6c757d",
+        "margin_top": 0,
+        "margin_bottom": 0
       }
     }
   },
   "order": [
     "main",
-    "multi_location_map_banner_ytiCTE"
+    "heylight_calculator_3dLcCd"
   ]
 }
