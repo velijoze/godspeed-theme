@@ -12,8 +12,9 @@
     "contact_template_v3": {
       "type": "contact-template-v3",
       "settings": {
-        "show_breadcrumb_header": false,
-        "enable_map": false,
+        "show_breadcrumb_header": true,
+        "bg_breadcrumb": "shopify://shop_images/5S5A2351.jpg",
+        "enable_map": true,
         "select_style_map": "style_image",
         "link_map": "https://www.google.com/maps/place/Foden+Ave,+Campbellfield+VIC+3061,+%C3%9Ac/@-37.6480895,144.939916,17z/data=!3m1!4b1!4m5!3m4!1s0x6ad65039b0c2c6cb:0x62e688e2ce6646d1!8m2!3d-37.6480938!4d144.9421047?hl=vi-VN",
         "address1_latitude": "46.0037",
