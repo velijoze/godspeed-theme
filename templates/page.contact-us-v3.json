@@ -35,12 +35,21 @@
             "lat": "46.8182",
             "lng": "8.2275"
           }
+        },
+        "location_9YWFam": {
+          "type": "location",
+          "settings": {
+            "title": "Zh",
+            "lat": "47.3510",
+            "lng": "8.5954"
+          }
         }
       },
       "block_order": [
         "location_yaWXTb",
         "location_74zhff",
-        "location_rPnNJQ"
+        "location_rPnNJQ",
+        "location_9YWFam"
       ],
       "name": "Multi‑Location Map Banner",
       "settings": {
