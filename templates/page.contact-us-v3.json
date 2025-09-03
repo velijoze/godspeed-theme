@@ -54,7 +54,7 @@
       "name": "Multi‑Location Map Banner",
       "settings": {
         "full_width": true,
-        "map_height": 420,
+        "map_height": 500,
         "radius": 0,
         "center_lat": "46.8182",
         "center_lng": "8.2275",
