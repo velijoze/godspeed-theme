@@ -16,7 +16,7 @@
         "subtitle": "We believe in promoting the joy of moving sustainably and stylishly – with our e-bikes. GODSPEED supports alternative mobility that is healthy and environmentally friendly, offering e-bikes for every need.",
         "cta_text": "Explore E-Bikes",
         "cta_url": "/collections/e-bikes",
-        "bg_image": "",
+        "bg_image": "shopify://shop_images/bike2work2.png",
         "bg_color": "#f8f9fa",
         "bg_color_secondary": "#ffffff",
         "title_color": "#2c3e50",
@@ -33,7 +33,9 @@
         "bg_color": "#f8f9fa",
         "title_color": "#ff4040",
         "content_color": "#2c3e50",
-        "accent_color": "#ff4040"
+        "accent_color": "#ff4040",
+        "padding_top": 50,
+        "padding_bottom": 50
       }
     },
     "benefits_section": {
@@ -42,7 +44,7 @@
         "benefit_time_money": {
           "type": "benefit",
           "settings": {
-            "icon_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><polyline points=\"12,6 12,12 16,14\"></polyline></svg>",
+            "icon_svg": "<svg viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><polyline points=\"12,6 12,12 16,14\"></polyline></svg>",
             "title": "Time & Money Savings",
             "content": "Reach your destination quickly while avoiding traffic jams, parking searches, and expensive fines. Maintenance and insurance costs are minimal compared to cars or public transport."
           }
@@ -50,7 +52,7 @@
         "benefit_health": {
           "type": "benefit",
           "settings": {
-            "icon_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7z\"></path></svg>",
+            "icon_svg": "<svg viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7z\"></path></svg>",
             "title": "Health Benefits",
             "content": "Daily movement in fresh air contributes to physical and mental well-being. E-bikes provide just the right support on challenging routes, letting you arrive fresh and energized."
           }
@@ -58,7 +60,7 @@
         "benefit_environment": {
           "type": "benefit",
           "settings": {
-            "icon_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21.54 15.88A17.9 17.9 0 0 0 12 2.56a17.9 17.9 0 0 0-9.54 13.32 8 8 0 1 0 19.08 0z\"></path></svg>",
+            "icon_svg": "<svg viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21.54 15.88A17.9 17.9 0 0 0 12 2.56a17.9 17.9 0 0 0-9.54 13.32 8 8 0 1 0 19.08 0z\"></path></svg>",
             "title": "Environmental Impact",
             "content": "E-bikes emit no harmful gases, reducing air and noise pollution significantly. Even disposal has far less environmental impact than cars – every bike means one less car on the road."
           }
@@ -78,7 +80,9 @@
         "card_bg": "#f8f9fa",
         "accent_color": "#ff4040",
         "icon_bg": "#ff4040",
-        "icon_color": "#ffffff"
+        "icon_color": "#ffffff",
+        "padding_top": 80,
+        "padding_bottom": 80
       }
     },
     "godspeed_section": {
@@ -86,7 +90,7 @@
       "settings": {
         "title": "Why Choose GODSPEED?",
         "content": "<p>We offer the most beautiful and stylish e-bikes on the market. They're not just for hobbies or weekends – our bikes are designed for daily use in all conditions. Comfortable, elegant, and equipped with accessories like fenders and baskets, they're perfect for anyone who wants to travel sustainably and stylishly.</p><p>GODSPEED is Ticino's first e-bike shop specializing in everyday transportation: city bikes, cargo bikes for transport, and a selection of e-MTBs for adventure seekers. Perfect for commuters, parents, and sports enthusiasts – our bikes are for everyone seeking an alternative means of transport.</p>",
-        "image": "",
+        "image": "shopify://shop_images/2017-07-05-tern-amsterdam-1781.jpg",
         "image_position": "right",
         "cta_text": "Visit Our Stores",
         "cta_url": "/pages/contact",
@@ -96,7 +100,10 @@
         "title_color": "#2c3e50",
         "content_color": "#6c757d",
         "cta_color": "#ff4040",
-        "secondary_cta_color": "#6c757d"
+        "secondary_cta_color": "#6c757d",
+        "overlay_color": "#ffffff",
+        "padding_top": 100,
+        "padding_bottom": 100
       }
     },
     "revolution_section": {
@@ -108,7 +115,9 @@
         "bg_color": "#f8f9fa",
         "title_color": "#ff4040",
         "content_color": "#2c3e50",
-        "accent_color": "#ff4040"
+        "accent_color": "#ff4040",
+        "padding_top": 50,
+        "padding_bottom": 50
       }
     },
     "quote_section": {
@@ -121,7 +130,9 @@
         "bg_gradient_end": "#34495e",
         "quote_color": "#ffffff",
         "author_color": "#ecf0f1",
-        "accent_color": "#ff4040"
+        "accent_color": "#ff4040",
+        "padding_top": 100,
+        "padding_bottom": 100
       }
     },
     "cta_section": {
@@ -131,18 +142,23 @@
         "subtitle": "Experience the freedom of sustainable mobility. Visit our showrooms or book a test ride today.",
         "primary_cta_text": "Book Test Ride",
         "primary_cta_url": "/collections/e-bikes",
+        "primary_cta_icon": "",
         "secondary_cta_text": "Visit Stores",
         "secondary_cta_url": "/pages/contact",
-        "bg_image": "",
+        "secondary_cta_icon": "",
+        "bg_attachment": "scroll",
         "bg_color": "#ff4040",
         "bg_color_secondary": "#e74c3c",
-        "overlay_color": "rgba(0, 0, 0, 0.5)",
+        "overlay_color": "#00000080",
         "title_color": "#ffffff",
         "subtitle_color": "#f8f9fa",
         "primary_btn_color": "#ffffff",
         "primary_btn_text_color": "#ff4040",
         "secondary_btn_color": "#ffffff",
-        "secondary_btn_text_hover": "#ff4040"
+        "secondary_btn_text_hover": "#ff4040",
+        "accent_color": "#ff4040",
+        "padding_top": 120,
+        "padding_bottom": 120
       }
     },
     "newsletter_section": {
