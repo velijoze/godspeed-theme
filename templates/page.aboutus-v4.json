@@ -18,25 +18,20 @@
         "sub_title": "Great Bikes. No Hassle. Just Savings."
       }
     },
-    "workshop_hero_ryjFci": {
-      "type": "workshop-hero",
-      "name": "Workshop - Hero",
+    "why_hero_dNeVAK": {
+      "type": "why-hero",
+      "name": "Why Hero",
       "settings": {
-        "hero_image": "shopify://shop_images/5S5A5532.jpg",
-        "hero_title": "",
-        "hero_subtitle": "",
-        "hero_button_text": "",
-        "hero_button_link": "",
-        "show_scroll_indicator": false,
-        "color_title": "#333",
-        "color_subtitle": "#6c757d",
-        "bg_btn": "#007bff",
-        "color_btn": "#fff",
-        "hover_bg_btn": "#0056b3",
-        "hover_color_btn": "#fff",
-        "overlay_opacity": 0.4,
-        "margin_top": 0,
-        "margin_bottom": 0
+        "title": "",
+        "subtitle": "",
+        "cta_text": "Explore E-Bikes",
+        "cta_url": "",
+        "bg_image": "shopify://shop_images/5S5A5532.jpg",
+        "bg_color": "#f8f9fa",
+        "bg_color_secondary": "#ffffff",
+        "title_color": "#ffffff",
+        "subtitle_color": "#f8f9fa",
+        "cta_color": "#ff4040"
       }
     },
     "about_introduce_v4": {
@@ -272,7 +267,7 @@
   },
   "order": [
     "banner_about_v4",
-    "workshop_hero_ryjFci",
+    "why_hero_dNeVAK",
     "about_introduce_v4",
     "about_servicebox_v4",
     "rich_text_v4",
