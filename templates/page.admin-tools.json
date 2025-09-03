@@ -11,7 +11,7 @@
   "sections": {
     "main": {
       "type": "main-page",
-      "settings": { "hide_page_title": true }
+      "settings": {}
     },
     "admin_header": {
       "type": "rich-text",
