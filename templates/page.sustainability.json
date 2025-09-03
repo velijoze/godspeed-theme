@@ -142,39 +142,39 @@
         "stat_M8CkCU": {
           "type": "stat",
           "settings": {
-            "icon": "leaf",
-            "value": "500+ tons",
+            "icon": "co2",
+            "value": "750+ tons",
             "label": "CO2 saved",
-            "note": "estimated since 2020"
-          }
-        },
-        "stat_yAwm66": {
-          "type": "stat",
-          "settings": {
-            "icon": "battery",
-            "value": "500+ tons",
-            "label": "CO2 saved",
-            "note": "estimated since 2020"
+            "note": ""
           }
         },
         "stat_bkrpHJ": {
           "type": "stat",
           "settings": {
             "icon": "recycle",
-            "value": "500+ tons",
-            "label": "CO2 saved",
-            "note": "estimated since 2020"
+            "value": "85% of packaging recycled",
+            "label": "through our shipping and workshop operations.",
+            "note": ""
+          }
+        },
+        "stat_yAwm66": {
+          "type": "stat",
+          "settings": {
+            "icon": "leaf",
+            "value": "500,000+",
+            "label": "car kilometers avoided",
+            "note": ""
           }
         }
       },
       "block_order": [
         "stat_M8CkCU",
-        "stat_yAwm66",
-        "stat_bkrpHJ"
+        "stat_bkrpHJ",
+        "stat_yAwm66"
       ],
       "name": "GS - Eco Stats",
       "settings": {
-        "title": "Sustainability in Numbers",
+        "title": "Pedaling Towards a Greener Ticino",
         "subtitle": "Tangible impact from our riders, partners, and workshop.",
         "columns": "3"
       }
@@ -183,7 +183,7 @@
       "type": "why-godspeed",
       "name": "Why GODSPEED",
       "settings": {
-        "title": "Ride Green. Ride GODSPEED.",
+        "title": "RIDE GREEN.  RIDE  GODSPEED.",
         "content": "<p><br/>By choosing an e-bike, you’re not just upgrading your commute—you’re helping cut traffic, reduce CO₂ emissions, and create cleaner air for everyone. Every ride replaces a car trip, saves resources, and proves that sustainable transport can be both practical and stylish. At Godspeed, we believe the future of mobility in Ticino is electric, efficient, and eco-friendly—one pedal stroke at a time. <br/><br/></p>",
         "image": "shopify://shop_images/csm_16_eBike_Tavolata_Bosch_eBike_Laflor_WWMM_2024_694505bbad.jpg",
         "image_position": "left",
